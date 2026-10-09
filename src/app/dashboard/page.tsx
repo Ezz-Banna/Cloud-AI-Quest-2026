@@ -36,11 +36,11 @@ export default function Dashboard() {
   const skillName = (id?: string) => (id ? (lang === "ar" ? SKILL_BY_ID[id]?.name_ar : SKILL_BY_ID[id]?.name_en) ?? id : "");
   // Factual labels for what was done on this device. None of them is an outcome such as admission or a job.
   const stages = [
-    { n: 1, en: "Programs", ar: "البرامج", done: progress.discover_done, href: "/discover/results",
+    { n: 1, en: "Study options", ar: "خيارات الدراسة", done: progress.discover_done, href: "/discover/results",
       line: progress.discover_done ? tr(`Answers given · ${(profile.saved_programs ?? []).length} program(s) saved`, `تمت الإجابة · ${(profile.saved_programs ?? []).length} برنامج محفوظ`) : tr("Questions not answered yet", "لم تتم الإجابة بعد") },
-    { n: 2, en: "Skills", ar: "المهارات", done: profile.skills.length > 0, href: "/empower",
+    { n: 2, en: "Your experience", ar: "خبراتك", done: profile.skills.length > 0, href: "/empower",
       line: profile.skills.length ? tr(`${profile.skills.length} skill(s) recorded · ${withWork} with work attached`, `${profile.skills.length} مهارة مسجّلة · ${withWork} مع عمل مرفق`) : tr("No experience described yet", "لم تُوصف أي خبرة بعد") },
-    { n: 3, en: "Role comparison", ar: "المقارنة بدور", done: rolesCompared > 0, href: "/succeed",
+    { n: 3, en: "Roles", ar: "الوظائف", done: rolesCompared > 0, href: "/succeed",
       line: rolesCompared ? tr(`Compared with ${rolesCompared} role(s)`, `تمت المقارنة مع ${rolesCompared} دور`) : tr("No role compared yet", "لم تتم مقارنة أي دور بعد") },
   ];
   const ACT: Record<string, [string, string]> = {
@@ -58,13 +58,14 @@ export default function Dashboard() {
       {loadError && <p role="alert" className="rounded-xl bg-bad-100 p-4 text-bad">{tr("We couldn't load your matches right now. Your profile is safe on this device; please refresh in a moment.", "تعذّر تحميل نتائجك الآن. ملفك محفوظ على هذا الجهاز؛ حدّث الصفحة بعد قليل.")}</p>}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="eyebrow">{tr("My dashboard", "لوحتي")}</p>
-          <h1 className="h1 mt-2">{profile.name ? tr(`Welcome back, ${profile.name.split(" ")[0]}`, `أهلاً بعودتك، ${profile.name.split(" ")[0]}`) : tr("Your Bridgecom journey", "رحلتك في بريدجكوم")}</h1>
+          <p className="eyebrow">{profile.name ? tr(`Welcome back, ${profile.name.split(" ")[0]}`, `أهلين ${profile.name.split(" ")[0]}`) : tr("My plan", "خطتي")}</p>
+          <h1 className="h1 mt-2">{tr("All your steps in one place", "كل خطواتك بمكان واحد.")}</h1>
+          <p className="mt-2 text-muted">{tr("Come back to your saved options and pick up where you left off.", "ارجع لخياراتك المحفوظة وكمّل من وين وقفت.")}</p>
         </div>
-        <p className="text-sm text-muted">{tr("Stored on this device only.", "محفوظ على هذا الجهاز فقط.")}</p>
+        <p className="text-sm text-muted">{tr("Saved on this device only.", "محفوظة على هذا الجهاز فقط.")}</p>
       </div>
 
-      <section className="grid gap-4 md:grid-cols-3" aria-label={tr("Journey progress", "تقدم الرحلة")}>
+      <section className="grid gap-4 md:grid-cols-3" aria-label={tr("Your steps", "خطواتك")}>
         {stages.map((s) => (
           <Link key={s.n} href={s.href} className="card flex items-center gap-4 p-5 hover:border-sage">
             <span className={`grid size-11 place-items-center rounded-full font-bold ${s.done ? "bg-sage text-white" : "border-2 border-line text-muted"}`}>{s.done ? "✓" : s.n}</span>

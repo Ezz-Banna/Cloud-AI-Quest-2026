@@ -2,7 +2,7 @@
 export type Lang = "en" | "ar";
 
 const dict = {
-  tagline: { en: "Your next step, made clearer.", ar: "خطوتك التالية، بوضوح أكبر." },
+  tagline: { en: "Your next step, clearer.", ar: "خطوتك الجايّة أوضح." },
   descriptor: { en: "Education and skills guidance for Jordan", ar: "إرشاد تعليمي ومهاري في الأردن" },
   find_next_step: { en: "Find my next step", ar: "اعرف خطوتك التالية" },
   explore_example: { en: "Explore an example", ar: "استكشف مثالاً" },

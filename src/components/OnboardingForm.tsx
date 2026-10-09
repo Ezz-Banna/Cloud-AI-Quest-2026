@@ -64,9 +64,9 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
     if (step === 0 && !p.education_level) return tr("Choose your current education level.", "اختر مستواك التعليمي الحالي.");
     if (step === 1) {
       if (!p.stream) return tr("Choose your stream (or IGCSE / other).", "اختر فرعك (أو IGCSE / أخرى).");
-      if (!noAvg && (p.tawjihi_avg == null || p.tawjihi_avg < 40 || p.tawjihi_avg > 100)) return tr("Enter an average between 40 and 100, or tick \"I don't have it yet\".", "أدخل معدلاً بين 40 و100، أو اختر \"ليس لدي بعد\".");
+      if (!noAvg && (p.tawjihi_avg == null || p.tawjihi_avg < 40 || p.tawjihi_avg > 100)) return tr("Enter an average between 40 and 100, or tick \"I don't have it yet\".", "أدخل معدلاً بين 40 و100، أو اختر «لسّه ما طلع المعدّل».");
     }
-    if (step === 2 && p.interests.length === 0 && !unsureField) return tr("Pick at least one field, or choose \"I'm not sure yet\".", "اختر تخصصاً واحداً على الأقل، أو اختر \"لست متأكداً بعد\".");
+    if (step === 2 && p.interests.length === 0 && !unsureField) return tr("Pick at least one field, or choose \"Still exploring\".", "اختر تخصصاً واحداً على الأقل، أو اختر «لسّه بستكشف».");
     if (step === 5 && p.budget_jod_per_year != null && p.budget_jod_per_year < 0) return tr("Budget can't be negative.", "لا يمكن أن تكون الميزانية سالبة.");
     if (step === 6 && p.priorities.length > 3) return tr("Pick up to three priorities.", "اختر حتى ثلاث أولويات.");
     return null;
@@ -113,7 +113,7 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
 
       <fieldset className="mt-6 space-y-5" aria-describedby="step-error">
         {step === 0 && (<>
-          <div><label className="label" htmlFor="nm">{tr("What should we call you? (optional)", "ماذا نناديك؟ (اختياري)")}</label><input id="nm" className="input" value={p.name ?? ""} onChange={(e) => setP({ ...p, name: e.target.value })} /></div>
+          <div><label className="label" htmlFor="nm">{tr("What should we call you? (optional)", "شو نناديك؟ (اختياري)")}</label><input id="nm" className="input" value={p.name ?? ""} onChange={(e) => setP({ ...p, name: e.target.value })} /></div>
           <div><p className="label" id="edu-l">{tr("Where are you in your education?", "أين أنت في مسيرتك التعليمية؟")}</p>
             <div className="flex flex-wrap gap-2" role="group" aria-labelledby="edu-l">{EDU.map((o) => <button key={o.v} type="button" className="chip" aria-pressed={p.education_level === o.v} onClick={() => setP({ ...p, education_level: o.v })}>{L(o)}</button>)}</div></div>
         </>)}
@@ -122,13 +122,14 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
             <div className="flex flex-wrap gap-2" role="group" aria-labelledby="st-l">{STREAMS.map((o) => <button key={o.v} type="button" className="chip" aria-pressed={p.stream === o.v} onClick={() => setP({ ...p, stream: o.v })}>{L(o)}</button>)}</div></div>
           <div><label className="label" htmlFor="av">{tr("Average (%)", "المعدل (%)")}</label>
             <input id="av" className="input max-w-48" type="number" inputMode="decimal" step="0.1" min={40} max={100} disabled={noAvg} value={p.tawjihi_avg ?? ""} onChange={(e) => setP({ ...p, tawjihi_avg: e.target.value === "" ? null : Number(e.target.value) })} />
-            <label className="mt-2 flex items-center gap-2 text-sm"><input type="checkbox" className="size-4 accent-teal" checked={noAvg} onChange={(e) => setNoAvg(e.target.checked)} />{tr("I don't have it yet", "ليس لدي معدل بعد")}</label>
+            <label className="mt-2 flex items-center gap-2 text-sm"><input type="checkbox" className="size-4 accent-teal" checked={noAvg} onChange={(e) => setNoAvg(e.target.checked)} />{tr("I don't have it yet", "لسّه ما طلع المعدّل")}</label>
             {why("Used only to compare with each program's published minimum. It is never shared with employers.", "يُستخدم فقط للمقارنة مع الحد الأدنى المنشور لكل برنامج، ولا يُشارك مع أصحاب العمل.")}</div>
         </>)}
         {step === 2 && (<>
           <div><p className="label">{tr("Favourite school subjects", "موادك المفضلة")}</p>{chips(SUBJECTS, "subjects")}</div>
-          <div><p className="label">{tr("Fields you might like to study", "تخصصات قد ترغب بدراستها")}</p>{chips(FIELDS.map((f) => ({ v: f.id, en: f.name_en, ar: f.name_ar })), "interests")}
-            <button type="button" className="chip mt-2" aria-pressed={unsureField} onClick={() => { setUnsureField(!unsureField); if (!unsureField) setP((x) => ({ ...x, interests: [] })); }}>{tr("I'm not sure yet", "لست متأكداً بعد")}</button>
+          <div><p className="label">{tr("Fields you might like to study", "تخصصات ممكن تحب تدرسها")}</p>
+            <p className="-mt-1 mb-2 text-sm text-muted">{tr("Still exploring? Start with what interests you.", "لسّه بتستكشف؟ عادي، ابدأ باللي بهمّك.")}</p>{chips(FIELDS.map((f) => ({ v: f.id, en: f.name_en, ar: f.name_ar })), "interests")}
+            <button type="button" className="chip mt-2" aria-pressed={unsureField} onClick={() => { setUnsureField(!unsureField); if (!unsureField) setP((x) => ({ ...x, interests: [] })); }}>{tr("Still exploring", "لسّه بستكشف")}</button>
             {why("These are the fields in our current verified dataset. Not sure? We'll show a wider range and ask follow-up questions only where they change the results.", "هذه التخصصات المتوفرة في بياناتنا الموثّقة حالياً. لست متأكداً؟ سنعرض نطاقاً أوسع ونسأل أسئلة إضافية فقط عندما تغيّر النتائج.")}</div>
           <div><label className="label" htmlFor="hb">{tr("Hobbies and interests outside school", "هواياتك واهتماماتك خارج المدرسة")}</label><input id="hb" className="input" value={hobbies} onChange={(e) => setHobbies(e.target.value)} placeholder={tr("e.g. robotics, drawing, football", "مثال: الروبوتات، الرسم، كرة القدم")} /></div>
         </>)}
@@ -147,9 +148,9 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
           <div><p className="label">{tr("Industries that interest you", "القطاعات التي تهمك")}</p>{chips(INDUSTRIES, "industries")}</div>
         </>)}
         {step === 5 && (<>
-          <div><p className="label">{tr("Tuition your family can afford per year (JOD)", "الرسوم التي تستطيع عائلتك تحمّلها سنوياً (دينار)")}</p>
+          <div><p className="label">{tr("Yearly tuition you can cover (JOD)", "الرسوم السنوية اللي بتقدر تغطيها (دينار)")}</p>
             <div className="flex flex-wrap gap-2">{BUDGETS.map((b) => <button key={b} type="button" className="chip" aria-pressed={p.budget_jod_per_year === b} onClick={() => setP({ ...p, budget_jod_per_year: b })}>{b.toLocaleString()}</button>)}
-              <button type="button" className="chip" aria-pressed={p.budget_jod_per_year == null} onClick={() => setP({ ...p, budget_jod_per_year: null })}>{tr("Not sure", "لست متأكداً")}</button></div>
+              <button type="button" className="chip" aria-pressed={p.budget_jod_per_year == null} onClick={() => setP({ ...p, budget_jod_per_year: null })}>{tr("Not sure yet", "مش واضح بعد")}</button></div>
             <label className="label mt-3" htmlFor="bg">{tr("Or type an amount", "أو اكتب مبلغاً")}</label>
             <input id="bg" className="input max-w-48" type="number" min={0} step={100} value={p.budget_jod_per_year ?? ""} onChange={(e) => setP({ ...p, budget_jod_per_year: e.target.value === "" ? null : Number(e.target.value) })} /></div>
           <div><p className="label">{tr("Would you need a scholarship, grant or loan?", "هل تحتاج إلى منحة أو قرض؟")}</p>
@@ -178,7 +179,7 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
 
       <div className="mt-6 flex items-center justify-between gap-2">
         <button type="button" className="btn-ghost" disabled={step === 0} onClick={() => { setError(null); setStep(step - 1); }}>{tr("Back", "رجوع")}</button>
-        <button type="submit" className="btn-primary !px-7">{step === STEPS.length - 1 ? tr("See my matches", "اعرض النتائج") : tr("Continue", "متابعة")}</button>
+        <button type="submit" className="btn-primary !px-7">{step === STEPS.length - 1 ? tr("See my options", "شوف خياراتي") : tr("Continue", "كمّل")}</button>
       </div>
     </form>
   );

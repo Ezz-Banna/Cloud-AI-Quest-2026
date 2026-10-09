@@ -8,7 +8,7 @@ const jakarta = Plus_Jakarta_Sans({ variable: "--font-jakarta", subsets: ["latin
 const plexAr = IBM_Plex_Sans_Arabic({ variable: "--font-plex-ar", subsets: ["arabic"], weight: ["400", "500", "600", "700"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Bridgecom: your next step, made clearer",
+  title: "Bridgecom: your next step, clearer",
   description: "Education and skills guidance for Jordan: university program options with published minimums and sourced costs, skills drawn from your own words, and a comparison of your experience with a role. Every suggestion shows its reasons.",
 };
 export const viewport: Viewport = { themeColor: "#264653", width: "device-width", initialScale: 1 };

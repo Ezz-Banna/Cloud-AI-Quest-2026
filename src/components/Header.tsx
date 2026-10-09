@@ -9,20 +9,25 @@ export function Header() {
   const { lang, setLang, tr } = useBridge();
   const path = usePathname();
   const inJourney = ["/discover", "/empower", "/succeed"].some((p) => path.startsWith(p));
+  const nav = [
+    { href: "/discover", en: "Study options", ar: "خيارات الدراسة", on: path.startsWith("/discover") || path.startsWith("/compare") },
+    { href: "/empower", en: "Career preparation", ar: "الاستعداد للشغل", on: path.startsWith("/empower") || path.startsWith("/succeed") },
+    { href: "/dashboard", en: "My plan", ar: "خطتي", on: path.startsWith("/dashboard") },
+  ];
+  const links = (cls: string) => nav.map((n) => (
+    <Link key={n.href} href={n.href} aria-current={n.on ? "page" : undefined} className={`${cls} ${n.on ? "!text-teal underline decoration-sage decoration-2 underline-offset-8" : ""}`}>{tr(n.en, n.ar)}</Link>
+  ));
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-ivory/90 backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-line bg-ivory/95 backdrop-blur">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-2 btn-primary">{tr("Skip to content", "انتقل إلى المحتوى")}</a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" className="min-w-0 rounded-xl"><Wordmark descriptor={tr("Your next step, made clearer.", "خطوتك التالية، بوضوح أكبر.")} /></Link>
-        <div className="flex items-center gap-1 sm:gap-2">
-          <Link href="/dashboard" className="btn-ghost !px-3">{tr("My dashboard", "لوحتي")}</Link>
-          <Link href="/employer" className="btn-ghost hidden md:inline-flex">{tr("For employers", "لأصحاب العمل")}</Link>
-          <Link href="/how" className="btn-ghost hidden lg:inline-flex">{tr("How it works", "كيف يعمل")}</Link>
-          <button type="button" className="btn-secondary !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
-            {lang === "en" ? "العربية" : "English"}
-          </button>
-        </div>
+        <Link href="/" className="min-w-0 rounded-xl"><Wordmark descriptor={tr("Your next step, clearer.", "خطوتك الجايّة أوضح.")} /></Link>
+        <nav aria-label={tr("Main", "القائمة الرئيسية")} className="hidden items-center gap-1 md:flex">{links("btn-ghost !px-3")}</nav>
+        <button type="button" className="btn-secondary shrink-0 !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
+          {lang === "en" ? "العربية" : "English"}
+        </button>
       </div>
+      <nav aria-label={tr("Main", "القائمة الرئيسية")} className="mx-auto flex max-w-6xl justify-between gap-1 px-2 pb-2 md:hidden">{links("btn-ghost !px-2 text-sm")}</nav>
       {inJourney && <div className="mx-auto max-w-6xl px-4 pb-3"><JourneyIndicator /></div>}
     </header>
   );
@@ -33,7 +38,7 @@ export function Footer() {
   return (
     <footer className="mt-20 border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>{tr("Bridgecom: your next step, made clearer. A hackathon prototype (AI Quest 2026). Guidance only, not admission or hiring decisions.", "بريدجكوم: خطوتك التالية، بوضوح أكبر. نموذج أولي ضمن هاكاثون AI Quest 2026. إرشاد فقط، وليس قرارات قبول أو توظيف.")}</p>
+        <p><span className="font-semibold text-teal">{tr("Your next step, clearer.", "خطوتك الجايّة أوضح.")}</span> {tr("A hackathon prototype (AI Quest 2026). Guidance only: Bridgecom does not decide admission, funding or hiring.", "نموذج أولي ضمن هاكاثون AI Quest 2026. إرشاد فقط: بريدجكوم لا يقرّر القبول أو التمويل أو التوظيف.")}</p>
         <nav aria-label={tr("Footer", "تذييل الصفحة")} className="flex flex-wrap gap-x-4 gap-y-2">
           <Link href="/how" className="underline underline-offset-2">{tr("How it works", "كيف يعمل")}</Link>
           <Link href="/data" className="underline underline-offset-2">{tr("About the data", "عن البيانات")}</Link>

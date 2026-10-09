@@ -29,24 +29,25 @@ export default function Discover() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      {demoRequested && <p role="status" className="mb-4 rounded-xl bg-sand-100 px-4 py-3 text-sm text-ink">{tr("Loading the synthetic demo student…", "جارٍ تحميل الطالبة التجريبية المصطنعة…")}</p>}
+      {demoRequested && <p role="status" className="mb-4 rounded-xl bg-sand-100 px-4 py-3 text-sm text-ink">{tr("Loading Lina’s example…", "عم نجهّز مثال لينا…")}</p>}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="h1">{tr("Let's find programs that fit you", "لنجد البرامج التي تناسبك")}</h1>
+          <h1 className="h1">{tr("Let's find options that fit you", "خلّينا نلاقي خيارات بتناسبك.")}</h1>
+          <p className="mt-2 text-muted">{tr("Start with your interests, average and budget.", "ابدأ باهتماماتك، معدّلك، وميزانيتك.")}</p>
         </div>
         <button type="button" className="btn-ghost text-sm" onClick={startDemo}>
-          {tr("Use the synthetic demo student", "استخدم الطالبة التجريبية")}
+          {tr("Try Lina’s example (made-up student)", "جرّب مثال لينا (طالبة افتراضية)")}
         </button>
       </div>
       <div className="mt-6 inline-flex rounded-full bg-mist p-1" role="tablist" aria-label={tr("How would you like to answer?", "كيف تحب أن تجيب؟")}>
-        {([["form", tr("Step-by-step form", "استبيان خطوة بخطوة")], ["chat", tr("Conversation", "محادثة")]] as const).map(([m, label]) => (
+        {([["form", tr("Quick questions", "أسئلة سريعة")], ["chat", tr("Chat", "دردشة")]] as const).map(([m, label]) => (
           <button key={m} role="tab" aria-selected={mode === m} type="button" onClick={() => setMode(m)}
             className={`rounded-full px-4 py-2 text-sm font-semibold ${mode === m ? "bg-white text-teal shadow" : "text-muted"}`}>{label}</button>
         ))}
       </div>
       <p className="mt-2 text-sm text-muted">{mode === "form"
-        ? tr("Eight short steps. Every answer can be changed later.", "ثماني خطوات قصيرة. يمكنك تغيير أي إجابة لاحقاً.")
-        : tr("Answer in your own words. You check the profile before it's used.", "أجب بكلماتك. تراجع الملف قبل استخدامه.")}</p>
+        ? tr("8 quick steps. You can change any answer later.", "8 خطوات سريعة، وبتقدر تغيّر أي جواب بعدين.")
+        : tr("Answer in your own words. You check the summary before it’s used.", "جاوب بكلامك، وبتراجع الملخص قبل ما نستخدمه.")}</p>
         <div className="mt-2"><AnalysisMode /></div>
       <div className="mt-4">{mode === "form" ? <OnboardingForm onDone={done} /> : <ChatOnboarding onDone={done} />}</div>
     </div>

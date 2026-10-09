@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant ar (&:where([dir="rtl"] *));
 
 /* Bridgecom design tokens */
 @theme {
@@ -49,6 +50,8 @@ body {
   font-family: var(--font-sans);
 }
 [dir="rtl"] body, [dir="rtl"] { font-family: var(--font-ar); }
+/* Arabic headlines: a touch more line height and no negative tracking, so joined letters and dots never collide. */
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { letter-spacing: 0; line-height: 1.35; }
 
 :focus-visible { outline: 3px solid var(--color-sand); outline-offset: 2px; border-radius: 6px; }
 

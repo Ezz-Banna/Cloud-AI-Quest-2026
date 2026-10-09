@@ -20,17 +20,17 @@ async function run(viewport, tag) {
 
   await page.goto(BASE);
   check(`${tag}: no compulsory intro`, (await page.getByRole("dialog").count()) === 0);
-  check(`${tag}: one h1 with the tagline`, (await page.locator("h1").count()) === 1 && /next step, made clearer/i.test(await page.locator("h1").innerText()));
-  check(`${tag}: example entry point offered`, await page.getByRole("link", { name: /explore an example/i }).isVisible());
-  await page.getByRole("link", { name: /find my next step/i }).click();
+  check(`${tag}: one h1 with the headline and the slogan beside the brand`, (await page.locator("h1").count()) === 1 && /what.s your next move/i.test(await page.locator("h1").innerText()) && /your next step, clearer/i.test(await page.locator("footer").innerText()));
+  check(`${tag}: example entry point offered`, await page.getByRole("link", { name: /see an example/i }).isVisible());
+  await page.getByRole("link", { name: /let.s start/i }).click();
   await page.waitForTimeout(600);
-  check(`${tag}: "Find my next step" moves focus to the goals`, await page.evaluate(() => !!document.activeElement?.closest("#goals") || document.activeElement?.id === "goals"));
+  check(`${tag}: "Let’s start" moves focus to the goals`, await page.evaluate(() => !!document.activeElement?.closest("#goals") || document.activeElement?.id === "goals"));
   await page.screenshot({ path: `${OUT}/${tag}-02-home.png`, fullPage: true });
 
   await page.goto(`${BASE}/discover`);
   if (tag === "desktop") {
     // Step-by-step form
-    const cont = () => page.getByRole("button", { name: /^(Continue|See my matches)$/ }).click();
+    const cont = () => page.getByRole("button", { name: /^(Continue|See my options)$/ }).click();
     await cont();
     check(`${tag}: form validation blocks an empty step`, await page.getByRole("alert").filter({ hasText: /education level/i }).isVisible());
     await page.getByLabel(/what should we call you/i).fill("Lina");
@@ -46,7 +46,7 @@ async function run(viewport, tag) {
     await cont();
   } else {
     // AI conversational mode
-    await page.getByRole("tab", { name: /conversation/i }).click();
+    await page.getByRole("tab", { name: /^chat$/i }).click();
     const answers = ["Lina", "86.4 scientific stream", "I love coding and making websites, maybe AI too", "Build apps that help people in Jordan as a web developer", "About 2500 JOD, I need a scholarship", "Irbid, Amman is fine too", "No preference", "Nothing specific"];
     for (const a of answers) {
       await page.getByLabel("Your answer").fill(a);

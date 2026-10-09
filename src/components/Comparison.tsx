@@ -69,7 +69,7 @@ export function Comparison({ role, onEditRequirements }: { role: ComparedRole; o
   return (
     <div className="space-y-8">
       <section className="card p-6" aria-labelledby="cmp-h">
-        <h2 id="cmp-h" className="h2">{tr("How does your experience match this role?", "كيف تتوافق خبراتك مع متطلبات هذه الوظيفة؟")}</h2>
+        <h2 id="cmp-h" className="h2">{tr("How does your experience match this role?", "كيف بتتوافق خبرتك مع هاي الوظيفة؟")}</h2>
         <Summary c={c} />
         <NextActionCard c={c} step={next} onEdit={onEditRequirements} onChoose={choose} chosen={progress.next_task?.role_id === role.id && progress.next_task.skill_id === next?.skill_id} askReview={askReview} />
         {msg && <p role="status" className="mt-3 rounded-xl bg-sage-100 p-3 text-sm text-teal">{msg}</p>}
@@ -163,7 +163,7 @@ function NextActionCard({ c, step, onEdit, onChoose, chosen, askReview }: { c: C
 }
 
 const STATE: Record<ExperienceState, { en: string; ar: string }> = {
-  "none-recorded": { en: "Not recorded", ar: "غير مسجّلة" },
+  "none-recorded": { en: "You haven’t added related experience yet", ar: "لسّه ما أضفت تجربة مرتبطة بهاي المهارة" },
   "self-reported": { en: "Self-reported", ar: "إفادة ذاتية" },
   "evidence-attached": { en: "Evidence attached", ar: "دليل مرفق" },
   "awaiting-review": { en: "Awaiting review", ar: "بانتظار المراجعة" },

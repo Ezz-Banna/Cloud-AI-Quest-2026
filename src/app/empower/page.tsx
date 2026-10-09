@@ -16,7 +16,7 @@ interface Proposed { skill_id: string; level: number; quote: string; rationale: 
 const LEVELS = [{ v: 1, en: "Basic", ar: "أساسي" }, { v: 2, en: "Working", ar: "عملي" }, { v: 3, en: "Strong", ar: "متقدم" }];
 const KINDS: { v: Achievement["kind"]; en: string; ar: string }[] = [
   { v: "project", en: "Project", ar: "مشروع" }, { v: "certificate", en: "Certificate or course", ar: "شهادة أو دورة" },
-  { v: "activity", en: "Volunteering or club", ar: "تطوع أو نادٍ" }, { v: "work", en: "Work or internship", ar: "عمل أو تدريب" },
+  { v: "activity", en: "Volunteering or student club", ar: "تطوّع أو نادي طلابي" }, { v: "work", en: "Part-time work or internship", ar: "شغل جزئي أو تدريب" },
   { v: "award", en: "Competition or award", ar: "مسابقة أو جائزة" }, { v: "other", en: "Other", ar: "أخرى" },
 ];
 
@@ -111,24 +111,24 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="h1">{tr("Describe your experience as skills", "صِف خبرتك كمهارات")}</h1>
-        <p className="mt-2 max-w-2xl text-muted">{tr("Add something you've done. We suggest the skills it shows; you keep what's right.", "أضف شيئاً أنجزته. نقترح المهارات التي يُظهرها، وتحتفظ بما يصح.")}</p>
+        <h1 className="h1">{tr("Experience counts, even before your first job", "مش لازم تكون أول وظيفة عشان تكون خبرة.")}</h1>
+        <p className="mt-2 max-w-2xl text-muted">{tr("A uni project, volunteering or part-time work: tell us what your part was. We suggest the skills it shows, and you keep what’s right.", "مشروع جامعة، تطوّع، أو شغل جزئي: احكي شو كان دورك. منقترح المهارات اللي بتبيّنها، وإنت بتختار شو يضل.")}</p>
         <div className="mt-4"><EvidenceLadder /></div>
         <div className="mt-2"><AnalysisMode /></div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <section className="card p-5 sm:p-6" aria-labelledby="add-h">
-          <h2 id="add-h" className="h2">{tr("Add an achievement", "أضف إنجازاً")}</h2>
+          <h2 id="add-h" className="h2">{tr("Add an experience", "ضيف تجربة")}</h2>
           {!proposal ? (
             <form onSubmit={analyse} className="mt-4 space-y-4">
               <fieldset>
                 <legend className="label">{tr("Type", "النوع")}</legend>
                 <div className="flex flex-wrap gap-2">{KINDS.map((k) => <button key={k.v} type="button" className="chip" aria-pressed={kind === k.v} onClick={() => setKind(k.v)}>{lang === "ar" ? k.ar : k.en}</button>)}</div>
               </fieldset>
-              <div><label className="label" htmlFor="t">{tr("Title", "العنوان")}</label><input id="t" className="input" required minLength={2} value={title} onChange={(e) => setTitle(e.target.value)} placeholder={tr("e.g. School robotics club app", "مثال: تطبيق نادي الروبوتات في المدرسة")} /></div>
-              <div><label className="label" htmlFor="d">{tr("What did you actually do?", "ماذا فعلت بالضبط؟")}</label>
-                <textarea id="d" className="input min-h-32" required minLength={5} value={desc} onChange={(e) => setDesc(e.target.value)} placeholder={tr("Describe your own part: tools you used, what you built, what happened.", "صف دورك أنت: الأدوات التي استخدمتها، وما بنيته، وما النتيجة.")} />
+              <div><label className="label" htmlFor="t">{tr("Title", "العنوان")}</label><input id="t" className="input" required minLength={2} value={title} onChange={(e) => setTitle(e.target.value)} placeholder={tr("e.g. Helped organise a career day with the student club", "مثلاً: ساعدت بتنظيم يوم مهني مع نادي الطلبة")} /></div>
+              <div><label className="label" htmlFor="d">{tr("What did you actually do?", "شو عملت بالزبط؟")}</label>
+                <textarea id="d" className="input min-h-32" required minLength={5} value={desc} onChange={(e) => setDesc(e.target.value)} placeholder={tr("Your own part: tools you used, what you made, what happened.", "دورك إنت: الأدوات اللي استخدمتها، شو عملت، وشو صار.")} />
               </div>
               <div><label className="label" htmlFor="l">{tr("Evidence link (optional)", "رابط الدليل (اختياري)")}</label><input id="l" className="input" type="url" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://github.com/…" />
                 <p className="mt-1 text-xs text-muted">{tr("GitHub, portfolio or certificate page.", "GitHub أو معرض أعمال أو صفحة شهادة.")}</p></div>
@@ -182,7 +182,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
         <section className="card p-5 sm:p-6" aria-labelledby="skills-h">
           <div className="flex items-center justify-between gap-2"><h2 id="skills-h" className="h2">{tr("My skills", "مهاراتي")}</h2><span className="text-sm text-muted">{profile.skills.length}</span></div>
           {profile.skills.length === 0 ? (
-            <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("No skills yet. Add an achievement to get started.", "لا توجد مهارات بعد. أضف إنجازاً للبدء.")}</p>
+            <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("No skills yet. Add one experience and we’ll suggest some.", "لسّه ما في مهارات. ضيف تجربة وحدة ومنقترح عليك.")}</p>
           ) : (
             <ul className="mt-4 divide-y divide-line">
               {profile.skills.map((s) => (
@@ -213,9 +213,9 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
       </div>
 
       <section className="card p-5 sm:p-6" aria-labelledby="pf-h">
-        <div className="flex flex-wrap items-center justify-between gap-2"><h2 id="pf-h" className="h2">{tr("My portfolio", "ملف إنجازاتي")}</h2><span className="text-sm text-muted">{profile.achievements.length}</span></div>
+        <div className="flex flex-wrap items-center justify-between gap-2"><h2 id="pf-h" className="h2">{tr("My experiences", "تجاربي")}</h2><span className="text-sm text-muted">{profile.achievements.length}</span></div>
         {profile.achievements.length === 0 ? (
-          <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("Your projects, certificates and activities will appear here.", "ستظهر هنا مشاريعك وشهاداتك وأنشطتك.")}</p>
+          <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("Your projects, courses and activities will show up here.", "مشاريعك ودوراتك ونشاطاتك رح تظهر هون.")}</p>
         ) : (
           <ul className="mt-4 grid gap-3 md:grid-cols-2">
             {profile.achievements.map((a) => {
@@ -241,8 +241,8 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
       </section>
 
       <section aria-labelledby="opp-h">
-        <h2 id="opp-h" className="h2">{tr("Scholarships and support worth checking", "منح ودعم يستحق التحقق منه")}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted">{tr("A match means “worth checking”, not funding. Deadlines change each cycle: confirm on the official page.", "المطابقة تعني «يستحق التحقق» لا تمويلاً. المواعيد تتغير كل دورة: تحقق من الصفحة الرسمية.")}</p>
+        <h2 id="opp-h" className="h2">{tr("Worried about study costs?", "تكاليف الدراسة شاغلة بالك؟")}</h2>
+        <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Explore scholarships and support, and check the provider’s conditions. A match means worth checking, not a promise of funding; deadlines change each cycle.", "استكشف المنح وخيارات الدعم، وتأكد من شروط الجهة المانحة. المطابقة تعني أن الفرصة تستحق التحقق، وليست وعداً بالتمويل، والمواعيد تتغير كل دورة.")}</p>
         {!opps && <div className="card mt-4 h-24 animate-pulse bg-mist/60" />}
         {opps && opps.length === 0 && <p className="card mt-4 p-6 text-muted">{tr("No opportunity data loaded yet.", "لم يتم تحميل بيانات الفرص بعد.")}</p>}
         <ul className="mt-4 grid gap-4 md:grid-cols-2">
@@ -286,9 +286,9 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
 
       <section className="rounded-[1.25rem] bg-teal p-8 text-ivory">
         <p className="eyebrow !text-sand">{tr("Next", "التالي")}</p>
-        <h2 className="mt-2 text-2xl font-bold">{tr("See how your experience matches a role.", "اعرف كيف تتوافق خبرتك مع دور وظيفي.")}</h2>
-        <p className="mt-2 flex items-center gap-2 text-sm text-mist"><Icon name="lock" className="size-4" />{tr("Nothing is shared with employers unless you choose one role.", "لا يُشارك شيء مع أصحاب العمل إلا إذا اخترت دوراً بعينه.")}</p>
-        <Link href="/succeed" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Compare with a role", "قارن بدور وظيفي")}</Link>
+        <h2 className="mt-2 text-2xl font-bold">{tr("See what a job asks for, and pick your next step.", "شوف شو بتطلب الوظيفة، وحدّد خطوتك الجايّة.")}</h2>
+        <p className="mt-2 flex items-center gap-2 text-sm text-mist"><Icon name="lock" className="size-4" />{tr("Nothing is shared with employers unless you choose a specific role.", "لا يُشارك أي شيء مع أصحاب العمل إلا إذا اخترت وظيفة محددة.")}</p>
+        <Link href="/succeed" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Compare with a role", "قارن مع وظيفة")}</Link>
       </section>
     </div>
   );

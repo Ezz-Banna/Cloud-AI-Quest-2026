@@ -1,6 +1,6 @@
 # Bridgecom
 
-**Your next step, made clearer.** Education and skills guidance for Jordan.
+**Your next step, clearer.** («خطوتك الجايّة أوضح.») Education and skills guidance for students in Jordan.
 
 Bridgecom helps students, graduates and anyone without one-to-one guidance with three decisions: which university program to consider (Discover), how to describe the experience they already have as skills (Empower), and what a role still asks of them (Succeed). Every result shows where it came from, the person can correct what the system read, and nothing is presented as an admission chance, a readiness percentage or a hiring prediction.
 

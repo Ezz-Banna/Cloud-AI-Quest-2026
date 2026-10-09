@@ -5,9 +5,9 @@ import { useBridge } from "./ProfileProvider";
 
 type Stage = { id: "discover" | "empower" | "succeed"; href: string; en: string; ar: string; subEn: string; subAr: string };
 const STAGES: Stage[] = [
-  { id: "discover", href: "/discover", en: "Discover", ar: "اكتشف", subEn: "Choose a program", subAr: "اختر برنامجاً" },
-  { id: "empower", href: "/empower", en: "Empower", ar: "تمكَّن", subEn: "Describe your skills", subAr: "صِف مهاراتك" },
-  { id: "succeed", href: "/succeed", en: "Succeed", ar: "انجح", subEn: "Compare with a role", subAr: "قارن بدور وظيفي" },
+  { id: "discover", href: "/discover", en: "Study", ar: "الدراسة", subEn: "Programs and costs", subAr: "التخصصات والتكاليف" },
+  { id: "empower", href: "/empower", en: "Experience", ar: "خبراتك", subEn: "Skills from what you've done", subAr: "مهارات من تجاربك" },
+  { id: "succeed", href: "/succeed", en: "Roles", ar: "الوظائف", subEn: "What a job asks for", subAr: "شو بتطلب الوظيفة" },
 ];
 
 export function JourneyIndicator() {
@@ -17,12 +17,12 @@ export function JourneyIndicator() {
   const done = [progress.discover_done, progress.empower_done, false];
 
   return (
-    <nav aria-label={tr("Your journey", "رحلتك")} className="w-full">
+    <nav aria-label={tr("Your steps", "خطواتك")} className="w-full">
       <ol className="flex items-stretch gap-1.5 sm:gap-3">
         {STAGES.map((s, i) => {
           const isCurrent = i === current;
           const isDone = done[i] && !isCurrent;
-          const state = isCurrent ? tr("You are here", "أنت هنا") : isDone ? tr("Completed", "مكتمل") : tr("Up next", "التالي");
+          const state = isCurrent ? tr("Current step", "الخطوة الحالية") : isDone ? tr("Done", "تمّت") : tr("Up next", "الجايّة");
           return (
             <li key={s.id} className="flex flex-1 items-center gap-1.5 sm:gap-3 min-w-0">
               <Link href={s.href} aria-current={isCurrent ? "step" : undefined}

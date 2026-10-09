@@ -26,7 +26,18 @@ export default function Results() {
   const { profile, setProfile, tr, lang, hydrated, setProgress } = useBridge();
   const [explain, setExplain] = useState<Record<string, { text: string; mode: "ai" | "offline"; model?: string } | "loading">>({});
   const saved = profile.saved_programs ?? [];
-  const toggleSave = (id: string) => setProfile((p) => ({ ...p, saved_programs: (p.saved_programs ?? []).includes(id) ? p.saved_programs.filter((x) => x !== id) : [...(p.saved_programs ?? []), id] }));
+  const [saveMsg, setSaveMsg] = useState<string | null>(null);
+  useEffect(() => { if (!saveMsg) return; const t = setTimeout(() => setSaveMsg(null), 3000); return () => clearTimeout(t); }, [saveMsg]);
+  const toggleSave = (id: string) => {
+    const adding = !saved.includes(id);
+    setProfile((p) => ({ ...p, saved_programs: (p.saved_programs ?? []).includes(id) ? p.saved_programs.filter((x) => x !== id) : [...(p.saved_programs ?? []), id] }));
+    // Confirm only once the change is actually stored on this device.
+    setTimeout(() => {
+      let ok = false;
+      try { ok = (JSON.parse(localStorage.getItem("bridgecom.profile.v1") ?? "null")?.saved_programs ?? []).includes(id) === adding; } catch { ok = false; }
+      setSaveMsg(ok ? (adding ? tr("Saved to your plan.", "انحفظت بخطتك.") : tr("Removed from your plan.", "انشالت من خطتك.")) : tr("Couldn’t save on this device. Check that browser storage is allowed.", "ما قدرنا نحفظ على هذا الجهاز. تأكّد إن التخزين بالمتصفح مسموح."));
+    }, 50);
+  };
   async function getExplanation(id: string) {
     setExplain((e) => ({ ...e, [id]: "loading" }));
     try {
@@ -90,7 +101,7 @@ export default function Results() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="h1">{profile.name ? tr(`${profile.name.split(" ")[0]}, here are your matches`, `${profile.name.split(" ")[0]}، هذه نتائجك`) : tr("Your program matches", "البرامج المناسبة لك")}</h1>
+          <h1 className="h1">{profile.name ? tr(`${profile.name.split(" ")[0]}, here are your study options`, `${profile.name.split(" ")[0]}، هاي خياراتك للدراسة`) : tr("Your study options", "خياراتك للدراسة")}</h1>
           <p className="mt-3 flex flex-wrap gap-2 text-sm" aria-label={tr("Each program gets two separate checks", "يحصل كل برنامج على فحصين منفصلين")}>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1 font-semibold text-teal"><Icon name="rules" className="size-4" />{tr("Can I apply? Published minimum", "هل يمكنني التقديم؟ الحد المنشور")}</span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1 font-semibold text-teal"><Icon name="reasons" className="size-4" />{tr("How well does it fit me?", "ما مدى ملاءمته لي؟")}</span>
@@ -141,6 +152,7 @@ export default function Results() {
             <p className="text-xs text-muted sm:col-span-2">{tr("0 ignores a factor. Factors without data are left out, not guessed.", "0 يعني تجاهل العامل. العوامل بلا بيانات تُستبعد ولا تُخمَّن.")}</p>
           </div>
         )}
+        {saveMsg && <p role="status" className="fixed bottom-4 start-1/2 z-40 -translate-x-1/2 rtl:translate-x-1/2 rounded-full bg-teal px-4 py-2 text-sm font-semibold text-ivory shadow-lg">{saveMsg}</p>}
         <p className="sr-only" aria-live="polite">{updating ? tr("Updating ranking", "جارٍ تحديث الترتيب") : ""}</p>
       </section>
 
@@ -277,10 +289,10 @@ export default function Results() {
       {!showAll && shown.length > PAGE && <button type="button" className="btn-secondary mt-4" onClick={() => setShowAll(true)}>{tr(`Show ${shown.length - PAGE} more`, `اعرض ${shown.length - PAGE} أخرى`)}</button>}
 
       <section className="mt-12 rounded-[1.25rem] bg-teal p-8 text-ivory">
-        <p className="eyebrow !text-sand">{tr("Next · Empower", "التالي · تمكَّن")}</p>
-        <h2 className="mt-2 text-2xl font-bold">{tr("Your average is only part of your story.", "معدلك جزء من قصتك فقط.")}</h2>
-        <p className="mt-2 max-w-2xl text-mist">{tr("Turn projects and volunteering into skills, and find scholarships worth checking.", "حوّل مشاريعك وتطوعك إلى مهارات، واعثر على منح تستحق التحقق.")}</p>
-        <Link href="/empower" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Build my skills profile", "ابنِ ملف مهاراتي")}</Link>
+        <p className="eyebrow !text-sand">{tr("Next · Your experience", "الجايّة · خبراتك")}</p>
+        <h2 className="mt-2 text-2xl font-bold">{tr("Your average is only part of the picture.", "معدّلك جزء من القصة، مش كلها.")}</h2>
+        <p className="mt-2 max-w-2xl text-mist">{tr("Turn projects and volunteering into skills, and find scholarships worth checking.", "حوّل مشاريعك وتطوّعك لمهارات، ودوّر على منح بتستاهل.")}</p>
+        <Link href="/empower" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Add my experience", "ضيف تجاربك")}</Link>
       </section>
     </div>
   );

@@ -61,13 +61,13 @@ export default function Succeed() {
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="h1">{tr("Compare your experience with a role", "قارن خبرتك بدور وظيفي")}</h1>
+        <h1 className="h1">{tr("See what a job asks for, and pick your next step", "شوف شو بتطلب الوظيفة، وحدّد خطوتك الجايّة.")}</h1>
         <div className="mt-4"><StepStrip label={tr("How it works", "طريقة العمل")} steps={[
-          { icon: "role", text: tr("Pick a role or paste a posting", "اختر دوراً أو الصق إعلاناً") },
-          { icon: "edit", text: tr("Check what was read", "راجع ما قُرئ") },
-          { icon: "step", text: tr("Get one next step", "احصل على خطوة تالية") },
+          { icon: "role", text: tr("Pick a role or paste a posting", "اختار وظيفة أو الصق إعلان") },
+          { icon: "edit", text: tr("Check what we read", "راجع شو قرينا") },
+          { icon: "step", text: tr("Get one next step", "خذ خطوة وحدة جايّة") },
         ]} /></div>
-        {hydrated && profile.skills.length === 0 && <p className="mt-3 max-w-2xl rounded-xl bg-sand-100 p-3 text-sm text-sand-700">{tr("No experience recorded yet. To compare, ", "لم تسجّل أي خبرة بعد. للمقارنة، ")}<Link href="/empower" className="font-semibold underline">{tr("describe your experience first", "صِف خبرتك أولاً")}</Link>.</p>}
+        {hydrated && profile.skills.length === 0 && <p className="mt-3 max-w-2xl rounded-xl bg-sand-100 p-3 text-sm text-sand-700">{tr("You haven’t added any experience yet. To compare, ", "لسّه ما أضفت أي تجربة. عشان نقارن، ")}<Link href="/empower" className="font-semibold underline">{tr("add one first", "ضيف تجربة أول")}</Link>.</p>}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">

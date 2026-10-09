@@ -1,4 +1,4 @@
-// Bridgecom mark: two rising banks joined by a single arch, with a small sand-coloured traveller point.
+// Bridgecom mark: two banks joined by a single connecting arch, with a small sand-coloured "you are here" point.
 export function LogoMark({ size = 36, className = "" }: { size?: number; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true" className={className}>
@@ -13,11 +13,15 @@ export function LogoMark({ size = 36, className = "" }: { size?: number; classNa
   );
 }
 
-export function Wordmark({ className = "" }: { className?: string }) {
+/** Logo with the brand name; `descriptor` adds the one-line descriptor under it on wider screens. */
+export function Wordmark({ className = "", descriptor }: { className?: string; descriptor?: string }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark />
-      <span className="text-xl font-bold tracking-tight text-teal">Bridge<span className="text-sage-600">com</span></span>
+    <span className={`inline-flex min-w-0 items-center gap-2.5 ${className}`}>
+      <LogoMark className="shrink-0" />
+      <span className="flex min-w-0 flex-col leading-tight">
+        <span className="text-xl font-bold tracking-tight text-teal" dir="ltr">Bridge<span className="text-sage-600">com</span></span>
+        {descriptor && <span className="hidden truncate text-xs text-muted sm:block">{descriptor}</span>}
+      </span>
     </span>
   );
 }

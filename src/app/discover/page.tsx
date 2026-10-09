@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBridge } from "@/components/ProfileProvider";
 import { OnboardingForm } from "@/components/OnboardingForm";
@@ -8,19 +8,33 @@ import { DEMO_PROFILE } from "@/lib/demo";
 import type { LearnerProfile } from "@/lib/types";
 
 export default function Discover() {
-  const { tr, lang, setProfile, loadDemo } = useBridge();
+  const { tr, lang, setProfile, loadDemo, hydrated } = useBridge();
   const router = useRouter();
   const [mode, setMode] = useState<"form" | "chat">("form");
   const done = (p: LearnerProfile) => { setProfile(p); router.push("/discover/results"); };
+  const startDemo = () => { loadDemo({ ...DEMO_PROFILE, language: lang }); router.push("/discover/results"); };
+
+  // /discover?demo=1 (the homepage's "Explore an example") loads the synthetic demo student, exactly like the button below.
+  // Waits for the stored profile to load so the visitor's chosen language is kept.
+  const demoStarted = useRef(false);
+  const [demoRequested, setDemoRequested] = useState(false);
+  useEffect(() => { setDemoRequested(new URLSearchParams(window.location.search).get("demo") === "1"); }, []);
+  useEffect(() => {
+    if (!demoRequested || !hydrated || demoStarted.current) return;
+    demoStarted.current = true;
+    loadDemo({ ...DEMO_PROFILE, language: lang });
+    router.replace("/discover/results");
+  }, [demoRequested, hydrated, lang, loadDemo, router]);
 
   return (
     <div className="mx-auto max-w-3xl">
+      {demoRequested && <p role="status" className="mb-4 rounded-xl bg-sand-100 px-4 py-3 text-sm text-ink">{tr("Loading the synthetic demo student…", "جارٍ تحميل الطالبة التجريبية المصطنعة…")}</p>}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="eyebrow">{tr("Stage 1 · Discover", "المرحلة 1 · اكتشف")}</p>
           <h1 className="h1 mt-2">{tr("Let's find programs that fit you", "لنجد البرامج التي تناسبك")}</h1>
         </div>
-        <button type="button" className="btn-ghost text-sm" onClick={() => { loadDemo({ ...DEMO_PROFILE, language: lang }); router.push("/discover/results"); }}>
+        <button type="button" className="btn-ghost text-sm" onClick={startDemo}>
           {tr("Use the synthetic demo student", "استخدم الطالبة التجريبية")}
         </button>
       </div>

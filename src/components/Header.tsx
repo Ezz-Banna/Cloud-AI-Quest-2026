@@ -13,7 +13,7 @@ export function Header() {
     <header className="sticky top-0 z-30 border-b border-line bg-ivory/90 backdrop-blur">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-2 btn-primary">{tr("Skip to content", "انتقل إلى المحتوى")}</a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" className="min-w-0 rounded-xl"><Wordmark descriptor={tr("Education and skills guidance for Jordan", "إرشاد تعليمي ومهاري في الأردن")} /></Link>
+        <Link href="/" className="min-w-0 rounded-xl"><Wordmark descriptor={tr("Your next step, made clearer.", "خطوتك التالية، بوضوح أكبر.")} /></Link>
         <div className="flex items-center gap-1 sm:gap-2">
           <Link href="/dashboard" className="btn-ghost !px-3">{tr("My dashboard", "لوحتي")}</Link>
           <Link href="/employer" className="btn-ghost hidden md:inline-flex">{tr("For employers", "لأصحاب العمل")}</Link>

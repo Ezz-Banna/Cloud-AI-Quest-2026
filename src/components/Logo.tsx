@@ -20,7 +20,7 @@ export function Wordmark({ className = "", descriptor }: { className?: string; d
       <LogoMark className="shrink-0" />
       <span className="flex min-w-0 flex-col leading-tight">
         <span className="text-xl font-bold tracking-tight text-teal" dir="ltr">Bridge<span className="text-sage-600">com</span></span>
-        {descriptor && <span className="hidden truncate text-xs text-muted sm:block">{descriptor}</span>}
+        {descriptor && <span className="hidden truncate text-xs font-medium text-teal sm:block">{descriptor}</span>}
       </span>
     </span>
   );

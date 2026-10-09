@@ -3,10 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Icon, type IconName } from "@/components/Visuals";
-import { StatCard } from "@/components/StatCard";
-import { JORDAN_STATS } from "@/lib/data/jordan-stats";
 
-const HOME_STATS = JORDAN_STATS.filter((s) => s.home);
 
 type GoalId = "programs" | "skills" | "role";
 
@@ -113,11 +110,6 @@ export default function Home() {
     },
   ];
 
-  const trust: [IconName, string, string][] = [
-    ["source", tr("Sources and dates", "المصادر والتواريخ"), tr("Every minimum and cost links to where it came from.", "كل حد أدنى وكلفة مرتبط بمصدره.")],
-    ["reasons", tr("Reasons, not scores", "أسباب لا أرقام"), tr("Each suggestion says why, so you can disagree.", "كل اقتراح يذكر سببه، فتستطيع الاعتراض.")],
-    ["confirm", tr("You confirm first", "أنت تؤكّد أولاً"), tr("You check what was read, and whether AI or rules read it.", "تراجع ما قُرئ، وهل قرأه الذكاء الاصطناعي أم القواعد.")],
-  ];
 
   return (
     <>
@@ -176,28 +168,6 @@ export default function Home() {
         </ul>
       </section>
 
-      {HOME_STATS.length > 0 && (
-        <section aria-labelledby="ctx-title" className="mt-12">
-          <h2 id="ctx-title" className="h2">{tr("Why guidance matters in Jordan", "لماذا يهم الإرشاد في الأردن")}</h2>
-          <div className="mt-4 grid items-center gap-4 sm:grid-cols-[minmax(0,26rem)_1fr]">
-            <StatCard s={HOME_STATS[0]} compact />
-            <p className="text-sm"><Link href="/how" className="font-semibold text-teal underline underline-offset-2">{tr("More Jordanian context, with sources", "مزيد من السياق الأردني مع المصادر")} <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span></Link></p>
-          </div>
-        </section>
-      )}
-
-      <section aria-labelledby="trust-title" className="mt-14">
-        <h2 id="trust-title" className="h2">{tr("Guidance you can check", "إرشاد يمكنك التحقق منه")}</h2>
-        <ul className="mt-5 grid gap-4 md:grid-cols-3">
-          {trust.map(([icon, h, b]) => (
-            <li key={h} className="flex gap-3 rounded-[1.25rem] bg-mist p-5">
-              <Icon name={icon} className="mt-0.5 size-6 text-sage-600" />
-              <div><h3 className="font-bold text-teal">{h}</h3><p className="mt-1 text-sm text-muted">{b}</p></div>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-5 text-sm"><Link href="/how" className="font-semibold text-teal underline underline-offset-2">{tr("How Bridgecom works", "كيف يعمل بريدجكوم")} <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span></Link></p>
-      </section>
     </>
   );
 }

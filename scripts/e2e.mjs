@@ -213,7 +213,7 @@ async function run(viewport, tag) {
   check(`${tag}: live/simulated/planned table present`, await page.getByRole("columnheader", { name: "Status" }).isVisible());
   await page.screenshot({ path: `${OUT}/${tag}-13-how.png`, fullPage: true });
   await page.goto(`${BASE}/`);
-  check(`${tag}: homepage shows at most one sourced statistic`, (await page.locator("section[aria-labelledby=ctx-title] figure").count()) === 1 && await page.locator("section[aria-labelledby=ctx-title] figcaption a").first().isVisible());
+  check(`${tag}: homepage has no statistics or "guidance you can check" section`, (await page.locator("#ctx-title, #trust-title").count()) === 0);
 
   // Data page + Arabic
   await page.goto(`${BASE}/data`);

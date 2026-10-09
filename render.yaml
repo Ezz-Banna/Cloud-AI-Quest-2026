@@ -1,0 +1,18 @@
+# One-click deploy on Render (Dashboard > New > Blueprint > pick this repo).
+# Free plan: sleeps after 15 minutes idle (first visit then takes about a minute) and its disk is
+# reset on each deploy or restart, which is fine for the demo data in data/runtime/.
+services:
+  - type: web
+    name: bridgecom
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: ADMIN_PASSWORD
+        generateValue: true # read it in the Render dashboard under Environment
+      - key: ANTHROPIC_API_KEY
+        sync: false # paste your key in the dashboard; leave empty to run in offline mode

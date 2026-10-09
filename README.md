@@ -45,6 +45,12 @@ Without a key the app runs in **offline mode**: the AI steps use transparent key
 
 Production: `npm run build && npm start`. Deploy to a Node host with a writable disk (or move the repository layer to Postgres, see `db/schema.sql`). Delete `data/runtime/*.json` to reset demo data.
 
+## Deploy
+
+**Render (recommended, free):** in the Render dashboard choose New › Blueprint, connect this GitHub repository, and accept `render.yaml`. Render builds with `npm ci && npm run build`, starts with `npm start`, and generates `ADMIN_PASSWORD` (see Environment). Add `ANTHROPIC_API_KEY` there for AI mode. The free plan sleeps after 15 idle minutes, so open the site a minute before a demo.
+
+Any Node host with a writable disk works the same way (Railway, a VM). Serverless hosts such as Vercel are not supported, because employer roles, consent snapshots and admin edits are saved as files in `data/runtime/`.
+
 ## Tests
 
 ```bash

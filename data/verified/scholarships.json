@@ -1,0 +1,397 @@
+[
+  {
+    "id": "mohe-ssf-grants",
+    "name_en": "MoHE University Student Support Fund - internal grants (full / partial)",
+    "name_ar": "منح صندوق دعم الطالب الجامعي (منحة كاملة / منحة جزئية)",
+    "provider": "Ministry of Higher Education and Scientific Research - Directorate of Missions (Student Support)",
+    "kind": "grant",
+    "eligibility_text": "Jordanian citizens enrolled in a diploma or bachelor's programme at an official (public) Jordanian higher-education institution (2025/2026 guidance lists 11 eligible universities incl. UJ, Yarmouk, Mutah, Hashemite). Must not hold a full grant from another source or a discount. Previous-semester GPA >= 2/4 (60%); first-semester bachelor students are assessed on Tawjihi average, minimum 65%. Applied online during the announced window using national number + university number; points-based selection with humanitarian-case appeals.",
+    "criteria": {
+      "min_avg": 65,
+      "need_based": true,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Full grant or partial grant toward university fees; AABU page states the Ministry pays tuition covering 45 credit hours. Amounts of living allowances not stated in the guidance.",
+    "url": "https://www.dsamohe.gov.jo",
+    "sources": [
+      {
+        "url": "https://www.dsamohe.gov.jo/Internal/Files/Guidance2025.pdf",
+        "title": "MoHE Directorate of Missions - Internal grants & loans guidance 2025/2026",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx",
+        "title": "AABU - Important Information for the Student (student support)",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.petra.gov.jo/en/news/nearly%C2%A0750000%C2%A0students-benefited-from-university%C2%A0student-fund-since-2004",
+        "title": "Petra - Nearly 750,000 students benefited from university student fund since 2004 (13 Jul 2026)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Applications open each academic year after MoHE announcement (typically start of first semester). Fund has supported 747,430 students with >JD687.4m 2004-2025 (Petra, Jul 2026). Public universities only."
+  },
+  {
+    "id": "mohe-ssf-loans",
+    "name_en": "MoHE University Student Support Fund - student loans",
+    "name_ar": "قروض صندوق دعم الطالب الجامعي",
+    "provider": "Ministry of Higher Education and Scientific Research - Directorate of Missions (Student Support)",
+    "kind": "loan",
+    "eligibility_text": "Same eligibility and single online application as the MoHE internal grants (Jordanian, official/public university, min 65% Tawjihi for first-semester bachelor students, GPA >= 2/4 thereafter). Loan recipients sign a loan contract with a notarised guarantee.",
+    "criteria": {
+      "min_avg": 65,
+      "need_based": true,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Loan toward tuition; HU lists 'Student Support Loans (45 credit hours fees)'. Loans were the largest category of the fund (438,953 students 2004-2025).",
+    "url": "https://www.dsamohe.gov.jo",
+    "sources": [
+      {
+        "url": "https://www.dsamohe.gov.jo/Internal/Files/Guidance2025.pdf",
+        "title": "MoHE Directorate of Missions - Internal grants & loans guidance 2025/2026",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://mohe.gov.jo/En/NewsDetails/Minister_of_Higher_Education_and_Scientific_Research_Dr_Azmi_Mahafzah_announces_the_nomination_of_4500_four_thousand_five_hundred_new_students",
+        "title": "MoHE news - 4,500 new students nominated for loans (5 Apr 2026)",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.petra.gov.jo/en/news/nearly%C2%A0750000%C2%A0students-benefited-from-university%C2%A0student-fund-since-2004",
+        "title": "Petra - Nearly 750,000 students benefited from university student fund since 2004 (13 Jul 2026)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "In April 2026 MoHE nominated 4,500 extra students for 2025-2026 loans, raising coverage of eligible applicants to 84%."
+  },
+  {
+    "id": "princess-muna-fund-nursing",
+    "name_en": "Princess Muna Fund grants for nursing students",
+    "name_ar": null,
+    "provider": "Ministry of Higher Education (Princess Muna Fund)",
+    "kind": "grant",
+    "eligibility_text": "Female nursing students (per AABU student-support page); HU lists it as MoHE-administered, covering credit-hour fees.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [
+        "nursing"
+      ],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Credit hour fees (HU financial aid list).",
+    "url": "https://www.dsamohe.gov.jo",
+    "sources": [
+      {
+        "url": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx",
+        "title": "AABU - Important Information for the Student (student support)",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "No standalone official page fetched; applied via MoHE internal grants system per AABU page."
+  },
+  {
+    "id": "mohe-top-ranked-governorate",
+    "name_en": "MoHE scholarships for top-ranked Tawjihi students and first-ranked students per governorate/district",
+    "name_ar": null,
+    "provider": "Ministry of Higher Education",
+    "kind": "scholarship",
+    "eligibility_text": "Listed by HU (MoHE-funded) as 'First Ranked Students on the Governorate Levels' and 'Top Ranked Students in the Jordanian High School Certificate'; AABU lists 'scholarships for top-ranked undergraduates and district first-place students'. Detailed criteria not stated on fetched pages.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Not stated on fetched pages.",
+    "url": "https://www.dsamohe.gov.jo",
+    "sources": [
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx",
+        "title": "AABU - Important Information for the Student (student support)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Merit-based. Coverage and exact selection rules need confirming on MoHE site."
+  },
+  {
+    "id": "royal-court-grants",
+    "name_en": "Royal Hashemite Court grants for new university students",
+    "name_ar": null,
+    "provider": "Royal Hashemite Court",
+    "kind": "grant",
+    "eligibility_text": "AABU: Royal Hashemite Court grants are for first-year new students only. HU lists 'Royal Court Grants' (140 students) and 'Royal Fund Scholarship' (2,807 students).",
+    "criteria": {
+      "min_avg": null,
+      "need_based": true,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Not stated on fetched pages.",
+    "url": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx",
+    "sources": [
+      {
+        "url": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx",
+        "title": "AABU - Important Information for the Student (student support)",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "No official Royal Court page fetched; criteria/coverage unknown."
+  },
+  {
+    "id": "royal-makruma-teachers-children",
+    "name_en": "Royal Makruma for children of teachers (public universities)",
+    "name_ar": "المكرمة الملكية لأبناء المعلمين",
+    "provider": "Royal Hashemite Court / Ministry of Education",
+    "kind": "sponsorship",
+    "eligibility_text": "Children of (Ministry of Education) teachers admitted to Jordanian public universities via reserved makruma seats.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Exempts recipients from registration fees and other expenses (Jordan Times, Nov 2019). Makruma students ~5% of public university admissions.",
+    "url": "https://jordantimes.com/node/326984",
+    "sources": [
+      {
+        "url": "https://jordantimes.com/node/326984",
+        "title": "Jordan Times - Royal makruma (Nov 2019)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Source is a 2019 news article; confirm current rules before relying on it."
+  },
+  {
+    "id": "hu-university-loans",
+    "name_en": "Hashemite University student loans and support fund",
+    "name_ar": null,
+    "provider": "The Hashemite University",
+    "kind": "loan",
+    "eligibility_text": "HU students with proven financial need, enrolled at least one semester, no disciplinary penalties, not sponsored/employed by an official entity, not receiving other scholarships; guarantor required. HU Student Support Fund also refunds 60-90% of loans for needy students; student employment requires cumulative avg >= 2.00.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": true,
+      "fields": [],
+      "nationality": null,
+      "stage": "university"
+    },
+    "coverage_text": "Quarterly or annual loans; repayment starts six months after graduation in monthly instalments. Campus student-employment jobs also available.",
+    "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+    "sources": [
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "University-specific (HU only)."
+  },
+  {
+    "id": "al-aman-fund",
+    "name_en": "Al-Aman Fund for the Future of Orphans",
+    "name_ar": "صندوق الأمان لمستقبل الأيتام",
+    "provider": "Al-Aman Fund (affiliated with Queen Rania Foundation)",
+    "kind": "sponsorship",
+    "eligibility_text": "Orphans leaving care at age 18 seeking education/rehabilitation; formal criteria not listed on fetched page.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": true,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Education and rehabilitation support incl. help with university fees, plus counselling; 4,762+ orphans benefited (3,383 graduates).",
+    "url": "https://alamanfund.jo",
+    "sources": [
+      {
+        "url": "https://qrf.org/en/who-we-are/affiliated-organisations/al-aman-fund-future-orphans",
+        "title": "QRF - Al-Aman Fund for the Future of Orphans",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf",
+        "title": "Hashemite University - Students' Financial Aid",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "HU lists Al-Aman Fund as an external scholarship provider (50 students)."
+  },
+  {
+    "id": "orange-johud-scholarships",
+    "name_en": "Orange Jordan university scholarships (with JOHUD and PSUT)",
+    "name_ar": null,
+    "provider": "Orange Jordan",
+    "kind": "scholarship",
+    "eligibility_text": "Johud track: students at public universities in Communications, Engineering and IT (incl. a disability-inclusion track). PSUT track: outstanding PSUT students in technology fields. Formal criteria not published on page.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [
+        "computer-science",
+        "software-engineering",
+        "ai-data-science",
+        "civil-engineering"
+      ],
+      "nationality": "Jordanian",
+      "stage": "university"
+    },
+    "coverage_text": "Not stated.",
+    "url": "https://orange.jo/en/corporate/csr/scholarships",
+    "sources": [
+      {
+        "url": "https://orange.jo/en/corporate/csr/scholarships",
+        "title": "Orange Jordan - Scholarships",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Small programme (Johud: 15 scholarships since 2001). Fields mapped approximately to Bridgecom field ids (engineering -> civil-engineering is a loose mapping). Contact Orange.sponsorship@orange.com."
+  },
+  {
+    "id": "jkb-psut-scholarship",
+    "name_en": "Jordan Kuwait Bank scholarship programme for PSUT students",
+    "name_ar": null,
+    "provider": "Jordan Kuwait Bank with Princess Sumaya University for Technology",
+    "kind": "scholarship",
+    "eligibility_text": "Outstanding and qualified PSUT students (agreement signed Oct 2023).",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [],
+      "nationality": null,
+      "stage": "university"
+    },
+    "coverage_text": "Educational grants and employment opportunities; amounts not specified.",
+    "url": "https://psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank",
+    "sources": [
+      {
+        "url": "https://psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank",
+        "title": "PSUT news - agreement with Jordan Kuwait Bank (11 Oct 2023)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Announcement only; check PSUT for current call."
+  },
+  {
+    "id": "htu-tamweelcom",
+    "name_en": "Tamweelcom-funded HTU scholarship",
+    "name_ar": null,
+    "provider": "Tamweelcom with Al Hussein Technical University",
+    "kind": "scholarship",
+    "eligibility_text": "One student per year who is a child of a Tamweelcom beneficiary; any HTU programme.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": true,
+      "fields": [],
+      "nationality": null,
+      "stage": "university"
+    },
+    "coverage_text": "Full tuition for one student annually through HTU's scholarship programme, plus 8-month apprenticeship placements at Tamweelcom.",
+    "url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities",
+    "sources": [
+      {
+        "url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities",
+        "title": "HTU news - HTU and Tamweelcom MoU (19 Feb 2023)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Very narrow eligibility; HTU general scholarships page (htu.edu.jo/admission/scholarships) is JS-rendered and its details could not be read."
+  },
+  {
+    "id": "fulbright-jordan-ffsp",
+    "name_en": "Jordanian Fulbright Foreign Student Program (Master's in the US)",
+    "name_ar": null,
+    "provider": "Fulbright Commission in Jordan",
+    "kind": "scholarship",
+    "eligibility_text": "Jordanian residents with a bachelor's from an MoHE-recognised university graded 'Good' or above; excellent English (TOEFL iBT 79+ or ITP 550+). Clinical fields (medicine, dentistry, veterinary) excluded. US dual citizens/Green Card holders ineligible.",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "graduate"
+    },
+    "coverage_text": "Tuition and books, monthly stipend, round-trip flight, travel allowance, visa fees, medical coverage; up to 2 years of master's study.",
+    "url": "https://fulbright.org.jo/jordanian-programs/jordanian-student-scholarship",
+    "sources": [
+      {
+        "url": "https://fulbright.org.jo/jordanian-programs/jordanian-student-scholarship",
+        "title": "Fulbright Jordan - Jordanian Fulbright Foreign Student Program",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Graduate stage - relevant as a long-term goal for Tawjihi grads. 2026 cycle ran 1 Feb - 30 Jun 2026 (closed)."
+  },
+  {
+    "id": "chevening-jordan",
+    "name_en": "Chevening Scholarships (UK one-year master's)",
+    "name_ar": null,
+    "provider": "UK Foreign, Commonwealth & Development Office",
+    "kind": "scholarship",
+    "eligibility_text": "Exceptional individuals from eligible countries (Jordan appears in Chevening's country selector) for a one-year UK master's. Degree and work-experience requirements are on separate Chevening eligibility pages (not fetched).",
+    "criteria": {
+      "min_avg": null,
+      "need_based": false,
+      "fields": [],
+      "nationality": "Jordanian",
+      "stage": "graduate"
+    },
+    "coverage_text": "Not stated on fetched page.",
+    "url": "https://www.chevening.org/scholarships/who-can-apply/",
+    "sources": [
+      {
+        "url": "https://www.chevening.org/scholarships/who-can-apply/",
+        "title": "Chevening - Who can apply",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Graduate stage only."
+  }
+]

@@ -10,13 +10,15 @@ export interface OpportunityMatch {
 }
 
 export function matchScholarships(p: LearnerProfile, items: Scholarship[], stage: "pre-university" | "university" | "graduate" = "pre-university"): OpportunityMatch[] {
-  return items.map((s) => {
+  return items.map((s): OpportunityMatch => {
     const reasons: Reason[] = [];
     let blocked = false;
     let unknown = false;
     let score = 0;
     const c = s.criteria ?? {};
-    if (c.stage && c.stage !== stage) {
+    // A school leaver can use both pre-university and first-year university support.
+    const accepted = stage === "pre-university" ? ["pre-university", "university"] : [stage];
+    if (c.stage && !accepted.includes(c.stage)) {
       reasons.push({ code: "stage-mismatch", weight: -50, en: `Aimed at ${c.stage} students`, ar: "موجّه لمرحلة دراسية مختلفة" });
       score -= 50;
     }
@@ -38,7 +40,7 @@ export function matchScholarships(p: LearnerProfile, items: Scholarship[], stage
       score += 10; reasons.push({ code: "open-field", weight: 10, en: "Open to all fields", ar: "متاح لجميع التخصصات" });
     }
     if (s.verification !== "verified") reasons.push({ code: "unverified", weight: 0, en: "Details not fully verified; confirm on the official page", ar: "التفاصيل غير موثّقة بالكامل؛ تحقق من الصفحة الرسمية" });
-    const status = blocked ? "not-eligible" : unknown || score < 30 ? "check-eligibility" : "likely-relevant";
+    const status: OpportunityMatch["status"] = blocked ? "not-eligible" : unknown || score < 30 ? "check-eligibility" : "likely-relevant";
     return { item: s, score, status, reasons };
   }).sort((a, b) => {
     const o = { "likely-relevant": 0, "check-eligibility": 1, "not-eligible": 2 } as const;

@@ -75,7 +75,7 @@ export interface FieldDef {
 export const FIELDS: FieldDef[] = [
   { id: "computer-science", name_en: "Computer Science", name_ar: "علم الحاسوب", careers: ["software", "developer", "programmer", "ai", "data", "cybersecurity", "web"], typical_streams: ["scientific", "it"], nominal_years: 4 },
   { id: "software-engineering", name_en: "Software Engineering", name_ar: "هندسة البرمجيات", careers: ["software", "developer", "web", "mobile", "programmer"], typical_streams: ["scientific", "it"], nominal_years: 4 },
-  { id: "artificial-intelligence", name_en: "Artificial Intelligence / Data Science", name_ar: "الذكاء الاصطناعي / علم البيانات", careers: ["ai", "data", "machine learning", "research", "analyst"], typical_streams: ["scientific", "it"], nominal_years: 4 },
+  { id: "ai-data-science", name_en: "Artificial Intelligence / Data Science", name_ar: "الذكاء الاصطناعي / علم البيانات", careers: ["ai", "data", "machine learning", "research", "analyst"], typical_streams: ["scientific", "it"], nominal_years: 4 },
   { id: "medicine", name_en: "Medicine", name_ar: "الطب", careers: ["doctor", "physician", "surgeon", "health", "medical"], typical_streams: ["scientific"], nominal_years: 6 },
   { id: "nursing", name_en: "Nursing", name_ar: "التمريض", careers: ["nurse", "health", "care", "hospital"], typical_streams: ["scientific", "health"], nominal_years: 4 },
   { id: "pharmacy", name_en: "Pharmacy", name_ar: "الصيدلة", careers: ["pharmacist", "health", "pharma", "medical"], typical_streams: ["scientific"], nominal_years: 5 },

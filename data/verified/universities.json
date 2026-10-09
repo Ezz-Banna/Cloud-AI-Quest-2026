@@ -1,0 +1,261 @@
+[
+  {
+    "id": "uj",
+    "name_en": "The University of Jordan",
+    "name_ar": "الجامعة الأردنية",
+    "type": "public",
+    "city": "Amman",
+    "governorate": "Amman",
+    "website": "https://ju.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/University_of_Jordan",
+        "title": "University of Jordan - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://mohe.gov.jo/EN/Pages/Higher_Education_in_Jordan",
+        "title": "MoHE - Higher Education in Jordan",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "MoHE page names UJ (est. 1962) as the first public university. UJ fee pages (registration.ju.edu.jo MajorsAndFees) blocked automated fetching, so no UJ program fees in programs.json."
+  },
+  {
+    "id": "just",
+    "name_en": "Jordan University of Science and Technology",
+    "name_ar": "جامعة العلوم والتكنولوجيا الأردنية",
+    "type": "public",
+    "city": "Ar Ramtha (Irbid)",
+    "governorate": "Irbid",
+    "website": "https://www.just.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Jordan_University_of_Science_and_Technology",
+        "title": "Jordan University of Science and Technology - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+        "title": "JUST fees - regular & parallel programs (2024)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": ""
+  },
+  {
+    "id": "yu",
+    "name_en": "Yarmouk University",
+    "name_ar": "جامعة اليرموك",
+    "type": "public",
+    "city": "Irbid",
+    "governorate": "Irbid",
+    "website": "https://www.yu.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Yarmouk_University",
+        "title": "Yarmouk University - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+        "title": "Yarmouk University - Undergraduate programs (2024/2025-2025/2026)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": ""
+  },
+  {
+    "id": "hu",
+    "name_en": "The Hashemite University",
+    "name_ar": "الجامعة الهاشمية",
+    "type": "public",
+    "city": "Zarqa",
+    "governorate": "Zarqa",
+    "website": "https://hu.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Hashemite_University",
+        "title": "Hashemite University - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+        "title": "HU - The programs and the fees in JD (BA programs)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": ""
+  },
+  {
+    "id": "mutah",
+    "name_en": "Mutah University",
+    "name_ar": "جامعة مؤتة",
+    "type": "public",
+    "city": "Mu'tah",
+    "governorate": "Karak",
+    "website": "https://www.mutah.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Mutah_University",
+        "title": "Mutah University - Wikipedia",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Public civilian and military university. No fee schedule found/fetched, so no Mutah programs in programs.json."
+  },
+  {
+    "id": "aabu",
+    "name_en": "Al al-Bayt University",
+    "name_ar": null,
+    "type": "public",
+    "city": "Mafraq",
+    "governorate": "Mafraq",
+    "website": "https://www.aabu.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Al_al-Bayt_University",
+        "title": "Al al-Bayt University - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
+        "title": "AABU - Credit hour fees for undergraduate students",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": ""
+  },
+  {
+    "id": "gju",
+    "name_en": "German Jordanian University",
+    "name_ar": null,
+    "type": "public",
+    "city": "Mushaqar (near Madaba) / Amman",
+    "governorate": "Madaba",
+    "website": "https://www.gju.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/German_Jordanian_University",
+        "title": "German Jordanian University - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.gju.edu.jo/sites/default/files/news/finance-regular_program-forwebsite.pdf",
+        "title": "GJU finance - regular program",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Public. Main campus at Mushaqar near Madaba (Wikipedia says 'near Madaba'; governorate not explicitly stated in source). GJU fee sheet found is in USD with scrambled layout and includes a compulsory German-year fee; per-program JD fees not reliably extractable, so no GJU programs included."
+  },
+  {
+    "id": "psut",
+    "name_en": "Princess Sumaya University for Technology",
+    "name_ar": null,
+    "type": "private",
+    "city": "Amman",
+    "governorate": "Amman",
+    "website": "https://psut.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Princess_Sumaya_University_for_Technology",
+        "title": "Princess Sumaya University for Technology - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://psut.edu.jo/en/study-plans",
+        "title": "PSUT - Programs & Fees / study plans",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Private non-profit university."
+  },
+  {
+    "id": "htu",
+    "name_en": "Al Hussein Technical University",
+    "name_ar": null,
+    "type": "private",
+    "city": "Amman",
+    "governorate": "Amman",
+    "website": "https://htu.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://htu.edu.jo/",
+        "title": "Al Hussein Technical University",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://htu.edu.jo/admission/tuition-and-fees",
+        "title": "HTU - Tuition and Fees",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Address: King Hussein Business Park (KHBP), Building 17, Amman. Tuition page: 120 JD per credit hour for Jordanian students (Bachelor's and Technical degrees, regular program); 175 JD for international programme. Bachelor admission (engineering programmes): Tawjihi avg 80 + Math 80 + Physics 80 (htu.edu.jo/admission/requirements). Type 'private' not confirmed on a fetched page (HTU is commonly described as a non-profit university founded by the Crown Prince Foundation) - verify before display. Program list page is JS-rendered so no HTU program records."
+  },
+  {
+    "id": "zuj",
+    "name_en": "Al-Zaytoonah University of Jordan",
+    "name_ar": "جامعة الزيتونة الأردنية",
+    "type": "private",
+    "city": "Amman",
+    "governorate": "Amman",
+    "website": "https://www.zuj.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Al-Zaytoonah_University_of_Jordan",
+        "title": "Al-Zaytoonah University of Jordan - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+        "title": "ZUJ - Specialties and Fees",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": ""
+  },
+  {
+    "id": "pu",
+    "name_en": "Philadelphia University",
+    "name_ar": null,
+    "type": "private",
+    "city": "Amman (Jerash road)",
+    "governorate": "Amman",
+    "website": "https://www.philadelphia.edu.jo",
+    "accreditation_note": "Official Jordanian university (listed on its own official site; public/private status per sources). Program-level accreditation not individually checked against HEAC (heac.org.jo).",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Philadelphia_University_(Jordan)",
+        "title": "Philadelphia University (Jordan) - Wikipedia",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
+        "title": "Philadelphia University - Fee Brochure 2025-2026",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Wikipedia gives location as Amman; governorate not stated in source."
+  }
+]

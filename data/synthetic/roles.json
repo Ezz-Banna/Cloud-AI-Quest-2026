@@ -1,0 +1,37 @@
+[
+  {
+    "id": "role-frontend-jr", "employer_id": "emp-nashmi", "title": "Junior Frontend Developer", "kind": "job", "city": "Amman", "verification": "synthetic",
+    "description": "Build and maintain web interfaces for client projects. Required: JavaScript, React, integrating REST APIs, Git. Solid HTML and CSS. TypeScript and professional English are a plus.",
+    "requirements": [
+      { "skill_id": "javascript", "level": 2, "mandatory": true },
+      { "skill_id": "react", "level": 2, "mandatory": true },
+      { "skill_id": "rest-api", "level": 2, "mandatory": true },
+      { "skill_id": "git", "level": 2, "mandatory": true },
+      { "skill_id": "html", "level": 2, "mandatory": true },
+      { "skill_id": "css", "level": 2, "mandatory": true },
+      { "skill_id": "typescript", "level": 1, "mandatory": false },
+      { "skill_id": "english", "level": 2, "mandatory": false }
+    ]
+  },
+  {
+    "id": "role-data-intern", "employer_id": "emp-wadi", "title": "Data Analysis Intern", "kind": "internship", "city": "Irbid", "verification": "synthetic",
+    "description": "Support analysts with data cleaning and dashboards. Required: SQL, data analysis with spreadsheets or BI tools. Python is a plus. Clear communication.",
+    "requirements": [
+      { "skill_id": "sql", "level": 2, "mandatory": true },
+      { "skill_id": "data-analysis", "level": 2, "mandatory": true },
+      { "skill_id": "communication", "level": 2, "mandatory": true },
+      { "skill_id": "python", "level": 1, "mandatory": false },
+      { "skill_id": "english", "level": 2, "mandatory": false }
+    ]
+  },
+  {
+    "id": "role-ux-project", "employer_id": "emp-petra", "title": "Patient App UX Project (4 weeks)", "kind": "project", "city": "Remote", "verification": "synthetic",
+    "description": "Short paid project to redesign an appointment flow in Arabic and English. Required: UI/UX design and usability testing, communication. HTML and CSS are a plus.",
+    "requirements": [
+      { "skill_id": "ui-design", "level": 2, "mandatory": true },
+      { "skill_id": "communication", "level": 2, "mandatory": true },
+      { "skill_id": "html", "level": 1, "mandatory": false },
+      { "skill_id": "css", "level": 1, "mandatory": false }
+    ]
+  }
+]

@@ -1,0 +1,2179 @@
+[
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-cs",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-cs",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-cs",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-se",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-se",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-se",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-ai",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-ai",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-ai",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-ds",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-ds",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-ds",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-nursing",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-nursing",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-nursing",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-civil",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-civil",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-civil",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-pharmacy",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-pharmacy",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-pharmacy",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-medicine",
+  "field": "tuition_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Document text states no academic year; only the file name says 2024. Re-checked all 8 values: unchanged.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-medicine",
+  "field": "min_admission_year",
+  "old": "2024",
+  "new": "2024 (from file name)",
+  "reason": "Same document; year only from file name.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-medicine",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "JUST labels this column 'Regular program'; renamed from 'competitive' to the university's own term.",
+  "source_url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-cs",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-se",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-ds-ai",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-medicine",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-nursing",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-civil",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-business",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-pharmacy",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular (inferred)",
+  "reason": "HU fee PDF lists three price columns without readable headers; this is the lowest column, read as the regular track. Next column (likely parallel) is higher.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "aabu-cs",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "Page heading: 'Tuition Fees for Bachelor's Degree: the Regular System for Jordanian Students'. Fee re-checked, unchanged.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "aabu-ds-ai",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "Page heading: 'Tuition Fees for Bachelor's Degree: the Regular System for Jordanian Students'. Fee re-checked, unchanged.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "aabu-nursing",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "Page heading: 'Tuition Fees for Bachelor's Degree: the Regular System for Jordanian Students'. Fee re-checked, unchanged.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "aabu-civil",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "Page heading: 'Tuition Fees for Bachelor's Degree: the Regular System for Jordanian Students'. Fee re-checked, unchanged.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "aabu-business",
+  "field": "tuition_track",
+  "old": "competitive",
+  "new": "regular",
+  "reason": "Page heading: 'Tuition Fees for Bachelor's Degree: the Regular System for Jordanian Students'. Fee re-checked, unchanged.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "credit_hours",
+  "old": null,
+  "new": 134,
+  "reason": "Added from YU 2024/2025 programmes PDF (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "tuition_jod_per_credit_hour",
+  "old": null,
+  "new": 45,
+  "reason": "Added: regular-programme JD per credit hour, YU 2024/2025 (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "tuition_track",
+  "old": null,
+  "new": "regular",
+  "reason": "YU column 'عادي بالدينار'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "tuition_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document: 'للعام الجامعي 2024 / 2025'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 65,
+  "reason": "Added: published minimum average, YU 2024/2025.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "min_admission_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "All three facts now read on the official YU document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "credit_hours",
+  "old": null,
+  "new": 134,
+  "reason": "Added from YU 2024/2025 programmes PDF (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "tuition_jod_per_credit_hour",
+  "old": null,
+  "new": 55,
+  "reason": "Added: regular-programme JD per credit hour, YU 2024/2025 (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "tuition_track",
+  "old": null,
+  "new": "regular",
+  "reason": "YU column 'عادي بالدينار'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "tuition_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document: 'للعام الجامعي 2024 / 2025'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 65,
+  "reason": "Added: published minimum average, YU 2024/2025.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "min_admission_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "All three facts now read on the official YU document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "credit_hours",
+  "old": null,
+  "new": 139,
+  "reason": "Added from YU 2024/2025 programmes PDF (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "tuition_jod_per_credit_hour",
+  "old": null,
+  "new": 70,
+  "reason": "Added: regular-programme JD per credit hour, YU 2024/2025 (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "tuition_track",
+  "old": null,
+  "new": "regular",
+  "reason": "YU column 'عادي بالدينار'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "tuition_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document: 'للعام الجامعي 2024 / 2025'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 70,
+  "reason": "Added: published minimum average, YU 2024/2025.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "min_admission_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-nursing",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "All three facts now read on the official YU document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "credit_hours",
+  "old": null,
+  "new": 167,
+  "reason": "Added from YU 2024/2025 programmes PDF (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "tuition_jod_per_credit_hour",
+  "old": null,
+  "new": 60,
+  "reason": "Added: regular-programme JD per credit hour, YU 2024/2025 (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "tuition_track",
+  "old": null,
+  "new": "regular",
+  "reason": "YU column 'عادي بالدينار'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "tuition_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document: 'للعام الجامعي 2024 / 2025'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 80,
+  "reason": "Added: published minimum average, YU 2024/2025.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "min_admission_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-civil",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "All three facts now read on the official YU document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "credit_hours",
+  "old": null,
+  "new": 170,
+  "reason": "Added from YU 2024/2025 programmes PDF (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "tuition_jod_per_credit_hour",
+  "old": null,
+  "new": 60,
+  "reason": "Added: regular-programme JD per credit hour, YU 2024/2025 (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "tuition_track",
+  "old": null,
+  "new": "regular",
+  "reason": "YU column 'عادي بالدينار'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "tuition_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document: 'للعام الجامعي 2024 / 2025'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 80,
+  "reason": "Added: published minimum average, YU 2024/2025.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "min_admission_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "All three facts now read on the official YU document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "credit_hours",
+  "old": null,
+  "new": 257,
+  "reason": "Added from YU 2024/2025 programmes PDF (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "tuition_jod_per_credit_hour",
+  "old": null,
+  "new": 100,
+  "reason": "Added: regular-programme JD per credit hour, YU 2024/2025 (previously missing).",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "tuition_track",
+  "old": null,
+  "new": "regular",
+  "reason": "YU column 'عادي بالدينار'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "tuition_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document: 'للعام الجامعي 2024 / 2025'.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 85,
+  "reason": "Added: published minimum average, YU 2024/2025.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "min_admission_year",
+  "old": null,
+  "new": "2024/2025",
+  "reason": "Stated in the document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "All three facts now read on the official YU document.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-business",
+  "field": "(record)",
+  "old": "present",
+  "new": "removed",
+  "reason": "YU 2024/2025 PDF marks Business Administration 'موقوف' (admission suspended), so it is not offered as an option.",
+  "source_url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-cs",
+  "field": "min_admission_avg",
+  "old": 70,
+  "new": null,
+  "reason": "Could not re-confirm 70% for this programme: the '70% 132' text in the brochure belongs to the Applied Chemistry row. Withheld until re-read.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-cs",
+  "field": "min_admission_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Minimum withheld.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-cs",
+  "field": "credit_hours",
+  "old": 132,
+  "new": null,
+  "reason": "132 credit hours could not be tied to this programme in the scrambled PDF text. Withheld.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "min_admission_avg",
+  "old": 70,
+  "new": null,
+  "reason": "Could not re-confirm 70% for this programme: the '70% 132' text in the brochure belongs to the Applied Chemistry row. Withheld until re-read.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "min_admission_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Minimum withheld.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "credit_hours",
+  "old": 132,
+  "new": null,
+  "reason": "132 credit hours could not be tied to this programme in the scrambled PDF text. Withheld.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-ds-ai",
+  "field": "min_admission_avg",
+  "old": 70,
+  "new": null,
+  "reason": "Could not re-confirm 70% for this programme: the '70% 132' text in the brochure belongs to the Applied Chemistry row. Withheld until re-read.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-ds-ai",
+  "field": "min_admission_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Minimum withheld.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-ds-ai",
+  "field": "credit_hours",
+  "old": 132,
+  "new": null,
+  "reason": "132 credit hours could not be tied to this programme in the scrambled PDF text. Withheld.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-cs",
+  "field": "tuition_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Brochure text states no year; '2025-2026' is only in the file name. No fee is stored, so no year is shown.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "tuition_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Brochure text states no year; '2025-2026' is only in the file name. No fee is stored, so no year is shown.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-ds-ai",
+  "field": "tuition_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Brochure text states no year; '2025-2026' is only in the file name. No fee is stored, so no year is shown.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-nursing",
+  "field": "tuition_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Brochure text states no year; '2025-2026' is only in the file name. No fee is stored, so no year is shown.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-business",
+  "field": "tuition_year",
+  "old": "2025-2026",
+  "new": null,
+  "reason": "Brochure text states no year; '2025-2026' is only in the file name. No fee is stored, so no year is shown.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-nursing",
+  "field": "min_admission_year",
+  "old": "2025-2026",
+  "new": "2025-2026 (from file name)",
+  "reason": "Year only from file name.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "pu-business",
+  "field": "min_admission_year",
+  "old": "2025-2026",
+  "new": "2025-2026 (from file name)",
+  "reason": "Year only from file name.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "meu-cs",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New: MEU programme read on the official MEU majors page.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "meu-se",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New: MEU programme read on the official MEU majors page.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "meu-ds-ai",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New: MEU programme read on the official MEU majors page.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "meu-nursing",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New: MEU programme read on the official MEU majors page.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "meu-pharmacy",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New: MEU programme read on the official MEU majors page.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "meu-business",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New: MEU programme read on the official MEU majors page.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "pu",
+  "field": "additional_fees",
+  "old": null,
+  "new": [
+   {
+    "name": "Application fee",
+    "amount_jod": 45,
+    "per": "once",
+    "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+   },
+   {
+    "name": "University ID",
+    "amount_jod": 5,
+    "per": "once",
+    "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+   },
+   {
+    "name": "Registration (first and second semesters)",
+    "amount_jod": 350,
+    "per": "semester",
+    "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+   },
+   {
+    "name": "Health insurance",
+    "amount_jod": 15,
+    "per": "semester",
+    "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+   },
+   {
+    "name": "Educational guarantee",
+    "amount_jod": 5,
+    "per": "semester",
+    "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+   }
+  ],
+  "reason": "Mandatory fees from the PU fee brochure (refundable 50 JD deposit and summer fees left out). Year only from file name (2025-2026).",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "htu",
+  "field": "additional_fees",
+  "old": null,
+  "new": [
+   {
+    "name": "Application fee",
+    "amount_jod": 50,
+    "per": "once",
+    "source_url": "https://htu.edu.jo/admission/tuition-and-fees"
+   },
+   {
+    "name": "Placement test",
+    "amount_jod": 50,
+    "per": "once",
+    "source_url": "https://htu.edu.jo/admission/tuition-and-fees"
+   },
+   {
+    "name": "Enrollment fee",
+    "amount_jod": 300,
+    "per": "once",
+    "source_url": "https://htu.edu.jo/admission/tuition-and-fees"
+   },
+   {
+    "name": "Fall and spring semester fee",
+    "amount_jod": 350,
+    "per": "semester",
+    "source_url": "https://htu.edu.jo/admission/tuition-and-fees"
+   }
+  ],
+  "reason": "Mandatory fees from the HTU tuition page (regular students; refundable deposit and summer fees left out). No year stated.",
+  "source_url": "https://htu.edu.jo/admission/tuition-and-fees"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "meu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New private university with an official fee table.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-medicine",
+  "field": "historical_thresholds",
+  "old": null,
+  "new": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 99.0,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 97.7,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ],
+  "reason": "Added competitive cut-offs (lowest admitted average) from the unified-admission results as reported by Al-Rai, 25 Sep 2026. History only, never used as the eligibility minimum.",
+  "source_url": "https://alrai.com/article/10977989"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-medicine",
+  "field": "historical_thresholds",
+  "old": null,
+  "new": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 98.1,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 96.9,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ],
+  "reason": "Added competitive cut-offs (lowest admitted average) from the unified-admission results as reported by Al-Rai, 25 Sep 2026. History only, never used as the eligibility minimum.",
+  "source_url": "https://alrai.com/article/10977989"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-medicine",
+  "field": "historical_thresholds",
+  "old": null,
+  "new": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 98.4,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 97.4,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ],
+  "reason": "Added competitive cut-offs (lowest admitted average) from the unified-admission results as reported by Al-Rai, 25 Sep 2026. History only, never used as the eligibility minimum.",
+  "source_url": "https://alrai.com/article/10977989"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "just-pharmacy",
+  "field": "historical_thresholds",
+  "old": null,
+  "new": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 96.4,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 95.15,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ],
+  "reason": "Added competitive cut-offs (lowest admitted average) from the unified-admission results as reported by Al-Rai, 25 Sep 2026. History only, never used as the eligibility minimum.",
+  "source_url": "https://alrai.com/article/10977989"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "yu-pharmacy",
+  "field": "historical_thresholds",
+  "old": null,
+  "new": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 95.6,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 94.85,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ],
+  "reason": "Added competitive cut-offs (lowest admitted average) from the unified-admission results as reported by Al-Rai, 25 Sep 2026. History only, never used as the eligibility minimum.",
+  "source_url": "https://alrai.com/article/10977989"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "programs",
+  "id": "hu-pharmacy",
+  "field": "historical_thresholds",
+  "old": null,
+  "new": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 95.8,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 94.9,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ],
+  "reason": "Added competitive cut-offs (lowest admitted average) from the unified-admission results as reported by Al-Rai, 25 Sep 2026. History only, never used as the eligibility minimum.",
+  "source_url": "https://alrai.com/article/10977989"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-grants",
+  "field": "url",
+  "old": "https://www.dsamohe.gov.jo",
+  "new": "https://www.dsamohe.gov.jo/",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-grants",
+  "field": "coverage_text",
+  "old": "Full grant or partial grant toward university fees; AABU page states the Ministry pays tuition covering 45 credit hours. Amounts of living allowances not stated in the guidance.",
+  "new": "Full and partial grants; JUST page: Student Support Fund loans and scholarships 'cover tuition fees for a full academic year'.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-grants",
+  "field": "eligibility_text",
+  "old": "Jordanian citizens enrolled in a diploma or bachelor's programme at an official (public) Jordanian higher-education institution (2025/2026 guidance lists 11 eligible universities incl. UJ, Yarmouk, Mutah, Hashemite). Must not hold a full grant from another source or a discount. Previous-semester GPA >= 2/4 (60%); first-semester bachelor students are assessed on Tawjihi average, minimum 65%. Applied online during the announced window using national number + university number; points-based selection with humanitarian-case appeals.",
+  "new": "Jordanian students enrolled in official Jordanian universities under the regular program for bachelor's and intermediate diploma levels (2025/2026 cycle, per Jordan News).",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-grants",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2025/2026",
+   "opens": "2025-11-30",
+   "closes": "2025-12-11",
+   "checked_at": "2026-10-09",
+   "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-loans",
+  "field": "url",
+  "old": "https://www.dsamohe.gov.jo",
+  "new": "https://www.dsamohe.gov.jo/",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-loans",
+  "field": "coverage_text",
+  "old": "Loan toward tuition; HU lists 'Student Support Loans (45 credit hours fees)'. Loans were the largest category of the fund (438,953 students 2004-2025).",
+  "new": "Tuition loans; repayment 'begins six months after graduation subject to the capability of the graduate' (Hashemite University aid PDF).",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-loans",
+  "field": "eligibility_text",
+  "old": "Same eligibility and single online application as the MoHE internal grants (Jordanian, official/public university, min 65% Tawjihi for first-semester bachelor students, GPA >= 2/4 thereafter). Loan recipients sign a loan contract with a notarised guarantee.",
+  "new": "Jordanian students in official universities, regular program, bachelor's/intermediate diploma (2025/2026). HU summary of MoHE loans: financial need, at least one semester enrolled, no disciplinary penalties, not sponsored/holding another scholarship.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-ssf-loans",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2025/2026",
+   "opens": "2025-11-30",
+   "closes": "2025-12-11",
+   "checked_at": "2026-10-09",
+   "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "princess-muna-fund-nursing",
+  "field": "url",
+  "old": "https://www.dsamohe.gov.jo",
+  "new": "https://dsamohe.gov.jo/Internal/PrincessMuna",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": null
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "princess-muna-fund-nursing",
+  "field": "verification",
+  "old": "partial",
+  "new": "unverified",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": null
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "princess-muna-fund-nursing",
+  "field": "eligibility_text",
+  "old": "Female nursing students (per AABU student-support page); HU lists it as MoHE-administered, covering credit-hour fees.",
+  "new": "Female nursing students (per AABU student-support page); HU lists it as MoHE-administered, covering credit-hour fees. (from earlier university pages; the official criteria page could not be opened on 2026-10-09)",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": null
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "princess-muna-fund-nursing",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "unverified",
+   "academic_year": null,
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": null
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": null
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-top-ranked-governorate",
+  "field": "url",
+  "old": "https://www.dsamohe.gov.jo",
+  "new": "https://dsamohe.gov.jo/Internal/First",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://dsamohe.gov.jo/Internal/First"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-top-ranked-governorate",
+  "field": "coverage_text",
+  "old": "Not stated on fetched pages.",
+  "new": "تخصيص (60) بعثة دراسية لأوائل المملكة; per district: 2 for top scientific/IT-management stream students, 1 each for top vocational and literary stream students (official page).",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://dsamohe.gov.jo/Internal/First"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-top-ranked-governorate",
+  "field": "eligibility_text",
+  "old": "Listed by HU (MoHE-funded) as 'First Ranked Students on the Governorate Levels' and 'Top Ranked Students in the Jordanian High School Certificate'; AABU lists 'scholarships for top-ranked undergraduates and district first-place students'. Detailed criteria not stated on fetched pages.",
+  "new": "أن يكون الطالب أردني الجنسية ... أن يكون مقبولا في برنامج النظام العادي تنافس نفقه خاصه ... أن لا يكون قد استفاد من أي منحة كامله (official criteria page, written for 2018/2019 cohort).",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://dsamohe.gov.jo/Internal/First"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-top-ranked-governorate",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2025/2026",
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://dsamohe.gov.jo/Internal/First"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://dsamohe.gov.jo/Internal/First"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-court-grants",
+  "field": "url",
+  "old": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx",
+  "new": "https://dsamohe.gov.jo/Internal/RoyalCourt",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-court-grants",
+  "field": "verification",
+  "old": "partial",
+  "new": "unverified",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-court-grants",
+  "field": "eligibility_text",
+  "old": "AABU: Royal Hashemite Court grants are for first-year new students only. HU lists 'Royal Court Grants' (140 students) and 'Royal Fund Scholarship' (2,807 students).",
+  "new": "AABU: Royal Hashemite Court grants are for first-year new students only. HU lists 'Royal Court Grants' (140 students) and 'Royal Fund Scholarship' (2,807 students). (from earlier university pages; the official criteria page could not be opened on 2026-10-09)",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-court-grants",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2025/2026",
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-makruma-teachers-children",
+  "field": "url",
+  "old": "https://jordantimes.com/node/326984",
+  "new": "https://moe.gov.jo/",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://jo24.net/article/578622"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-makruma-teachers-children",
+  "field": "eligibility_text",
+  "old": "Children of (Ministry of Education) teachers admitted to Jordanian public universities via reserved makruma seats.",
+  "new": "Children of teachers holding the Jordanian General Secondary certificate (or equivalent) accepted under the royal teachers' children lists (news reports).",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://jo24.net/article/578622"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-makruma-teachers-children",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "unverified",
+   "academic_year": "2026/2027",
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://jo24.net/article/578622"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://jo24.net/article/578622"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "hu-university-loans",
+  "field": "coverage_text",
+  "old": "Quarterly or annual loans; repayment starts six months after graduation in monthly instalments. Campus student-employment jobs also available.",
+  "new": "HU Student Support Fund reviews loan refund requests for needy students at rates of 60% to 90%; MoHE loans repayable from six months after graduation.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "hu-university-loans",
+  "field": "eligibility_text",
+  "old": "HU students with proven financial need, enrolled at least one semester, no disciplinary penalties, not sponsored/employed by an official entity, not receiving other scholarships; guarantor required. HU Student Support Fund also refunds 60-90% of loans for needy students; student employment requires cumulative avg >= 2.00.",
+  "new": "HU Student Support Fund: self-funded study, at least one enrolled semester, no disciplinary penalties, cumulative average of at least 2.00, proof of need.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "hu-university-loans",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "unverified",
+   "academic_year": null,
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://pic.hu.edu.jo/Upload/55000000/55090000/Students’ Financial Aid.pdf"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "al-aman-fund",
+  "field": "url",
+  "old": "https://alamanfund.jo",
+  "new": "https://alamanfund.jo/archives/3850",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://alamanfund.jo/archives/3850"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "al-aman-fund",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://alamanfund.jo/archives/3850"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "al-aman-fund",
+  "field": "coverage_text",
+  "old": "Education and rehabilitation support incl. help with university fees, plus counselling; 4,762+ orphans benefited (3,383 graduates).",
+  "new": "All registration and tuition fees.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://alamanfund.jo/archives/3850"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "al-aman-fund",
+  "field": "eligibility_text",
+  "old": "Orphans leaving care at age 18 seeking education/rehabilitation; formal criteria not listed on fetched page.",
+  "new": "Orphaned youth enrolled in public universities under the competitive admission system; 'Applicants must be no older than 20, and must have successfully completed at least their first academic semester'; minimum grade 'Good'.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://alamanfund.jo/archives/3850"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "al-aman-fund",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2025/2026",
+   "opens": "2026-03-15",
+   "closes": "2026-03-19",
+   "checked_at": "2026-10-09",
+   "source_url": "https://alamanfund.jo/archives/3850"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://alamanfund.jo/archives/3850"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "orange-johud-scholarships",
+  "field": "eligibility_text",
+  "old": "Johud track: students at public universities in Communications, Engineering and IT (incl. a disability-inclusion track). PSUT track: outstanding PSUT students in technology fields. Formal criteria not published on page.",
+  "new": "Not stated on official page; 15 scholarships in public universities in Communications, Engineering and IT plus 2 for students with disabilities.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://orange.jo/en/corporate/csr/scholarships"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "orange-johud-scholarships",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "unverified",
+   "academic_year": null,
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://orange.jo/en/corporate/csr/scholarships"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://orange.jo/en/corporate/csr/scholarships"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "jkb-psut-scholarship",
+  "field": "url",
+  "old": "https://psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank",
+  "new": "https://www.psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "jkb-psut-scholarship",
+  "field": "eligibility_text",
+  "old": "Outstanding and qualified PSUT students (agreement signed Oct 2023).",
+  "new": "'outstanding and qualified students from the University' (no criteria given).",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "jkb-psut-scholarship",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "historical",
+   "academic_year": null,
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://www.psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://www.psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "htu-tamweelcom",
+  "field": "coverage_text",
+  "old": "Full tuition for one student annually through HTU's scholarship programme, plus 8-month apprenticeship placements at Tamweelcom.",
+  "new": "Tuition of one student annually, any HTU programme.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "htu-tamweelcom",
+  "field": "eligibility_text",
+  "old": "One student per year who is a child of a Tamweelcom beneficiary; any HTU programme.",
+  "new": "'a student who is a child of one of Tamweelcom's beneficiaries'.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "htu-tamweelcom",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "historical",
+   "academic_year": null,
+   "opens": null,
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "fulbright-jordan-ffsp",
+  "field": "url",
+  "old": "https://fulbright.org.jo/jordanian-programs/jordanian-student-scholarship",
+  "new": "https://www.fulbright.org.jo/jordanian-programs/jordanian-student-scholarship",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.fulbright.org.jo/jordanian-programs/jordanian-student-scholarship"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "fulbright-jordan-ffsp",
+  "field": "coverage_text",
+  "old": "Tuition and books, monthly stipend, round-trip flight, travel allowance, visa fees, medical coverage; up to 2 years of master's study.",
+  "new": "Round-trip flight, monthly stipend, travel allowance, visa fees, medical coverage, tuition and books; up to two years of master's study in the US.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.fulbright.org.jo/jordanian-programs/jordanian-student-scholarship"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "fulbright-jordan-ffsp",
+  "field": "eligibility_text",
+  "old": "Jordanian residents with a bachelor's from an MoHE-recognised university graded 'Good' or above; excellent English (TOEFL iBT 79+ or ITP 550+). Clinical fields (medicine, dentistry, veterinary) excluded. US dual citizens/Green Card holders ineligible.",
+  "new": "Reside in Jordan; bachelor's from a MoHE-recognized university with grade 'Good' or above; excellent English; preference to Arts, Humanities and Social Sciences; MBA needs 3-5 years' experience; dual US citizens/green card holders ineligible.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.fulbright.org.jo/jordanian-programs/jordanian-student-scholarship"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "fulbright-jordan-ffsp",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2027/2028",
+   "opens": "2026-02-01",
+   "closes": "2026-06-30",
+   "checked_at": "2026-10-09",
+   "source_url": "https://www.fulbright.org.jo/jordanian-programs/jordanian-student-scholarship"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://www.fulbright.org.jo/jordanian-programs/jordanian-student-scholarship"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "chevening-jordan",
+  "field": "url",
+  "old": "https://www.chevening.org/scholarships/who-can-apply/",
+  "new": "https://www.chevening.org/scholarship/jordan/",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.chevening.org/scholarship/jordan/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "chevening-jordan",
+  "field": "coverage_text",
+  "old": "Not stated on fetched page.",
+  "new": "Fully-funded one-year master's degree at a UK university.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.chevening.org/scholarship/jordan/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "chevening-jordan",
+  "field": "eligibility_text",
+  "old": "Exceptional individuals from eligible countries (Jordan appears in Chevening's country selector) for a one-year UK master's. Degree and work-experience requirements are on separate Chevening eligibility pages (not fetched).",
+  "new": "'outstanding emerging leaders'; see chevening.org eligibility guide (work experience requirement) - criteria not quoted this session.",
+  "reason": "Re-checked against the provider page on 2026-10-09",
+  "source_url": "https://www.chevening.org/scholarship/jordan/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "chevening-jordan",
+  "field": "availability",
+  "old": null,
+  "new": {
+   "status": "closed",
+   "academic_year": "2027/2028",
+   "opens": "2026-08-01",
+   "closes": null,
+   "checked_at": "2026-10-09",
+   "source_url": "https://www.chevening.org/scholarship/jordan/"
+  },
+  "reason": "Added application status and window from the latest source found",
+  "source_url": "https://www.chevening.org/scholarship/jordan/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-external-grants-2026-2027",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.dsamohe.gov.jo/"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "cbj-bachelor-scholarships",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.cbj.gov.jo/Ar/newsdetails/إعلان_عن_بعثات_دراسية_للحصول_على_درجة_البكالوريوس_لعام_2026"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "mohe-johud-nominated-grants",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.dsamohe.gov.jo/internal/GrantAll"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "just-interest-free-loans",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.just.edu.jo/Deanships/DeanshipofStudentsAffairs/Pages/Scholarships.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "just-merit-scholarships",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.just.edu.jo/Deanships/DeanshipofStudentsAffairs/Pages/Scholarships.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "khcf-university-scholarships",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.khcc.jo/en/news/jordan-kuwait-bank-continues-supporting-the-khcf-university-scholarships-program-for-the-fourth-year"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "htu-scholarships-for-the-future",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://htu.edu.jo/news/htu-launches-'scholarships-for-the-future'-to-empower-jordanian-youth-in-technology-and-future-sciences"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "unhcr-dafi-jordan",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.unhcr.org/jo/node/143"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "scholarships",
+  "id": "royal-makruma-badia-schools",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "New opportunity read on its official page",
+  "source_url": "https://www.admhec.gov.jo/RulesRoyality.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "uj",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "yu",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "mutah",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "just",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "hu",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "aabu",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "bau",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "ahu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "ttu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "gju",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "aau",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "meu",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "jadara",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "ammanu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "pu",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "isra",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "uop",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "zuj",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "psut",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "zu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "aut",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "amsu",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "isums",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "wise",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "Directory entry from the MoHE university lists.",
+  "source_url": "https://mohe.gov.jo/EN/List/Universities_Operating_under_special_Law"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "htu",
+  "field": "sources",
+  "old": "Wikipedia + others",
+  "new": "MoHE list + official pages",
+  "reason": "Type now backed by the official MoHE list (or the university itself); Wikipedia removed as a source.",
+  "source_url": "https://mohe.gov.jo/EN/List/Universities_Operating_under_special_Law"
+ },
+ {
+  "date": "2026-10-09",
+  "dataset": "universities",
+  "id": "htu",
+  "field": "type",
+  "old": "private",
+  "new": "special-law",
+  "reason": "MoHE classifies it this way.",
+  "source_url": "https://mohe.gov.jo/EN/List/Universities_Operating_under_special_Law"
+ }
+]

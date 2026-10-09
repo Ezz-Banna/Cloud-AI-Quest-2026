@@ -66,7 +66,7 @@ Endpoints: `/api/readiness` (comparison), `/api/ai/job`, `/api/candidates` (per-
 
 ## Data provenance
 
-Universities, programs, fees, minimum averages, scholarships and courses come from public sources collected on 2026-10-09; each record stores its source URL and check date, and missing values are left blank, never estimated (11 universities, 44 programs, 13 support programs, 45 courses). A check date means the page was read that day, not that the current cycle is open. Employers, roles and the demo student are synthetic. No real personal data is used. Schema: `data/verified/SCHEMA.md`.
+Universities, programs, fees, minimum averages, scholarships and courses come from public sources collected and re-checked on 2026-10-09; each record stores its source URL and check date, and missing values are left blank, never estimated (26 universities in the directory, 49 programs at 8 of them, 22 support programs, 45 courses). Fees are from 2024/2025 or undated documents and are labelled with their year. The data accuracy audit, source registry, coverage counts and test report are in `docs/09-data-accuracy-audit.md`; `npm run validate:data` and `npm run audit:data` re-run the checks. A check date means the page was read that day, not that the current cycle is open. Employers, roles and the demo student are synthetic. No real personal data is used. Schema: `data/verified/SCHEMA.md`.
 
 ## Tests
 
@@ -103,4 +103,4 @@ The learner profile stays in the browser. Nothing is shared unless the person sh
 
 ## Docs
 
-`docs/06-competition-readiness.md` (this build's report), `docs/07-statistics-sources.md` (statistics register), `docs/governance.md` (review workflow), `docs/04-fit-engine.md`, `docs/03-ai-modules.md`, `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md`. `docs/05-audit-and-readiness.md` describes the earlier build (readiness percentages) and is kept for history.
+`docs/06-competition-readiness.md` (this build's report), `docs/07-statistics-sources.md` (statistics register), `docs/09-data-accuracy-audit.md` (data accuracy audit, sources, coverage, tests), `docs/governance.md` (review workflow), `docs/04-fit-engine.md`, `docs/03-ai-modules.md`, `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md`. `docs/05-audit-and-readiness.md` describes the earlier build (readiness percentages) and is kept for history.

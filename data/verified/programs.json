@@ -1,1491 +1,1693 @@
 [
-  {
-    "id": "just-cs",
-    "university_id": "just",
-    "name_en": "Computer Science",
-    "name_ar": null,
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 33,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 65,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 75. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
-  },
-  {
-    "id": "just-se",
-    "university_id": "just",
-    "name_en": "Software Engineering",
-    "name_ar": null,
-    "field": "software-engineering",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 33,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 65,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer",
-      "qa-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 85. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
-  },
-  {
-    "id": "just-ai",
-    "university_id": "just",
-    "name_en": "Artificial Intelligence",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 80,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 65,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": "Internship (AI 490), 3 credit hours: at least six weeks with a local organisation, after 90 credit hours",
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
-        "title": "JUST - B.Sc. Artificial Intelligence study plan",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-    "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
-    "curriculum_topics": [
-      "programming",
-      "ai",
-      "data",
-      "mathematics",
-      "statistics",
-      "networks-security",
-      "web-mobile",
-      "entrepreneurship"
-    ]
-  },
-  {
-    "id": "just-ds",
-    "university_id": "just",
-    "name_en": "Data Science",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 80,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 65,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
-  },
-  {
-    "id": "just-nursing",
-    "university_id": "just",
-    "name_en": "Nursing",
-    "name_ar": null,
-    "field": "nursing",
-    "degree": "bachelor",
-    "credit_hours": 134,
-    "tuition_jod_per_credit_hour": 30,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 70,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": "Clinical courses in each nursing area plus a final Clinical Training course (Nur 494); from the 2009/2010 plan, which may have been updated since",
-    "career_tags": [
-      "registered-nurse"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://www.just.edu.jo/FacultiesandDepartments/FacultyofNursing/Documents/Bachelor%20of%20Science%20in%20Nursing%20Curriculum.pdf",
-        "title": "JUST - B.Sc. Nursing curriculum (2009/2010 study plan)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 50 / 70. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-    "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/FacultyofNursing/Documents/Bachelor%20of%20Science%20in%20Nursing%20Curriculum.pdf",
-    "curriculum_topics": [
-      "patient-care",
-      "human-body",
-      "research",
-      "communication",
-      "management"
-    ]
-  },
-  {
-    "id": "just-civil",
-    "university_id": "just",
-    "name_en": "Civil Engineering",
-    "name_ar": null,
-    "field": "civil-engineering",
-    "degree": "bachelor",
-    "credit_hours": 160,
-    "tuition_jod_per_credit_hour": 21,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 80,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "civil-engineer",
-      "site-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 100. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
-  },
-  {
-    "id": "just-pharmacy",
-    "university_id": "just",
-    "name_en": "Pharmacy",
-    "name_ar": null,
-    "field": "pharmacy",
-    "degree": "bachelor",
-    "credit_hours": 162,
-    "tuition_jod_per_credit_hour": 21,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 80,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "pharmacist"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 100. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
-  },
-  {
-    "id": "just-medicine",
-    "university_id": "just",
-    "name_en": "Doctor of Medicine",
-    "name_ar": null,
-    "field": "medicine",
-    "degree": "MD (6 years)",
-    "credit_hours": 257,
-    "tuition_jod_per_credit_hour": 36,
-    "tuition_track": "competitive",
-    "tuition_year": "2024",
-    "min_admission_avg": 85,
-    "min_admission_year": "2024",
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "physician"
-    ],
-    "sources": [
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
-        "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
-        "title": "JUST - Fees Regular 2023",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 150 / 200. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
-  },
-  {
-    "id": "hu-cs",
-    "university_id": "hu",
-    "name_en": "Computer Science and its Applications",
-    "name_ar": null,
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 45,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 65,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (45, 70, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled."
-  },
-  {
-    "id": "hu-se",
-    "university_id": "hu",
-    "name_en": "Software Engineering",
-    "name_ar": null,
-    "field": "software-engineering",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 45,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 65,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": "Practical Training, 3 credit hours, after 80 credit hours (2020 advisory plan)",
-    "career_tags": [
-      "software-developer",
-      "web-developer",
-      "qa-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf",
-        "title": "HU - B.Sc. Software Engineering advisory plan (2020)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (45, 75, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-    "study_plan_url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf",
-    "curriculum_topics": [
-      "programming",
-      "web-mobile",
-      "data",
-      "mathematics",
-      "statistics",
-      "networks-security",
-      "management",
-      "entrepreneurship"
-    ]
-  },
-  {
-    "id": "hu-ds-ai",
-    "university_id": "hu",
-    "name_en": "Data Science and Artificial Intelligence",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 60,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 65,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (60, 80, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled."
-  },
-  {
-    "id": "hu-medicine",
-    "university_id": "hu",
-    "name_en": "Doctor of Medicine",
-    "name_ar": null,
-    "field": "medicine",
-    "degree": "MD",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 85,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 90,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "physician"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (85, 175, 250), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. The _2027 file lists 90% for Medicine; the older Bac.pdf listed 85%."
-  },
-  {
-    "id": "hu-nursing",
-    "university_id": "hu",
-    "name_en": "Nursing Science",
-    "name_ar": null,
-    "field": "nursing",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 20,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 70,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "registered-nurse"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (20, 60, 70), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off."
-  },
-  {
-    "id": "hu-civil",
-    "university_id": "hu",
-    "name_en": "Civil Engineering",
-    "name_ar": null,
-    "field": "civil-engineering",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 40,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 80,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "civil-engineer",
-      "site-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (40, 90, 100), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off."
-  },
-  {
-    "id": "hu-business",
-    "university_id": "hu",
-    "name_en": "Business Management",
-    "name_ar": null,
-    "field": "business-administration",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 16,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 65,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "business-analyst",
-      "manager"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (16, 60, 70), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled."
-  },
-  {
-    "id": "hu-pharmacy",
-    "university_id": "hu",
-    "name_en": "Pharmacy",
-    "name_ar": null,
-    "field": "pharmacy",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 75,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": 80,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "pharmacist"
-    ],
-    "sources": [
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
-        "title": "HU - The programs and the fees in JD (file _2027)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
-        "title": "HU - BA programs fee schedule (incl. international)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (75, 140, 150), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off."
-  },
-  {
-    "id": "aabu-cs",
-    "university_id": "aabu",
-    "name_en": "Computer Science",
-    "name_ar": null,
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 30,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
-        "title": "AABU - Credit hour fees for undergraduate students",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page."
-  },
-  {
-    "id": "aabu-ds-ai",
-    "university_id": "aabu",
-    "name_en": "Data Science and Artificial Intelligence",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 40,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
-        "title": "AABU - Credit hour fees for undergraduate students",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Regular System (Jordanian students) 40 JD/credit hour; Parallel 60 JD; International (non-Jordanians) 93 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page."
-  },
-  {
-    "id": "aabu-nursing",
-    "university_id": "aabu",
-    "name_en": "Nursing",
-    "name_ar": null,
-    "field": "nursing",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 30,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "registered-nurse"
-    ],
-    "sources": [
-      {
-        "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
-        "title": "AABU - Credit hour fees for undergraduate students",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page."
-  },
-  {
-    "id": "aabu-civil",
-    "university_id": "aabu",
-    "name_en": "Civil Engineering",
-    "name_ar": null,
-    "field": "civil-engineering",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 30,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "civil-engineer",
-      "site-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
-        "title": "AABU - Credit hour fees for undergraduate students",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 89 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page."
-  },
-  {
-    "id": "aabu-business",
-    "university_id": "aabu",
-    "name_en": "Business Administration",
-    "name_ar": null,
-    "field": "business-administration",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": 20,
-    "tuition_track": "competitive",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "business-analyst",
-      "manager"
-    ],
-    "sources": [
-      {
-        "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
-        "title": "AABU - Credit hour fees for undergraduate students",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Regular System (Jordanian students) 20 JD/credit hour; Parallel 40 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page."
-  },
-  {
-    "id": "yu-cs",
-    "university_id": "yu",
-    "name_en": "Computer Science",
-    "name_ar": "علوم الحاسوب",
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '65134457099'), so values were not split to avoid guessing. All numbers null; check the PDF manually."
-  },
-  {
-    "id": "yu-ds-ai",
-    "university_id": "yu",
-    "name_en": "Data Science and Artificial Intelligence",
-    "name_ar": "علم البيانات والذكاء الاصطناعي",
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '651345580113'), so values were not split to avoid guessing. All numbers null; check the PDF manually."
-  },
-  {
-    "id": "yu-nursing",
-    "university_id": "yu",
-    "name_en": "Nursing",
-    "name_ar": "التمريض",
-    "field": "nursing",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "registered-nurse"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '701397090127'), so values were not split to avoid guessing. All numbers null; check the PDF manually."
-  },
-  {
-    "id": "yu-civil",
-    "university_id": "yu",
-    "name_en": "Civil Engineering",
-    "name_ar": "الهندسة المدنية",
-    "field": "civil-engineering",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "civil-engineer",
-      "site-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '8016760100141'), so values were not split to avoid guessing. All numbers null; check the PDF manually."
-  },
-  {
-    "id": "yu-pharmacy",
-    "university_id": "yu",
-    "name_en": "Pharmacy",
-    "name_ar": "الصيدلة",
-    "field": "pharmacy",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "pharmacist"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '801706090127'), so values were not split to avoid guessing. All numbers null; check the PDF manually."
-  },
-  {
-    "id": "yu-medicine",
-    "university_id": "yu",
-    "name_en": "Doctor of Medicine",
-    "name_ar": "دكتور في الطب",
-    "field": "medicine",
-    "degree": "MD",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "physician"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '85257100200282'), so values were not split to avoid guessing. All numbers null; check the PDF manually. Marked (قبول سنوي) annual admission."
-  },
-  {
-    "id": "yu-business",
-    "university_id": "yu",
-    "name_en": "Business Administration",
-    "name_ar": "إدارة الاعمال",
-    "field": "business-administration",
-    "degree": "bachelor",
-    "credit_hours": null,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": null,
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "unified-competitive",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "business-analyst",
-      "manager"
-    ],
-    "sources": [
-      {
-        "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
-        "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '65132165071'), so values were not split to avoid guessing. All numbers null; check the PDF manually. Marked (موقوف) = admission suspended in this listing."
-  },
-  {
-    "id": "psut-cs",
-    "university_id": "psut",
-    "name_en": "Computer Science",
-    "name_ar": null,
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 130,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": "Practical Training course, 3 credit hours, after completing 90 credit hours (2021-2022 study plan)",
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://psut.edu.jo/en/study-plans",
-        "title": "PSUT - Programs & Fees (study plans)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
-        "title": "PSUT - B.Sc. Computer Science study plan (2021-2022 plan)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-    "study_plan_url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
-    "curriculum_topics": [
-      "programming",
-      "web-mobile",
-      "data",
-      "ai",
-      "networks-security",
-      "mathematics",
-      "statistics",
-      "physics"
-    ]
-  },
-  {
-    "id": "psut-se",
-    "university_id": "psut",
-    "name_en": "Software Engineering",
-    "name_ar": null,
-    "field": "software-engineering",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 130,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": "Practical Training course, 3 credit hours, after completing 90 credit hours (2021-2022 study plan)",
-    "career_tags": [
-      "software-developer",
-      "web-developer",
-      "qa-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://psut.edu.jo/en/study-plans",
-        "title": "PSUT - Programs & Fees (study plans)",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
-        "title": "PSUT - B.Sc. Software Engineering study plan (2021-2022 plan)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-    "study_plan_url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
-    "curriculum_topics": [
-      "programming",
-      "web-mobile",
-      "data",
-      "networks-security",
-      "design",
-      "management"
-    ]
-  },
-  {
-    "id": "psut-ds-ai",
-    "university_id": "psut",
-    "name_en": "Data Science & Artificial Intelligence",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 130,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://psut.edu.jo/en/study-plans",
-        "title": "PSUT - Programs & Fees (study plans)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD)."
-  },
-  {
-    "id": "psut-business",
-    "university_id": "psut",
-    "name_en": "Business Administration",
-    "name_ar": null,
-    "field": "business-administration",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 120,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": null,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "business-analyst",
-      "manager"
-    ],
-    "sources": [
-      {
-        "url": "https://psut.edu.jo/en/study-plans",
-        "title": "PSUT - Programs & Fees (study plans)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD)."
-  },
-  {
-    "id": "zuj-cs",
-    "university_id": "zuj",
-    "name_en": "Computer Science",
-    "name_ar": null,
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": 133,
-    "tuition_jod_per_credit_hour": 75,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 75,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": "Practical Training, 3 credit hours, year 4 (2021/2022 study plan)",
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      },
-      {
-        "url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf",
-        "title": "ZUJ - B.Sc. Computer Science study plan (2021/2022)",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-    "study_plan_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf",
-    "curriculum_topics": [
-      "programming",
-      "web-mobile",
-      "data",
-      "ai",
-      "networks-security",
-      "mathematics"
-    ]
-  },
-  {
-    "id": "zuj-se",
-    "university_id": "zuj",
-    "name_en": "Software Engineering",
-    "name_ar": null,
-    "field": "software-engineering",
-    "degree": "bachelor",
-    "credit_hours": 133,
-    "tuition_jod_per_credit_hour": 75,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 75,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer",
-      "qa-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page."
-  },
-  {
-    "id": "zuj-ds-ai",
-    "university_id": "zuj",
-    "name_en": "Data Science and Artificial Intelligence",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": 133,
-    "tuition_jod_per_credit_hour": 75,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 75,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page."
-  },
-  {
-    "id": "zuj-nursing",
-    "university_id": "zuj",
-    "name_en": "Nursing",
-    "name_ar": null,
-    "field": "nursing",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 75,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 70,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "registered-nurse"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 132 credit hours, 75 JOD (USD 106) per credit hour, 'High Secondary school GPA limit' 70%. Academic year not stated on page."
-  },
-  {
-    "id": "zuj-civil",
-    "university_id": "zuj",
-    "name_en": "Civil and Infrastructure Engineering",
-    "name_ar": null,
-    "field": "civil-engineering",
-    "degree": "bachelor",
-    "credit_hours": 160,
-    "tuition_jod_per_credit_hour": 110,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 80,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "civil-engineer",
-      "site-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 160 credit hours, 110 JOD (USD 155) per credit hour, 'High Secondary school GPA limit' 80%. Academic year not stated on page."
-  },
-  {
-    "id": "zuj-business",
-    "university_id": "zuj",
-    "name_en": "Business Administration",
-    "name_ar": null,
-    "field": "business-administration",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": 70,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 60,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "business-analyst",
-      "manager"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 132 credit hours, 70 JOD (USD 100) per credit hour, 'High Secondary school GPA limit' 60%. Academic year not stated on page."
-  },
-  {
-    "id": "zuj-pharmacy",
-    "university_id": "zuj",
-    "name_en": "Pharmacy",
-    "name_ar": null,
-    "field": "pharmacy",
-    "degree": "bachelor",
-    "credit_hours": 160,
-    "tuition_jod_per_credit_hour": 110,
-    "tuition_track": "private",
-    "tuition_year": null,
-    "min_admission_avg": 80,
-    "min_admission_year": null,
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "pharmacist"
-    ],
-    "sources": [
-      {
-        "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
-        "title": "ZUJ - Specialties and Fees",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "verified",
-    "notes": "ZUJ table: 160 credit hours, 110 JOD (USD 155) per credit hour, 'High Secondary school GPA limit' 80%. Academic year not stated on page."
-  },
-  {
-    "id": "pu-cs",
-    "university_id": "pu",
-    "name_en": "Computer Science",
-    "name_ar": null,
-    "field": "computer-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": "private",
-    "tuition_year": "2025-2026",
-    "min_admission_avg": 70,
-    "min_admission_year": "2025-2026",
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer"
-    ],
-    "sources": [
-      {
-        "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
-        "title": "Philadelphia University - Fee Brochure 2025-2026",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed."
-  },
-  {
-    "id": "pu-se",
-    "university_id": "pu",
-    "name_en": "Software Engineering",
-    "name_ar": null,
-    "field": "software-engineering",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": "private",
-    "tuition_year": "2025-2026",
-    "min_admission_avg": 70,
-    "min_admission_year": "2025-2026",
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "software-developer",
-      "web-developer",
-      "qa-engineer"
-    ],
-    "sources": [
-      {
-        "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
-        "title": "Philadelphia University - Fee Brochure 2025-2026",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed."
-  },
-  {
-    "id": "pu-ds-ai",
-    "university_id": "pu",
-    "name_en": "Data Science & Artificial Intelligence",
-    "name_ar": null,
-    "field": "ai-data-science",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": "private",
-    "tuition_year": "2025-2026",
-    "min_admission_avg": 70,
-    "min_admission_year": "2025-2026",
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "data-analyst",
-      "ml-engineer",
-      "data-scientist"
-    ],
-    "sources": [
-      {
-        "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
-        "title": "Philadelphia University - Fee Brochure 2025-2026",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed."
-  },
-  {
-    "id": "pu-nursing",
-    "university_id": "pu",
-    "name_en": "Nursing",
-    "name_ar": null,
-    "field": "nursing",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": "private",
-    "tuition_year": "2025-2026",
-    "min_admission_avg": 60,
-    "min_admission_year": "2025-2026",
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "registered-nurse"
-    ],
-    "sources": [
-      {
-        "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
-        "title": "Philadelphia University - Fee Brochure 2025-2026",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 60-69.9%: 35; 70-79.9%: 32.5; 80-89.9%: 30; 90%+: 28.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed."
-  },
-  {
-    "id": "pu-business",
-    "university_id": "pu",
-    "name_en": "Business Administration",
-    "name_ar": null,
-    "field": "business-administration",
-    "degree": "bachelor",
-    "credit_hours": 132,
-    "tuition_jod_per_credit_hour": null,
-    "tuition_track": "private",
-    "tuition_year": "2025-2026",
-    "min_admission_avg": 60,
-    "min_admission_year": "2025-2026",
-    "admission_track": "private-university",
-    "eligible_streams": [],
-    "internship_note": null,
-    "career_tags": [
-      "business-analyst",
-      "manager"
-    ],
-    "sources": [
-      {
-        "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
-        "title": "Philadelphia University - Fee Brochure 2025-2026",
-        "checked_at": "2026-10-09"
-      }
-    ],
-    "verification": "partial",
-    "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 60-69.9%: 30; 70-79.9%: 28; 80-89.9%: 25; 90%+: 20. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed."
-  }
+ {
+  "id": "just-cs",
+  "university_id": "just",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 33,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 65,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 75. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+ },
+ {
+  "id": "just-se",
+  "university_id": "just",
+  "name_en": "Software Engineering",
+  "name_ar": null,
+  "field": "software-engineering",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 33,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 65,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer",
+   "qa-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 85. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+ },
+ {
+  "id": "just-ai",
+  "university_id": "just",
+  "name_en": "Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 80,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 65,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": "Internship (AI 490), 3 credit hours: at least six weeks with a local organisation, after 90 credit hours",
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
+    "title": "JUST - B.Sc. Artificial Intelligence study plan",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
+  "curriculum_topics": [
+   "programming",
+   "ai",
+   "data",
+   "mathematics",
+   "statistics",
+   "networks-security",
+   "web-mobile",
+   "entrepreneurship"
+  ]
+ },
+ {
+  "id": "just-ds",
+  "university_id": "just",
+  "name_en": "Data Science",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 80,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 65,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+ },
+ {
+  "id": "just-nursing",
+  "university_id": "just",
+  "name_en": "Nursing",
+  "name_ar": null,
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": 134,
+  "tuition_jod_per_credit_hour": 30,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 70,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": "Clinical courses in each nursing area plus a final Clinical Training course (Nur 494); from the 2009/2010 plan, which may have been updated since",
+  "career_tags": [
+   "registered-nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.just.edu.jo/FacultiesandDepartments/FacultyofNursing/Documents/Bachelor%20of%20Science%20in%20Nursing%20Curriculum.pdf",
+    "title": "JUST - B.Sc. Nursing curriculum (2009/2010 study plan)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 50 / 70. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/FacultyofNursing/Documents/Bachelor%20of%20Science%20in%20Nursing%20Curriculum.pdf",
+  "curriculum_topics": [
+   "patient-care",
+   "human-body",
+   "research",
+   "communication",
+   "management"
+  ]
+ },
+ {
+  "id": "just-civil",
+  "university_id": "just",
+  "name_en": "Civil Engineering",
+  "name_ar": null,
+  "field": "civil-engineering",
+  "degree": "bachelor",
+  "credit_hours": 160,
+  "tuition_jod_per_credit_hour": 21,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 80,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "civil-engineer",
+   "site-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 100. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+ },
+ {
+  "id": "just-pharmacy",
+  "university_id": "just",
+  "name_en": "Pharmacy",
+  "name_ar": null,
+  "field": "pharmacy",
+  "degree": "bachelor",
+  "credit_hours": 162,
+  "tuition_jod_per_credit_hour": 21,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 80,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "pharmacist"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 100. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024).",
+  "historical_thresholds": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 96.4,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 95.15,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ]
+ },
+ {
+  "id": "just-medicine",
+  "university_id": "just",
+  "name_en": "Doctor of Medicine",
+  "name_ar": null,
+  "field": "medicine",
+  "degree": "MD (6 years)",
+  "credit_hours": 257,
+  "tuition_jod_per_credit_hour": 36,
+  "tuition_track": "regular",
+  "tuition_year": "2024 (from file name)",
+  "min_admission_avg": 85,
+  "min_admission_year": "2024 (from file name)",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "physician"
+  ],
+  "sources": [
+   {
+    "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
+    "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 150 / 200. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024).",
+  "historical_thresholds": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 99.0,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 97.7,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ]
+ },
+ {
+  "id": "hu-cs",
+  "university_id": "hu",
+  "name_en": "Computer Science and its Applications",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 45,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 65,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (45, 70, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file."
+ },
+ {
+  "id": "hu-se",
+  "university_id": "hu",
+  "name_en": "Software Engineering",
+  "name_ar": null,
+  "field": "software-engineering",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 45,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 65,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": "Practical Training, 3 credit hours, after 80 credit hours (2020 advisory plan)",
+  "career_tags": [
+   "software-developer",
+   "web-developer",
+   "qa-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf",
+    "title": "HU - B.Sc. Software Engineering advisory plan (2020)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (45, 75, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file.",
+  "study_plan_url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "mathematics",
+   "statistics",
+   "networks-security",
+   "management",
+   "entrepreneurship"
+  ]
+ },
+ {
+  "id": "hu-ds-ai",
+  "university_id": "hu",
+  "name_en": "Data Science and Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 60,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 65,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (60, 80, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file."
+ },
+ {
+  "id": "hu-medicine",
+  "university_id": "hu",
+  "name_en": "Doctor of Medicine",
+  "name_ar": null,
+  "field": "medicine",
+  "degree": "MD",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 85,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 90,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "physician"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (85, 175, 250), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. The _2027 file lists 90% for Medicine; the older Bac.pdf listed 85%. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The _2027 file shows 90%; older undated HU files show 85%. The newer file's 90 is used.",
+  "historical_thresholds": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 98.4,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 97.4,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ]
+ },
+ {
+  "id": "hu-nursing",
+  "university_id": "hu",
+  "name_en": "Nursing Science",
+  "name_ar": null,
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 20,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 70,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "registered-nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (20, 60, 70), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year."
+ },
+ {
+  "id": "hu-civil",
+  "university_id": "hu",
+  "name_en": "Civil Engineering",
+  "name_ar": null,
+  "field": "civil-engineering",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 40,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "civil-engineer",
+   "site-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (40, 90, 100), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year."
+ },
+ {
+  "id": "hu-business",
+  "university_id": "hu",
+  "name_en": "Business Management",
+  "name_ar": null,
+  "field": "business-administration",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 16,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 65,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "business-analyst",
+   "manager"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (16, 60, 70), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year."
+ },
+ {
+  "id": "hu-pharmacy",
+  "university_id": "hu",
+  "name_en": "Pharmacy",
+  "name_ar": null,
+  "field": "pharmacy",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 75,
+  "tuition_track": "regular (inferred)",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "pharmacist"
+  ],
+  "sources": [
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf",
+    "title": "HU - The programs and the fees in JD (file _2027)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
+    "title": "HU - BA programs fee schedule (incl. international)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Fee = first of three per-credit-hour values in the row (75, 140, 150), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year.",
+  "historical_thresholds": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 95.8,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 94.9,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ]
+ },
+ {
+  "id": "aabu-cs",
+  "university_id": "aabu",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 30,
+  "tuition_track": "regular",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
+    "title": "AABU - Credit hour fees for undergraduate students",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+ },
+ {
+  "id": "aabu-ds-ai",
+  "university_id": "aabu",
+  "name_en": "Data Science and Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 40,
+  "tuition_track": "regular",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
+    "title": "AABU - Credit hour fees for undergraduate students",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Regular System (Jordanian students) 40 JD/credit hour; Parallel 60 JD; International (non-Jordanians) 93 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+ },
+ {
+  "id": "aabu-nursing",
+  "university_id": "aabu",
+  "name_en": "Nursing",
+  "name_ar": null,
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 30,
+  "tuition_track": "regular",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "registered-nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
+    "title": "AABU - Credit hour fees for undergraduate students",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+ },
+ {
+  "id": "aabu-civil",
+  "university_id": "aabu",
+  "name_en": "Civil Engineering",
+  "name_ar": null,
+  "field": "civil-engineering",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 30,
+  "tuition_track": "regular",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "civil-engineer",
+   "site-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
+    "title": "AABU - Credit hour fees for undergraduate students",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 89 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+ },
+ {
+  "id": "aabu-business",
+  "university_id": "aabu",
+  "name_en": "Business Administration",
+  "name_ar": null,
+  "field": "business-administration",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": 20,
+  "tuition_track": "regular",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "business-analyst",
+   "manager"
+  ],
+  "sources": [
+   {
+    "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
+    "title": "AABU - Credit hour fees for undergraduate students",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Regular System (Jordanian students) 20 JD/credit hour; Parallel 40 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+ },
+ {
+  "id": "yu-cs",
+  "university_id": "yu",
+  "name_en": "Computer Science",
+  "name_ar": "علوم الحاسوب",
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": 134,
+  "tuition_jod_per_credit_hour": 45,
+  "tuition_track": "regular",
+  "tuition_year": "2024/2025",
+  "min_admission_avg": 65,
+  "min_admission_year": "2024/2025",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+    "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '65134457099'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split."
+ },
+ {
+  "id": "yu-ds-ai",
+  "university_id": "yu",
+  "name_en": "Data Science and Artificial Intelligence",
+  "name_ar": "علم البيانات والذكاء الاصطناعي",
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 134,
+  "tuition_jod_per_credit_hour": 55,
+  "tuition_track": "regular",
+  "tuition_year": "2024/2025",
+  "min_admission_avg": 65,
+  "min_admission_year": "2024/2025",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+    "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '651345580113'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split."
+ },
+ {
+  "id": "yu-nursing",
+  "university_id": "yu",
+  "name_en": "Nursing",
+  "name_ar": "التمريض",
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": 139,
+  "tuition_jod_per_credit_hour": 70,
+  "tuition_track": "regular",
+  "tuition_year": "2024/2025",
+  "min_admission_avg": 70,
+  "min_admission_year": "2024/2025",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "registered-nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+    "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '701397090127'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split."
+ },
+ {
+  "id": "yu-civil",
+  "university_id": "yu",
+  "name_en": "Civil Engineering",
+  "name_ar": "الهندسة المدنية",
+  "field": "civil-engineering",
+  "degree": "bachelor",
+  "credit_hours": 167,
+  "tuition_jod_per_credit_hour": 60,
+  "tuition_track": "regular",
+  "tuition_year": "2024/2025",
+  "min_admission_avg": 80,
+  "min_admission_year": "2024/2025",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "civil-engineer",
+   "site-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+    "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '8016760100141'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split."
+ },
+ {
+  "id": "yu-pharmacy",
+  "university_id": "yu",
+  "name_en": "Pharmacy",
+  "name_ar": "الصيدلة",
+  "field": "pharmacy",
+  "degree": "bachelor",
+  "credit_hours": 170,
+  "tuition_jod_per_credit_hour": 60,
+  "tuition_track": "regular",
+  "tuition_year": "2024/2025",
+  "min_admission_avg": 80,
+  "min_admission_year": "2024/2025",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "pharmacist"
+  ],
+  "sources": [
+   {
+    "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+    "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '801706090127'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split.",
+  "historical_thresholds": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 95.6,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 94.85,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ]
+ },
+ {
+  "id": "yu-medicine",
+  "university_id": "yu",
+  "name_en": "Doctor of Medicine",
+  "name_ar": "دكتور في الطب",
+  "field": "medicine",
+  "degree": "MD",
+  "credit_hours": 257,
+  "tuition_jod_per_credit_hour": 100,
+  "tuition_track": "regular",
+  "tuition_year": "2024/2025",
+  "min_admission_avg": 85,
+  "min_admission_year": "2024/2025",
+  "admission_track": "unified-competitive",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "physician"
+  ],
+  "sources": [
+   {
+    "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
+    "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '85257100200282'), so values were not split to avoid guessing. All numbers null; check the PDF manually. Marked (قبول سنوي) annual admission. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split.",
+  "historical_thresholds": [
+   {
+    "year": "2026/2027",
+    "kind": "competitive-cutoff",
+    "value": 98.1,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   },
+   {
+    "year": "2025/2026",
+    "kind": "competitive-cutoff",
+    "value": 96.9,
+    "track": "unified admission, current-year Tawjihi holders",
+    "source_url": "https://alrai.com/article/10977989"
+   }
+  ]
+ },
+ {
+  "id": "psut-cs",
+  "university_id": "psut",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 130,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": "Practical Training course, 3 credit hours, after completing 90 credit hours (2021-2022 study plan)",
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://psut.edu.jo/en/study-plans",
+    "title": "PSUT - Programs & Fees (study plans)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
+    "title": "PSUT - B.Sc. Computer Science study plan (2021-2022 plan)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked.",
+  "study_plan_url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "mathematics",
+   "statistics",
+   "physics"
+  ]
+ },
+ {
+  "id": "psut-se",
+  "university_id": "psut",
+  "name_en": "Software Engineering",
+  "name_ar": null,
+  "field": "software-engineering",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 130,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": "Practical Training course, 3 credit hours, after completing 90 credit hours (2021-2022 study plan)",
+  "career_tags": [
+   "software-developer",
+   "web-developer",
+   "qa-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://psut.edu.jo/en/study-plans",
+    "title": "PSUT - Programs & Fees (study plans)",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
+    "title": "PSUT - B.Sc. Software Engineering study plan (2021-2022 plan)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked.",
+  "study_plan_url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "networks-security",
+   "design",
+   "management"
+  ]
+ },
+ {
+  "id": "psut-ds-ai",
+  "university_id": "psut",
+  "name_en": "Data Science & Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 130,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://psut.edu.jo/en/study-plans",
+    "title": "PSUT - Programs & Fees (study plans)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked."
+ },
+ {
+  "id": "psut-business",
+  "university_id": "psut",
+  "name_en": "Business Administration",
+  "name_ar": null,
+  "field": "business-administration",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 120,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "business-analyst",
+   "manager"
+  ],
+  "sources": [
+   {
+    "url": "https://psut.edu.jo/en/study-plans",
+    "title": "PSUT - Programs & Fees (study plans)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked."
+ },
+ {
+  "id": "zuj-cs",
+  "university_id": "zuj",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": 133,
+  "tuition_jod_per_credit_hour": 75,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": "Practical Training, 3 credit hours, year 4 (2021/2022 study plan)",
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf",
+    "title": "ZUJ - B.Sc. Computer Science study plan (2021/2022)",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply).",
+  "study_plan_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "mathematics"
+  ]
+ },
+ {
+  "id": "zuj-se",
+  "university_id": "zuj",
+  "name_en": "Software Engineering",
+  "name_ar": null,
+  "field": "software-engineering",
+  "degree": "bachelor",
+  "credit_hours": 133,
+  "tuition_jod_per_credit_hour": 75,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer",
+   "qa-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+ },
+ {
+  "id": "zuj-ds-ai",
+  "university_id": "zuj",
+  "name_en": "Data Science and Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 133,
+  "tuition_jod_per_credit_hour": 75,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+ },
+ {
+  "id": "zuj-nursing",
+  "university_id": "zuj",
+  "name_en": "Nursing",
+  "name_ar": null,
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 75,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 70,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "registered-nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 132 credit hours, 75 JOD (USD 106) per credit hour, 'High Secondary school GPA limit' 70%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+ },
+ {
+  "id": "zuj-civil",
+  "university_id": "zuj",
+  "name_en": "Civil and Infrastructure Engineering",
+  "name_ar": null,
+  "field": "civil-engineering",
+  "degree": "bachelor",
+  "credit_hours": 160,
+  "tuition_jod_per_credit_hour": 110,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "civil-engineer",
+   "site-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 160 credit hours, 110 JOD (USD 155) per credit hour, 'High Secondary school GPA limit' 80%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+ },
+ {
+  "id": "zuj-business",
+  "university_id": "zuj",
+  "name_en": "Business Administration",
+  "name_ar": null,
+  "field": "business-administration",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 70,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 60,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "business-analyst",
+   "manager"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 132 credit hours, 70 JOD (USD 100) per credit hour, 'High Secondary school GPA limit' 60%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+ },
+ {
+  "id": "zuj-pharmacy",
+  "university_id": "zuj",
+  "name_en": "Pharmacy",
+  "name_ar": null,
+  "field": "pharmacy",
+  "degree": "bachelor",
+  "credit_hours": 160,
+  "tuition_jod_per_credit_hour": 110,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "pharmacist"
+  ],
+  "sources": [
+   {
+    "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
+    "title": "ZUJ - Specialties and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "ZUJ table: 160 credit hours, 110 JOD (USD 155) per credit hour, 'High Secondary school GPA limit' 80%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+ },
+ {
+  "id": "pu-cs",
+  "university_id": "pu",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": null,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
+    "title": "Philadelphia University - Fee Brochure 2025-2026",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+ },
+ {
+  "id": "pu-se",
+  "university_id": "pu",
+  "name_en": "Software Engineering",
+  "name_ar": null,
+  "field": "software-engineering",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": null,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer",
+   "qa-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
+    "title": "Philadelphia University - Fee Brochure 2025-2026",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+ },
+ {
+  "id": "pu-ds-ai",
+  "university_id": "pu",
+  "name_en": "Data Science & Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": null,
+  "tuition_jod_per_credit_hour": null,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": null,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "sources": [
+   {
+    "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
+    "title": "Philadelphia University - Fee Brochure 2025-2026",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+ },
+ {
+  "id": "pu-nursing",
+  "university_id": "pu",
+  "name_en": "Nursing",
+  "name_ar": null,
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": null,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 60,
+  "min_admission_year": "2025-2026 (from file name)",
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "registered-nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
+    "title": "Philadelphia University - Fee Brochure 2025-2026",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 60-69.9%: 35; 70-79.9%: 32.5; 80-89.9%: 30; 90%+: 28.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+ },
+ {
+  "id": "pu-business",
+  "university_id": "pu",
+  "name_en": "Business Administration",
+  "name_ar": null,
+  "field": "business-administration",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": null,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 60,
+  "min_admission_year": "2025-2026 (from file name)",
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "business-analyst",
+   "manager"
+  ],
+  "sources": [
+   {
+    "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
+    "title": "Philadelphia University - Fee Brochure 2025-2026",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 60-69.9%: 30; 70-79.9%: 28; 80-89.9%: 25; 90%+: 20. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+ },
+ {
+  "id": "meu-cs",
+  "university_id": "meu",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 90,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
+    "title": "MEU - University faculties and majors for undergraduate studies",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ },
+ {
+  "id": "meu-se",
+  "university_id": "meu",
+  "name_en": "Software Engineering",
+  "name_ar": null,
+  "field": "software-engineering",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 100,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer"
+  ],
+  "sources": [
+   {
+    "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
+    "title": "MEU - University faculties and majors for undergraduate studies",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ },
+ {
+  "id": "meu-ds-ai",
+  "university_id": "meu",
+  "name_en": "Data Science & Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 100,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
+    "title": "MEU - University faculties and majors for undergraduate studies",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ },
+ {
+  "id": "meu-nursing",
+  "university_id": "meu",
+  "name_en": "Nursing",
+  "name_ar": null,
+  "field": "nursing",
+  "degree": "bachelor",
+  "credit_hours": 134,
+  "tuition_jod_per_credit_hour": 100,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 70,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "nurse"
+  ],
+  "sources": [
+   {
+    "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
+    "title": "MEU - University faculties and majors for undergraduate studies",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ },
+ {
+  "id": "meu-pharmacy",
+  "university_id": "meu",
+  "name_en": "Pharmacy",
+  "name_ar": null,
+  "field": "pharmacy",
+  "degree": "bachelor",
+  "credit_hours": 160,
+  "tuition_jod_per_credit_hour": 120,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "pharmacist"
+  ],
+  "sources": [
+   {
+    "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
+    "title": "MEU - University faculties and majors for undergraduate studies",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ },
+ {
+  "id": "meu-business",
+  "university_id": "meu",
+  "name_en": "Business Administration",
+  "name_ar": null,
+  "field": "business-administration",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 80,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 60,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "business-analyst"
+  ],
+  "sources": [
+   {
+    "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
+    "title": "MEU - University faculties and majors for undergraduate studies",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "partial",
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ }
 ]

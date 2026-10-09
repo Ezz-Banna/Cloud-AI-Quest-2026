@@ -14,7 +14,7 @@ const Threshold = z.object({ year: z.string().min(4), kind: z.enum(["minimum-to-
 
 export const UniversitySchema = z.object({
   id: z.string().min(1), name_en: z.string().min(2), name_ar: z.string().nullable().optional(),
-  type: z.enum(["public", "private"]), city: z.string().nullable().optional(), governorate: z.string().nullable().optional(),
+  type: z.enum(["public", "private", "special-law"]), city: z.string().nullable().optional(), governorate: z.string().nullable().optional(),
   website: z.string().nullable().optional(), accreditation_note: z.string().nullable().optional(),
   campuses: z.array(z.string()).optional(), accreditation_status: Accreditation, accreditation_source: z.string().url().nullable().optional(),
   additional_fees: z.array(ExtraFee).optional(), exchange_programs: z.array(SourcedFact).optional(),
@@ -46,7 +46,14 @@ export const ScholarshipSchema = z.object({
     min_avg: num, need_based: z.boolean().nullable().optional(), fields: z.array(z.string()).optional(),
     nationality: z.string().nullable().optional(), stage: z.enum(["pre-university", "university", "graduate"]).nullable().optional(),
   }).passthrough(),
-  coverage_text: z.string().nullable().optional(), url: z.string(), sources: z.array(Source), verification: Verification, notes: z.string().nullable().optional(),
+  coverage_text: z.string().nullable().optional(),
+  availability: z.object({
+    status: z.enum(["open", "announced", "closed", "historical", "unverified"]), academic_year: z.string().nullable().optional(),
+    opens: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().optional(), closes: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().optional(),
+    checked_at: z.string().nullable().optional(), source_url: z.string().url().nullable().optional(),
+  }).nullable().optional(),
+  documents: z.array(z.string()).optional(),
+  url: z.string().url(), sources: z.array(Source), verification: Verification, notes: z.string().nullable().optional(),
 });
 
 export const CourseSchema = z.object({

@@ -11,7 +11,9 @@
     "e2e": "node scripts/e2e.mjs",
     "smoke": "node scripts/smoke.mjs",
     "a11y": "node scripts/a11y.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "validate:data": "node scripts/validate-data.mjs",
+    "audit:data": "node scripts/audit-data.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.132.1",

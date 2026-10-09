@@ -190,7 +190,7 @@ export default function Results() {
                 <div className="min-w-0">
                   <h2 className="text-lg font-bold text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}</h2>
                   {lang === "ar" && !m.program.name_ar && <p lang="en" dir="ltr" className="text-xs text-muted">{m.program.name_en}</p>}
-                  <p className="text-muted">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en} · {cityLabel(m.university.city, lang)} · {m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}</p>
+                  <p className="text-muted">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en} · {cityLabel(m.university.city, lang)} · {m.university.type === "public" ? tr("Public", "حكومية") : m.university.type === "private" ? tr("Private", "خاصة") : tr("Special law", "بقانون خاص")}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <VerificationBadge v={m.program.verification} />
@@ -212,9 +212,9 @@ export default function Results() {
                   <p className="text-xs font-bold uppercase tracking-wider text-muted">{tr("Tuition estimate", "تقدير الرسوم")}</p>
                   {m.cost.per_year_jod != null ? (
                     <p className="mt-1"><span className="text-lg font-bold text-teal">~{m.cost.per_year_jod.toLocaleString()} JOD</span><span className="text-sm text-muted">/{tr("yr", "سنة")}</span></p>
-                  ) : <p className="mt-1 text-sm text-muted">{tr("Not verified yet", "غير موثّق بعد")}</p>}
+                  ) : <p className="mt-1 max-w-[14rem] text-sm text-muted md:ms-auto">{tr("Information not currently verified. Please check the university’s official website.", "المعلومة غير موثّقة حالياً. يُرجى مراجعة الموقع الرسمي للجامعة.")}</p>}
                   {m.cost.within_budget === false && <p className="text-xs font-semibold text-bad">{tr("Above your budget", "أعلى من ميزانيتك")}</p>}
-                  {m.cost.per_year_jod != null && <p className="text-xs text-muted">{m.cost.extra_fees_jod != null ? tr("incl. other fees", "شاملة الرسوم الأخرى") : tr("tuition only", "رسوم الساعات فقط")}{m.cost.fee_year ? ` · ${tr("fees", "رسوم")} ${m.cost.fee_year}` : ""}{m.cost.checked_at ? ` · ${tr("checked", "تحقق")} ${m.cost.checked_at}` : ""}</p>}
+                  {m.cost.per_year_jod != null && <p className="text-xs text-muted">{m.cost.extra_fees_jod != null ? tr("incl. other fees", "شاملة الرسوم الأخرى") : tr("tuition only", "رسوم الساعات فقط")}{` · ${m.cost.fee_year ? `${tr("fees", "رسوم")} ${m.cost.fee_year}` : tr("fee year not stated", "سنة الرسوم غير مذكورة")}`}{m.cost.checked_at ? ` · ${tr("checked", "تحقق")} ${m.cost.checked_at}` : ""}</p>}
                 </div>
               </div>
 
@@ -307,11 +307,13 @@ function Eligibility({ m }: { m: ProgramMatch }) {
     "stream-mismatch": { cls: "bg-bad-100 text-bad", en: "Stream not listed as eligible", ar: "الفرع غير مدرج ضمن المؤهلين" },
     "minimum-not-verified": { cls: "bg-warn-100 text-warn", en: "Unknown: minimum not verified yet", ar: "غير معروف: الحد الأدنى غير موثّق بعد" },
     "conflicting-sources": { cls: "bg-warn-100 text-warn", en: "Unknown: sources disagree", ar: "غير معروف: المصادر مختلفة" },
+    "newer-minimum-reported": { cls: "bg-warn-100 text-warn", en: "Check: newer minimum reported", ar: "تحقّق: حد أدنى أحدث مُعلن" },
     "missing-student-average": { cls: "bg-mist text-muted", en: "Add your average to check", ar: "أضف معدلك للتحقق" },
   }[e.status];
   const detail = e.status === "meets-published-minimum" || e.status === "below-published-minimum"
     ? tr(`Your ${profile.tawjihi_avg} vs. ${e.published_min} published${e.year ? ` (${e.year}${e.track ? `, ${e.track}` : ""})` : ""}.`, `معدلك ${profile.tawjihi_avg} مقابل ${e.published_min} المنشور${e.year ? ` (${e.year})` : ""}.`)
     : e.status === "minimum-not-verified" || e.status === "conflicting-sources" ? tr("Check the official admission list.", "تحقق من قوائم القبول الرسمية.") : "";
+  const rule = e.national_rule ? tr(`National minimum ${e.national_rule.min_avg} from ${e.national_rule.from_year} (reported decision).`, `حد أدنى وطني ${e.national_rule.min_avg} بدءاً من ${e.national_rule.from_year} (قرار مُعلن).`) : "";
   const cut = e.last_cutoff ? tr(`Past competitive cut-off: ${e.last_cutoff.value} (${e.last_cutoff.year}), history only.`, `معدل القبول التنافسي السابق: ${e.last_cutoff.value} (${e.last_cutoff.year})، للاطلاع فقط.`) : "";
   return (
     <div>
@@ -319,6 +321,7 @@ function Eligibility({ m }: { m: ProgramMatch }) {
       <span className={`mt-1.5 inline-flex rounded-full px-3 py-1 text-sm font-semibold ${cfg.cls}`}>{tr(cfg.en, cfg.ar)}</span>
       {detail && <p className="mt-1.5 text-xs text-muted">{detail}</p>}
       {(e.status === "meets-published-minimum" || e.status === "below-published-minimum") && <p className="text-xs text-muted">{tr("Minimum to apply, not the competitive cut-off.", "الحد الأدنى للتقديم، لا معدل القبول التنافسي.")}</p>}
+      {rule && <p className="mt-1 text-xs text-muted">{rule} <a href={e.national_rule!.source_url} target="_blank" rel="noreferrer" className="underline">{tr("Source", "المصدر")}</a></p>}
       {cut && <p className="mt-1 text-xs text-muted">{cut}</p>}
     </div>
   );

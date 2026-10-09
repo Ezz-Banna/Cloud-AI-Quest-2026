@@ -5,6 +5,7 @@ import { useBridge } from "@/components/ProfileProvider";
 import { EvidenceLadder, Icon, type IconName } from "@/components/Visuals";
 import { StatCard } from "@/components/StatCard";
 import { JORDAN_STATS } from "@/lib/data/jordan-stats";
+import COVERAGE from "@/lib/data/coverage.json";
 
 export default function How() {
   const { tr } = useBridge();
@@ -21,9 +22,9 @@ export default function How() {
 
   type Row = [string, "live" | "sim" | "planned", string];
   const rows: Row[] = [
-    [tr("Program minimums, costs and fit from sourced records", "الحدود الدنيا والكلف والملاءمة من سجلات موثّقة المصدر"), "live", tr("Subset: 11 universities, 44 programs", "مجموعة جزئية: 11 جامعة و44 برنامجاً")],
+    [tr("Program minimums, costs and fit from sourced records", "الحدود الدنيا والكلف والملاءمة من سجلات موثّقة المصدر"), "live", tr(`Subset: ${COVERAGE.programs.total} programs at ${COVERAGE.universities.with_programs} universities (${COVERAGE.programs.with_fee_hours_and_minimum} with fee, credit hours and minimum); ${COVERAGE.universities.total} universities in the directory`, `مجموعة جزئية: ${COVERAGE.programs.total} برنامجاً في ${COVERAGE.universities.with_programs} جامعات (${COVERAGE.programs.with_fee_hours_and_minimum} منها بالرسوم والساعات والحد الأدنى)؛ ${COVERAGE.universities.total} جامعة في الدليل`)],
     [tr("Reading postings and achievements (English and Arabic)", "قراءة الإعلانات والإنجازات (بالعربية والإنجليزية)"), "live", ai === null ? "…" : ai ? tr("AI model on", "نموذج الذكاء الاصطناعي مفعّل") : tr("Keyword rules; AI model off", "قواعد الكلمات المفتاحية؛ الذكاء الاصطناعي متوقف")],
-    [tr("Scholarships and courses, linked to official pages", "المنح والدورات مع روابط صفحاتها الرسمية"), "live", tr("13 support programs, 45 courses", "13 برنامج دعم و45 دورة")],
+    [tr("Scholarships and courses, linked to official pages", "المنح والدورات مع روابط صفحاتها الرسمية"), "live", tr(`${COVERAGE.scholarships.total} support programs (${COVERAGE.scholarships.by_window.open} open now; dates re-checked ${COVERAGE.measured_on}), 45 courses`, `${COVERAGE.scholarships.total} برنامج دعم (${COVERAGE.scholarships.by_window.open} مفتوح الآن؛ تم التحقق من المواعيد ${COVERAGE.measured_on})، 45 دورة`)],
     [tr("Human review of submitted work", "المراجعة البشرية للأعمال المقدّمة"), "sim", tr("Bridgecom team, not outside assessors", "فريق بريدجكوم، لا مقيّمون خارجيون")],
     [tr("Employers, roles and the demo student Lina", "أصحاب العمل والأدوار والطالبة التجريبية لينا"), "sim", tr("Synthetic, labelled", "مصطنعة ومعلَّمة")],
     [tr("Accounts, partner reviewers, verified employers", "الحسابات والمراجعون الشركاء وأصحاب العمل الموثّقون"), "planned", tr("Not built", "غير مبنية")],

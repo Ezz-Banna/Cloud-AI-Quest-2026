@@ -169,7 +169,8 @@ export const Explanation = z.object({
 const EXPLAIN_SYSTEM = `You explain a university program recommendation to a Jordanian student in plain, warm language.
 Rules:
 - Use ONLY the facts in the JSON. Do not add facts about the university, rankings, jobs or salaries.
-- Every number you write must appear in the JSON exactly.
+- Every number you write must appear in the JSON exactly. Never write a web address or link.
+- If tuition_per_year_jod is null, say the cost is not verified; never estimate it. Mention fee_year when you mention cost.
 - Mention the admission check honestly: a minimum average to apply is not a guarantee of admission. The fit score is not an admission chance.
 - Mention the most important trade-off if there is one.
 - If data is missing, say so briefly.
@@ -178,7 +179,7 @@ Rules:
 export interface ExplainFacts {
   program: string; university: string; city: string | null;
   eligibility: { status: string; published_min: number | null | undefined; year: string | null | undefined; student_avg: number | null | undefined };
-  fit_score: number; tuition_per_year_jod: number | null; reasons: { code: string; text: string }[]; missing: string[];
+  fit_score: number; tuition_per_year_jod: number | null; fee_year?: string | null; reasons: { code: string; text: string }[]; missing: string[];
   trade_offs?: { code: string; text: string }[];
 }
 
@@ -200,17 +201,24 @@ export function numbersSupported(text: string, facts: unknown) {
   return nums.every((n) => factStr.includes(n));
 }
 
+/** Any link or web address the model writes must already be in the facts; invented URLs fail validation. */
+export function urlsSupported(text: string, facts: unknown) {
+  const factStr = JSON.stringify(facts).toLowerCase();
+  const urls = text.match(/\b(?:https?:\/\/|www\.)[^\s)"'،]+|\b[a-z0-9-]+\.(?:edu|gov|org|com)(?:\.jo)?\b[^\s)"'،]*/gi) ?? [];
+  return urls.every((u) => factStr.includes(u.toLowerCase().replace(/[.,;]+$/, "")));
+}
+
 export async function explainMatch(f: ExplainFacts, lang: "en" | "ar") {
   const r = await structured(Explanation, EXPLAIN_SYSTEM, `Language: ${lang}\nFacts:\n${JSON.stringify(f)}`, 1500);
   const codes = new Set([...f.reasons, ...(f.trade_offs ?? [])].map((x) => x.code));
   if (r.ok) {
     const okCodes = r.data.used_reason_codes.every((c) => codes.has(c) || c === "eligibility");
-    const okNums = numbersSupported(r.data.text, f);
+    const okNums = numbersSupported(r.data.text, f) && urlsSupported(r.data.text, f);
     if (okCodes && okNums) {
       logAI({ module: "explain", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: 1, dropped_by_validation: 0 });
       return { mode: "ai" as const, model: r.model, text: r.data.text };
     }
-    logAI({ module: "explain", mode: "offline", model: r.model, returned: 0, dropped_by_validation: 1, notes: !okNums ? "explanation contained a number not in the facts; replaced by template" : "explanation cited unknown reasons; replaced by template" });
+    logAI({ module: "explain", mode: "offline", model: r.model, returned: 0, dropped_by_validation: 1, notes: !okNums ? "explanation contained a number or link not in the facts; replaced by template" : "explanation cited unknown reasons; replaced by template" });
     return { mode: "offline" as const, text: templateExplanation(f, lang), reason: "validation" };
   }
   logAI({ module: "explain", mode: "offline", error: r.error, returned: 1, dropped_by_validation: 0 });
@@ -247,7 +255,7 @@ export async function compareOptions(fs: CompareFacts[], lang: "en" | "ar") {
   const r = await structured(Comparison, COMPARE_SYSTEM, `Language: ${lang}\nOptions:\n${JSON.stringify(fs)}`, 2000);
   if (r.ok) {
     const ids = new Set(fs.map((f) => f.id));
-    const ok = r.data.used_program_ids.every((i) => ids.has(i)) && numbersSupported(r.data.text, fs);
+    const ok = r.data.used_program_ids.every((i) => ids.has(i)) && numbersSupported(r.data.text, fs) && urlsSupported(r.data.text, fs);
     if (ok) {
       logAI({ module: "compare", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: 1, dropped_by_validation: 0 });
       return { mode: "ai" as const, model: r.model, text: r.data.text };

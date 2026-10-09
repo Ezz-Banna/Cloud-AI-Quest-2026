@@ -13,6 +13,25 @@
 import type { FitCriterion, LearnerProfile, Program, University } from "../types";
 import { cityLabel } from "../i18n";
 import { FIELD_BY_ID, SUBJECT_TOPICS, STRENGTH_TOPICS, CURRICULUM_TOPICS, TOPIC_BY_ID } from "../data/taxonomy";
+import RULES from "../../../data/verified/admission-rules.json";
+
+/** A national minimum (e.g. a Higher Education Council decision) that can be newer than a university's own published list. */
+export interface AdmissionRule {
+  id: string; fields: string[]; sector: "all" | "public" | "private" | "unspecified"; min_avg: number; from_year: string;
+  text_en: string; text_ar: string; source_kind: string; sources: { url: string; title?: string; quote?: string; checked_at?: string }[];
+}
+export const ADMISSION_RULES = RULES as AdmissionRule[];
+const firstYear = (s?: string | null) => { const m = s?.match(/\d{4}/); return m ? Number(m[0]) : null; };
+
+/** The strictest national rule that is newer than (or fills in for) the program's own published minimum. */
+export function newerRule(prog: Program, uni?: University, rules = ADMISSION_RULES): AdmissionRule | null {
+  const progYear = firstYear(prog.min_admission_year);
+  return rules
+    .filter((r) => r.fields.includes(prog.field) && (r.sector === "all" || r.sector === "unspecified" || r.sector === uni?.type))
+    .filter((r) => prog.min_admission_avg == null || r.min_avg > prog.min_admission_avg)
+    .filter((r) => progYear == null || progYear < (firstYear(r.from_year) ?? 0))
+    .sort((a, b) => b.min_avg - a.min_avg)[0] ?? null;
+}
 
 export type EligibilityStatus =
   | "meets-published-minimum"
@@ -20,6 +39,7 @@ export type EligibilityStatus =
   | "stream-mismatch"
   | "minimum-not-verified"
   | "conflicting-sources"
+  | "newer-minimum-reported"
   | "missing-student-average";
 
 export type EligibilityGroup = "eligible" | "ineligible" | "unknown";
@@ -33,6 +53,8 @@ export interface Eligibility {
   margin?: number;
   /** Latest published competitive cut-off, shown as history only. */
   last_cutoff?: { year: string; value: number; source_url: string } | null;
+  /** A newer national minimum that is higher than the program's own published one. */
+  national_rule?: { min_avg: number; from_year: string; en: string; ar: string; source_url: string; source_kind: string } | null;
 }
 
 export interface Reason {
@@ -104,7 +126,19 @@ const conflicted = (prog: Program, f: string) => (prog.conflicts ?? []).some((c)
 const fact = <K extends FactField>(prog: Program, k: K): number | null =>
   conflicted(prog, k) ? null : (prog[k] ?? null);
 
-export function checkEligibility(p: LearnerProfile, prog: Program): Eligibility {
+export function checkEligibility(p: LearnerProfile, prog: Program, uni?: University): Eligibility {
+  const e = baseEligibility(p, prog);
+  const r = newerRule(prog, uni);
+  if (!r) return e;
+  const national_rule = { min_avg: r.min_avg, from_year: r.from_year, en: r.text_en, ar: r.text_ar, source_url: r.sources[0]?.url ?? "", source_kind: r.source_kind };
+  const avg = p.tawjihi_avg;
+  // Meeting an older list is not enough when a newer national minimum is higher: the answer becomes "check".
+  if (avg != null && avg < r.min_avg && (e.status === "meets-published-minimum" || e.status === "minimum-not-verified"))
+    return { ...e, status: "newer-minimum-reported", group: "unknown", national_rule };
+  return { ...e, national_rule };
+}
+
+function baseEligibility(p: LearnerProfile, prog: Program): Eligibility {
   const min = fact(prog, "min_admission_avg");
   const cut = (prog.historical_thresholds ?? []).filter((h) => h.kind === "competitive-cutoff").sort((a, b) => b.year.localeCompare(a.year))[0];
   const base = { published_min: min, year: prog.min_admission_year ?? null, track: prog.admission_track ?? null,
@@ -252,7 +286,7 @@ export function scoreProgram(p: LearnerProfile, prog: Program, uni: University):
   // Public or private
   const typePref = typePreference(p);
   if (!typePref) add("type", null, "No preference between public and private", "لا تفضيل بين الحكومية والخاصة");
-  else add("type", typePref === uni.type ? 1 : 0, uni.type === "public" ? "A public university" : "A private university", uni.type === "public" ? "جامعة حكومية" : "جامعة خاصة");
+  else add("type", typePref === uni.type ? 1 : 0, uni.type === "public" ? "A public university" : uni.type === "private" ? "A private university" : "A university under a special law", uni.type === "public" ? "جامعة حكومية" : uni.type === "private" ? "جامعة خاصة" : "جامعة بقانون خاص");
 
   // Applied learning
   if (prog.internship_note) add("applied", 1, `Practical training: ${prog.internship_note}`, `تدريب عملي: ${prog.internship_note}`);
@@ -275,10 +309,11 @@ export function scoreProgram(p: LearnerProfile, prog: Program, uni: University):
   }
   for (const s of prog.verified_achievements ?? []) strengths.push({ code: "verified-achievement", weight: 0, en: s.text, ar: s.text });
 
-  const elig = checkEligibility(p, prog);
+  const elig = checkEligibility(p, prog, uni);
   if (elig.status === "meets-published-minimum" && elig.last_cutoff && p.tawjihi_avg != null && p.tawjihi_avg < elig.last_cutoff.value) {
     trade.push({ code: "below-last-cutoff", weight: 0, en: `Your average is above the minimum to apply but below the ${elig.last_cutoff.year} competitive cut-off (${elig.last_cutoff.value}); places are competitive and cut-offs change each year`, ar: `معدلك أعلى من الحد الأدنى للتقديم لكنه أقل من معدل القبول التنافسي لعام ${elig.last_cutoff.year} (${elig.last_cutoff.value})؛ المقاعد تنافسية والمعدلات تتغير سنوياً` });
   }
+  if (elig.status === "newer-minimum-reported" && elig.national_rule) trade.push({ code: "newer-minimum", weight: 0, en: `Your average meets this university's older published minimum, but a national minimum of ${elig.national_rule.min_avg} is reported from ${elig.national_rule.from_year}; confirm with the university`, ar: `معدلك يحقق الحد الأدنى المنشور سابقاً لدى الجامعة، لكن حداً أدنى وطنياً بنسبة ${elig.national_rule.min_avg} مُعلن بدءاً من ${elig.national_rule.from_year}؛ تأكد من الجامعة` });
   if (prog.verification !== "verified") trade.push({ code: "partial-data", weight: 0, en: "Some details of this program are not yet verified", ar: "بعض تفاصيل هذا البرنامج غير موثّقة بعد" });
   for (const c of prog.conflicts ?? []) missing.push(`conflicting sources: ${c.field.replace(/_/g, " ")}`);
   if (elig.published_min == null && !conflicted(prog, "min_admission_avg")) missing.push("admission minimum");

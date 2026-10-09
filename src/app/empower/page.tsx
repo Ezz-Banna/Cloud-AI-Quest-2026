@@ -20,6 +20,12 @@ const KINDS: { v: Achievement["kind"]; en: string; ar: string }[] = [
   { v: "award", en: "Competition or award", ar: "مسابقة أو جائزة" }, { v: "other", en: "Other", ar: "أخرى" },
 ];
 
+const WINDOW_STYLE = { open: "bg-ok-100 text-ok", announced: "bg-sand-100 text-sand-700", unverified: "bg-mist text-muted", closed: "bg-bad-100 text-bad", historical: "bg-mist text-muted" } as const;
+function windowLabel(w: keyof typeof WINDOW_STYLE, lang: string) {
+  const l = { open: ["Open now", "التقديم مفتوح"], announced: ["Announced", "تم الإعلان"], unverified: ["Dates not verified", "المواعيد غير موثّقة"], closed: ["Closed", "مغلق"], historical: ["Older information", "معلومات قديمة"] }[w];
+  return lang === "ar" ? l[1] : l[0];
+}
+
 export default function Empower() {
   const { profile, setProfile, tr, lang, setProgress, logActivity } = useBridge();
   const [kind, setKind] = useState<Achievement["kind"]>("project");
@@ -258,8 +264,9 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                 <div><dt className="text-xs font-semibold text-teal">{tr("What it covers", "ما الذي تغطيه")}</dt><dd>{o.item.coverage_text || <span className="text-muted">{tr("Not recorded; check the official page.", "غير مسجّل؛ تحقق من الصفحة الرسمية.")}</span>}</dd></div>
               </dl>
               <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
-                <span><span className="font-semibold text-teal">{tr("Deadline", "الموعد النهائي")}</span> {tr("not recorded", "غير مسجّل")}</span>
-                <span><span className="font-semibold text-teal">{tr("Page checked", "تاريخ التحقق")}</span> {o.item.sources[0]?.checked_at ?? tr("not recorded", "غير مسجّل")}</span>
+                <span className={`rounded-full px-2 py-0.5 font-semibold ${WINDOW_STYLE[o.window]}`}>{windowLabel(o.window, lang)}</span>
+                <span><span className="font-semibold text-teal">{tr("Deadline", "الموعد النهائي")}</span> {o.item.availability?.closes ?? tr("not published", "غير منشور")}{o.item.availability?.academic_year ? ` (${o.item.availability.academic_year})` : ""}</span>
+                <span><span className="font-semibold text-teal">{tr("Page checked", "تاريخ التحقق")}</span> {o.item.availability?.checked_at ?? o.item.sources[0]?.checked_at ?? tr("not recorded", "غير مسجّل")}</span>
               </p>
               <details className="mt-3 text-sm">
                 <summary className="cursor-pointer text-xs font-semibold text-teal">{tr("Who can apply (as published)", "من يحق له التقديم (كما هو منشور)")}</summary>

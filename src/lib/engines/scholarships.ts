@@ -1,15 +1,32 @@
 // Rule-based opportunity matching. A match means "worth checking", never "you will receive funding".
-import type { LearnerProfile, Scholarship } from "../types";
+import type { AvailabilityStatus, LearnerProfile, Scholarship } from "../types";
 import type { Reason } from "./programs";
 
 export interface OpportunityMatch {
   item: Scholarship;
   score: number;
   status: "likely-relevant" | "check-eligibility" | "not-eligible";
+  /** Application window, re-checked against today: a stored "open" with a past closing date becomes "closed". */
+  window: AvailabilityStatus;
   reasons: Reason[];
 }
 
-export function matchScholarships(p: LearnerProfile, items: Scholarship[], stage: "pre-university" | "university" | "graduate" = "pre-university"): OpportunityMatch[] {
+const today = () => new Date().toISOString().slice(0, 10);
+
+/** The stored status is trusted only while its dates agree with today's date. */
+export function effectiveAvailability(s: Scholarship, now = today()): AvailabilityStatus {
+  const a = s.availability;
+  if (!a) return "unverified";
+  if (a.closes && a.closes < now) return a.status === "historical" ? "historical" : "closed";
+  if (a.status === "open" && a.opens && a.opens > now) return "announced";
+  if (a.status === "announced" && a.opens && a.opens <= now && a.closes && a.closes >= now) return "open";
+  if (a.status === "open" && !a.closes && !a.opens) return "unverified"; // "open" needs published dates
+  return a.status;
+}
+
+const WINDOW_ORDER: Record<AvailabilityStatus, number> = { open: 0, announced: 1, unverified: 2, closed: 3, historical: 4 };
+
+export function matchScholarships(p: LearnerProfile, items: Scholarship[], stage: "pre-university" | "university" | "graduate" = "pre-university", now = today()): OpportunityMatch[] {
   return items.map((s): OpportunityMatch => {
     const reasons: Reason[] = [];
     let blocked = false;
@@ -40,11 +57,20 @@ export function matchScholarships(p: LearnerProfile, items: Scholarship[], stage
     } else {
       score += 10; reasons.push({ code: "open-field", weight: 10, en: "Open to all fields", ar: "متاح لجميع التخصصات" });
     }
+    const window = effectiveAvailability(s, now);
+    const a = s.availability;
+    if (window === "open") reasons.push({ code: "window-open", weight: 0, en: `Applications open until ${a?.closes}`, ar: `التقديم مفتوح حتى ${a?.closes}` });
+    else if (window === "announced") reasons.push({ code: "window-announced", weight: 0, en: `Applications open on ${a?.opens}`, ar: `يفتح التقديم في ${a?.opens}` });
+    else if (window === "closed") reasons.push({ code: "window-closed", weight: 0, en: a?.closes ? `Last application window closed on ${a.closes}; watch for the next cycle` : "Last application window has closed; watch for the next cycle", ar: a?.closes ? `أُغلق آخر باب للتقديم في ${a.closes}؛ تابع الدورة القادمة` : "أُغلق آخر باب للتقديم؛ تابع الدورة القادمة" });
+    else if (window === "historical") reasons.push({ code: "window-historical", weight: 0, en: "Only older information found; it may no longer run", ar: "لم نجد سوى معلومات قديمة؛ قد لا يكون مستمراً" });
+    else reasons.push({ code: "window-unverified", weight: 0, en: "Current application dates not verified", ar: "مواعيد التقديم الحالية غير موثّقة" });
     if (s.verification !== "verified") reasons.push({ code: "unverified", weight: 0, en: "Details not fully verified; confirm on the official page", ar: "التفاصيل غير موثّقة بالكامل؛ تحقق من الصفحة الرسمية" });
-    const status: OpportunityMatch["status"] = blocked ? "not-eligible" : unknown || score < 30 ? "check-eligibility" : "likely-relevant";
-    return { item: s, score, status, reasons };
+    // A closed or historical window is never presented as a current recommendation.
+    const stale = window === "closed" || window === "historical";
+    const status: OpportunityMatch["status"] = blocked ? "not-eligible" : unknown || stale || score < 30 ? "check-eligibility" : "likely-relevant";
+    return { item: s, score, status, window, reasons };
   }).sort((a, b) => {
     const o = { "likely-relevant": 0, "check-eligibility": 1, "not-eligible": 2 } as const;
-    return o[a.status] - o[b.status] || b.score - a.score;
+    return o[a.status] - o[b.status] || WINDOW_ORDER[a.window] - WINDOW_ORDER[b.window] || b.score - a.score;
   });
 }

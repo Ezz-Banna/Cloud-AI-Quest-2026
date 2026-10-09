@@ -1,0 +1,32 @@
+[
+ {
+  "id": "hec-medicine-90",
+  "fields": ["medicine"],
+  "sector": "all",
+  "min_avg": 90,
+  "from_year": "2025/2026",
+  "text_en": "Higher Education Council decision: minimum Tawjihi average for medicine and dentistry raised to 90% at all public and private Jordanian universities, from 2025/2026.",
+  "text_ar": "قرار مجلس التعليم العالي: رفع الحد الأدنى لمعدل الثانوية العامة لدراسة الطب وطب الأسنان إلى 90% في جميع الجامعات الأردنية الرسمية والخاصة، بدءاً من العام الجامعي 2025/2026.",
+  "source_kind": "news report of an official decision",
+  "sources": [
+   {"url": "https://royanews.tv/news/333458", "title": "Roya News (9 Sep 2024): رفع الحد الأدنى للقبول في تخصصي الطب وطب الأسنان في الأردن", "quote": "في جميع الجامعات الأردنية الرسمية والخاصة إلى 90%", "checked_at": "2026-10-09"},
+   {"url": "https://alrai.com/article/10849544", "title": "Al-Rai: رفع الحد الأدنى لمعدل الثانوية العامة المطلوب لدراسة تخصصي الطب وطب الأسنان", "checked_at": "2026-10-09"}
+  ],
+  "notes": "The official MoHE / HEC page could not be opened (mohe.gov.jo blocks automated access). Two national news outlets report the same decision."
+ },
+ {
+  "id": "hec-it-ai-75",
+  "fields": ["computer-science", "software-engineering", "ai-data-science"],
+  "sector": "unspecified",
+  "min_avg": 75,
+  "from_year": "2026/2027",
+  "text_en": "Higher Education Council decision: minimum average of 75% for bachelor's programmes in faculties of information technology and artificial intelligence, from 2026/2027. The report does not say whether it covers public, private or both.",
+  "text_ar": "قرار مجلس التعليم العالي: الحد الأدنى للمعدل 75% للالتحاق بتخصصات كليات تكنولوجيا المعلومات والذكاء الاصطناعي لدرجة البكالوريوس، بدءاً من العام الجامعي 2026/2027.",
+  "source_kind": "news report of an official decision",
+  "sources": [
+   {"url": "https://royanews.tv/news/354247", "title": "Roya News (21 Jul 2025): رفع معدل القبول بتخصصات تكنولوجيا المعلومات والذكاء الاصطناعي للعام الجامعي 2026/2027", "quote": "وتقرر أن يكون الحد الأدنى للمعدل 75 بالمئة، على أن يبدأ تطبيق هذا القرار مع بداية العام الجامعي 2026 /2027", "checked_at": "2026-10-09"},
+   {"url": "https://www.khaberni.com/news/722286", "title": "Khaberni: 75% minimum for IT and AI programmes", "checked_at": "2026-10-09"}
+  ],
+  "notes": "Mapped to Bridgecom's computer science, software engineering and AI/data science fields, which sit in IT/AI faculties at the universities in the dataset. Sector not stated in the report."
+ }
+]

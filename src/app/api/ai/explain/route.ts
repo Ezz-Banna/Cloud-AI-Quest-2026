@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     city: uni.city ?? null,
     eligibility: { status: m.eligibility.status, published_min: m.eligibility.published_min, year: m.eligibility.year, student_avg: profile.tawjihi_avg },
     fit_score: m.suitability,
-    tuition_per_year_jod: m.cost.per_year_jod,
+    tuition_per_year_jod: m.cost.per_year_jod, fee_year: m.cost.fee_year,
     reasons: m.reasons.map((r) => ({ code: r.code, text: lang === "ar" ? r.ar : r.en })),
     missing: m.missing_data,
     trade_offs: m.trade_offs.map((r) => ({ code: r.code, text: lang === "ar" ? r.ar : r.en })),

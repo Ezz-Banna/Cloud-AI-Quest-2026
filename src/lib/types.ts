@@ -31,7 +31,8 @@ export interface University {
   id: string;
   name_en: string;
   name_ar?: string | null;
-  type: "public" | "private";
+  /** MoHE lists some universities (HTU, WISE) as operating under a special law, neither public nor private. */
+  type: "public" | "private" | "special-law";
   city?: string | null;
   governorate?: string | null;
   campuses?: string[]; // cities of other campuses, when published
@@ -112,10 +113,23 @@ export interface Scholarship {
     stage?: "pre-university" | "university" | "graduate" | null;
   };
   coverage_text?: string | null;
+  /** Application window as published. Status is re-checked against today's date by the engine. */
+  availability?: ScholarshipAvailability | null;
+  documents?: string[];
   url: string;
   sources: Source[];
   verification: Verification;
   notes?: string | null;
+}
+
+export type AvailabilityStatus = "open" | "announced" | "closed" | "historical" | "unverified";
+export interface ScholarshipAvailability {
+  status: AvailabilityStatus;
+  academic_year?: string | null;
+  opens?: string | null; // YYYY-MM-DD
+  closes?: string | null; // YYYY-MM-DD
+  checked_at?: string | null;
+  source_url?: string | null;
 }
 
 export interface Course {

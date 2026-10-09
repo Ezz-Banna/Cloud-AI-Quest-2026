@@ -23,3 +23,15 @@ programs.json      + study_plan_url, curriculum_topics:[topic id, see CURRICULUM
                      additional_fees:[...], historical_thresholds:[{year, kind:"minimum-to-apply"|"competitive-cutoff", value, track, source_url}],
                      accreditation_status, accreditation_source, graduate_outcomes_note, verified_achievements:[...]
 Every program needs at least one source. Achievements, accessibility facilities and accreditation are never written by the AI.
+
+## Accuracy-audit fields (added 2026-10-09)
+universities.json  type may also be "special-law" (MoHE lists HTU and WISE as universities operating under a special law).
+                   Directory-only entries (no programs yet) say so in notes.
+programs.json      tuition_year / min_admission_year: the academic year the source states; "(from file name)" when only the file name gives it; null when not stated.
+                   tuition_track uses the university's own term ("regular", "regular (inferred)", "private", ...).
+scholarships.json  + availability:{status:"open"|"announced"|"closed"|"historical"|"unverified", academic_year, opens, closes (YYYY-MM-DD), checked_at, source_url},
+                     documents:[...]. The engine re-checks status against today's date: an "open" with a past closing date is shown as closed,
+                     and "open" without published dates is shown as unverified.
+admission-rules.json  national minimums newer than a university's own list: {id, fields, sector, min_avg, from_year, text_en, text_ar, source_kind, sources}.
+revisions.json     append-only log of every audit change: {date, dataset, id, field, old, new, reason, source_url}.
+Checks: `npm run validate:data` (errors fail CI tests). Measured coverage and audit tables: `npm run audit:data`.

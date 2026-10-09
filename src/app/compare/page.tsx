@@ -35,13 +35,14 @@ export default function Compare() {
     "below-published-minimum": tr("Below minimum to apply", "أقل من الحد الأدنى"),
     "stream-mismatch": tr("Stream not eligible", "الفرع غير مؤهل"),
     "minimum-not-verified": tr("Unknown: minimum not verified", "غير معروف: الحد الأدنى غير موثّق"),
+    "newer-minimum-reported": tr("Check: newer minimum reported", "تحقّق: حد أدنى أحدث مُعلن"),
     "conflicting-sources": tr("Unknown: sources disagree", "غير معروف: المصادر مختلفة"),
     "missing-student-average": tr("Add your average", "أضف معدلك"),
   } as Record<string, string>)[s];
   const dash = <span className="text-warn">{tr("Not verified", "غير موثّق")}</span>;
   const lines: [string, (m: ProgramMatch) => React.ReactNode][] = [
     [tr("University", "الجامعة"), (m) => `${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`],
-    [tr("City · type", "المدينة · النوع"), (m) => `${cityLabel(m.university.city, lang)} · ${m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}`],
+    [tr("City · type", "المدينة · النوع"), (m) => `${cityLabel(m.university.city, lang)} · ${m.university.type === "public" ? tr("Public", "حكومية") : m.university.type === "private" ? tr("Private", "خاصة") : tr("Special law", "بقانون خاص")}`],
     [tr("Fit for you", "الملاءمة"), (m) => <><strong className="text-teal">{m.suitability}/100</strong><span className={`block text-xs ${m.coverage < 0.75 ? "text-warn" : "text-muted"}`}>{tr(`information for ${Math.round(m.coverage * 100)}% of your priorities`, `معلومات عن ${Math.round(m.coverage * 100)}% من أولوياتك`)}</span></>],
     [tr("Admission check", "فحص القبول"), (m) => `${elig(m.eligibility.status)}${m.eligibility.published_min != null ? ` (${m.eligibility.published_min}${m.eligibility.year ? `, ${m.eligibility.year}` : ""})` : ""}`],
     [tr("Fee per credit hour", "رسوم الساعة"), (m) => (m.program.tuition_jod_per_credit_hour != null ? `${m.program.tuition_jod_per_credit_hour} JOD${m.program.tuition_track ? ` (${m.program.tuition_track})` : ""}` : dash)],

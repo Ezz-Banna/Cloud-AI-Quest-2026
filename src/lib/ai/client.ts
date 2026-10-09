@@ -23,11 +23,43 @@ export function aiAvailable() {
   return getClient() !== null && process.env.BRIDGECOM_OFFLINE !== "1";
 }
 
+// Spending guard, per process: at most AI_DAILY_CALL_LIMIT API requests per UTC day (default 2000; a retry
+// counts as one more) and 3 calls in flight at once. Over either limit the call fails with the usual error shape, so callers use their
+// rule-based fallback. Counters reset on restart; that is acceptable for a single small instance.
+const MAX_CONCURRENT = 3;
+const GUARD = Symbol.for("bridgecom.aiGuard");
+type Guard = { day: string; calls: number; inFlight: number };
+function guard(): Guard {
+  const g = globalThis as typeof globalThis & { [GUARD]?: Guard };
+  return (g[GUARD] ??= { day: "", calls: 0, inFlight: 0 });
+}
+function dailyLimit() {
+  const n = Number(process.env.AI_DAILY_CALL_LIMIT);
+  return Number.isFinite(n) && n >= 0 && process.env.AI_DAILY_CALL_LIMIT?.trim() ? Math.floor(n) : 2000;
+}
+
 export async function structured<S extends z.ZodType>(schema: S, system: string, user: string, maxTokens = 4000): Promise<AIResult<z.infer<S>>> {
   const c = getClient();
   if (!c || process.env.BRIDGECOM_OFFLINE === "1") return { ok: false, error: "AI not configured" };
+  const g = guard();
+  const today = new Date().toISOString().slice(0, 10);
+  if (g.day !== today) { g.day = today; g.calls = 0; }
+  if (g.calls >= dailyLimit()) return { ok: false, error: "AI daily limit reached" };
+  if (g.inFlight >= MAX_CONCURRENT) return { ok: false, error: "AI busy, try again shortly" };
+  g.calls++;
+  g.inFlight++;
+  try {
+    return await callModel(c, g, schema, system, user, maxTokens);
+  } finally {
+    g.inFlight--;
+  }
+}
+
+async function callModel<S extends z.ZodType>(c: Anthropic, g: Guard, schema: S, system: string, user: string, maxTokens: number): Promise<AIResult<z.infer<S>>> {
   let lastErr = "unknown";
   for (let attempt = 0; attempt < 2; attempt++) {
+    // The retry is a second paid request, so it counts against the daily limit too.
+    if (attempt > 0) { if (g.calls >= dailyLimit()) break; g.calls++; }
     const t0 = Date.now();
     try {
       const res = await c.beta.messages.parse({

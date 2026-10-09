@@ -1,0 +1,1185 @@
+[
+  {
+    "id": "mdn-html",
+    "title": "Structuring content with HTML",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "html"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+        "title": "Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Core module; includes challenges (Letter markup, Bird watching site, Splash page, Planet data table, Feedback form) and 'Test your skills' quizzes. No time estimate stated by provider."
+  },
+  {
+    "id": "mdn-css-basics",
+    "title": "CSS styling basics",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "css"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+        "title": "Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Challenges include Biography page, Fixing blog styles, Styling color scheme search. HTML prerequisite inferred from MDN module order."
+  },
+  {
+    "id": "mdn-css-layout",
+    "title": "CSS layout",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "css"
+    ],
+    "level": "intermediate",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html",
+      "css"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+        "title": "Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Challenges: Fundamental layout, Mobile-first. Covers flexbox/grid/responsive layout."
+  },
+  {
+    "id": "mdn-javascript",
+    "title": "Dynamic scripting with JavaScript",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html",
+      "css"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+        "title": "Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Challenges: Story generator, Image gallery, House data UI."
+  },
+  {
+    "id": "mdn-frameworks",
+    "title": "JavaScript frameworks and libraries",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Frameworks_libraries",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "react",
+      "javascript"
+    ],
+    "level": "intermediate",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html",
+      "css",
+      "javascript"
+    ],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+        "title": "Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Introduces client-side frameworks including React. No challenge listed by MDN for this module."
+  },
+  {
+    "id": "mdn-design-for-developers",
+    "title": "Design for developers",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Design_for_developers",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "ui-design"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html",
+      "css"
+    ],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+        "title": "Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Core module on design basics for developers; no challenge listed."
+  },
+  {
+    "id": "mdn-version-control",
+    "title": "Version control (Git and GitHub)",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Version_control",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "git"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Version_control",
+        "title": "Version control - Learn web development | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Reading guide covering Git basics, branches, commits, pull requests, forking, GitHub Pages; mostly links to external guides. Needs Git installed and a GitHub account."
+  },
+  {
+    "id": "mdn-http-overview",
+    "title": "Overview of HTTP",
+    "provider": "MDN Web Docs (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "rest-api"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript"
+    ],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+        "title": "Overview of HTTP | MDN",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Reference guide on HTTP methods, status codes, headers and the Fetch API; foundational for consuming REST APIs. Reading only, no project."
+  },
+  {
+    "id": "react-dev-learn",
+    "title": "React Quick Start + Tutorial: Tic-Tac-Toe",
+    "provider": "React team (react.dev)",
+    "url": "https://react.dev/learn",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "react"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript",
+      "html",
+      "css"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://react.dev/learn",
+        "title": "Quick Start - React",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://react.dev/learn/tutorial-tic-tac-toe",
+        "title": "Tutorial: Tic-Tac-Toe - React",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Official docs: components, JSX, props, state/hooks, lists, events. Assumes JavaScript knowledge (links to MDN/javascript.info). Tic-tac-toe tutorial is the practical project."
+  },
+  {
+    "id": "odin-foundations",
+    "title": "Foundations",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "html",
+      "css",
+      "javascript",
+      "git"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+        "title": "Foundations Course | The Odin Project",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.theodinproject.com/paths",
+        "title": "All Paths | The Odin Project",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Sections: Git Basics, HTML Foundations, CSS Foundations, Flexbox, JavaScript Basics. Projects: Recipes, Landing Page, Rock Paper Scissors, Etch-a-Sketch, Calculator. Free, community-funded; no hours stated."
+  },
+  {
+    "id": "odin-javascript",
+    "title": "JavaScript (Full Stack JavaScript path)",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "javascript"
+    ],
+    "level": "intermediate",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html",
+      "css",
+      "git"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+        "title": "Full Stack JavaScript | The Odin Project",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Course 2 of the 7-course Full Stack JavaScript path. Course listing verified; project content not individually checked (Odin courses are project-based per path description)."
+  },
+  {
+    "id": "odin-react",
+    "title": "React (Full Stack JavaScript path)",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript/courses/react",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "react"
+    ],
+    "level": "intermediate",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript",
+      "html",
+      "css",
+      "git"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+        "title": "Full Stack JavaScript | The Odin Project",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Course 4 of the Full Stack JavaScript path, taken after JavaScript and Advanced HTML/CSS. Project content not individually checked."
+  },
+  {
+    "id": "odin-nodejs",
+    "title": "NodeJS (Full Stack JavaScript path)",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "nodejs",
+      "rest-api"
+    ],
+    "level": "intermediate",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript",
+      "sql"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+        "title": "Full Stack JavaScript | The Odin Project",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Course 6 of the path, follows the Databases course. Content details not individually checked."
+  },
+  {
+    "id": "odin-databases",
+    "title": "Databases (Full Stack JavaScript path)",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript/courses/databases",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "sql"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+        "title": "Full Stack JavaScript | The Odin Project",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Course 5 of the path. Content details not individually checked."
+  },
+  {
+    "id": "odin-adv-html-css",
+    "title": "Advanced HTML and CSS",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript/courses/advanced-html-and-css",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "html",
+      "css"
+    ],
+    "level": "advanced",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "html",
+      "css"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+        "title": "Full Stack JavaScript | The Odin Project",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Course 3 of the path. Content details not individually checked."
+  },
+  {
+    "id": "fcc-responsive-web-design",
+    "title": "Responsive Web Design Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "html",
+      "css"
+    ],
+    "level": "beginner",
+    "est_hours": 300,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "5 required certification projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "fcc-js-algorithms",
+    "title": "JavaScript Algorithms and Data Structures Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": 300,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "5 required projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "fcc-frontend-libraries",
+    "title": "Front End Development Libraries Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/front-end-development-libraries/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "react",
+      "javascript"
+    ],
+    "level": "intermediate",
+    "est_hours": 300,
+    "prerequisite_skills": [
+      "html",
+      "css",
+      "javascript"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Covers front-end libraries incl. React; 5 required projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "fcc-backend-apis",
+    "title": "Back End Development and APIs Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/back-end-development-and-apis/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "nodejs",
+      "rest-api"
+    ],
+    "level": "intermediate",
+    "est_hours": 300,
+    "prerequisite_skills": [
+      "javascript"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "5 required projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "fcc-relational-db",
+    "title": "Relational Database Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/relational-database/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "sql",
+      "git"
+    ],
+    "level": "beginner",
+    "est_hours": 300,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "5 required projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "fcc-data-analysis-python",
+    "title": "Data Analysis with Python Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/data-analysis-with-python/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "python",
+      "data-analysis"
+    ],
+    "level": "intermediate",
+    "est_hours": 300,
+    "prerequisite_skills": [
+      "python"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "5 required projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "fcc-ml-python",
+    "title": "Machine Learning with Python Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/machine-learning-with-python/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "machine-learning",
+      "python"
+    ],
+    "level": "intermediate",
+    "est_hours": 300,
+    "prerequisite_skills": [
+      "python"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.freecodecamp.org/news/freecodecamp-certifications/",
+        "title": "freeCodeCamp certifications (freeCodeCamp News, 17 Mar 2022)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "5 required projects. Hours: the 2022 freeCodeCamp article states each certification 'should take approximately 300 hours' with 5 required projects; freeCodeCamp has since restructured parts of its curriculum, so confirm the current URL/title."
+  },
+  {
+    "id": "pro-git",
+    "title": "Pro Git (2nd Edition) book",
+    "provider": "Scott Chacon & Ben Straub / git-scm.com",
+    "url": "https://git-scm.com/book/en/v2",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "git"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://git-scm.com/book/en/v2",
+        "title": "Git - Book (Pro Git, 2nd ed.)",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Official Git book, free online under CC BY-NC-SA 3.0. No Arabic translation listed. Book, not a project course."
+  },
+  {
+    "id": "github-hello-world",
+    "title": "Hello World (GitHub Docs quickstart)",
+    "provider": "GitHub Docs",
+    "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "git"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+        "title": "Hello World - GitHub Docs",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Hands-on: create repo, branch, commit, open and merge a pull request. Needs only a GitHub account."
+  },
+  {
+    "id": "learn-git-branching",
+    "title": "Learn Git Branching",
+    "provider": "Learn Git Branching (open source)",
+    "url": "https://learngitbranching.js.org/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "git"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://learngitbranching.js.org/",
+        "title": "Learn Git Branching",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Interactive in-browser Git visualisation with challenge levels. Cost not stated on page (open-source tool, no sign-up seen). Site says it supports multiple languages; Arabic not confirmed."
+  },
+  {
+    "id": "javascript-info",
+    "title": "The Modern JavaScript Tutorial",
+    "provider": "javascript.info",
+    "url": "https://javascript.info/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://javascript.info/",
+        "title": "The Modern JavaScript Tutorial",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Open-source tutorial: JS language, browser DOM/events. Web version open; paid EPUB/PDF optional. Tasks per chapter, no capstone project."
+  },
+  {
+    "id": "javascript-info-ar",
+    "title": "الدورة التعليمية الحديثة لـ جافاسكريبت (javascript.info Arabic)",
+    "provider": "javascript.info (community translation)",
+    "url": "https://ar.javascript.info/",
+    "language": "ar",
+    "cost": "free",
+    "skills": [
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://ar.javascript.info/",
+        "title": "javascript.info Arabic edition",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Arabic translation is partial: Part 1 (the language) mostly translated; Parts 2-3 largely still English."
+  },
+  {
+    "id": "ts-handbook",
+    "title": "The TypeScript Handbook",
+    "provider": "Microsoft / typescriptlang.org",
+    "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "typescript"
+    ],
+    "level": "intermediate",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript"
+    ],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+        "title": "TypeScript: Handbook - The TypeScript Handbook",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Official handbook; states it does not teach JS basics and new programmers should learn JavaScript first. Says it can be read 'in a few hours' (no exact number, so est_hours null)."
+  },
+  {
+    "id": "nodejs-learn",
+    "title": "Node.js Learn: Introduction to Node.js",
+    "provider": "OpenJS Foundation (nodejs.org)",
+    "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "nodejs"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript"
+    ],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+        "title": "Introduction to Node.js | Node.js Learn",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Official Node.js learning guides; builds a Hello World HTTP server. Assumes JavaScript."
+  },
+  {
+    "id": "cs50x",
+    "title": "CS50's Introduction to Computer Science (CS50x)",
+    "provider": "Harvard University",
+    "url": "https://cs50.harvard.edu/x/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "python",
+      "sql",
+      "html",
+      "css",
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://cs50.harvard.edu/x/",
+        "title": "CS50x 2026",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Free via OpenCourseWare; C, Python, SQL, HTML, CSS, JavaScript; 11 weeks of material; ends with a final project. No hours stated."
+  },
+  {
+    "id": "cs50x-edraak",
+    "title": "CS50x on Edraak",
+    "provider": "Edraak (Queen Rania Foundation) with Harvard CS50",
+    "url": "https://edraak.org/en/partner/CS50/",
+    "language": "ar",
+    "cost": "free",
+    "skills": [
+      "python",
+      "sql",
+      "html",
+      "css",
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://edraak.org/en/partner/CS50",
+        "title": "Edraak partner page: CS50",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Edraak is a Jordan-based Arabic MOOC platform (QRF). Partner page confirms CS50x on Edraak with Edraak + CS50x certificates after >=70% on nine problems and a final project. Teaching language/subtitles and price not stated on the fetched page (Edraak site shows 'Register for Free')."
+  },
+  {
+    "id": "py4e",
+    "title": "Python for Everybody (PY4E)",
+    "provider": "Charles Severance (University of Michigan)",
+    "url": "https://www.py4e.com/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "python"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://www.py4e.com/",
+        "title": "PY4E - Python for Everybody",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Free lectures, book and assignments; no prerequisites stated."
+  },
+  {
+    "id": "py4e-ar-coursera",
+    "title": "البرمجة للجميع - بدء استخدام بايثون (Python for Everybody, Arabic)",
+    "provider": "University of Michigan on Coursera",
+    "url": "https://www.coursera.org/learn/python-ar",
+    "language": "ar",
+    "cost": "freemium",
+    "skills": [
+      "python"
+    ],
+    "level": "beginner",
+    "est_hours": 20,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/learn/python-ar",
+        "title": "Coursera: python-ar",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Taught in Arabic. Provider states ~2 weeks at 10 hours/week (=20 h). No prerequisites. Free enrolment option shown; certificate paid."
+  },
+  {
+    "id": "meta-html-css-ar",
+    "title": "HTML وCSS بالتفصيل (HTML and CSS in depth, Arabic)",
+    "provider": "Meta on Coursera",
+    "url": "https://www.coursera.org/learn/html-and-css-in-depth-ar",
+    "language": "ar",
+    "cost": "freemium",
+    "skills": [
+      "html",
+      "css"
+    ],
+    "level": "beginner",
+    "est_hours": 28,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/learn/html-and-css-in-depth-ar",
+        "title": "Coursera: html-and-css-in-depth-ar",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Arabic. ~28 hours stated. Outcomes include building a responsive form and a Bootstrap UI. Audit availability not stated; certificate paid."
+  },
+  {
+    "id": "meta-js-ar",
+    "title": "البرمجة باستخدام JavaScript (Programming with JavaScript, Arabic)",
+    "provider": "Meta on Coursera",
+    "url": "https://www.coursera.org/learn/programming-with-javascript-ar",
+    "language": "ar",
+    "cost": "freemium",
+    "skills": [
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": 42,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/learn/programming-with-javascript-ar",
+        "title": "Coursera: programming-with-javascript-ar",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Arabic. ~42 hours stated, beginner, no prerequisites; includes unit testing with Jest."
+  },
+  {
+    "id": "meta-react-ar",
+    "title": "أساسيات React (React Basics, Arabic)",
+    "provider": "Meta on Coursera",
+    "url": "https://www.coursera.org/learn/react-basics-ar",
+    "language": "ar",
+    "cost": "freemium",
+    "skills": [
+      "react"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "javascript"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/learn/react-basics-ar",
+        "title": "Coursera: react-basics-ar",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Arabic. Hours not stated on fetched page. Syllabus includes building a first React app. JS prerequisite inferred from the Meta certificate order."
+  },
+  {
+    "id": "goldsmiths-web-ar",
+    "title": "أساسيات مواقع الويب سريعة الاستجابة: البرمجة باستخدام HTML وCSS وJavaScript",
+    "provider": "University of London (Goldsmiths) on Coursera",
+    "url": "https://www.coursera.org/learn/website-coding-ar",
+    "language": "ar",
+    "cost": "freemium",
+    "skills": [
+      "html",
+      "css",
+      "javascript"
+    ],
+    "level": "beginner",
+    "est_hours": 30,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/learn/website-coding-ar",
+        "title": "Coursera: website-coding-ar",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Arabic. Stated '3 weeks at 10 hours a week' (=30 h). Peer-reviewed tasks incl. building a web page and an image gallery."
+  },
+  {
+    "id": "meta-frontend-cert",
+    "title": "Meta Front-End Developer Professional Certificate",
+    "provider": "Meta on Coursera",
+    "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+    "language": "en",
+    "cost": "freemium",
+    "skills": [
+      "html",
+      "css",
+      "javascript",
+      "react",
+      "git",
+      "ui-design"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+        "title": "Meta Front-End Developer Professional Certificate | Coursera",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "9 courses (Intro to FE 19h, Programming with JS 48h, Version Control 16h, HTML & CSS in depth 29h, React Basics 30h, Advanced React 26h, UX/UI 21h, Capstone 27h, Interview prep 11h). Duration stated inconsistently (7 months @6h/wk vs ~4 months @10h/wk) so est_hours left null. Each course ends with a project; capstone front-end app."
+  },
+  {
+    "id": "google-ux-cert",
+    "title": "Google UX Design Professional Certificate",
+    "provider": "Google on Coursera",
+    "url": "https://www.coursera.org/professional-certificates/google-ux-design",
+    "language": "en",
+    "cost": "freemium",
+    "skills": [
+      "ui-design"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/professional-certificates/google-ux-design",
+        "title": "Google UX Design Professional Certificate | Coursera",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "8 courses; 6 months at 10 h/week stated; 3 end-to-end portfolio projects. Hour figures inconsistent on page (200+ vs ~112 summed), so est_hours null. FAQ lists Arabic among Google Career Certificate languages."
+  },
+  {
+    "id": "google-data-analytics-cert",
+    "title": "Google Data Analytics Professional Certificate",
+    "provider": "Google on Coursera",
+    "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+    "language": "en",
+    "cost": "freemium",
+    "skills": [
+      "data-analysis",
+      "sql"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+        "title": "Google Data Analytics Professional Certificate | Coursera",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "9 courses; 6 months at 10 h/week; spreadsheets, SQL, Tableau, Python; capstone case study. Hour totals inconsistent on page, est_hours null."
+  },
+  {
+    "id": "ml-specialization",
+    "title": "Machine Learning Specialization",
+    "provider": "DeepLearning.AI & Stanford Online on Coursera (Andrew Ng)",
+    "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+    "language": "en",
+    "cost": "freemium",
+    "skills": [
+      "machine-learning",
+      "python"
+    ],
+    "level": "beginner",
+    "est_hours": 95,
+    "prerequisite_skills": [
+      "python"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+        "title": "Machine Learning Specialization | Coursera",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "3 courses listed at 33+34+28 = 95 h. Needs basic coding + high-school math. Graded programming labs (NumPy, scikit-learn, TensorFlow). Audit without certificate; page is inconsistent on free access."
+  },
+  {
+    "id": "kaggle-intro-ml",
+    "title": "Intro to Machine Learning",
+    "provider": "Kaggle Learn",
+    "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "machine-learning",
+      "python"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [
+      "python"
+    ],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+        "title": "Learn Intro to Machine Learning Tutorials | Kaggle",
+        "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.kaggle.com/learn",
+        "title": "Kaggle Learn",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "Kaggle Learn described as no-cost courses. Page is JS-rendered; hours/lessons not extractable. Hands-on notebook exercises (building first models)."
+  },
+  {
+    "id": "kaggle-python",
+    "title": "Python",
+    "provider": "Kaggle Learn",
+    "url": "https://www.kaggle.com/learn/python",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "python"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://www.kaggle.com/learn/python",
+        "title": "Learn Python Tutorials | Kaggle",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "JS-rendered page; hours not extractable. Notebook exercises."
+  },
+  {
+    "id": "sqlbolt",
+    "title": "SQLBolt - Learn SQL with interactive exercises",
+    "provider": "SQLBolt",
+    "url": "https://sqlbolt.com/",
+    "language": "en",
+    "cost": "free",
+    "skills": [
+      "sql"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": true,
+    "sources": [
+      {
+        "url": "https://sqlbolt.com/",
+        "title": "SQLBolt",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "partial",
+    "notes": "~18 interactive lessons, each ends with an exercise. Price not stated on page (no paywall observed) - cost marked free with that caveat."
+  },
+  {
+    "id": "british-council-learnenglish",
+    "title": "LearnEnglish free resources",
+    "provider": "British Council",
+    "url": "https://learnenglish.britishcouncil.org/",
+    "language": "en",
+    "cost": "freemium",
+    "skills": [
+      "english",
+      "communication"
+    ],
+    "level": "beginner",
+    "est_hours": null,
+    "prerequisite_skills": [],
+    "has_practical_project": false,
+    "sources": [
+      {
+        "url": "https://learnenglish.britishcouncil.org/",
+        "title": "LearnEnglish | British Council",
+        "checked_at": "2026-10-09"
+      }
+    ],
+    "verification": "verified",
+    "notes": "Free level test plus free listening/reading/writing/speaking/grammar/business English resources A1-C1; paid live classes and tutoring also offered."
+  }
+]

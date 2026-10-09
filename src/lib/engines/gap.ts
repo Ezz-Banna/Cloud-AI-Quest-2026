@@ -5,11 +5,23 @@ import { SKILL_BY_ID } from "../data/taxonomy";
 
 export type GapStatus = "met" | "needs-evidence" | "below-level" | "missing";
 
+export type LearningPriority = "high" | "medium" | "low" | "none";
+
 export interface SkillGap {
   requirement: RoleRequirement;
   have?: ProfileSkill;
   status: GapStatus;
   course_completed: boolean;
+  evidence: { quotes: number; links: number; files: number };
+  priority: LearningPriority;
+}
+
+/** Essential skills that are missing or below level come first; unevidenced claims next; nice-to-haves last. */
+export function learningPriority(status: GapStatus, mandatory: boolean): LearningPriority {
+  if (status === "met") return "none";
+  if (mandatory && (status === "missing" || status === "below-level")) return "high";
+  if (mandatory || status === "missing" || status === "below-level") return "medium";
+  return "low";
 }
 
 export interface Readiness {
@@ -32,7 +44,12 @@ export function assessSkill(req: RoleRequirement, profile: LearnerProfile, cours
   else if (have.level < req.level) status = "below-level";
   else if (!PROVEN.has(have.status)) status = "needs-evidence";
   else status = "met";
-  return { requirement: req, have, status, course_completed: courseDone };
+  const ev = have?.evidence ?? [];
+  return {
+    requirement: req, have, status, course_completed: courseDone,
+    evidence: { quotes: ev.filter((e) => e.kind === "quote").length, links: ev.filter((e) => e.kind === "link").length, files: ev.filter((e) => e.kind === "file").length },
+    priority: learningPriority(status, req.mandatory),
+  };
 }
 
 export function assessRole(role: EmployerRole, profile: LearnerProfile, courses: Course[] = []): Readiness {
@@ -62,19 +79,25 @@ export interface PathwayStep {
   for_skills: string[];
   status: GapStatus;
   course?: Course;
+  employer_recommended?: boolean;
   alternatives: Course[];
   practical_task_en: string;
   practical_task_ar: string;
+  objective_en: string;
+  objective_ar: string;
+  prerequisites: string[];
+  priority: LearningPriority;
   course_completed: boolean;
 }
 
-function pickCourses(skill: string, courses: Course[], lang: "en" | "ar", level: Level): Course[] {
+function pickCourses(skill: string, courses: Course[], lang: "en" | "ar", level: Level, preferred: string[] = []): Course[] {
   const wantLevel = level <= 1 ? "beginner" : level === 2 ? "intermediate" : "advanced";
   return courses
     .filter((c) => c.skills.includes(skill))
     .map((c) => ({
       c,
-      s: (c.cost === "free" ? 4 : c.cost === "freemium" ? 2 : 0) +
+      s: (preferred.includes(c.id) ? 20 : 0) +
+        (c.cost === "free" ? 4 : c.cost === "freemium" ? 2 : 0) +
         (c.language === lang ? 3 : 0) +
         (c.has_practical_project ? 3 : 0) +
         (c.level === wantLevel ? 2 : c.level === "beginner" ? 1 : 0) +
@@ -86,7 +109,7 @@ function pickCourses(skill: string, courses: Course[], lang: "en" | "ar", level:
 }
 
 /** Orders unmet skills so prerequisites come first (topological order), then mandatory before preferred. */
-export function buildPathway(readiness: Readiness, profile: LearnerProfile, courses: Course[]): PathwayStep[] {
+export function buildPathway(readiness: Readiness, profile: LearnerProfile, courses: Course[], employerCourseIds: string[] = []): PathwayStep[] {
   const needed = new Map<string, { level: Level; reason: PathwayStep["reason"]; for: Set<string>; mandatory: boolean; status: GapStatus }>();
   const levelOf = (id: string) => profile.skills.find((s) => s.skill_id === id)?.level ?? 0;
 
@@ -124,7 +147,7 @@ export function buildPathway(readiness: Readiness, profile: LearnerProfile, cour
   }
   return out.map((id) => {
     const n = needed.get(id)!;
-    const options = n.status === "needs-evidence" ? [] : pickCourses(id, courses, profile.language, n.level);
+    const options = n.status === "needs-evidence" ? [] : pickCourses(id, courses, profile.language, n.level, employerCourseIds);
     const def = SKILL_BY_ID[id];
     return {
       skill_id: id,
@@ -133,9 +156,14 @@ export function buildPathway(readiness: Readiness, profile: LearnerProfile, cour
       for_skills: [...n.for],
       status: n.status,
       course: options[0],
+      employer_recommended: !!options[0] && employerCourseIds.includes(options[0].id),
       alternatives: options.slice(1, 3),
       practical_task_en: def?.practical_task_en ?? "Complete a practical project and attach it as evidence.",
       practical_task_ar: def?.practical_task_ar ?? "أنجز مشروعاً عملياً وأرفقه كدليل.",
+      objective_en: def?.objective_en ?? `Reach the required level in ${def?.name_en ?? id}.`,
+      objective_ar: def?.objective_ar ?? `الوصول إلى المستوى المطلوب في ${def?.name_ar ?? id}.`,
+      prerequisites: [...new Set([...(def?.prerequisites ?? []), ...(options[0]?.prerequisite_skills ?? [])])].filter((x) => x !== id),
+      priority: n.reason === "prerequisite" ? "high" : learningPriority(n.status, n.mandatory),
       course_completed: courses.some((c) => profile.completed_courses.includes(c.id) && c.skills.includes(id)),
     };
   });

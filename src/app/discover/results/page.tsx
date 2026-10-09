@@ -7,7 +7,21 @@ import { FIELD_BY_ID } from "@/lib/data/taxonomy";
 import type { ProgramMatch } from "@/lib/engines/programs";
 
 export default function Results() {
-  const { profile, tr, lang, hydrated, setProgress } = useBridge();
+  const { profile, setProfile, tr, lang, hydrated, setProgress } = useBridge();
+  const [explain, setExplain] = useState<Record<string, { text: string; mode: "ai" | "offline"; model?: string } | "loading">>({});
+  const saved = profile.saved_programs ?? [];
+  const toggleSave = (id: string) => setProfile((p) => ({ ...p, saved_programs: (p.saved_programs ?? []).includes(id) ? p.saved_programs.filter((x) => x !== id) : [...(p.saved_programs ?? []), id] }));
+  async function getExplanation(id: string) {
+    setExplain((e) => ({ ...e, [id]: "loading" }));
+    try {
+      const r = await fetch("/api/ai/explain", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile, program_id: id }) });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error);
+      setExplain((e) => ({ ...e, [id]: d }));
+    } catch (err) {
+      setExplain((e) => ({ ...e, [id]: { text: String((err as Error).message), mode: "offline" } }));
+    }
+  }
   const [matches, setMatches] = useState<ProgramMatch[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [onlyEligible, setOnlyEligible] = useState(false);
@@ -47,7 +61,10 @@ export default function Results() {
           <h1 className="h1 mt-2">{profile.name ? tr(`${profile.name.split(" ")[0]}, here are your matches`, `${profile.name.split(" ")[0]}، هذه نتائجك`) : tr("Your program matches", "البرامج المناسبة لك")}</h1>
           <p className="mt-2 max-w-2xl text-muted">{tr("Two separate questions, answered separately: can you meet the published admission minimum (rules, with source and year), and how well does the program fit you (your interests, career goals, budget and location).", "سؤالان منفصلان يُجاب عنهما بشكل منفصل: هل تحقق الحد الأدنى المنشور للقبول (قواعد مع المصدر والسنة)، وما مدى ملاءمة البرنامج لك (اهتماماتك وأهدافك المهنية وميزانيتك وموقعك).")}</p>
         </div>
-        <Link href="/discover" className="btn-secondary">{tr("Edit my answers", "عدّل إجاباتي")}</Link>
+        <div className="flex flex-wrap gap-2">
+          <Link href="/discover" className="btn-secondary">{tr("Edit my answers", "عدّل إجاباتي")}</Link>
+          <Link href="/compare" className="btn-primary">{tr(`Compare saved (${saved.length})`, `قارن المحفوظة (${saved.length})`)}</Link>
+        </div>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2 text-sm">
@@ -89,7 +106,12 @@ export default function Results() {
                   <h2 className="text-lg font-bold text-teal">{lang === "ar" && m.program.name_ar ? m.program.name_ar : m.program.name_en}</h2>
                   <p className="text-muted">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en} · {m.university.city ?? "—"} · {m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}</p>
                 </div>
-                <VerificationBadge v={m.program.verification} />
+                <div className="flex items-center gap-2">
+                  <VerificationBadge v={m.program.verification} />
+                  <button type="button" className="chip !py-1" aria-pressed={saved.includes(id)} onClick={() => toggleSave(id)}>
+                    {saved.includes(id) ? `★ ${tr("Saved", "محفوظ")}` : `☆ ${tr("Save", "احفظ")}`}
+                  </button>
+                </div>
               </div>
 
               <div className="mt-4 grid gap-4 md:grid-cols-[1fr_1fr_auto]">
@@ -113,9 +135,22 @@ export default function Results() {
                 </div>
               </div>
 
-              <button type="button" className="btn-ghost mt-3 !px-0" aria-expanded={open === id} aria-controls={`why-${id}`} onClick={() => setOpen(open === id ? null : id)}>
+              {m.missing_data.length > 0 && (
+                <p className="mt-3 flex flex-wrap gap-1.5 text-xs" aria-label={tr("Missing data", "بيانات ناقصة")}>
+                  {m.missing_data.map((x) => <span key={x} className="rounded-full border border-dashed border-warn px-2 py-0.5 text-warn">{tr("Missing", "ناقص")}: {x}</span>)}
+                </p>
+              )}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+              <button type="button" className="btn-ghost !px-0" aria-expanded={open === id} aria-controls={`why-${id}`} onClick={() => setOpen(open === id ? null : id)}>
                 {open === id ? tr("Hide reasons and sources", "إخفاء الأسباب والمصادر") : tr("Why this recommendation?", "لماذا هذه التوصية؟")}
               </button>
+              <button type="button" className="btn-ghost" disabled={explain[id] === "loading"} onClick={() => getExplanation(id)}>✦ {explain[id] === "loading" ? tr("Writing…", "جارٍ الكتابة…") : tr("Explain in plain words", "اشرح بكلمات بسيطة")}</button>
+              </div>
+              {explain[id] && explain[id] !== "loading" && (() => { const e = explain[id] as { text: string; mode: "ai" | "offline"; model?: string }; return (
+                <div className="mt-2 rounded-2xl bg-mist p-4 text-sm" role="status">
+                  <p>{e.text}</p>
+                  <p className="mt-2 text-xs text-muted">{e.mode === "ai" ? tr("Written by AI from the computed reasons above; numbers checked against the data.", "كتبه الذكاء الاصطناعي من الأسباب المحسوبة أعلاه؛ تم التحقق من الأرقام مقابل البيانات.") : tr("Template explanation (AI unavailable or its answer failed our checks).", "شرح من قالب (الذكاء الاصطناعي غير متاح أو لم تجتز إجابته فحوصاتنا).")}</p>
+                </div>); })()}
               {open === id && (
                 <div id={`why-${id}`} className="mt-2 grid gap-5 rounded-2xl bg-ivory p-4 md:grid-cols-2">
                   <div>

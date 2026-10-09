@@ -4,6 +4,12 @@ import { emptyProfile, type LearnerProfile } from "./types";
 export const DEMO_PROFILE: LearnerProfile = {
   ...emptyProfile(),
   name: "Lina (synthetic demo student)",
+  education_level: "tawjihi-graduate",
+  subjects: ["math", "computing", "english"],
+  hobbies: ["robotics club", "drawing"],
+  industries: ["technology"],
+  priorities: ["affordability", "career-fit", "location"],
+  saved_programs: [],
   tawjihi_avg: 86.4,
   stream: "scientific",
   interests: ["computer-science", "software-engineering"],

@@ -15,8 +15,9 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link href="/" aria-label="Bridgecom home"><Wordmark /></Link>
         <div className="flex items-center gap-1 sm:gap-2">
-          <Link href="/employer" className="btn-ghost hidden sm:inline-flex">{tr("For employers", "لأصحاب العمل")}</Link>
-          <Link href="/data" className="btn-ghost hidden sm:inline-flex">{tr("About the data", "عن البيانات")}</Link>
+          <Link href="/dashboard" className="btn-ghost !px-3">{tr("My dashboard", "لوحتي")}</Link>
+          <Link href="/employer" className="btn-ghost hidden md:inline-flex">{tr("For employers", "لأصحاب العمل")}</Link>
+          <Link href="/data" className="btn-ghost hidden lg:inline-flex">{tr("About the data", "عن البيانات")}</Link>
           <button type="button" className="btn-secondary !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
             {lang === "en" ? "العربية" : "English"}
           </button>
@@ -36,6 +37,7 @@ export function Footer() {
         <nav className="flex gap-4">
           <Link href="/data" className="underline underline-offset-2">{tr("About the data", "عن البيانات")}</Link>
           <Link href="/employer" className="underline underline-offset-2">{tr("For employers", "لأصحاب العمل")}</Link>
+          <Link href="/admin" className="underline underline-offset-2">{tr("Admin", "الإدارة")}</Link>
           <Link href="/?intro=1" className="underline underline-offset-2">{tr("Replay intro", "أعد المقدمة")}</Link>
         </nav>
       </div>

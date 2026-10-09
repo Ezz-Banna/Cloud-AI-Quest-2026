@@ -14,7 +14,9 @@ const readJson = (rel: string): unknown[] => {
 function load<T>(name: DatasetName): { rows: T[]; invalid: number } {
   const verified = readJson(`data/verified/${name}.json`);
   const imported = readJson(`data/runtime/imported-${name}.json`);
-  const { valid, errors } = validateRecords(DATASETS[name] as never, [...verified, ...imported]);
+  const overrides = readJson(`data/runtime/overrides-${name}.json`);
+  // Admin edits win over imports, which win over the seed files (first id seen is kept).
+  const { valid, errors } = validateRecords(DATASETS[name] as never, [...overrides, ...imported, ...verified]);
   const seen = new Set<string>();
   const rows = (valid as (T & { id: string })[]).filter((r) => (seen.has(r.id) ? false : (seen.add(r.id), true)));
   return { rows, invalid: errors.length };
@@ -69,4 +71,16 @@ export function writeImported(name: DatasetName, rows: unknown[]) {
   const file = path.join(ROOT, `data/runtime/imported-${name}.json`);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(rows, null, 2));
+}
+
+export function readOverrides(name: DatasetName): { id: string }[] {
+  return readJson(`data/runtime/overrides-${name}.json`) as { id: string }[];
+}
+export function writeOverrides(name: DatasetName, rows: unknown[]) {
+  const file = path.join(ROOT, `data/runtime/overrides-${name}.json`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify(rows, null, 2));
+}
+export function getAll(name: DatasetName) {
+  return load<{ id: string }>(name).rows;
 }

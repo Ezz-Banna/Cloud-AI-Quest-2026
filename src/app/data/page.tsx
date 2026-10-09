@@ -10,24 +10,9 @@ export default function DataPage() {
   const { tr } = useBridge();
   const [d, setD] = useState<{ coverage: Cov; universities: University[]; programs: Program[]; scholarships: Scholarship[]; courses: Course[] } | null>(null);
   const [status, setStatus] = useState<{ ai: boolean; model: string | null } | null>(null);
-  const [dataset, setDataset] = useState("programs");
-  const [json, setJson] = useState("");
-  const [imp, setImp] = useState<string | null>(null);
 
   const load = () => fetch("/api/data/coverage").then((r) => r.json()).then(setD);
   useEffect(() => { load(); fetch("/api/status").then((r) => r.json()).then(setStatus); }, []);
-
-  async function runImport(dry: boolean) {
-    setImp(null);
-    let rows: unknown;
-    try { rows = JSON.parse(json); } catch { setImp(tr("That is not valid JSON.", "هذا ليس JSON صالحاً.")); return; }
-    if (!Array.isArray(rows)) { setImp(tr("Paste a JSON array of records.", "الصق مصفوفة JSON من السجلات.")); return; }
-    const r = await fetch("/api/data/import", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ dataset, rows, dry_run: dry }) });
-    const x = await r.json();
-    if (!r.ok) { setImp(x.error); return; }
-    setImp(`${x.valid} valid, ${x.invalid} invalid${x.saved ? " · saved" : " · dry run, nothing saved"}${x.errors.length ? "\n" + x.errors.slice(0, 8).map((e: { index: number; issues: string[] }) => `#${e.index}: ${e.issues.join("; ")}`).join("\n") : ""}`);
-    if (x.saved) load();
-  }
 
   const unis = Object.fromEntries((d?.universities ?? []).map((u) => [u.id, u]));
   return (
@@ -83,15 +68,7 @@ export default function DataPage() {
         </div>
       </section>
 
-      <section className="card p-5 sm:p-6" aria-labelledby="imp-h">
-        <h2 id="imp-h" className="h2">{tr("Import data", "استيراد البيانات")}</h2>
-        <p className="mt-1 text-sm text-muted">{tr("Paste a JSON array that follows the schema in data/verified/SCHEMA.md. Every row is validated; rows marked verified without a source are downgraded to unverified.", "الصق مصفوفة JSON وفق المخطط في data/verified/SCHEMA.md. يتم التحقق من كل سجل؛ والسجلات المعلَّمة كموثّقة دون مصدر تُخفَّض إلى غير موثّقة.")}</p>
-        <div className="mt-4 flex flex-wrap gap-2">{["universities", "programs", "scholarships", "courses"].map((x) => <button key={x} type="button" className="chip" aria-pressed={dataset === x} onClick={() => setDataset(x)}>{x}</button>)}</div>
-        <label htmlFor="json" className="sr-only">JSON</label>
-        <textarea id="json" className="input mt-3 min-h-40 font-mono text-xs" value={json} onChange={(e) => setJson(e.target.value)} placeholder='[{"id": "...", ...}]' />
-        <div className="mt-3 flex gap-2"><button className="btn-secondary" onClick={() => runImport(true)}>{tr("Validate (dry run)", "تحقق (تجربة)")}</button><button className="btn-primary" onClick={() => runImport(false)}>{tr("Import", "استيراد")}</button></div>
-        {imp && <pre role="status" className="mt-3 whitespace-pre-wrap rounded-xl bg-mist p-3 text-xs">{imp}</pre>}
-      </section>
+      <p className="text-sm text-muted">{tr("Data maintainers can import and correct records in the protected admin area.", "يمكن لمشرفي البيانات استيراد السجلات وتصحيحها في منطقة الإدارة المحمية.")} <a href="/admin" className="underline">{tr("Admin", "الإدارة")}</a></p>
     </div>
   );
 }

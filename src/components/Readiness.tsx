@@ -13,6 +13,12 @@ const STATUS = {
   "below-level": { en: "Below required level", ar: "أقل من المستوى المطلوب", cls: "bg-bad-100 text-bad" },
   missing: { en: "Missing", ar: "غير موجود", cls: "bg-bad-100 text-bad" },
 } as const;
+const PRIO = {
+  high: { en: "High", ar: "عالية", cls: "bg-bad-100 text-bad" },
+  medium: { en: "Medium", ar: "متوسطة", cls: "bg-warn-100 text-warn" },
+  low: { en: "Low", ar: "منخفضة", cls: "bg-mist text-muted" },
+  none: { en: "Done", ar: "منجز", cls: "bg-ok-100 text-ok" },
+} as const;
 const LV = ["—", "Basic", "Working", "Strong"];
 const LV_AR = ["—", "أساسي", "عملي", "متقدم"];
 
@@ -75,13 +81,15 @@ export function Readiness({ role }: { role: EmployerRole }) {
       <section aria-labelledby="gap-h">
         <h2 id="gap-h" className="h2">{tr("Skills gap", "فجوة المهارات")}</h2>
         <div className="card mt-4 overflow-x-auto">
-          <table className="w-full min-w-[560px] text-sm">
+          <table className="w-full min-w-[760px] text-sm">
             <caption className="sr-only">{tr("Required skills compared with your profile", "المهارات المطلوبة مقارنة بملفك")}</caption>
             <thead><tr className="border-b border-line text-start text-xs uppercase tracking-wider text-muted">
               <th scope="col" className="p-3 text-start">{tr("Skill", "المهارة")}</th>
               <th scope="col" className="p-3 text-start">{tr("Required", "المطلوب")}</th>
               <th scope="col" className="p-3 text-start">{tr("You", "أنت")}</th>
+              <th scope="col" className="p-3 text-start">{tr("Evidence", "الأدلة")}</th>
               <th scope="col" className="p-3 text-start">{tr("Status", "الحالة")}</th>
+              <th scope="col" className="p-3 text-start">{tr("Learning priority", "أولوية التعلم")}</th>
             </tr></thead>
             <tbody>
               {r.gaps.map((g) => (
@@ -91,7 +99,9 @@ export function Readiness({ role }: { role: EmployerRole }) {
                   <td className="p-3">{g.have ? <span className="inline-flex flex-wrap items-center gap-1.5">{lv(g.have.level)} <EvidenceBadge s={g.have.status} /></span> : <span className="text-muted">—</span>}
                     {g.course_completed && g.status !== "met" && <span className="mt-1 block text-xs text-warn">{tr("Course done; add a project to show the skill", "أنهيت الدورة؛ أضف مشروعاً يُظهر المهارة")}</span>}
                   </td>
+                  <td className="p-3 text-xs text-muted">{g.evidence.links + g.evidence.quotes + g.evidence.files === 0 ? tr("None", "لا يوجد") : [g.evidence.links && `${g.evidence.links} ${tr("link(s)", "رابط")}`, g.evidence.quotes && `${g.evidence.quotes} ${tr("quote(s)", "اقتباس")}`, g.evidence.files && `${g.evidence.files} ${tr("file(s)", "ملف")}`].filter(Boolean).join(" · ")}</td>
                   <td className="p-3"><span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS[g.status].cls}`}>{tr(STATUS[g.status].en, STATUS[g.status].ar)}</span></td>
+                  <td className="p-3"><span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${PRIO[g.priority].cls}`}>{tr(PRIO[g.priority].en, PRIO[g.priority].ar)}</span></td>
                 </tr>
               ))}
             </tbody>
@@ -114,7 +124,14 @@ export function Readiness({ role }: { role: EmployerRole }) {
                     <span className="text-sm text-muted">→ {lv(s.target_level)}</span>
                     {s.reason === "prerequisite" && <span className="rounded-full bg-sand-100 px-2.5 py-0.5 text-xs font-semibold text-sand-700">{tr("Prerequisite for", "متطلب سابق لـ")} {s.for_skills.map(skillName).join(", ")}</span>}
                     <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS[s.status].cls}`}>{tr(STATUS[s.status].en, STATUS[s.status].ar)}</span>
+                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${PRIO[s.priority].cls}`}>{tr("Priority", "الأولوية")}: {tr(PRIO[s.priority].en, PRIO[s.priority].ar)}</span>
                   </div>
+                  <dl className="mt-2 grid gap-x-6 gap-y-1 text-sm sm:grid-cols-2">
+                    <div><dt className="inline font-semibold text-teal">{tr("Learning objective", "هدف التعلم")}: </dt><dd className="inline">{lang === "ar" ? s.objective_ar : s.objective_en}</dd></div>
+                    <div><dt className="inline font-semibold text-teal">{tr("Prerequisites", "المتطلبات السابقة")}: </dt><dd className="inline">{s.prerequisites.length ? s.prerequisites.map(skillName).join(", ") : tr("None", "لا يوجد")}</dd></div>
+                    <div><dt className="inline font-semibold text-teal">{tr("Duration", "المدة")}: </dt><dd className="inline">{s.course?.est_hours ? tr(`about ${s.course.est_hours} hours (stated by provider)`, `نحو ${s.course.est_hours} ساعة (حسب الجهة المقدمة)`) : tr("not stated by the provider", "غير محددة من الجهة المقدمة")}</dd></div>
+                    <div><dt className="inline font-semibold text-teal">{tr("Expected outcome", "النتيجة المتوقعة")}: </dt><dd className="inline">{tr(`You can show ${skillName(s.skill_id)} at ${lv(s.target_level)} level with a linked project.`, `تستطيع إثبات ${skillName(s.skill_id)} بمستوى ${lv(s.target_level)} عبر مشروع مرفق برابط.`)}</dd></div>
+                  </dl>
 
                   {s.status !== "needs-evidence" && (s.course ? (
                     <div className="mt-3 rounded-2xl bg-ivory p-4">
@@ -123,7 +140,7 @@ export function Readiness({ role }: { role: EmployerRole }) {
                           <a href={s.course.url} target="_blank" rel="noreferrer" className="font-semibold text-teal underline-offset-2 hover:underline">{s.course.title} ↗</a>
                           <p className="text-xs text-muted">{s.course.provider} · {s.course.language === "ar" ? "العربية" : "English"} · {s.course.cost} · {s.course.level}{s.course.est_hours ? ` · ~${s.course.est_hours}h` : ""}{s.course.has_practical_project ? ` · ${tr("includes a project", "يتضمن مشروعاً")}` : ""}</p>
                         </div>
-                        <VerificationBadge v={s.course.verification} />
+                        <span className="flex flex-wrap gap-1.5">{s.employer_recommended && <span className="rounded-full bg-teal/10 px-2.5 py-0.5 text-xs font-semibold text-teal">{tr("Recommended by employer", "يوصي بها صاحب العمل")}</span>}<VerificationBadge v={s.course.verification} /></span>
                       </div>
                       {s.alternatives.length > 0 && <p className="mt-2 text-xs text-muted">{tr("Alternatives", "بدائل")}: {s.alternatives.map((a, j) => <span key={a.id}>{j > 0 && " · "}<a className="underline" href={a.url} target="_blank" rel="noreferrer">{a.title}</a></span>)}</p>}
                       <button className="btn-secondary mt-3 !py-1.5" disabled={s.course_completed || profile.completed_courses.includes(s.course.id)} onClick={() => completeCourse(s.course!.id)}>

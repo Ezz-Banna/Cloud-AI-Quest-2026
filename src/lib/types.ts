@@ -109,8 +109,17 @@ export interface Achievement {
 
 export type Stream = "scientific" | "literary" | "it" | "industrial" | "health" | "other";
 
+export type EducationLevel = "grade-12" | "tawjihi-graduate" | "university-student" | "graduate" | "other";
+export type Priority = "affordability" | "location" | "career-fit" | "interest-fit" | "public-university" | "private-university";
+
 export interface LearnerProfile {
   name?: string;
+  education_level?: EducationLevel | null;
+  subjects: string[]; // favourite school subjects
+  hobbies: string[];
+  industries: string[];
+  priorities: Priority[]; // up to 3, most important first
+  saved_programs: string[];
   language: "en" | "ar";
   tawjihi_avg?: number | null;
   stream?: Stream | null;
@@ -155,11 +164,19 @@ export interface Employer {
   sector: string;
   city?: string;
   about?: string;
+  website?: string;
+  demo?: boolean; // created through the demo employer portal
   verification: Verification;
 }
 
 export const emptyProfile = (): LearnerProfile => ({
   language: "en",
+  education_level: null,
+  subjects: [],
+  hobbies: [],
+  industries: [],
+  priorities: [],
+  saved_programs: [],
   tawjihi_avg: null,
   stream: null,
   interests: [],

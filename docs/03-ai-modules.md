@@ -4,7 +4,7 @@ Principle: the language model reads and writes language. Rules decide facts. Eve
 
 Model: `claude-opus-5-5` via the official Anthropic TypeScript SDK, server-side only (`src/lib/ai/client.ts`), effort `low`, structured output validated by Zod (`betaZodOutputFormat`), server-side refusal fallback enabled, 20 s timeout, SDK retries off, one retry of our own (worst case about 40 s). Model id is configurable with `BRIDGECOM_MODEL`. `BRIDGECOM_OFFLINE=1` forces the fallback for demos.
 
-Cost reference (list prices at the time of writing: $4 per million input tokens, $20 per million output tokens). A typical call is about 1,000-1,500 input and 300-700 output tokens, so roughly $0.01-0.02 per call and under $0.10 for a full student journey (about four calls). Modules 2, 3, 5, 7, 8, 9 and 10 make no model calls and cost nothing per use. A cheaper model (for example Haiku 5.5) can be set through `BRIDGECOM_MODEL` if the team chooses to trade quality for cost; that has not been evaluated.
+Cost reference (list prices at the time of writing: $4 per million input tokens, $20 per million output tokens). A typical call is about 1,000-1,500 input and 300-700 output tokens, so roughly $0.01-0.02 per call and under $0.10 for a full student journey (about four calls). Modules 2, 3, 5, 7, 8 and 10 make no model calls (module 9 only when the student asks for a plain-language explanation) and cost nothing per use. A cheaper model (for example Haiku 5.5) can be set through `BRIDGECOM_MODEL` if the team chooses to trade quality for cost; that has not been evaluated.
 
 | # | Module | Uses LLM | Code |
 |---|---|---|---|
@@ -16,7 +16,7 @@ Cost reference (list prices at the time of writing: $4 per million input tokens,
 | 6 | Employer requirement parsing | Yes | `parseJob` |
 | 7 | Skills-gap assessment | No | `assessRole` in `src/lib/engines/gap.ts` |
 | 8 | Personalised pathway generation | No | `buildPathway` |
-| 9 | Explainable recommendations | No (reason codes rendered in EN/AR) | engines return `reasons[]` |
+| 9 | Explainable recommendations | Optional (wording only) | engines return `reasons[]`; `explainMatch` rewords them |
 | 10 | Progress insights | No | readiness history in `Readiness.tsx` |
 
 ---
@@ -60,10 +60,12 @@ Cost reference (list prices at the time of writing: $4 per million input tokens,
 - **Rule:** completing a course is recorded but never changes status. Tested.
 
 ## 8. Personalised pathway generation
-- Collects unmet skills plus missing prerequisites (transitively), orders them topologically (Kahn's algorithm) with mandatory first, then ranks courses per skill: free, the student's language, has a project, level fit, verified source. Each step pairs a course with a practical task from the taxonomy.
+- Collects unmet skills plus missing prerequisites (transitively), orders them topologically (Kahn's algorithm) with mandatory first, then ranks courses per skill: recommended by the employer (+20), free, the student's language, has a project, level fit, verified source. Each step shows the learning objective, prerequisites, duration (only when verified), outcome and a practical task from the taxonomy.
+- Learning priority per gap (`learningPriority`): high for missing or below-level mandatory skills, medium for any other mandatory gap and for missing or below-level preferred skills, low for preferred skills that only need evidence.
 
 ## 9. Explainable recommendations
-- Engines emit reason codes with weights and EN/AR text; the UI renders them as "+/−" lines next to sources. No generated prose is shown as a reason, so every explanation is traceable to a rule.
+- Engines emit reason codes with weights and EN/AR text; the UI renders them as "+/−" lines next to sources.
+- "Explain in plain words" (`/api/ai/explain`, `explainMatch`) sends only the computed facts and reason codes. The output must cite existing reason codes and every number in it must appear in the facts (`numbersSupported`); otherwise `templateExplanation` builds the text from the reason codes. It never changes eligibility, cost or score.
 
 ## 10. Progress insights
 - Readiness snapshots per role are stored on the device; the UI shows "Progress: X% → Y% since date". With a database these go to `readiness_snapshots`.
@@ -71,4 +73,4 @@ Cost reference (list prices at the time of writing: $4 per million input tokens,
 ## Responsible AI notes (Jordan context)
 - Personal data stays on the device by default; sharing with employers is opt-in, revocable, and limited to skills (no grades, city, budget or accessibility needs). This follows the data minimisation and consent principles of Jordan's Personal Data Protection Law No. 24 of 2023; legal review is still needed before launch.
 - The AI is never the authority on admission, tuition, funding, certification or hiring suitability.
-- No AI output is logged with raw personal text; the planned `ai_requests` table stores only metadata.
+- AI calls log metadata only (module, mode, model, latency, error, items returned and dropped by validation) to `data/runtime/ai-log.json`, shown in /admin; no raw personal text is stored.

@@ -1,6 +1,6 @@
 # Bridgecom: product architecture, feature priorities and build sequence
 
-Status: v1, 2026-10-09. Sector 02 Smart Society & Public Services (pending user confirmation).
+Status: v2, 2026-10-09 (functional website: form onboarding, dashboard, compare, employer portal, admin). Sector 02 Smart Society & Public Services (pending user confirmation).
 
 ## 1. One platform, one profile
 

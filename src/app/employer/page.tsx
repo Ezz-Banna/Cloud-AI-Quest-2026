@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { ModeBadge, VerificationBadge } from "@/components/Badges";
 import { SKILLS, SKILL_BY_ID } from "@/lib/data/taxonomy";
-import type { EmployerRole, RoleRequirement } from "@/lib/types";
+import type { Course, EmployerRole, RoleRequirement } from "@/lib/types";
 
 interface Cand { id: string; display_name: string; readiness_pct: number; ready: boolean; shared_at: string; gaps: { skill_id: string; mandatory: boolean; status: string }[] }
 
@@ -13,6 +13,11 @@ export default function Employer() {
   const [roleId, setRoleId] = useState<string>("");
   const [cands, setCands] = useState<Cand[] | null>(null);
   const [name, setName] = useState("");
+  const [sector, setSector] = useState("");
+  const [city, setCity] = useState("");
+  const [about, setAbout] = useState("");
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [recCourses, setRecCourses] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [kind, setKind] = useState<"job" | "internship" | "project">("job");
   const [jd, setJd] = useState("");
@@ -23,7 +28,8 @@ export default function Employer() {
   const name_ = (id: string) => (lang === "ar" ? SKILL_BY_ID[id]?.name_ar : SKILL_BY_ID[id]?.name_en) ?? id;
 
   const loadRoles = () => fetch("/api/roles").then((r) => r.json()).then((d) => { setRoles(d.roles); setRoleId((x) => x || d.roles[0]?.id || ""); });
-  useEffect(() => { loadRoles(); }, []);
+  useEffect(() => { loadRoles(); fetch("/api/data/coverage").then((r) => r.json()).then((d) => setCourses(d.courses ?? [])); }, []);
+  const relevantCourses = courses.filter((c) => c.skills.some((s) => reqs.some((q) => q.skill_id === s)));
   useEffect(() => {
     if (!roleId) return;
     setCands(null);
@@ -43,11 +49,11 @@ export default function Employer() {
   async function publish(e: React.FormEvent) {
     e.preventDefault(); setMsg(null);
     if (!reqs.length) { setMsg(tr("Add at least one requirement.", "أضف متطلباً واحداً على الأقل.")); return; }
-    const r = await fetch("/api/roles", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ employer_name: name, title, kind, description: jd, requirements: reqs }) });
+    const r = await fetch("/api/roles", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ employer_name: name, sector, city: city || undefined, about, title, kind, description: jd, requirements: reqs, recommended_course_ids: recCourses.filter((id) => relevantCourses.some((c) => c.id === id)) }) });
     const d = await r.json();
     if (!r.ok) { setMsg(d.error); return; }
-    setMsg(tr("Published as an unverified employer. Students will see the Unverified label until your organisation is verified.", "نُشر كصاحب عمل غير موثّق. سيرى الطلبة شارة \"غير موثّق\" حتى يتم توثيق مؤسستك."));
-    setReqs([]); setJd(""); setTitle(""); loadRoles(); setRoleId(d.role.id);
+    setMsg(tr("Published to the demo database as a demo organisation. Students see it labelled Unverified; Bridgecom has not checked this organisation.", "نُشر في قاعدة البيانات التجريبية كمؤسسة تجريبية. يراه الطلبة بشارة \"غير موثّق\"؛ لم يتحقق بريدجكوم من هذه المؤسسة."));
+    setReqs([]); setJd(""); setTitle(""); setRecCourses([]); loadRoles(); setRoleId(d.role.id);
   }
 
   return (
@@ -69,6 +75,12 @@ export default function Employer() {
                   <option value="job">{tr("Job", "وظيفة")}</option><option value="internship">{tr("Internship", "تدريب")}</option><option value="project">{tr("Project", "مشروع")}</option>
                 </select></div>
             </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div><label className="label" htmlFor="sector">{tr("Sector", "القطاع")}</label><input id="sector" className="input" value={sector} onChange={(e) => setSector(e.target.value)} /></div>
+              <div><label className="label" htmlFor="city">{tr("City", "المدينة")}</label><input id="city" className="input" value={city} onChange={(e) => setCity(e.target.value)} /></div>
+            </div>
+            <div><label className="label" htmlFor="about">{tr("About the organisation", "عن المؤسسة")}</label><textarea id="about" className="input min-h-16 text-sm" value={about} onChange={(e) => setAbout(e.target.value)} /></div>
+            <p className="rounded-xl bg-sand-100 p-3 text-xs text-sand-700">{tr("This portal creates demo organisations. They are always labelled Unverified; seeded examples are labelled Synthetic. Real employer verification (e.g. company registry check) is on the roadmap.", "تُنشئ هذه البوابة مؤسسات تجريبية تحمل دائماً شارة \"غير موثّق\"؛ والأمثلة المضمّنة تحمل شارة \"مصطنعة\". التحقق من أصحاب العمل الحقيقيين ضمن الخطة المستقبلية.")}</p>
             <div><label className="label" htmlFor="title">{tr("Role title", "المسمى")}</label><input id="title" className="input" required minLength={2} value={title} onChange={(e) => setTitle(e.target.value)} /></div>
             <div><label className="label" htmlFor="jd">{tr("Job description (optional, AI can read it)", "الوصف الوظيفي (اختياري، يمكن للذكاء الاصطناعي قراءته)")}</label>
               <textarea id="jd" className="input min-h-28 text-sm" value={jd} onChange={(e) => setJd(e.target.value)} />
@@ -86,12 +98,26 @@ export default function Employer() {
                     <select aria-label={tr("Level", "المستوى")} className="input !w-auto !py-1.5 text-sm" value={q.level} onChange={(e) => setReqs(reqs.map((x, j) => (j === i ? { ...x, level: Number(e.target.value) as 1 | 2 | 3 } : x)))}>
                       <option value={1}>{tr("Basic", "أساسي")}</option><option value={2}>{tr("Working", "عملي")}</option><option value={3}>{tr("Strong", "متقدم")}</option>
                     </select>
-                    <label className="flex items-center gap-1 text-sm"><input type="checkbox" className="accent-teal" checked={q.mandatory} onChange={(e) => setReqs(reqs.map((x, j) => (j === i ? { ...x, mandatory: e.target.checked } : x)))} />{tr("Mandatory", "إلزامي")}</label>
+                    <select aria-label={tr("Importance", "الأهمية")} className="input !w-auto !py-1.5 text-sm" value={q.mandatory ? "1" : "0"} onChange={(e) => setReqs(reqs.map((x, j) => (j === i ? { ...x, mandatory: e.target.value === "1" } : x)))}>
+                      <option value="1">{tr("Essential", "أساسي")}</option><option value="0">{tr("Nice to have", "ميزة إضافية")}</option>
+                    </select>
                     <button type="button" className="ms-auto text-sm text-bad" onClick={() => setReqs(reqs.filter((_, j) => j !== i))} aria-label={tr("Remove", "إزالة")}>✕</button>
                   </li>
                 ))}
               </ul>
               <button type="button" className="btn-ghost mt-2 !px-0" onClick={() => setReqs([...reqs, { skill_id: "javascript", level: 2, mandatory: true }])}>+ {tr("Add requirement", "أضف متطلباً")}</button>
+            </fieldset>
+            <fieldset>
+              <legend className="label">{tr("Recommended courses (optional)", "دورات موصى بها (اختياري)")}</legend>
+              {reqs.length === 0 ? <p className="text-xs text-muted">{tr("Add requirements first; we'll list catalogue courses for those skills.", "أضف المتطلبات أولاً؛ وسنعرض الدورات المفهرسة لتلك المهارات.")}</p> : (
+                <ul className="max-h-48 space-y-1 overflow-y-auto rounded-xl border border-line p-2 text-sm">
+                  {relevantCourses.map((c) => (
+                    <li key={c.id}><label className="flex items-start gap-2"><input type="checkbox" className="mt-1 accent-teal" checked={recCourses.includes(c.id)} onChange={(e) => setRecCourses(e.target.checked ? [...recCourses, c.id] : recCourses.filter((x) => x !== c.id))} />
+                      <span>{c.title} <span className="text-xs text-muted">· {c.provider} · {c.skills.map(name_).join(", ")}</span></span></label></li>
+                  ))}
+                </ul>
+              )}
+              <p className="mt-1 text-xs text-muted">{tr("Only courses from Bridgecom's catalogue, so links and titles are real. Candidates see your picks first in their pathway.", "فقط دورات من فهرس بريدجكوم لضمان صحة الروابط والعناوين. يرى المرشحون اختياراتك أولاً في مسارهم.")}</p>
             </fieldset>
             {msg && <p role="status" className="rounded-xl bg-mist p-3 text-sm text-teal">{msg}</p>}
             <button className="btn-primary">{tr("Publish role", "انشر الدور")}</button>
@@ -102,7 +128,7 @@ export default function Employer() {
           <h2 id="cand-h" className="h2">{tr("Consenting candidates", "المرشحون الموافقون")}</h2>
           <label className="label mt-4" htmlFor="role">{tr("Role", "الدور")}</label>
           <select id="role" className="input" value={roleId} onChange={(e) => setRoleId(e.target.value)}>
-            {roles.map((r) => <option key={r.id} value={r.id}>{r.title}</option>)}
+            {roles.map((r) => <option key={r.id} value={r.id}>{r.title}{r.verification === "synthetic" ? ` (${tr("synthetic", "مصطنع")})` : r.verification === "unverified" ? ` (${tr("demo, unverified", "تجريبي، غير موثّق")})` : ""}</option>)}
           </select>
           {roles.find((r) => r.id === roleId) && <div className="mt-2"><VerificationBadge v={roles.find((r) => r.id === roleId)!.verification} /></div>}
           {!cands && <div className="mt-4 h-24 animate-pulse rounded-2xl bg-mist/60" />}

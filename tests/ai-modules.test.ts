@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/ai/log", () => ({ logAI: () => {}, readAILog: () => [] }));
 const structured = vi.fn();
 vi.mock("@/lib/ai/client", () => ({ structured: (...a: unknown[]) => structured(...a) }));
 
@@ -47,5 +48,20 @@ describe("AI module guards (model output mocked)", () => {
     ] } });
     const r = await parseJob("Junior dev. Required: Git. Nice to have: Git hooks experience.");
     expect(r.requirements).toEqual([{ skill_id: "git", level: 2, mandatory: true, quote: "Required: Git" }]);
+  });
+});
+
+import { explainMatch, numbersSupported } from "@/lib/ai/modules";
+describe("explanation guard", () => {
+  const facts = { program: "CS", university: "JUST", city: "Irbid", eligibility: { status: "meets-published-minimum", published_min: 65, year: "2024", student_avg: 86.4 }, fit_score: 74, tuition_per_year_jod: 1089, reasons: [{ code: "interest-match", text: "Matches" }], missing: [] };
+  it("rejects invented numbers", () => {
+    expect(numbersSupported("Fees are 1089 JOD and graduates earn 900 JOD", facts)).toBe(false);
+    expect(numbersSupported("Your 86.4 meets 65", facts)).toBe(true);
+  });
+  it("falls back to the template when the AI adds a fact", async () => {
+    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 1, data: { text: "Ranked top 3 in Jordan.", used_reason_codes: ["interest-match"] } });
+    const r = await explainMatch(facts, "en");
+    expect(r.mode).toBe("offline");
+    expect(r.text).toContain("JUST");
   });
 });

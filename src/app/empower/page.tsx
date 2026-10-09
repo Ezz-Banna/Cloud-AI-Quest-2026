@@ -197,6 +197,34 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
         </section>
       </div>
 
+      <section className="card p-5 sm:p-6" aria-labelledby="pf-h">
+        <div className="flex flex-wrap items-center justify-between gap-2"><h2 id="pf-h" className="h2">{tr("My portfolio", "ملف إنجازاتي")}</h2><span className="text-sm text-muted">{profile.achievements.length}</span></div>
+        {profile.achievements.length === 0 ? (
+          <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("Your projects, certificates and activities will appear here.", "ستظهر هنا مشاريعك وشهاداتك وأنشطتك.")}</p>
+        ) : (
+          <ul className="mt-4 grid gap-3 md:grid-cols-2">
+            {profile.achievements.map((a) => {
+              const linked = profile.skills.filter((s) => s.evidence.some((e) => e.achievement_id === a.id));
+              return (
+                <li key={a.id} className="rounded-2xl border border-line p-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <div><p className="font-bold text-teal">{a.title}</p><p className="text-xs font-semibold uppercase tracking-wider text-sage-600">{(KINDS.find((k) => k.v === a.kind) ?? KINDS[5])[lang === "ar" ? "ar" : "en"]}</p></div>
+                    <EvidenceBadge s={a.links.length ? "evidence-attached" : "self-reported"} />
+                  </div>
+                  <p className="mt-2 text-sm">{a.description}</p>
+                  {a.links.map((l) => <a key={l} href={l} target="_blank" rel="noreferrer" className="mt-1 block truncate text-xs text-sage-600 underline">{l}</a>)}
+                  <p className="mt-2 text-xs text-muted">{linked.length ? `${tr("Shows", "يُظهر")}: ${linked.map((s) => (lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en)).join(", ")}` : tr("No skills linked yet.", "لا توجد مهارات مرتبطة بعد.")}</p>
+                  <div className="mt-2 flex gap-3 text-xs font-semibold">
+                    {linked.length === 0 && <button className="text-sage-600 underline" onClick={() => { setKind(a.kind); setTitle(a.title); setDesc(a.description); setLink(a.links[0] ?? ""); setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) }); document.getElementById("add-h")?.scrollIntoView({ behavior: "smooth" }); }}>{tr("Find skills with AI", "استخرج المهارات بالذكاء الاصطناعي")}</button>}
+                    <button className="text-bad underline" onClick={() => setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) })}>{tr("Remove", "إزالة")}</button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </section>
+
       <section aria-labelledby="opp-h">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>

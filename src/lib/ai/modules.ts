@@ -3,7 +3,8 @@ import "server-only";
 import * as z from "zod/v4";
 import { structured } from "./client";
 import { CITIES, FIELDS, SKILLS } from "../data/taxonomy";
-import { fallbackJob, fallbackProfile, fallbackSkills, quoteInText } from "./fallback";
+import { fallbackJob, fallbackProfile, fallbackSkills, quoteInText, normDigits } from "./fallback";
+import { logAI } from "./log";
 
 const FIELD_IDS = FIELDS.map((f) => f.id) as [string, ...string[]];
 const SKILL_IDS = SKILLS.map((s) => s.id) as [string, ...string[]];
@@ -44,9 +45,12 @@ export async function interpretProfile(answers: { q: string; a: string }[]) {
     if (d.tawjihi_avg != null && (d.tawjihi_avg < 0 || d.tawjihi_avg > 100)) d.tawjihi_avg = null;
     if (d.budget_jod_per_year != null && d.budget_jod_per_year < 0) d.budget_jod_per_year = null;
     // a stated average must literally appear in the answers
-    if (d.tawjihi_avg != null && !text.replace(/[٠-٩]/g, (c) => String("٠١٢٣٤٥٦٧٨٩".indexOf(c))).includes(String(Math.floor(d.tawjihi_avg)))) d.tawjihi_avg = null;
+    let dropped = 0;
+    if (d.tawjihi_avg != null && !normDigits(text).includes(String(Math.floor(d.tawjihi_avg)))) { d.tawjihi_avg = null; dropped++; }
+    logAI({ module: "profile", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: 1, dropped_by_validation: dropped, notes: dropped ? "average not present in answers; removed" : undefined });
     return { mode: "ai" as const, model: r.model, latency_ms: r.latency_ms, draft: d };
   }
+  logAI({ module: "profile", mode: "offline", error: r.error, returned: 1, dropped_by_validation: 0 });
   return { mode: "offline" as const, reason: r.error, draft: fallbackProfile(text) };
 }
 
@@ -74,9 +78,12 @@ export async function extractSkills(title: string, description: string, links: s
   if (r.ok) {
     const kept = r.data.skills.filter((s) => quoteInText(s.quote, text));
     const dropped = r.data.skills.length - kept.length;
+    logAI({ module: "skills", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: kept.length, dropped_by_validation: dropped, notes: dropped ? "skill quote not found in student text" : undefined });
     return { mode: "ai" as const, model: r.model, latency_ms: r.latency_ms, skills: kept, dropped_unsupported: dropped, suggested_description: r.data.suggested_description };
   }
-  return { mode: "offline" as const, reason: r.error, skills: fallbackSkills(text), dropped_unsupported: 0, suggested_description: null };
+  const fb = fallbackSkills(text);
+  logAI({ module: "skills", mode: "offline", error: r.error, returned: fb.length, dropped_by_validation: 0 });
+  return { mode: "offline" as const, reason: r.error, skills: fb, dropped_unsupported: 0, suggested_description: null };
 }
 
 // ---------- Module 6: employer requirement parsing ----------
@@ -106,7 +113,63 @@ export async function parseJob(text: string) {
     // dedupe by skill, keep the strictest
     const by = new Map<string, (typeof reqs)[number]>();
     for (const q of reqs) { const e = by.get(q.skill_id); if (!e || q.level > e.level || (q.mandatory && !e.mandatory)) by.set(q.skill_id, q); }
+    logAI({ module: "job", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: by.size, dropped_by_validation: r.data.requirements.length - reqs.length, notes: r.data.requirements.length > reqs.length ? "requirement quote not found in posting" : undefined });
     return { mode: "ai" as const, model: r.model, latency_ms: r.latency_ms, title: r.data.title, requirements: [...by.values()], unmapped: r.data.unmapped };
   }
-  return { mode: "offline" as const, reason: r.error, ...fallbackJob(text) };
+  const fb = fallbackJob(text);
+  logAI({ module: "job", mode: "offline", error: r.error, returned: fb.requirements.length, dropped_by_validation: 0 });
+  return { mode: "offline" as const, reason: r.error, ...fb };
+}
+
+// ---------- Module 9: explanation wording (facts come from the engine) ----------
+export const Explanation = z.object({
+  text: z.string().describe("2-3 short sentences in the requested language"),
+  used_reason_codes: z.array(z.string()),
+});
+
+const EXPLAIN_SYSTEM = `You explain a university program recommendation to a Jordanian student in plain, warm language.
+Rules:
+- Use ONLY the facts in the JSON. Do not add facts about the university, rankings, jobs or salaries.
+- Every number you write must appear in the JSON exactly.
+- Mention the admission check honestly: a minimum average to apply is not a guarantee of admission.
+- If data is missing, say so briefly.
+- Write in the requested language (en or ar). 2-3 sentences. List the reason codes you used.`;
+
+export interface ExplainFacts {
+  program: string; university: string; city: string | null;
+  eligibility: { status: string; published_min: number | null | undefined; year: string | null | undefined; student_avg: number | null | undefined };
+  fit_score: number; tuition_per_year_jod: number | null; reasons: { code: string; text: string }[]; missing: string[];
+}
+
+export function templateExplanation(f: ExplainFacts, lang: "en" | "ar") {
+  const top = f.reasons.filter((r) => !r.code.startsWith("partial")).slice(0, 3).map((r) => r.text);
+  if (lang === "ar") {
+    const elig = f.eligibility.status === "meets-published-minimum" ? `معدلك ${f.eligibility.student_avg} يحقق الحد الأدنى للتقديم (${f.eligibility.published_min})، وهذا لا يضمن القبول.` : f.eligibility.status === "below-published-minimum" ? `معدلك أقل من الحد الأدنى للتقديم (${f.eligibility.published_min}).` : "لم نتحقق بعد من الحد الأدنى للقبول لهذا البرنامج.";
+    return `${f.program} في ${f.university}: ${top.join("؛ ") || "لا توجد مؤشرات قوية"}. ${elig}${f.missing.length ? ` بيانات ناقصة: ${f.missing.join("، ")}.` : ""}`;
+  }
+  const elig = f.eligibility.status === "meets-published-minimum" ? `Your ${f.eligibility.student_avg} meets the minimum average to apply (${f.eligibility.published_min}), which does not guarantee admission.` : f.eligibility.status === "below-published-minimum" ? `Your average is below the minimum to apply (${f.eligibility.published_min}).` : "We have not verified the admission minimum for this program yet.";
+  return `${f.program} at ${f.university}: ${top.join("; ") || "no strong signals either way"}. ${elig}${f.missing.length ? ` Missing data: ${f.missing.join(", ")}.` : ""}`;
+}
+
+export function numbersSupported(text: string, facts: unknown) {
+  const factStr = normDigits(JSON.stringify(facts));
+  const nums = normDigits(text).match(/\d+(?:\.\d+)?/g) ?? [];
+  return nums.every((n) => factStr.includes(n));
+}
+
+export async function explainMatch(f: ExplainFacts, lang: "en" | "ar") {
+  const r = await structured(Explanation, EXPLAIN_SYSTEM, `Language: ${lang}\nFacts:\n${JSON.stringify(f)}`, 1500);
+  const codes = new Set(f.reasons.map((x) => x.code));
+  if (r.ok) {
+    const okCodes = r.data.used_reason_codes.every((c) => codes.has(c) || c === "eligibility");
+    const okNums = numbersSupported(r.data.text, f);
+    if (okCodes && okNums) {
+      logAI({ module: "explain", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: 1, dropped_by_validation: 0 });
+      return { mode: "ai" as const, model: r.model, text: r.data.text };
+    }
+    logAI({ module: "explain", mode: "offline", model: r.model, returned: 0, dropped_by_validation: 1, notes: !okNums ? "explanation contained a number not in the facts; replaced by template" : "explanation cited unknown reasons; replaced by template" });
+    return { mode: "offline" as const, text: templateExplanation(f, lang), reason: "validation" };
+  }
+  logAI({ module: "explain", mode: "offline", error: r.error, returned: 1, dropped_by_validation: 0 });
+  return { mode: "offline" as const, text: templateExplanation(f, lang), reason: r.error };
 }

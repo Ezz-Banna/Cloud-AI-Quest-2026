@@ -108,3 +108,31 @@ describe("scholarships", () => {
     expect(r[1].status).toBe("not-eligible");
   });
 });
+
+describe("priorities", () => {
+  it("affordability priority lifts a cheap program above a pricier city match", () => {
+    const base = { ...emptyProfile(), tawjihi_avg: 85, interests: ["computer-science"], preferred_cities: ["Amman"], budget_jod_per_year: 4000 };
+    const progs = [
+      prog({ id: "cheap", university_id: "u2", min_admission_avg: 65, credit_hours: 132, tuition_jod_per_credit_hour: 40 }),
+      prog({ id: "city", university_id: "u1", min_admission_avg: 65, credit_hours: 132, tuition_jod_per_credit_hour: 90 }),
+    ];
+    const unis = [uni("u1", "Amman"), uni("u2", "Irbid")];
+    expect(rankPrograms({ ...base, priorities: ["location"] }, progs, unis)[0].program.id).toBe("city");
+    expect(rankPrograms({ ...base, priorities: ["affordability"] }, progs, unis)[0].program.id).toBe("cheap");
+  });
+});
+
+describe("learning priority and evidence", () => {
+  it("ranks essential gaps high and nice-to-haves low", async () => {
+    const { learningPriority } = await import("@/lib/engines/gap");
+    expect(learningPriority("missing", true)).toBe("high");
+    expect(learningPriority("needs-evidence", true)).toBe("medium");
+    expect(learningPriority("needs-evidence", false)).toBe("low");
+    expect(learningPriority("met", true)).toBe("none");
+  });
+  it("counts evidence per skill", () => {
+    const p = { ...emptyProfile(), skills: [{ skill_id: "git", level: 2 as const, status: "evidence-attached" as const, evidence: [{ kind: "link" as const, value: "https://x" }, { kind: "quote" as const, value: "q" }] }] };
+    const g = assessRole(role, p).gaps.find((x) => x.requirement.skill_id === "git")!;
+    expect(g.evidence).toEqual({ quotes: 1, links: 1, files: 0 });
+  });
+});

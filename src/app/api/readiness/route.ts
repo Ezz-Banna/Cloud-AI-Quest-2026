@@ -18,5 +18,5 @@ export async function POST(req: Request) {
   const profile = b.data.profile as unknown as LearnerProfile;
   const courses = getCourses();
   const readiness = assessRole(role, profile, courses);
-  return NextResponse.json({ role, readiness, pathway: buildPathway(readiness, profile, courses) });
+  return NextResponse.json({ role, readiness, pathway: buildPathway(readiness, profile, courses, role.recommended_course_ids ?? []) });
 }

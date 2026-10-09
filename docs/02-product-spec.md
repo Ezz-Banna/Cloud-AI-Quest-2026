@@ -36,7 +36,14 @@ Covers: product requirements, user journeys, features and priorities, informatio
 | RQ-11 | Verified, partial, synthetic and self-reported labels everywhere | Built |
 | RQ-12 | Intro animation (skippable, reduced motion) and three-stage journey indicator | Built |
 | RQ-13 | Arabic UI with RTL | Built for all core screens |
-| RQ-14 | Sample-data import with validation report | Built |
+| RQ-14 | Sample-data import with validation report (admin only) | Built |
+| RQ-15 | Step-by-step onboarding form: 8 steps, progress bar, per-step validation, review | Built |
+| RQ-16 | Save programs and compare them side by side | Built |
+| RQ-17 | Student dashboard: completeness, matches, saved, skills, opportunities, journey | Built |
+| RQ-18 | Plain-language explanation of computed reasons (AI wording, numbers checked against facts, template fallback) | Built (AI path needs an API key) |
+| RQ-19 | Employer portal: demo organisation, importance per skill, recommended courses (boosted in the pathway) | Built |
+| RQ-20 | Gap table with evidence and learning priority; pathway steps with objective, prerequisites, duration, outcome | Built |
+| RQ-21 | Protected admin: import, record edits and revert, provenance review, demo role clean-up, AI error log | Built (single shared password) |
 
 ## 2. User journeys
 
@@ -61,7 +68,7 @@ Covers: product requirements, user journeys, features and priorities, informatio
 | Must (done) | RQ-01 to RQ-12 |
 | Should (done) | RQ-13 Arabic/RTL, RQ-14 import, employer publishing, mobile layout |
 | Should (next) | Live AI evaluation run with a key; Arabic names for all programs; competitive cut-offs from the unified admission unit; UJ, Mutah, GJU, HTU program records |
-| Could | Accounts (Supabase auth), evidence file upload, counsellor dashboard, program comparison view, AI-written summary of the computed reasons |
+| Could | Accounts (Supabase auth), per-user admin roles, evidence file upload, counsellor dashboard |
 | Later | LinkedIn import through LinkedIn's official partner API, verified credentials (Open Badges), employer verification, practical assessments reviewed by mentors, national coverage with scheduled re-checks |
 | Won't (MVP) | Real funding flows, automated admission or hiring decisions, scraping |
 
@@ -69,17 +76,21 @@ Covers: product requirements, user journeys, features and priorities, informatio
 
 ```
 /                       Home: intro animation, value, three stages, trust principles
-/discover               Stage 1 chat onboarding → profile review
-/discover/results       Ranked programs: admission check · fit · cost · reasons · sources · filters
+/discover               Stage 1: step-by-step form (default) or chat with AI → profile review
+/discover/results       Ranked programs: admission check · fit · cost · reasons · sources · missing data · save · explain
+/compare                Saved programs side by side
+/dashboard              Completeness · top matches · saved · skills · opportunities · journey progress
 /empower                Stage 2: add achievement → AI skill suggestions · My skills · evidence links
                         Scholarships worth checking · application pack · share with employers
 /succeed                Stage 3: open roles · paste a posting · readiness · gap table · pathway
 /employer               Publish a role (manual or from posting) · consenting candidates per role
-/data                   Coverage counts · what is real vs synthetic · program table with sources · import
-/api/*                  status, ai/profile, ai/skills, ai/job, match/programs, match/opportunities,
-                        roles, readiness, candidates, data/coverage, data/import
+/data                   Coverage counts · what is real vs synthetic · program table with sources
+/admin                  Password-protected: import · edit/revert records · provenance issues · demo roles · AI log
+/api/*                  status, ai/profile, ai/skills, ai/job, ai/explain, match/programs, match/opportunities,
+                        roles, readiness, candidates, data/coverage, data/import, admin/login, admin/logout,
+                        admin/overview, admin/record, admin/roles
 ```
-Global: header (logo, employers, data, language toggle), journey indicator on stage pages, footer with disclaimers and "Replay intro".
+Global: header (logo, My dashboard, employers, data, language toggle), journey indicator on stage pages, footer with disclaimers, Admin and "Replay intro".
 
 ## 5. Design system
 
@@ -93,9 +104,9 @@ Global: header (logo, employers, data, language toggle), journey indicator on st
 
 | Layer | What | How | Result (2026-10-09) |
 |---|---|---|---|
-| Unit | Eligibility, cost, ranking, scholarships, gap, pathway, profile merge | Vitest, `npm test` | 25/25 pass |
+| Unit | Eligibility, cost, ranking, priorities, scholarships, gap, learning priority, pathway, profile merge, completeness, admin tokens | Vitest, `npm test` | 35/35 pass |
 | AI guards | Quote check, invented average removed, Arabic digits, dedupe, fallback on failure | Vitest with mocked model | Included above, pass |
-| End to end | Full journey on desktop and mobile, intro, Arabic RTL, reduced motion, consent, evidence raising readiness, course not raising it | `node scripts/e2e.mjs` (Playwright) | 29/29 pass, no browser errors (offline AI mode) |
+| End to end | Form path (desktop) and chat path (mobile), explain, save and compare, dashboard, employer publish with course, intro, Arabic RTL, reduced motion, consent, evidence raising readiness, course not raising it, import blocked without admin, admin login, record edit and revert, AI log | `node scripts/e2e.mjs` (Playwright) | 40/40 pass, no unexpected browser errors (offline AI mode) |
 | Data | Every seed row validated by Zod at load; counts on /data | Automatic | 113 rows, 0 rejected |
 | Live AI | 15 onboarding transcripts, 20 achievements, 10 postings (synthetic) | Run with `ANTHROPIC_API_KEY` set | **Not yet run: no API key in the build environment** |
 | Accessibility | Keyboard walk-through, screen reader spot check, contrast | Manual | To do |
@@ -104,7 +115,7 @@ Global: header (logo, employers, data, language toggle), journey indicator on st
 ## 7. Hackathon MVP scope
 
 In: everything marked Built above, with the curated dataset (11 universities, 44 programs, 13 support programs, 45 courses), three synthetic employers and one synthetic demo student.
-Out: accounts, file uploads, live LinkedIn import, competitive cut-offs, full national coverage.
+Out: student accounts, multi-user admin, file uploads, live LinkedIn import, competitive cut-offs, full national coverage.
 Disclosed in the demo: synthetic employers and demo student; AI mode vs offline mode badge; dataset is a subset; fees are tuition only; minimum averages are minimums to apply.
 
 ## 8. Roadmap

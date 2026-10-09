@@ -15,8 +15,8 @@ export const viewport: Viewport = { themeColor: "#264653", width: "device-width"
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" dir="ltr">
-      <body className={`${jakarta.variable} ${plexAr.variable} antialiased min-h-screen`}>
+    <html lang="en" dir="ltr" className={`${jakarta.variable} ${plexAr.variable}`}>
+      <body className="antialiased min-h-screen">
         <ProfileProvider>
           <Header />
           <main id="main" className="mx-auto max-w-6xl px-4 py-8">{children}</main>

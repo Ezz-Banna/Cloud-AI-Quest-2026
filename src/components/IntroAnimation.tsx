@@ -85,14 +85,14 @@ export function IntroAnimation({ force = false, onDone }: { force?: boolean; onD
               ))}
               {/* traveller */}
               <g className="bc-traveller">
-                <g className="bc-body" transform="translate(70 120)">
+                <g transform="translate(70 120)"><g className="bc-body">
                   <circle cx="10" cy="8" r="8" fill="none" stroke="#1f2a2e" strokeWidth="3.5" />
                   <line x1="10" y1="16" x2="10" y2="34" stroke="#1f2a2e" strokeWidth="3.5" strokeLinecap="round" />
                   <line x1="10" y1="22" x2="0" y2="29" stroke="#1f2a2e" strokeWidth="3.5" strokeLinecap="round" />
                   <line x1="10" y1="22" x2="20" y2="28" stroke="#1f2a2e" strokeWidth="3.5" strokeLinecap="round" />
                   <line className="bc-leg-a" x1="10" y1="34" x2="10" y2="48" stroke="#1f2a2e" strokeWidth="3.5" strokeLinecap="round" />
                   <line className="bc-leg-b" x1="10" y1="34" x2="10" y2="48" stroke="#1f2a2e" strokeWidth="3.5" strokeLinecap="round" />
-                </g>
+                </g></g>
               </g>
               <circle cx="560" cy="60" r="14" fill="#D2A679" opacity=".85" />
             </svg>

@@ -26,7 +26,7 @@ const CITY_AR: Record<string, string> = { "عمان": "Amman", "عمّان": "Am
 
 export function fallbackProfile(text: string) {
   const t = ` ${normDigits(text).toLowerCase()} `;
-  const avgMatch = t.match(/(\d{2}(?:\.\d{1,2})?)\s*(?:%|٪|percent|average|معدل)/) || t.match(/(?:average|avg|معدل|معدلي)[^\d]{0,15}(\d{2}(?:\.\d{1,2})?)/);
+  const avgMatch = t.match(/(\d{2}(?:\.\d{1,2})?)\s*(?:%|٪|percent|average|معدل|in the|scientific|literary|stream|tawjihi|توجيهي|علمي|أدبي|ادبي|في)/) || t.match(/(?:average|avg|معدل|معدلي)[^\d]{0,15}(\d{2}(?:\.\d{1,2})?)/);
   const avg = avgMatch ? Number(avgMatch[1]) : null;
   const budgetMatch = t.match(/(\d{3,5})\s*(?:jod|jd|dinar|دينار)/);
   const interests = FIELDS.filter((f) => (FIELD_WORDS[f.id] ?? []).some((w) => t.includes(w))).map((f) => f.id);
@@ -40,7 +40,7 @@ export function fallbackProfile(text: string) {
     stream: stream as "scientific" | "literary" | "it" | "industrial" | "health" | null,
     interests,
     dream_careers: [] as string[],
-    career_tags: FIELDS.filter((f) => interests.includes(f.id)).flatMap((f) => f.careers.slice(0, 2)),
+    career_tags: [...new Set(FIELDS.filter((f) => interests.includes(f.id)).flatMap((f) => f.careers.slice(0, 2)))],
     budget_jod_per_year: budgetMatch ? Number(budgetMatch[1]) : null,
     financial_need: /scholarship|support|can't afford|cannot afford|منحة|دعم|قرض/.test(t) ? true : null,
     preferred_cities: [...new Set(cities)],

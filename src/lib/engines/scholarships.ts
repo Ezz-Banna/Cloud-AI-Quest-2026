@@ -21,6 +21,7 @@ export function matchScholarships(p: LearnerProfile, items: Scholarship[], stage
     if (c.stage && !accepted.includes(c.stage)) {
       reasons.push({ code: "stage-mismatch", weight: -50, en: `Aimed at ${c.stage} students`, ar: "موجّه لمرحلة دراسية مختلفة" });
       score -= 50;
+      blocked = true;
     }
     if (c.min_avg != null) {
       if (p.tawjihi_avg == null) { unknown = true; }

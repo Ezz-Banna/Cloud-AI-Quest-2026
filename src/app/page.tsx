@@ -74,7 +74,7 @@ export default function Home() {
           [tr("Your claims stay yours", "إفاداتك تبقى لك"), tr("AI suggests skills only with a quote from what you wrote. Nothing is marked verified unless evidence supports it.", "يقترح الذكاء الاصطناعي المهارات فقط مع اقتباس مما كتبته. لا شيء يُعلَّم كموثّق دون دليل.")],
           [tr("Private by default", "خصوصية افتراضية"), tr("Your profile is stored on your device. Employers see your skills only if you choose to share them.", "يُحفظ ملفك على جهازك. لا يرى أصحاب العمل مهاراتك إلا إذا اخترت مشاركتها.")],
         ].map(([h, b]) => (
-          <div key={h} className="rounded-[var(--radius-card)] bg-mist p-6">
+          <div key={h} className="rounded-[1.25rem] bg-mist p-6">
             <h3 className="font-bold text-teal">{h}</h3>
             <p className="mt-2 text-sm text-muted">{b}</p>
           </div>

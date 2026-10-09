@@ -102,7 +102,8 @@ export function scoreProgram(p: LearnerProfile, prog: Program, uni: University):
 
   // Location (−10..+10)
   if (uni.city && p.preferred_cities.length > 0) {
-    if (p.preferred_cities.map(norm).includes(norm(uni.city))) {
+    const place = norm(`${uni.city} ${uni.governorate ?? ""}`);
+    if (p.preferred_cities.some((c) => place.includes(norm(c)))) {
       reasons.push({ code: "preferred-city", weight: 10, en: `Located in ${uni.city}, one of your preferred cities`, ar: `يقع في ${uni.city}، إحدى مدنك المفضلة` });
     } else if (p.open_to_relocate === false) {
       reasons.push({ code: "outside-city", weight: -10, en: `Located in ${uni.city}, outside your preferred cities`, ar: `يقع في ${uni.city}، خارج مدنك المفضلة` });

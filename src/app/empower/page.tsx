@@ -244,7 +244,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
         {shareMsg && <p className="mt-2 text-sm text-teal" role="status">{shareMsg}</p>}
       </section>
 
-      <section className="rounded-[var(--radius-card)] bg-teal p-8 text-ivory">
+      <section className="rounded-[1.25rem] bg-teal p-8 text-ivory">
         <p className="eyebrow !text-sand">{tr("Next · Succeed", "التالي · انجح")}</p>
         <h2 className="mt-2 text-2xl font-bold">{tr("See how close you are to a real role.", "اعرف كم أنت قريب من وظيفة حقيقية.")}</h2>
         <Link href="/succeed" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Compare me with employer requirements", "قارنّي بمتطلبات أصحاب العمل")}</Link>

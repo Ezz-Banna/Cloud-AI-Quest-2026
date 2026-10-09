@@ -141,7 +141,7 @@ export default function Results() {
         })}
       </ol>
 
-      <section className="mt-12 rounded-[var(--radius-card)] bg-teal p-8 text-ivory">
+      <section className="mt-12 rounded-[1.25rem] bg-teal p-8 text-ivory">
         <p className="eyebrow !text-sand">{tr("Next · Empower", "التالي · تمكَّن")}</p>
         <h2 className="mt-2 text-2xl font-bold">{tr("Your average is only part of your story.", "معدلك جزء من قصتك فقط.")}</h2>
         <p className="mt-2 max-w-2xl text-mist">{tr("Add projects, volunteering and certificates. We'll help you describe the skills they show and find scholarships worth checking.", "أضف مشاريعك وتطوعك وشهاداتك. سنساعدك على وصف المهارات التي تظهرها ونقترح منحاً تستحق التحقق منها.")}</p>

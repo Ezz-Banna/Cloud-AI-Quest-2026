@@ -39,20 +39,20 @@ body {
 
 :focus-visible { outline: 3px solid var(--color-sand); outline-offset: 2px; border-radius: 6px; }
 
-@layer components {
-  .card { @apply rounded-[var(--radius-card)] bg-white border border-line shadow-[0_1px_2px_rgba(38,70,83,0.04),0_8px_24px_-12px_rgba(38,70,83,0.12)]; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
-  .btn-primary { @apply btn bg-teal text-ivory hover:bg-teal-700; }
-  .btn-secondary { @apply btn bg-mist text-teal hover:bg-sage-100 border border-line; }
-  .btn-ghost { @apply btn text-teal hover:bg-mist; }
-  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-1.5 text-sm text-ink hover:border-sage transition-colors; }
-  .chip[aria-pressed="true"] { @apply bg-teal text-ivory border-teal; }
-  .input { @apply w-full rounded-xl border border-line bg-white px-4 py-2.5 text-ink placeholder:text-muted/70 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/30; }
-  .label { @apply block text-sm font-semibold text-teal mb-1.5; }
-  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.14em] text-sage-600; }
-  .h1 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-teal; }
-  .h2 { @apply text-xl sm:text-2xl font-bold tracking-tight text-teal; }
+@utility card { @apply rounded-[1.25rem] bg-white border border-line shadow-[0_1px_2px_rgba(38,70,83,0.04),0_8px_24px_-12px_rgba(38,70,83,0.12)]; }
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
+@utility btn-primary { @apply btn bg-teal text-ivory hover:bg-teal-700; }
+@utility btn-secondary { @apply btn bg-mist text-teal hover:bg-sage-100 border border-line; }
+@utility btn-ghost { @apply btn text-teal hover:bg-mist; }
+@utility chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-1.5 text-sm text-ink hover:border-sage transition-colors;
+  &[aria-pressed="true"] { @apply bg-teal text-ivory border-teal; }
 }
+@utility input { @apply w-full rounded-xl border border-line bg-white px-4 py-2.5 text-ink placeholder:text-muted/70 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/30; }
+@utility label { @apply block text-sm font-semibold text-teal mb-1.5; }
+@utility eyebrow { @apply text-xs font-bold uppercase tracking-[0.14em] text-sage-600; }
+@utility h1 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-teal; }
+@utility h2 { @apply text-xl sm:text-2xl font-bold tracking-tight text-teal; }
 
 /* Intro animation */
 @keyframes bc-walk { from { transform: translateX(0); } to { transform: translateX(150px); } }

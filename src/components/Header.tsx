@@ -23,9 +23,12 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link href="/" className="min-w-0 rounded-xl"><Wordmark descriptor={tr("Your next step, clearer.", "خطوتك الجايّة أوضح.")} /></Link>
         <nav aria-label={tr("Main", "القائمة الرئيسية")} className="hidden items-center gap-1 md:flex">{links("btn-ghost !px-3")}</nav>
-        <button type="button" className="btn-secondary shrink-0 !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
-          {lang === "en" ? "العربية" : "English"}
-        </button>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link href="/employer" aria-current={path.startsWith("/employer") ? "page" : undefined} className={`btn-ghost !px-2.5 text-sm md:!px-3 md:text-base ${path.startsWith("/employer") ? "!text-teal underline decoration-sage decoration-2 underline-offset-8" : ""}`}><span className="md:hidden">{tr("Employers", "أصحاب العمل")}</span><span className="hidden md:inline">{tr("For employers", "لأصحاب العمل")}</span></Link>
+          <button type="button" className="btn-secondary shrink-0 !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
+            {lang === "en" ? "العربية" : "English"}
+          </button>
+        </div>
       </div>
       <nav aria-label={tr("Main", "القائمة الرئيسية")} className="mx-auto flex max-w-6xl justify-between gap-1 px-2 pb-2 md:hidden">{links("btn-ghost !px-2 text-sm")}</nav>
       {inJourney && <div className="mx-auto max-w-6xl px-4 pb-3"><JourneyIndicator /></div>}

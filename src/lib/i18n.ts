@@ -2,8 +2,10 @@
 export type Lang = "en" | "ar";
 
 const dict = {
-  tagline: { en: "From where you are to where you could be.", ar: "من حيث أنت، إلى حيث يمكن أن تكون." },
-  skip_intro: { en: "Skip intro", ar: "تخطَّ المقدمة" },
+  tagline: { en: "Your next step, made clearer.", ar: "خطوتك التالية، بوضوح أكبر." },
+  descriptor: { en: "Education and skills guidance for Jordan", ar: "إرشاد تعليمي ومهاري في الأردن" },
+  find_next_step: { en: "Find my next step", ar: "اعرف خطوتك التالية" },
+  explore_example: { en: "Explore an example", ar: "استكشف مثالاً" },
   discover: { en: "Discover", ar: "اكتشف" },
   empower: { en: "Empower", ar: "تمكَّن" },
   succeed: { en: "Succeed", ar: "انجح" },

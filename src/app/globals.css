@@ -28,7 +28,20 @@
 }
 
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+
+/* Reduced motion: every animation and transition jumps straight to its final state. Nothing on the site depends on motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+html[data-bc-pending] body { visibility: hidden; }
 
 body {
   background: var(--color-ivory);
@@ -54,13 +67,26 @@ body {
 @utility h1 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-teal; }
 @utility h2 { @apply text-xl sm:text-2xl font-bold tracking-tight text-teal; }
 
-/* Intro animation */
-@keyframes bc-walk { from { transform: translateX(0); } to { transform: translateX(150px); } }
-@keyframes bc-dip { 0% { transform: translateY(0) rotate(0); } 60% { transform: translateY(26px) rotate(-14deg); } 100% { transform: translateY(0) rotate(0); } }
-@keyframes bc-cross { from { transform: translateX(150px); } to { transform: translateX(470px); } }
-@keyframes bc-plank { from { opacity: 0; transform: translateY(40px) scaleY(0.2); } to { opacity: 1; transform: translateY(0) scaleY(1); } }
-@keyframes bc-draw { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
-@keyframes bc-fade-out { to { opacity: 0; visibility: hidden; } }
-@keyframes bc-fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-@keyframes bc-legs { 0%,100% { transform: rotate(18deg); } 50% { transform: rotate(-18deg); } }
-.bc-rise { animation: bc-fade-in .5s ease-out both; }
+/* The next-step connection (homepage hero). The only animated element on the homepage:
+   one path draws to the example goal (~1.4s), its example next action appears (~0.4s), then it stops.
+   Choosing a goal moves the highlight with a 300ms transition. Labels are never animated. */
+.bc-conn-svg { overflow: visible; }
+[dir="rtl"] .bc-conn-svg { transform: scaleX(-1); }
+.bc-conn-base { fill: none; stroke: var(--color-line); stroke-width: 3; stroke-linecap: round; }
+.bc-conn-path {
+  fill: none; stroke: var(--color-teal); stroke-width: 4.5; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 0; opacity: 0; transition: opacity .3s ease;
+}
+.bc-conn-path[data-on="true"] { opacity: 1; }
+.bc-conn-path.bc-conn-intro { animation: bc-conn-draw 1.2s cubic-bezier(.4, 0, .2, 1) .2s both; }
+.bc-conn-start { fill: var(--color-sand-100); stroke: var(--color-sand-700); stroke-width: 3; }
+.bc-conn-start-core { fill: var(--color-sand-700); }
+.bc-conn-node { fill: #fff; stroke: var(--color-sage); stroke-width: 3; transition: fill .3s ease, stroke .3s ease; }
+.bc-conn-node[data-on="true"] { fill: var(--color-teal); stroke: var(--color-teal); }
+.bc-conn-label { color: var(--color-muted); transition: color .3s ease; }
+.bc-conn-label[data-on="true"] { color: var(--color-teal); font-weight: 700; }
+.bc-conn-next { opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s; }
+.bc-conn-next[data-on="true"] { opacity: 1; visibility: visible; }
+.bc-conn-next.bc-conn-intro[data-on="true"] { animation: bc-conn-appear .4s ease-out 1.5s both; }
+@keyframes bc-conn-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes bc-conn-appear { from { opacity: 0; } to { opacity: 1; } }

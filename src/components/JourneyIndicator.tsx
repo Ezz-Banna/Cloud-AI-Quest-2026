@@ -5,9 +5,9 @@ import { useBridge } from "./ProfileProvider";
 
 type Stage = { id: "discover" | "empower" | "succeed"; href: string; en: string; ar: string; subEn: string; subAr: string };
 const STAGES: Stage[] = [
-  { id: "discover", href: "/discover", en: "Discover", ar: "اكتشف", subEn: "School to university", subAr: "من المدرسة إلى الجامعة" },
-  { id: "empower", href: "/empower", en: "Empower", ar: "تمكَّن", subEn: "Student to opportunity", subAr: "من الطالب إلى الفرصة" },
-  { id: "succeed", href: "/succeed", en: "Succeed", ar: "انجح", subEn: "Learning to employment", subAr: "من التعلم إلى العمل" },
+  { id: "discover", href: "/discover", en: "Discover", ar: "اكتشف", subEn: "Choose a program", subAr: "اختر برنامجاً" },
+  { id: "empower", href: "/empower", en: "Empower", ar: "تمكَّن", subEn: "Describe your skills", subAr: "صِف مهاراتك" },
+  { id: "succeed", href: "/succeed", en: "Succeed", ar: "انجح", subEn: "Compare with a role", subAr: "قارن بدور وظيفي" },
 ];
 
 export function JourneyIndicator() {

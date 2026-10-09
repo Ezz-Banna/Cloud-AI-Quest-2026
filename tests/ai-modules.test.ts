@@ -38,16 +38,19 @@ describe("AI module guards (model output mocked)", () => {
     structured.mockResolvedValue({ ok: false, error: "timeout" });
     const r = await parseJob("Junior dev. Required: JavaScript and Git. React is a plus.");
     expect(r.mode).toBe("offline");
-    expect(r.requirements.map((x) => x.skill_id).sort()).toEqual(["git", "javascript", "react"]);
+    expect(r.items.map((x) => x.skill_id).sort()).toEqual(["git", "javascript", "react"]);
+    expect(r.items.find((x) => x.skill_id === "react")?.importance).toBe("preferred");
   });
-  it("dedupes job requirements and drops unquoted ones", async () => {
-    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 5, data: { title: "Dev", unmapped: [], requirements: [
-      { skill_id: "git", level: 1, mandatory: false, quote: "Git" },
-      { skill_id: "git", level: 2, mandatory: true, quote: "Required: Git" },
-      { skill_id: "python", level: 2, mandatory: true, quote: "Python required" },
+  it("dedupes job requirements and drops ones whose quote is not in the posting", async () => {
+    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 5, data: { title: "Dev", requirements: [
+      { label: "Git", skill_id: "git", importance: "required", level: 1, quote: "Git", alternative_group: null },
+      { label: "Git", skill_id: "git", importance: "required", level: 2, quote: "Required: Git", alternative_group: null },
+      { label: "Python", skill_id: "python", importance: "required", level: 2, quote: "Python required", alternative_group: null },
     ] } });
-    const r = await parseJob("Junior dev. Required: Git. Nice to have: Git hooks experience.");
-    expect(r.requirements).toEqual([{ skill_id: "git", level: 2, mandatory: true, quote: "Required: Git" }]);
+    const r = await parseJob("Junior dev. Required: Git.");
+    expect(r.mode).toBe("ai");
+    expect(r.items.map((x) => x.skill_id)).toEqual(["git"]);
+    expect(r.items[0]).toMatchObject({ importance: "required", level: 2 });
   });
 });
 

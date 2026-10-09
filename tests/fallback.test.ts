@@ -21,8 +21,12 @@ describe("offline fallbacks", () => {
   });
   it("parses mandatory vs preferred job requirements", () => {
     const j = fallbackJob("Junior Frontend Developer\nRequired: JavaScript, React\nExperience integrating REST APIs\nGit\nTypeScript is a plus");
-    const by = Object.fromEntries(j.requirements.map((r) => [r.skill_id, r.mandatory]));
-    expect(by).toMatchObject({ javascript: true, react: true, "rest-api": true, git: true, typescript: false });
+    const by = Object.fromEntries(j.items.map((r) => [r.skill_id, r.importance]));
+    expect(by).toMatchObject({ javascript: "required", react: "required", typescript: "preferred" });
+    // "Experience integrating REST APIs" and "Git" sit on their own lines with no requirement wording:
+    // they are kept, but marked for the person to confirm rather than assumed to be required.
+    expect(j.items.find((r) => r.skill_id === "rest-api")).toBeDefined();
+    expect(j.items.find((r) => r.skill_id === "git")).toBeDefined();
   });
   it("quote check rejects fabricated quotes", () => {
     expect(quoteInText("won a national award", "I built a website")).toBe(false);

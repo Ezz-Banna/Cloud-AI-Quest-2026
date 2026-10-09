@@ -1,4 +1,5 @@
 "use client";
+import { FitMeter } from "@/components/FitMeter";
 import Link from "next/link";
 import { cityLabel, missingLabel, streamLabel } from "@/lib/i18n";
 import { useEffect, useMemo, useState } from "react";
@@ -185,13 +186,8 @@ export default function Results() {
                 <Eligibility m={m} />
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-muted">{tr("Fit for you", "مدى الملاءمة")}</p>
-                  <div className="mt-1.5 flex items-center gap-2">
-                    <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-mist" role="meter" aria-valuemin={0} aria-valuemax={100} aria-valuenow={m.suitability} aria-label={tr("Fit score", "درجة الملاءمة")}>
-                      <div className="h-full rounded-full bg-sage" style={{ width: `${m.suitability}%` }} />
-                    </div>
-                    <span className="w-10 text-end font-bold text-teal">{m.suitability}</span>
-                  </div>
-                  <p className="mt-1 text-xs text-muted">{field ? (lang === "ar" ? field.name_ar : field.name_en) : m.program.field} · {tr(`based on ${Math.round(m.coverage * 100)}% of what matters to you`, `مبنية على ${Math.round(m.coverage * 100)}% مما يهمك`)}</p>
+                  <FitMeter fit={m.suitability} coverage={m.coverage} />
+                  <p className="mt-1 text-xs text-muted">{field ? (lang === "ar" ? field.name_ar : field.name_en) : m.program.field}</p>
                   <p className="text-xs text-muted">{tr("Not a chance of admission.", "ليست فرصة قبول.")}</p>
                 </div>
                 <div className="md:text-end">
@@ -255,7 +251,7 @@ export default function Results() {
                           </tr>
                         ))}
                       </tbody>
-                      <tfoot><tr><td className="pt-2 font-bold text-teal">{tr("Fit score", "درجة الملاءمة")}</td><td /><td className="pt-2 text-end font-bold text-teal">{m.suitability}</td></tr></tfoot>
+                      <tfoot><tr><td className="pt-2 font-bold text-teal">{tr("Match on what we know", "التوافق فيما نعرفه")}</td><td /><td className="pt-2 text-end font-bold text-teal">{m.suitability}</td></tr></tfoot>
                     </table>
                     <p className="mt-3 text-xs text-muted">{tr("Cost basis", "أساس الكلفة")}: {lang === "ar" ? m.cost.basis_ar : m.cost.basis}</p>
                     {m.program.study_plan_url && <p className="mt-1 text-xs"><a className="underline" href={m.program.study_plan_url} target="_blank" rel="noreferrer">{tr("Published study plan", "الخطة الدراسية المنشورة")} ↗</a></p>}

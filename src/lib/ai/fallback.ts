@@ -1,6 +1,7 @@
 // Offline fallbacks: transparent keyword rules used when the AI service is unavailable.
 // They are deliberately conservative: they extract less, never more.
 import { CITIES, FIELDS, SKILLS } from "../data/taxonomy";
+import { extractRequirements } from "../engines/requirements";
 
 const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
 export const normDigits = (s: string) => s.replace(/[٠-٩]/g, (c) => String(AR_DIGITS.indexOf(c)));
@@ -75,19 +76,8 @@ export function fallbackSkills(text: string) {
   return out;
 }
 
+/** Offline job reading: the deterministic extractor. Every item still goes through the person's review step. */
 export function fallbackJob(text: string) {
-  const lines = text.split(/\n|[.;•]/).map((l) => l.trim()).filter(Boolean);
-  const reqs = new Map<string, { skill_id: string; level: number; mandatory: boolean; quote: string }>();
-  for (const line of lines) {
-    const l = line.toLowerCase();
-    const preferred = /prefer|nice to have|plus|bonus|advantage|يفضل|ميزة/.test(l);
-    for (const s of SKILLS) {
-      if (reqs.has(s.id)) continue;
-      if (s.keywords.some((k) => new RegExp(`(^|[^a-z])${k.replace(/[.+]/g, "\\$&")}([^a-z]|$)`).test(l))) {
-        reqs.set(s.id, { skill_id: s.id, level: /advanced|strong|expert|senior|متقدم/.test(l) ? 3 : /basic|familiar|أساسي/.test(l) ? 1 : 2, mandatory: !preferred, quote: line.slice(0, 200) });
-      }
-    }
-  }
-  const title = lines[0]?.slice(0, 80) ?? "Untitled role";
-  return { title, requirements: [...reqs.values()], unmapped: [] as string[] };
+  const x = extractRequirements(text);
+  return { title: x.title, items: x.items, ignored: x.ignored, suspicious: x.suspicious };
 }

@@ -42,7 +42,7 @@ export default function Compare() {
   const lines: [string, (m: ProgramMatch) => React.ReactNode][] = [
     [tr("University", "الجامعة"), (m) => `${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`],
     [tr("City · type", "المدينة · النوع"), (m) => `${cityLabel(m.university.city, lang)} · ${m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}`],
-    [tr("Fit for you", "الملاءمة"), (m) => <><strong className="text-teal">{m.suitability}/100</strong><span className="block text-xs text-muted">{tr(`${Math.round(m.coverage * 100)}% of your priorities checked`, `تم التحقق من ${Math.round(m.coverage * 100)}% من أولوياتك`)}</span></>],
+    [tr("Fit for you", "الملاءمة"), (m) => <><strong className="text-teal">{m.suitability}/100</strong><span className={`block text-xs ${m.coverage < 0.75 ? "text-warn" : "text-muted"}`}>{tr(`information for ${Math.round(m.coverage * 100)}% of your priorities`, `معلومات عن ${Math.round(m.coverage * 100)}% من أولوياتك`)}</span></>],
     [tr("Admission check", "فحص القبول"), (m) => `${elig(m.eligibility.status)}${m.eligibility.published_min != null ? ` (${m.eligibility.published_min}${m.eligibility.year ? `, ${m.eligibility.year}` : ""})` : ""}`],
     [tr("Fee per credit hour", "رسوم الساعة"), (m) => (m.program.tuition_jod_per_credit_hour != null ? `${m.program.tuition_jod_per_credit_hour} JOD${m.program.tuition_track ? ` (${m.program.tuition_track})` : ""}` : dash)],
     [tr("Credit hours", "الساعات المعتمدة"), (m) => m.program.credit_hours ?? dash],

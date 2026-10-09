@@ -3,10 +3,12 @@ import Link from "next/link";
 import { kindLabel } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
-import { EvidenceBadge, ModeBadge, VerificationBadge } from "@/components/Badges";
+import { AnalysisMode, EvidenceBadge, evidenceHint, ModeBadge, VerificationBadge } from "@/components/Badges";
+import { canRequestReview, replaceSkill, requestReview, withdrawReview } from "@/lib/review-client";
+import { REVIEW_RUBRIC } from "@/lib/reviews";
 import { SKILLS, SKILL_BY_ID } from "@/lib/data/taxonomy";
 import { attachEvidence, isHttpUrl, mergeSkill } from "@/lib/profile-ops";
-import type { Achievement, Level } from "@/lib/types";
+import type { Achievement, Level, ProfileSkill } from "@/lib/types";
 import type { OpportunityMatch } from "@/lib/engines/scholarships";
 
 interface Proposed { skill_id: string; level: number; quote: string; rationale: string; accepted: boolean }
@@ -18,7 +20,7 @@ const KINDS: { v: Achievement["kind"]; en: string; ar: string }[] = [
 ];
 
 export default function Empower() {
-  const { profile, setProfile, tr, lang, setProgress, progress } = useBridge();
+  const { profile, setProfile, tr, lang, setProgress, logActivity } = useBridge();
   const [kind, setKind] = useState<Achievement["kind"]>("project");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -29,7 +31,7 @@ export default function Empower() {
   const [opps, setOpps] = useState<OpportunityMatch[] | null>(null);
   const [evidenceFor, setEvidenceFor] = useState<string | null>(null);
   const [evidenceUrl, setEvidenceUrl] = useState("");
-  const [shareMsg, setShareMsg] = useState<string | null>(null);
+  const [skillMsg, setSkillMsg] = useState<string | null>(null);
   const [pack, setPack] = useState<string | null>(null);
 
   useEffect(() => {
@@ -66,15 +68,21 @@ export default function Empower() {
     }
     setProfile(p);
     setProgress((x) => ({ ...x, empower_done: true }));
+    if (ach.links.length) logActivity("evidence-submitted", proposal.skills.find((x) => x.accepted)?.skill_id);
     setProposal(null); setTitle(""); setDesc(""); setLink("");
   }
 
-  async function toggleShare(consent: boolean) {
-    setShareMsg(null);
-    const next = { ...profile, consent_share_with_employers: consent };
-    setProfile(next);
-    const r = await fetch("/api/candidates", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ candidate_id: progress.candidate_id, profile: next, consent }) });
-    setShareMsg(r.ok ? (consent ? tr("Shared. Employers can now see your skills and evidence status (not your average, city or needs).", "تمت المشاركة. يمكن لأصحاب العمل الآن رؤية مهاراتك وحالة أدلتها (وليس معدلك أو مدينتك أو احتياجاتك).") : tr("Sharing stopped and your snapshot was removed.", "تم إيقاف المشاركة وحذف ملخصك.")) : tr("Could not update sharing.", "تعذّر تحديث المشاركة."));
+  async function askReview(sk: ProfileSkill) {
+    setSkillMsg(null);
+    const r = await requestReview(sk);
+    if (!r.ok) { setSkillMsg(r.error); return; }
+    setProfile((p) => replaceSkill(p, r.skill)); logActivity("review-requested", sk.skill_id);
+    setSkillMsg(tr("Review requested. A Bridgecom team member will check the work against the rubric below. This demo has no external reviewers.", "تم طلب المراجعة. سيقارن أحد أعضاء فريق بريدجكوم العمل بالمعايير أدناه. لا يوجد مراجعون خارجيون في هذا العرض التجريبي."));
+  }
+  async function withdraw(sk: ProfileSkill) {
+    const next = await withdrawReview(sk);
+    setProfile((p) => replaceSkill(p, next));
+    setSkillMsg(tr("Review request withdrawn and the copy of your links was deleted.", "تم سحب طلب المراجعة وحذف نسخة روابطك."));
   }
 
   function buildPack(o: OpportunityMatch) {
@@ -101,9 +109,10 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
   return (
     <div className="space-y-10">
       <div>
-        <p className="eyebrow">{tr("Stage 2 · Empower", "المرحلة 2 · تمكَّن")}</p>
-        <h1 className="h1 mt-2">{tr("Show what exams can't", "أظهر ما لا تُظهره الامتحانات")}</h1>
-        <p className="mt-2 max-w-2xl text-muted">{tr("Add things you've done. AI suggests the skills they show, each with the exact words from your description. You decide what to keep. Nothing becomes \"verified\" without evidence.", "أضف ما أنجزته. يقترح الذكاء الاصطناعي المهارات التي يُظهرها، مع الكلمات نفسها من وصفك. أنت تقرر ما تحتفظ به. لا شيء يصبح \"موثّقاً\" دون دليل.")}</p>
+        <p className="eyebrow">{tr("Describe your skills", "صِف مهاراتك")}</p>
+        <h1 className="h1 mt-2">{tr("Describe your experience as skills", "صِف خبرتك كمهارات")}</h1>
+        <p className="mt-2 max-w-2xl text-muted">{tr("Add things you've done. We suggest the skills they show, each with the exact words from your description, and you decide what to keep. A skill you describe is self-reported; a link makes it “evidence attached”; only a person's review makes it “reviewed”.", "أضف ما أنجزته. نقترح المهارات التي يُظهرها، مع الكلمات نفسها من وصفك، وأنت تقرر ما تحتفظ به. المهارة التي تصفها إفادة ذاتية؛ والرابط يجعلها «دليل مرفق»؛ والمراجعة البشرية وحدها تجعلها «روجِعت».")}</p>
+        <div className="mt-2"><AnalysisMode /></div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -120,12 +129,12 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                 <textarea id="d" className="input min-h-32" required minLength={5} value={desc} onChange={(e) => setDesc(e.target.value)} placeholder={tr("Describe your own part: tools you used, what you built, what happened.", "صف دورك أنت: الأدوات التي استخدمتها، وما بنيته، وما النتيجة.")} />
               </div>
               <div><label className="label" htmlFor="l">{tr("Evidence link (optional)", "رابط الدليل (اختياري)")}</label><input id="l" className="input" type="url" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://github.com/…" />
-                <p className="mt-1 text-xs text-muted">{tr("GitHub, portfolio, certificate page, or a public LinkedIn post. Bridgecom records the link but does not check it.", "GitHub أو معرض أعمال أو صفحة شهادة أو منشور عام على LinkedIn. يسجّل بريدجكوم الرابط لكنه لا يتحقق منه.")}</p></div>
+                <p className="mt-1 text-xs text-muted">{tr("GitHub, portfolio, certificate page, or a public LinkedIn post. Adding a link marks the skill “Evidence attached”. The work has not been reviewed yet.", "GitHub أو معرض أعمال أو صفحة شهادة أو منشور عام على LinkedIn. عند إضافة الرابط، تظهر حالة المهارة «دليل مرفق». لم يُراجع العمل بعد.")}</p></div>
               {err && <p role="alert" className="rounded-xl bg-bad-100 p-3 text-sm text-bad">{err}</p>}
               <button className="btn-primary" disabled={busy}>{busy ? tr("Reading…", "جارٍ القراءة…") : tr("Suggest skills", "اقترح المهارات")}</button>
             </form>
           ) : (
-            <div className="mt-4 space-y-4">
+            <div className="bc-arrive mt-4 space-y-4">
               <div className="flex flex-wrap items-center gap-2"><ModeBadge mode={proposal.mode} model={proposal.model} />
                 {proposal.dropped > 0 && <span className="text-xs text-muted">{tr(`${proposal.dropped} suggestion(s) removed because they weren't supported by your text`, `تم حذف ${proposal.dropped} اقتراح لأنه غير مدعوم بنصك`)}</span>}
               </div>
@@ -180,20 +189,23 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                     <span className="font-semibold text-teal">{lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en}</span>
                     <span className="flex items-center gap-2"><LevelDots level={s.level} /><EvidenceBadge s={s.status} /></span>
                   </div>
-                  <p className="mt-1 text-xs text-muted">{s.evidence.filter((e) => e.kind === "link").length} {tr("link(s)", "رابط")} · {s.evidence.filter((e) => e.kind === "quote").length} {tr("quote(s)", "اقتباس")}</p>
+                  <p className="mt-1 text-xs text-muted">{evidenceHint(s.status, lang)} · {s.evidence.filter((e) => e.kind === "link").length} {tr("link(s)", "رابط")} · {s.evidence.filter((e) => e.kind === "quote").length} {tr("quote(s)", "اقتباس")}</p>
+                  <ReviewInfo s={s} onWithdraw={() => withdraw(s)} />
+                  {canRequestReview(s) && <button className="mt-1 me-3 text-xs font-semibold text-teal underline underline-offset-2" onClick={() => askReview(s)}>{tr("Ask for a review", "اطلب مراجعة")}</button>}
                   {evidenceFor === s.skill_id ? (
-                    <form className="mt-2 flex gap-2" onSubmit={(e) => { e.preventDefault(); if (!isHttpUrl(evidenceUrl)) return; setProfile(attachEvidence(profile, s.skill_id, evidenceUrl)); setEvidenceFor(null); setEvidenceUrl(""); }}>
+                    <form className="mt-2 flex gap-2" onSubmit={(e) => { e.preventDefault(); if (!isHttpUrl(evidenceUrl)) { setSkillMsg(tr("Enter a full link starting with https://", "أدخل رابطاً كاملاً يبدأ بـ https://")); return; } setProfile(attachEvidence(profile, s.skill_id, evidenceUrl.trim())); logActivity("evidence-submitted", s.skill_id); setEvidenceFor(null); setEvidenceUrl(""); setSkillMsg(tr("Link attached. The skill now shows “Evidence attached”. The work has not been reviewed yet.", "عند إضافة الرابط، تظهر حالة المهارة «دليل مرفق». لم يُراجع العمل بعد.")); }}>
                       <label className="sr-only" htmlFor={`ev-${s.skill_id}`}>{tr("Evidence URL", "رابط الدليل")}</label>
                       <input id={`ev-${s.skill_id}`} className="input !py-1.5 text-sm" type="url" required value={evidenceUrl} onChange={(e) => setEvidenceUrl(e.target.value)} placeholder="https://" />
                       <button className="btn-primary !py-1.5">{tr("Add", "أضف")}</button>
                     </form>
                   ) : (
-                    <button className="mt-1 text-xs font-semibold text-sage-600 underline underline-offset-2" onClick={() => setEvidenceFor(s.skill_id)}>{tr("Attach evidence link", "أرفق رابط دليل")}</button>
+                    <button className="mt-1 text-xs font-semibold text-sage-600 underline underline-offset-2" onClick={() => setEvidenceFor(s.skill_id)}>{tr("Attach a link to my work", "أرفق رابطاً لعملي")}</button>
                   )}
                 </li>
               ))}
             </ul>
           )}
+          {skillMsg && <p role="status" className="mt-3 rounded-xl bg-sage-100 p-3 text-sm text-teal">{skillMsg}</p>}
           <AddSkillManually />
         </section>
       </div>
@@ -216,7 +228,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                   {a.links.map((l) => <a key={l} href={l} target="_blank" rel="noreferrer" className="mt-1 block truncate text-xs text-sage-600 underline">{l}</a>)}
                   <p className="mt-2 text-xs text-muted">{linked.length ? `${tr("Shows", "يُظهر")}: ${linked.map((s) => (lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en)).join(", ")}` : tr("No skills linked yet.", "لا توجد مهارات مرتبطة بعد.")}</p>
                   <div className="mt-2 flex gap-3 text-xs font-semibold">
-                    {linked.length === 0 && <button className="text-sage-600 underline" onClick={() => { setKind(a.kind); setTitle(a.title); setDesc(a.description); setLink(a.links[0] ?? ""); setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) }); document.getElementById("add-h")?.scrollIntoView({ behavior: "smooth" }); }}>{tr("Find skills with AI", "استخرج المهارات بالذكاء الاصطناعي")}</button>}
+                    {linked.length === 0 && <button className="text-sage-600 underline" onClick={() => { setKind(a.kind); setTitle(a.title); setDesc(a.description); setLink(a.links[0] ?? ""); setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) }); document.getElementById("add-h")?.scrollIntoView({ behavior: "smooth" }); }}>{tr("Find skills in this", "استخرج المهارات منه")}</button>}
                     <button className="text-bad underline" onClick={() => setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) })}>{tr("Remove", "إزالة")}</button>
                   </div>
                 </li>
@@ -242,12 +254,17 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                 <div><h3 className="font-bold text-teal">{lang === "ar" && o.item.name_ar ? o.item.name_ar : o.item.name_en}</h3><p className="text-sm text-muted">{o.item.provider} · {kindLabel(o.item.kind, lang)}</p></div>
                 <VerificationBadge v={o.item.verification} />
               </div>
-              <span className={`mt-3 self-start rounded-full px-3 py-1 text-xs font-semibold ${o.status === "likely-relevant" ? "bg-ok-100 text-ok" : "bg-warn-100 text-warn"}`}>{o.status === "likely-relevant" ? tr("Likely relevant", "مرجّح أن يناسبك") : tr("Check eligibility", "تحقق من الأهلية")}</span>
-              <ul className="mt-3 flex-1 space-y-1 text-sm">{o.reasons.map((r) => <li key={r.code} className="flex gap-2"><span aria-hidden="true" className={r.weight > 0 ? "text-ok" : r.weight < 0 ? "text-bad" : "text-muted"}>{r.weight > 0 ? "+" : r.weight < 0 ? "−" : "•"}</span>{lang === "ar" ? r.ar : r.en}</li>)}</ul>
-              <p className="mt-2 text-xs text-ink"><span className="font-semibold">{tr("Published eligibility", "الأهلية المنشورة")}:</span> {o.item.eligibility_text}</p>
-              {o.item.coverage_text && <p className="mt-1 text-xs text-muted">{o.item.coverage_text}</p>}
+              <span className={`mt-3 self-start rounded-full px-3 py-1 text-xs font-semibold ${o.status === "likely-relevant" ? "bg-ok-100 text-ok" : "bg-warn-100 text-warn"}`}>{o.status === "likely-relevant" ? tr("Your answers fit the published criteria", "إجاباتك توافق المعايير المنشورة") : tr("Some criteria unknown: check", "بعض المعايير غير معروفة: تحقّق")}</span>
+              <dl className="mt-3 flex-1 space-y-2 text-sm">
+                <div><dt className="text-xs font-semibold text-teal">{tr("Who can apply (as published)", "من يحق له التقديم (كما هو منشور)")}</dt><dd>{o.item.eligibility_text}</dd></div>
+                <div><dt className="text-xs font-semibold text-teal">{tr("What it covers", "ما الذي تغطيه")}</dt><dd>{o.item.coverage_text || <span className="text-muted">{tr("Not recorded; check the official page.", "غير مسجّل؛ تحقق من الصفحة الرسمية.")}</span>}</dd></div>
+                <div><dt className="text-xs font-semibold text-teal">{tr("Deadline", "الموعد النهائي")}</dt><dd className="text-muted">{tr("Not recorded. Deadlines change each cycle; check the official page.", "غير مسجّل. تتغير المواعيد كل دورة؛ تحقق من الصفحة الرسمية.")}</dd></div>
+                <div><dt className="text-xs font-semibold text-teal">{tr("Source", "المصدر")}</dt><dd className="text-xs text-muted">{o.item.sources[0]?.checked_at ? tr(`Page checked on ${o.item.sources[0].checked_at}. That does not confirm the current cycle is open.`, `تم التحقق من الصفحة في ${o.item.sources[0].checked_at}. هذا لا يؤكد أن الدورة الحالية مفتوحة.`) : tr("No check date recorded.", "لا يوجد تاريخ تحقق مسجّل.")}</dd></div>
+                <div><dt className="text-xs font-semibold text-teal">{tr("How your answers compare", "كيف تقارن إجاباتك")}</dt>
+                  <dd><ul className="space-y-1">{o.reasons.map((r) => <li key={r.code} className="flex gap-2"><span aria-hidden="true" className={r.weight > 0 ? "text-ok" : r.weight < 0 ? "text-bad" : "text-muted"}>{r.weight > 0 ? "+" : r.weight < 0 ? "−" : "?"}</span>{lang === "ar" ? r.ar : r.en}</li>)}</ul></dd></div>
+              </dl>
               <div className="mt-4 flex flex-wrap gap-2">
-                <a href={o.item.url} target="_blank" rel="noreferrer" className="btn-secondary !py-1.5">{tr("Official page", "الصفحة الرسمية")} ↗</a>
+                <a href={o.item.url} target="_blank" rel="noreferrer" className="btn-secondary !py-1.5">{tr("Next: read the official page", "التالي: اقرأ الصفحة الرسمية")} ↗</a>
                 <button className="btn-ghost !py-1.5" onClick={() => buildPack(o)}>{tr("Prepare application pack", "جهّز ملف التقديم")}</button>
               </div>
             </li>
@@ -264,19 +281,14 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
       </section>
 
       <section className="card p-5 sm:p-6" aria-labelledby="share-h">
-        <h2 id="share-h" className="h2">{tr("Share with employers", "المشاركة مع أصحاب العمل")}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Off by default. If you switch it on, employers on Bridgecom see your first name, your skills, levels and evidence status. They never see your average, city, budget, or support needs. You can switch it off any time and your snapshot is deleted.", "معطّلة افتراضياً. إذا فعّلتها، يرى أصحاب العمل على بريدجكوم اسمك الأول ومهاراتك ومستوياتها وحالة أدلتها. لا يرون معدلك أو مدينتك أو ميزانيتك أو احتياجات الدعم. يمكنك إيقافها في أي وقت وسيُحذف ملخصك.")}</p>
-        <label className="mt-4 inline-flex items-center gap-3">
-          <input type="checkbox" role="switch" className="size-5 accent-teal" checked={profile.consent_share_with_employers} onChange={(e) => toggleShare(e.target.checked)} />
-          <span className="font-semibold">{tr("Let employers see my skills profile", "اسمح لأصحاب العمل برؤية ملف مهاراتي")}</span>
-        </label>
-        {shareMsg && <p className="mt-2 text-sm text-teal" role="status">{shareMsg}</p>}
+        <h2 id="share-h" className="h2">{tr("Sharing with employers", "المشاركة مع أصحاب العمل")}</h2>
+        <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Nothing is shared by default. After you compare your experience with a role, you can choose to share your skills with that one role, and withdraw it later. Your average, city, budget and support needs are never shared.", "لا تتم مشاركة أي شيء افتراضياً. بعد مقارنة خبرتك بدور ما، يمكنك اختيار مشاركة مهاراتك مع ذلك الدور فقط، وسحبها لاحقاً. لا تتم مشاركة معدلك أو مدينتك أو ميزانيتك أو احتياجات الدعم أبداً.")}</p>
       </section>
 
       <section className="rounded-[1.25rem] bg-teal p-8 text-ivory">
-        <p className="eyebrow !text-sand">{tr("Next · Succeed", "التالي · انجح")}</p>
-        <h2 className="mt-2 text-2xl font-bold">{tr("See how close you are to a real role.", "اعرف كم أنت قريب من وظيفة حقيقية.")}</h2>
-        <Link href="/succeed" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Compare me with employer requirements", "قارنّي بمتطلبات أصحاب العمل")}</Link>
+        <p className="eyebrow !text-sand">{tr("Next", "التالي")}</p>
+        <h2 className="mt-2 text-2xl font-bold">{tr("See how your experience matches a role.", "اعرف كيف تتوافق خبرتك مع دور وظيفي.")}</h2>
+        <Link href="/succeed" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Compare with a role", "قارن بدور وظيفي")}</Link>
       </section>
     </div>
   );
@@ -304,5 +316,23 @@ function AddSkillManually() {
       </select>
       <button className="btn-secondary">{tr("Add as self-reported", "أضف كإفادة ذاتية")}</button>
     </form>
+  );
+}
+
+function ReviewInfo({ s, onWithdraw }: { s: ProfileSkill; onWithdraw: () => void }) {
+  const { tr, lang } = useBridge();
+  const r = s.review;
+  if (!r) return null;
+  const date = (d: string) => new Date(d).toLocaleDateString(lang === "ar" ? "ar" : undefined);
+  if (!r.decision) return (
+    <p className="mt-1 text-xs text-muted">{tr(`Review requested on ${date(r.requested_at)}.`, `طُلبت المراجعة في ${date(r.requested_at)}.`)} <button className="font-semibold underline" onClick={onWithdraw}>{tr("Withdraw", "اسحب الطلب")}</button></p>
+  );
+  return (
+    <details className="mt-1 text-xs">
+      <summary className="cursor-pointer font-semibold text-teal">{r.decision === "reviewed" ? tr("Review note", "ملاحظة المراجعة") : tr("What the reviewer needs", "ما يحتاجه المراجِع")} · {r.reviewer} · {r.decided_at && date(r.decided_at)}</summary>
+      <p className="mt-1">{r.reason}</p>
+      <ul className="mt-1 space-y-0.5 text-muted">{(r.rubric ?? []).map((c) => { const d = REVIEW_RUBRIC.find((x) => x.id === c.criterion); return <li key={c.criterion}>{c.met ? "✓" : "✗"} {d ? (lang === "ar" ? d.ar : d.en) : c.criterion}</li>; })}</ul>
+      <p className="mt-1 text-muted">{tr("To contest a decision, add more work and ask for another review; a different team member will look at it where possible.", "للاعتراض على القرار، أضف عملاً إضافياً واطلب مراجعة أخرى؛ وسيتولاها عضو آخر من الفريق متى أمكن.")}</p>
+    </details>
   );
 }

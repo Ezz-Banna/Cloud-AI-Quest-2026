@@ -88,3 +88,12 @@ async function callModel<S extends z.ZodType>(c: Anthropic, g: Guard, schema: S,
   }
   return { ok: false, error: lastErr };
 }
+
+/** What the interface may say about AI. Never includes the key or any part of it. */
+export function aiStatus(): { available: boolean; model: string | null; reason: "no-key" | "switched-off" | "daily-limit-reached" | null } {
+  if (!process.env.ANTHROPIC_API_KEY) return { available: false, model: null, reason: "no-key" };
+  if (process.env.BRIDGECOM_OFFLINE === "1") return { available: false, model: null, reason: "switched-off" };
+  const g = guard();
+  if (g.day === new Date().toISOString().slice(0, 10) && g.calls >= dailyLimit()) return { available: false, model: null, reason: "daily-limit-reached" };
+  return { available: true, model: MODEL, reason: null };
+}

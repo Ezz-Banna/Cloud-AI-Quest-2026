@@ -1,94 +1,106 @@
 # Bridgecom
 
-**From where you are to where you could be.** Bridgecom is an AI-assisted platform that connects three transitions for young people in Jordan: school to university (**Discover**), student to opportunity (**Empower**) and learning to employment (**Succeed**). One learner profile grows across all three, and every recommendation shows its reasons and sources.
+**Your next step, made clearer.** Education and skills guidance for Jordan.
 
-Built for AI Quest 2026, Sector 02 Smart Society & Public Services (Education & Learning, Accessibility & Inclusion).
+Bridgecom helps students, graduates and anyone without one-to-one guidance with three decisions: which university program to consider (Discover), how to describe the experience they already have as skills (Empower), and what a role still asks of them (Succeed). Every result shows where it came from, the person can correct what the system read, and nothing is presented as an admission chance, a readiness percentage or a hiring prediction.
 
-## What works today
+Built for AI Quest 2026, Sector 02 Smart Society & Public Services. Live demo: https://bridgecom.onrender.com (free plan: sleeps when idle, demo data resets on restart).
 
-Every row marked Working was exercised by the automated tests listed under Tests, on a local production build, in offline AI mode.
+## What is real, simulated and planned
 
-| Page / feature | Status |
+| Capability | Status |
 |---|---|
-| `/` Landing: intro animation (skippable, reduced motion), three-stage journey, trust principles | Working |
-| `/discover` Step-by-step onboarding: 8 steps with progress bar and validation (education level, stream and average, subjects, interests and hobbies, strengths, projects, career dreams, industries, budget, locations, university priorities, accessibility), then a review screen | Working |
-| `/discover` Optional chat onboarding: AI turns answers into a profile, student reviews and edits | Working offline. AI path unit-tested with mocked model output; **not yet run against the live API** (no key in the build environment) |
-| `/discover/results` Personalised fit engine: eligibility as eligible / ineligible / unknown (published minimum, year, track, source; past cut-offs as history only), fit score from student-weighted criteria with data-less criteria left out, coverage shown, priority sliders that re-rank live, strengths, trade-offs, rule-based alternatives, follow-up questions only when they change the results, cost with fee year and check date, missing data, sources, save | Working. See `docs/04-fit-engine.md` |
-| Study plans: curriculum topics and practical training from official study plans (6 programs so far); admin tool reads a pasted study plan into topics backed by exact course-title quotes | Working (offline keyword path tested end to end; AI path unit-tested with mocked output) |
-| Conflicting sources: an import that disagrees with verified data on fees, credit hours or minimum average is flagged in admin and excluded from scoring until resolved | Working (unit-tested) |
-| "Explain in plain words": AI rewording of the computed reasons; any number or reason not in the facts is rejected and a template is shown | Working offline (template); same AI caveat |
-| `/compare` Side-by-side comparison of up to four saved programs (eligibility, fit and coverage, cost and other fees, strengths, trade-offs, practical training, study plan, past cut-off, missing data, sources) plus a plain-language comparison | Working (comparison text: template offline, AI path same caveat) |
-| `/dashboard` Profile completeness, top matches, saved programs, skills, opportunities, journey progress, readiness | Working |
-| `/empower` Achievements with evidence links, AI skill suggestions with exact quotes, My skills, portfolio, scholarship matching, application pack draft, opt-in sharing | Working (same AI caveat for suggestions). Bridgecom has **no funding partners** and sends nothing |
-| `/employer` Demo organisation, role, skills with proficiency and importance, recommended courses, paste-a-posting parsing, publish to the demo store, consenting candidates only | Working. Organisations created here are labelled **Demo organisation**, distinct from verified employers |
-| `/succeed` Gap analysis (required level, demonstrated level, evidence, met / needs evidence / below level / missing, learning priority) | Working |
-| `/succeed` Course pathway: objective, course, provider, prerequisites, duration (when verified), URL, outcome, practical project; mark complete, attach evidence, progress over time | Working. Completing a course never changes a skill's status |
-| `/admin` Password-protected: JSON import with validation report, edit or revert program and course records, provenance review (missing source, stale over 180 days), delete demo roles, AI error log | Working with a single shared `ADMIN_PASSWORD` (signed httpOnly cookie, 8 h). Not multi-user accounts |
-| `/data` Coverage counts, real vs synthetic, program table with sources | Working |
-| Arabic UI with RTL, mobile layout | Working on all core screens |
-| Persistence | Learner profile: browser localStorage. Employer roles, consented snapshots, admin edits and imports, AI log: JSON files in `data/runtime/` on the server. Verified by e2e on one Node process; not suitable for read-only/serverless hosting |
-| Student accounts, file uploads, LinkedIn import, real employer verification | Not built (roadmap) |
+| Program eligibility (published minimums), cost, fit and information coverage from sourced records | Live |
+| Reading job postings and experience descriptions with keyword rules, English and Arabic, every item tied to an exact quote | Live |
+| Reading with an AI model (Claude) whose output is checked against the rules | Implemented; **off** on the live site until `ANTHROPIC_API_KEY` is set; not yet run against the live API |
+| Editable requirement review before any comparison; comparison as counts plus one next step; ordered practice plan | Live |
+| Evidence states: Self-reported, Evidence attached, Awaiting review, Reviewed against a stated rubric, Needs clarification | Live |
+| Human review of submitted work | **Simulated reviewers**: Bridgecom team members via `/admin`; see `docs/governance.md` |
+| Employers, roles, demo student "Lina" | **Synthetic**, labelled in the UI |
+| Per-role sharing with employers (off by default, revocable) | Live |
+| Accounts, reviewer roles, partner reviewers, employer verification, database | Planned |
 
-**Synthetic data, disclosed:** the three employers and their roles, and the demo student "Lina", are invented and labelled in the UI. Universities, programs, fees, minimum averages, scholarships and courses come from public sources collected on 2026-10-09; each record stores its source URL and check date. The dataset is a curated subset (11 universities, 44 programs, 13 support programs, 45 courses; 6 programs with study plans read), not full national coverage. Accreditation status, other mandatory fees and past competitive cut-offs are not collected yet; they show as missing and are left out of scoring. Missing values are left blank, never estimated.
+Full report with the issue register, test matrix, scorecard and risks: `docs/06-competition-readiness.md`.
 
 ## Run it
 
-Requirements: Node.js 20+ and npm.
+Requirements: Node.js 20+ (22 recommended) and npm.
 
 ```bash
-npm install
-cp .env.example .env.local      # add ANTHROPIC_API_KEY for AI mode, ADMIN_PASSWORD for /admin
-npm run dev                     # http://localhost:3000
+npm ci
+cp .env.example .env.local        # optional: ADMIN_PASSWORD for /admin, ANTHROPIC_API_KEY for AI mode
+npm run dev                       # http://localhost:3000
 ```
 
-Without a key the app runs in **offline mode**: the AI steps use transparent keyword rules and the UI shows an "Offline keyword rules" badge. Set `BRIDGECOM_OFFLINE=1` to force this during a demo if the network is unreliable. Without `ADMIN_PASSWORD` the admin area and data import are disabled (HTTP 503).
+Without a key everything runs on keyword rules and the interface says so before and after each analysis. Production: `npm run build && npm start`.
 
-Production: `npm run build && npm start`. Deploy to a Node host with a writable disk (or move the repository layer to Postgres, see `db/schema.sql`). Delete `data/runtime/*.json` to reset demo data.
+## Environment variables
 
-## Deploy
+| Name | Purpose | Default |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | Enables AI reading (server-side only; never sent to the browser or returned by any endpoint) | unset = keyword rules |
+| `BRIDGECOM_MODEL` | Model id | `claude-opus-5-5` |
+| `BRIDGECOM_OFFLINE` | `1` forces keyword rules even with a key | unset |
+| `AI_DAILY_CALL_LIMIT` | Max AI API calls per UTC day per process | 2000 |
+| `ADMIN_PASSWORD` | Enables `/admin` (data management and work reviews) | unset = admin disabled |
+| `BRIDGECOM_STORE_PATH` | Location of the runtime JSON store (tests use a temp file) | `data/runtime/store.json` |
 
-**Render (recommended, free):** in the Render dashboard choose New › Blueprint, connect this GitHub repository, and accept `render.yaml`. Render builds with `npm ci && npm run build`, starts with `npm start`, and generates `ADMIN_PASSWORD` (see Environment). Add `ANTHROPIC_API_KEY` there for AI mode. The free plan sleeps after 15 idle minutes, so open the site a minute before a demo.
-
-Any Node host with a writable disk works the same way (Railway, a VM). Serverless hosts such as Vercel are not supported, because employer roles, consent snapshots and admin edits are saved as files in `data/runtime/`.
-
-## Tests
-
-```bash
-npm test                        # 54 unit tests: engines, 10 fit-engine scenarios, real-data grounding, offline rules, AI output guards, completeness, admin tokens
-npm run build
-ADMIN_PASSWORD=test-admin npm start &    # the e2e script logs in with this password
-node scripts/e2e.mjs http://localhost:3000 ./e2e-screens   # 50 browser checks, desktop + mobile
-```
-
-Last run (2026-10-09): 54/54 unit tests and 50/50 end-to-end checks passed; axe-core accessibility scan (WCAG 2 A/AA) of 10 pages in English and Arabic found 0 violations, no unexpected browser console errors, in offline AI mode. `npx tsc --noEmit` and `npm run lint` are clean.
+Set secrets in the host's environment settings (Render › Environment). Never commit them or paste them into chat.
 
 ## Architecture
 
 ```
-Browser (Next.js React, profile in localStorage)
-   │  JSON over /api/*
-Next.js route handlers (Node)
-   ├─ Deterministic engines (src/lib/engines)  eligibility · fit score · cost · scholarships · gap · pathway
-   ├─ AI modules (src/lib/ai)                  profile · skills · job parsing · explanation → Zod-validated → guards → offline fallback
-   │     └─ Anthropic SDK, claude-opus-5-5, structured outputs, timeout + 1 retry
-   └─ Repository (src/lib/data/repo.ts)        data/verified/*.json (sourced) + data/synthetic + data/runtime
+Browser (Next.js/React; profile and progress in localStorage)
+  │  JSON over /api/* (only the fields each endpoint needs)
+Middleware: request id, rate limits, body-size caps, admin origin check, security headers
+Route handlers (Node)
+  ├─ Engines (src/lib/engines)   requirements reader · role comparison and practice plan · eligibility, fit, cost · scholarships
+  ├─ AI modules (src/lib/ai)     Zod-validated structured output → quote checks → rule cross-check → keyword fallback
+  ├─ Tokens (src/lib/tokens)     random bearer tokens, stored hashed, constant-time compare
+  └─ Repository (src/lib/data)   data/verified (sourced) + data/synthetic + data/runtime/store.json (atomic writes)
 ```
 
-The language model only interprets and phrases language. Admission eligibility, tuition, funding status, skill status and readiness are computed by rules from sourced records; course completion never counts as proof of a skill.
+Key rules: the language model only reads and phrases; eligibility, costs, evidence states and comparisons are computed by deterministic rules. A comparison receives only skill ids, levels, evidence states and completed course ids. A finished course never records a skill. An id is never a credential: reading or changing a share or a review request needs its token.
 
-- Stack: Next.js 15 (App Router), TypeScript, Tailwind CSS 4, Zod, Anthropic TypeScript SDK, Vitest, Playwright.
-- Docs: `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md` (PRD, journeys, IA, design system, test plan, MVP scope, roadmap), `docs/03-ai-modules.md`, `docs/05-audit-and-readiness.md` (audit results, demo script, backup plan, pitch and Q&A), `docs/04-fit-engine.md` (fit engine: data architecture, import and audit, eligibility rules, ranking method, AI guards, endpoints, tests, source provenance), `db/schema.sql`.
-- Data schema for seed and import files: `data/verified/SCHEMA.md`.
+Endpoints: `/api/readiness` (comparison), `/api/ai/job`, `/api/candidates` (per-role shares), `/api/reviews` and `/api/admin/reviews`, `/api/roles`, `/api/match/*`, `/api/status`, `/api/health`.
 
-## Environment variables
+## Data provenance
 
-| Name | Purpose |
-|---|---|
-| `ANTHROPIC_API_KEY` | Enables AI mode (server-side only, never sent to the browser) |
-| `BRIDGECOM_MODEL` | Override the model id (default `claude-opus-5-5`) |
-| `BRIDGECOM_OFFLINE` | `1` forces offline rules |
-| `ADMIN_PASSWORD` | Enables `/admin` and data import; unset means disabled |
+Universities, programs, fees, minimum averages, scholarships and courses come from public sources collected on 2026-10-09; each record stores its source URL and check date, and missing values are left blank, never estimated (11 universities, 44 programs, 13 support programs, 45 courses). A check date means the page was read that day, not that the current cycle is open. Employers, roles and the demo student are synthetic. No real personal data is used. Schema: `data/verified/SCHEMA.md`.
+
+## Tests
+
+```bash
+npm run typecheck && npm run lint
+npm test                                   # 118 tests incl. job-reading fixtures, held-out measurement, invariants, access control
+npm run build
+ADMIN_PASSWORD=test-admin BRIDGECOM_STORE_PATH=/tmp/bc-store.json npm start &
+node scripts/e2e.mjs http://localhost:3000 ./e2e-screens   # 75 browser checks, desktop and mobile
+node scripts/a11y.mjs http://localhost:3000                # axe-core WCAG 2.1 A/AA, EN/AR, 390/640/1366 px
+node scripts/smoke.mjs https://bridgecom.onrender.com      # 6 read-only GETs; safe for the public demo
+```
+
+Results from the last run are in `docs/06-competition-readiness.md`; machine-readable outputs in `tests/results/`. Do not point the e2e or a11y scripts at the public site: they create data. CI (`.github/workflows/ci.yml`) runs type check, lint, tests, build, a dependency audit of shipped packages and a secret scan on every push.
+
+## Deploy, roll back and recover
+
+- Deploy: push to `main`; Render builds with `npm ci && npm run build` and checks `/api/health` (`render.yaml`).
+- Verify: `node scripts/smoke.mjs https://bridgecom.onrender.com`; `/api/health` reports the commit in `build`.
+- Roll back: Render › Deploys › pick the last good deploy › Rollback, or `git revert` the bad commit and push.
+- Backup and restore: the only server state is `data/runtime/*.json` (demo roles, shares, review requests, admin data edits). Copy the folder to back it up and copy it back to restore. On Render's free plan it is reset on every restart; for anything beyond a demo, move the repository layer to Postgres (`db/schema.sql`).
+- If the site is down during a demo: run locally with `BRIDGECOM_OFFLINE=1 npm start`.
+
+## Known limitations
+
+- No user accounts; one shared admin password; admin sessions and rate limits live in memory on one process.
+- AI mode is untested against the live API. Held-out job-reading recall is 0.767 (unclear items are sent to the person to confirm).
+- No usability study yet; no screen-reader run; Arabic copy not reviewed by a native editor.
+- The rate limiter trusts the first `X-Forwarded-For` hop; CSP allows inline scripts (documented in `next.config.ts`).
 
 ## Privacy
 
-The learner profile is stored in the browser. Nothing reaches employers unless the learner switches on sharing, and then only first name, skills, levels and evidence status (no grades, city, budget or accessibility needs). Switching off deletes the server snapshot.
+The learner profile stays in the browser. Nothing is shared unless the person shares with one specific role; then only skills, levels, evidence states and completed course ids (plus your first name, if you gave one), and they can withdraw it. A review request sends only that skill's links and quotes and is deleted 30 days after a decision.
+
+## Docs
+
+`docs/06-competition-readiness.md` (this build's report), `docs/governance.md` (review workflow), `docs/04-fit-engine.md`, `docs/03-ai-modules.md`, `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md`. `docs/05-audit-and-readiness.md` describes the earlier build (readiness percentages) and is kept for history.

@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "note": "Blind held-out set written without access to the extractor or the v1 fixtures. Same semantics as v1.",
+  "cases": [
+    {
+      "id": "en-frontend-plain-required",
+      "text": "We are hiring a Junior Front-End Developer to join our office in Amman.\n\nRequirements:\n- Solid knowledge of HTML, CSS and JavaScript\n- Experience using Git for version control\n- Good communication skills\n- Bachelor's degree in Computer Science or a related field",
+      "expect": {
+        "html": "required",
+        "css": "required",
+        "javascript": "required",
+        "git": "required",
+        "communication": "required"
+      },
+      "absent": ["react", "typescript", "ui-design"]
+    },
+    {
+      "id": "en-react-is-a-plus",
+      "text": "Junior React Developer - Amman (Hybrid)\n\nWhat you need:\n- At least 1 year of experience with JavaScript\n- Hands-on experience building apps with React\n\nTypeScript is a plus. Familiarity with consuming REST APIs is also a plus.",
+      "expect": {
+        "javascript": "required",
+        "react": "required",
+        "typescript": "preferred",
+        "rest-api": "preferred"
+      },
+      "absent": ["nodejs", "html", "css"]
+    },
+    {
+      "id": "en-data-analyst-python-or-r",
+      "text": "Data Analyst - Financial Services, Amman\n\nRequired qualifications:\n- Strong SQL skills\n- Experience with Python or R for data analysis\n- Advanced Excel (pivot tables, VLOOKUP)\n- Fluent English, written and spoken\n\nWe offer a competitive salary, social security and health insurance.",
+      "expect": {
+        "sql": "required",
+        "python": "required",
+        "r-lang": "required",
+        "data-analysis": "required",
+        "excel": "required",
+        "english": "required"
+      },
+      "groups": [["python", "r-lang"]],
+      "absent": ["machine-learning"]
+    },
+    {
+      "id": "en-explicit-not-required",
+      "text": "Operations Assistant (Entry Level)\n\nWe are looking for an organized person to support our operations team in Zarqa.\n\n- Good working knowledge of Excel is required.\n- Knowledge of SQL is not required; full training will be provided.\n- Fresh graduates are welcome to apply.",
+      "expect": {
+        "excel": "required",
+        "sql": "not-required"
+      },
+      "absent": ["data-analysis", "python"]
+    },
+    {
+      "id": "en-headings-requirements-nice-to-have",
+      "text": "Backend Developer\n\nRequirements:\n- 2+ years of experience with Node.js\n- Designing and integrating REST APIs\n- Working with SQL databases\n- Git\n\nNice to have:\n- TypeScript\n- Python",
+      "expect": {
+        "nodejs": "required",
+        "rest-api": "required",
+        "sql": "required",
+        "git": "required",
+        "typescript": "preferred",
+        "python": "preferred"
+      },
+      "absent": ["react", "javascript"],
+      "comment": "javascript is not named explicitly; Node.js does not imply a javascript entry."
+    },
+    {
+      "id": "en-long-company-text",
+      "text": "About us:\nFounded in 2012, we are a fast-growing logistics technology company headquartered in Amman with branches in Aqaba and Irbid. Our data platform serves more than 300 clients across the region, and we are proud of our open culture, flexible working hours, annual bonuses, private health insurance and a modern office near the 7th Circle. We regularly sponsor local university hackathons and community events.\n\nThe role:\nWe are looking for a Machine Learning Engineer to build demand forecasting models.\n\nThe ideal candidate must have:\n- Strong experience in Python\n- Practical experience with machine learning models in production\n- Professional English\n\nTo apply, send your CV to our careers page.",
+      "expect": {
+        "python": "required",
+        "machine-learning": "required",
+        "english": "required"
+      },
+      "absent": ["data-analysis", "communication", "sql"],
+      "comment": "'data platform' in company text is not a data analysis requirement."
+    },
+    {
+      "id": "en-contradiction-python",
+      "text": "Junior QA Automation Engineer\n\nResponsibilities include writing automated test scripts.\n\nRequirements:\n- Python is required for this role.\n- Good communication skills.\n\nPlease note: Python experience is not required, as we will train the selected candidate.",
+      "expect": {
+        "python": "unclear",
+        "communication": "required"
+      }
+    },
+    {
+      "id": "en-graphic-designer-out-of-list",
+      "text": "Graphic Designer - Marketing Agency, Amman\n\nRequirements:\n- Excellent command of Adobe Photoshop and Illustrator\n- A strong portfolio\n- Good English\n\nExperience with UI/UX design is a plus.",
+      "expect": {
+        "english": "required",
+        "ui-design": "preferred"
+      },
+      "absent": ["html", "css", "javascript"]
+    },
+    {
+      "id": "en-java-not-javascript",
+      "text": "Java Developer\n\nRequired:\n- 3+ years of experience with Java and Spring Boot\n- SQL (Oracle or MySQL)\n- Git\n\nJavaScript is not needed for this position; the role is backend only.",
+      "expect": {
+        "sql": "required",
+        "git": "required",
+        "javascript": "not-required"
+      },
+      "absent": ["nodejs", "react", "typescript"]
+    },
+    {
+      "id": "en-stack-mention-no-wording",
+      "text": "Software Developer\n\nAbout the team: our product team works with React and Node.js and ships new features every two weeks.\n\nRequirements:\n- Bachelor's degree in Computer Science or Software Engineering\n- Good communication skills",
+      "expect": {
+        "react": "unclear",
+        "nodejs": "unclear",
+        "communication": "required"
+      },
+      "comment": "React and Node.js are only described as the team's stack, with no requirement wording."
+    },
+    {
+      "id": "ar-frontend-plain-required",
+      "text": "مطلوب مطور واجهات أمامية للعمل في عمّان.\n\nالمتطلبات:\n- إتقان HTML و CSS و JavaScript\n- خبرة في استخدام Git\n- مهارات تواصل جيدة والقدرة على العمل ضمن فريق\n- درجة البكالوريوس في علم الحاسوب أو ما يعادلها",
+      "expect": {
+        "html": "required",
+        "css": "required",
+        "javascript": "required",
+        "git": "required",
+        "communication": "required"
+      },
+      "absent": ["react", "ui-design"]
+    },
+    {
+      "id": "ar-yufaddal-mizah-idafiyah",
+      "text": "شركة ناشئة في عمّان تبحث عن مطور React.\n\nيشترط:\n- خبرة لا تقل عن سنة في React و JavaScript\n\nيفضل معرفة TypeScript.\nمعرفة التعامل مع REST API ميزة إضافية.",
+      "expect": {
+        "react": "required",
+        "javascript": "required",
+        "typescript": "preferred",
+        "rest-api": "preferred"
+      },
+      "absent": ["nodejs"]
+    },
+    {
+      "id": "ar-explicit-negation",
+      "text": "مطلوب موظف/ة إدخال بيانات لشركة تجارية في عمّان.\n\n- إتقان برنامج Excel شرط أساسي.\n- لا يشترط معرفة SQL.\n- اللغة الإنجليزية ليست مطلوبة.\n- الدوام من الأحد إلى الخميس.",
+      "expect": {
+        "excel": "required",
+        "sql": "not-required",
+        "english": "not-required"
+      },
+      "absent": ["data-analysis"]
+    },
+    {
+      "id": "ar-headings-required-preferred",
+      "text": "محلل بيانات\n\nالمتطلبات:\n- خبرة في Python\n- معرفة قواعد البيانات و SQL\n- مهارات قوية في تحليل البيانات\n\nيفضل:\n- خبرة في تعلم الآلة\n- معرفة لغة R",
+      "expect": {
+        "python": "required",
+        "sql": "required",
+        "data-analysis": "required",
+        "machine-learning": "preferred",
+        "r-lang": "preferred"
+      }
+    },
+    {
+      "id": "ar-react-or-vue",
+      "text": "مطلوب مطور Front-End لشركة برمجيات في عمّان.\n\nالمتطلبات:\n- خبرة في React أو Vue\n- إتقان HTML و CSS\n- معرفة Git",
+      "expect": {
+        "react": "required",
+        "html": "required",
+        "css": "required",
+        "git": "required"
+      },
+      "comment": "React is one of two accepted alternatives (Vue is not in the known list), so no group is listed; reading it as required-as-alternative."
+    },
+    {
+      "id": "ar-jordanian-duplicate-node",
+      "text": "شركة برمجيات في إربد بدها مبرمج Node.js.\n\nلازم يكون عندك خبرة منيحة بـ Node.js و JavaScript، وخبرة Node.js سنتين على الأقل.\nإذا بتعرف TypeScript بكون أحسن.\nالراتب حسب الخبرة، ابعث السيرة الذاتية على الإيميل.",
+      "expect": {
+        "nodejs": "required",
+        "javascript": "required",
+        "typescript": "preferred"
+      },
+      "absent": ["react"]
+    },
+    {
+      "id": "ar-long-company-text",
+      "text": "عن الشركة:\nتأسست شركتنا عام 2010 وهي من الشركات الرائدة في مجال التجارة الإلكترونية في الأردن، ولدينا مكاتب في عمّان والعقبة. نقدم لموظفينا تأميناً صحياً شاملاً وضماناً اجتماعياً ومكافآت سنوية وبيئة عمل مريحة قريبة من شارع المدينة المنورة، كما نشارك في العديد من المبادرات المجتمعية.\n\nالوظيفة: منسق/ة مبيعات\n\nالشروط:\n- إتقان اللغة الإنجليزية محادثة وكتابة\n- خبرة في استخدام Excel\n- مهارات تواصل ممتازة",
+      "expect": {
+        "english": "required",
+        "excel": "required",
+        "communication": "required"
+      },
+      "absent": ["data-analysis", "sql"]
+    },
+    {
+      "id": "ar-civil-engineer-out-of-list",
+      "text": "مطلوب مهندس مدني حديث التخرج لشركة مقاولات في عمّان.\n\n- إتقان AutoCAD و Revit شرط أساسي.\n- معرفة Excel ميزة إضافية.\n- لا يشترط خبرة سابقة.",
+      "expect": {
+        "excel": "preferred"
+      },
+      "absent": ["data-analysis", "ui-design"]
+    },
+    {
+      "id": "mixed-data-analyst-headings",
+      "text": "Job Title: Data Analyst\n\nالمتطلبات:\n- Advanced Excel\n- SQL\n- Power BI\n\nNice to have:\n- Python أو R\n- مهارات العرض والتواصل",
+      "expect": {
+        "excel": "required",
+        "sql": "required",
+        "python": "preferred",
+        "r-lang": "preferred",
+        "communication": "preferred"
+      },
+      "groups": [["python", "r-lang"]],
+      "comment": "data-analysis appears only in the job title, so it is left out of expect as ambiguous."
+    },
+    {
+      "id": "mixed-ui-ux-designer",
+      "text": "We're hiring a UI/UX Designer في عمّان.\n\nRequirements:\n- خبرة في تصميم UI/UX لا تقل عن سنتين\n- إتقان Figma\n- English جيدة\n\nمعرفة HTML و CSS is a plus.",
+      "expect": {
+        "ui-design": "required",
+        "english": "required",
+        "html": "preferred",
+        "css": "preferred"
+      },
+      "absent": ["javascript", "react"]
+    }
+  ]
+}

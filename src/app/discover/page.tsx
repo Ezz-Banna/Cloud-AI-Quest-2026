@@ -1,4 +1,5 @@
 "use client";
+import { AnalysisMode } from "@/components/Badges";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBridge } from "@/components/ProfileProvider";
@@ -39,14 +40,15 @@ export default function Discover() {
         </button>
       </div>
       <div className="mt-6 inline-flex rounded-full bg-mist p-1" role="tablist" aria-label={tr("How would you like to answer?", "كيف تحب أن تجيب؟")}>
-        {([["form", tr("Step-by-step form", "استبيان خطوة بخطوة")], ["chat", tr("Chat with AI", "محادثة مع الذكاء الاصطناعي")]] as const).map(([m, label]) => (
+        {([["form", tr("Step-by-step form", "استبيان خطوة بخطوة")], ["chat", tr("Conversation", "محادثة")]] as const).map(([m, label]) => (
           <button key={m} role="tab" aria-selected={mode === m} type="button" onClick={() => setMode(m)}
             className={`rounded-full px-4 py-2 text-sm font-semibold ${mode === m ? "bg-white text-teal shadow" : "text-muted"}`}>{label}</button>
         ))}
       </div>
       <p className="mt-2 text-sm text-muted">{mode === "form"
         ? tr("Eight short steps. Every answer can be changed later.", "ثماني خطوات قصيرة. يمكنك تغيير أي إجابة لاحقاً.")
-        : tr("Answer in your own words, in Arabic or English. AI turns your answers into a profile that you check before we use it.", "أجب بكلماتك بالعربية أو الإنجليزية. يحوّل الذكاء الاصطناعي إجاباتك إلى ملف تتحقق منه قبل استخدامه.")}</p>
+        : tr("Answer in your own words, in Arabic or English. We turn your answers into a profile that you check before we use it.", "أجب بكلماتك بالعربية أو الإنجليزية. نحوّل إجاباتك إلى ملف تتحقق منه قبل استخدامه.")}</p>
+        <div className="mt-2"><AnalysisMode /></div>
       <div className="mt-4">{mode === "form" ? <OnboardingForm onDone={done} /> : <ChatOnboarding onDone={done} />}</div>
     </div>
   );

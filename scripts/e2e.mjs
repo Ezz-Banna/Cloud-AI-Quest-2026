@@ -19,16 +19,15 @@ async function run(viewport, tag) {
   page.on("console", (m) => { if (m.type() === "error" && !/status of 401/.test(m.text())) errors.push(`${tag} console: ${m.text()}`); });
 
   await page.goto(BASE);
-  const intro = page.getByRole("dialog", { name: /introduction/i });
-  check(`${tag}: intro animation shows`, await intro.waitFor({ timeout: 3000 }).then(() => true, () => false));
-  await page.waitForTimeout(2200);
-  await page.screenshot({ path: `${OUT}/${tag}-01-intro.png` });
-  await page.getByRole("button", { name: /skip intro/i }).click();
-  check(`${tag}: intro is skippable`, !(await intro.isVisible()));
+  check(`${tag}: no compulsory intro`, (await page.getByRole("dialog").count()) === 0);
+  check(`${tag}: one h1 with the tagline`, (await page.locator("h1").count()) === 1 && /next step, made clearer/i.test(await page.locator("h1").innerText()));
+  check(`${tag}: example entry point offered`, await page.getByRole("link", { name: /explore an example/i }).isVisible());
+  await page.getByRole("link", { name: /find my next step/i }).click();
+  await page.waitForTimeout(600);
+  check(`${tag}: "Find my next step" moves focus to the goals`, await page.evaluate(() => !!document.activeElement?.closest("#goals") || document.activeElement?.id === "goals"));
   await page.screenshot({ path: `${OUT}/${tag}-02-home.png`, fullPage: true });
 
-  await page.getByRole("link", { name: /start my journey/i }).click();
-  await page.waitForURL("**/discover");
+  await page.goto(`${BASE}/discover`);
   if (tag === "desktop") {
     // Step-by-step form
     const cont = () => page.getByRole("button", { name: /^(Continue|See my matches)$/ }).click();
@@ -47,7 +46,7 @@ async function run(viewport, tag) {
     await cont();
   } else {
     // AI conversational mode
-    await page.getByRole("tab", { name: /chat with ai/i }).click();
+    await page.getByRole("tab", { name: /conversation/i }).click();
     const answers = ["Lina", "86.4 scientific stream", "I love coding and making websites, maybe AI too", "Build apps that help people in Jordan as a web developer", "About 2500 JOD, I need a scholarship", "Irbid, Amman is fine too", "No preference", "Nothing specific"];
     for (const a of answers) {
       await page.getByLabel("Your answer").fill(a);
@@ -66,14 +65,15 @@ async function run(viewport, tag) {
   check(`${tag}: cards show trade-offs and the not-a-chance note`, (await page.getByRole("heading", { name: "Trade-offs" }).first().isVisible()) && (await page.getByText("Not a chance of admission.").first().isVisible()));
   await page.getByRole("button", { name: /why this recommendation/i }).first().click();
   check(`${tag}: reasons and sources expand`, await page.getByRole("heading", { name: "Sources" }).first().isVisible());
-  check(`${tag}: factor table adds up to the fit score`, await page.locator("tfoot").first().getByText("Fit score").isVisible());
-  const meter = page.locator("main ol > li").first().getByRole("meter");
-  const fitBefore = await meter.getAttribute("aria-valuenow");
+  check(`${tag}: factor table adds up to the match score`, await page.locator("tfoot").first().getByText("Match on what we know").isVisible());
+  check(`${tag}: fit and information coverage shown separately`, await page.locator("main ol > li").first().getByText("Information available").isVisible());
+  const meterSel = "main ol > li [role=img][aria-label^='Match on what we know']";
+  const fitBefore = await page.locator(meterSel).first().getAttribute("aria-label");
   await page.getByRole("button", { name: /adjust priorities/i }).click();
   await page.getByLabel("Location", { exact: false }).first().fill("0");
-  await page.waitForFunction((b) => document.querySelector("main ol > li [role=meter]")?.getAttribute("aria-valuenow") !== b, fitBefore, { timeout: 10000 }).catch(() => {});
-  const fitAfter = await page.locator("main ol > li").first().getByRole("meter").getAttribute("aria-valuenow");
-  check(`${tag}: priority slider re-ranks live (top fit ${fitBefore} -> ${fitAfter})`, fitBefore !== fitAfter);
+  await page.waitForFunction(([sel, b]) => document.querySelector(sel)?.getAttribute("aria-label") !== b, [meterSel, fitBefore], { timeout: 10000 }).catch(() => {});
+  const fitAfter = await page.locator(meterSel).first().getAttribute("aria-label");
+  check(`${tag}: priority slider re-ranks live`, fitBefore !== fitAfter);
   await page.getByRole("button", { name: "Reset" }).click();
   await page.getByRole("button", { name: /explain in plain words/i }).first().click();
   await page.getByText(/Template explanation|Written by AI/).first().waitFor({ timeout: 40000 });
@@ -102,36 +102,55 @@ async function run(viewport, tag) {
   await page.screenshot({ path: `${OUT}/${tag}-05-skills-proposed.png`, fullPage: true });
   await page.getByRole("button", { name: /save with my description/i }).click();
   check(`${tag}: skills saved to profile`, (await page.locator("#skills-h + span, section[aria-labelledby=skills-h] li").count()) >= 2);
-  await page.getByRole("switch").check();
-  await page.getByRole("status").filter({ hasText: /Shared/ }).waitFor();
-  check(`${tag}: consent sharing works`, true);
-  await page.getByText(/likely relevant/i).first().waitFor({ timeout: 10000 });
+  check(`${tag}: attached link shows "Evidence attached", not reviewed`, await page.locator("section[aria-labelledby=skills-h]").getByText("Evidence attached").first().isVisible());
+  check(`${tag}: no global share-with-all-employers switch`, (await page.getByRole("switch").count()) === 0);
+  if (tag === "desktop") {
+    await page.getByRole("button", { name: /ask for a review/i }).first().click();
+    check(`${tag}: review requested`, await page.getByRole("status").filter({ hasText: /Review requested/ }).waitFor({ timeout: 5000 }).then(() => true, () => false));
+    check(`${tag}: skill shows "Awaiting review"`, await page.getByText("Awaiting review").first().isVisible());
+  }
+  await page.getByText(/fit the published criteria/i).first().waitFor({ timeout: 10000 });
+  check(`${tag}: scholarship card separates who can apply, coverage, deadline and source`, await page.getByText("Who can apply (as published)").first().isVisible() && await page.getByText("Deadline", { exact: true }).first().isVisible());
   check(`${tag}: scholarships matched`, true);
   await page.screenshot({ path: `${OUT}/${tag}-06-empower.png`, fullPage: true });
 
-  // Succeed
+  // Compare with a role
   await page.goto(`${BASE}/succeed`);
   await page.getByRole("button", { name: /Junior Frontend Developer/ }).click();
-  await page.getByRole("heading", { name: /your learning pathway/i }).waitFor({ timeout: 15000 });
-  const ring = page.getByRole("img", { name: /Readiness/ });
-  const before = await ring.getAttribute("aria-label");
-  await page.screenshot({ path: `${OUT}/${tag}-07-readiness.png`, fullPage: true });
-  await page.getByRole("button", { name: /mark course complete/i }).first().click();
-  await page.waitForTimeout(800);
-  const afterCourse = await ring.getAttribute("aria-label");
-  check(`${tag}: completing a course alone does not raise readiness (${before} -> ${afterCourse})`, before === afterCourse);
-  await page.getByRole("button", { name: /I've done this, add my link/i }).first().click();
+  await page.getByRole("heading", { name: /How does your experience match this role/i }).waitFor({ timeout: 15000 });
+  const cmp = page.locator("section[aria-labelledby=cmp-h]");
+  check(`${tag}: comparison shows counts and no percentage`, !(/\d+\s*%/.test(await cmp.innerText())));
+  check(`${tag}: one next step`, (await page.getByText("Next step", { exact: true }).count()) === 1);
+  const withWork = async () => (await cmp.locator("dl > div").nth(1).locator("dd").first().innerText()).split("/")[0].trim();
+  const before = await withWork();
+  await page.screenshot({ path: `${OUT}/${tag}-07-compare.png`, fullPage: true });
+  await page.getByRole("button", { name: /Already done this\? Attach your work/i }).first().click();
   await page.getByLabel("Link to your work").fill("https://example.org/synthetic-project");
-  await page.getByRole("button", { name: /add evidence/i }).click();
+  await page.getByRole("button", { name: /attach link/i }).click();
+  await page.getByRole("status").filter({ hasText: /Evidence attached/ }).waitFor({ timeout: 5000 });
   await page.waitForTimeout(1200);
-  const after = await ring.getAttribute("aria-label");
-  check(`${tag}: evidence raises readiness (${before} -> ${after})`, parseInt(after.match(/\d+/)[0]) > parseInt(before.match(/\d+/)[0]));
-  await page.screenshot({ path: `${OUT}/${tag}-08-readiness-after.png`, fullPage: true });
+  const after = await withWork();
+  check(`${tag}: attaching work updates the "with work attached" count (${before} -> ${after})`, Number(after) > Number(before));
+  check(`${tag}: later steps are collapsed`, (await page.locator("section[aria-labelledby=path-h] details:not([open])").count()) >= 0);
+  await page.getByRole("button", { name: /share my skills with this role/i }).click();
+  check(`${tag}: per-role share works`, await page.getByRole("button", { name: /^Withdraw$/ }).waitFor({ timeout: 5000 }).then(() => true, () => false));
+  await page.screenshot({ path: `${OUT}/${tag}-08-compare-after.png`, fullPage: true });
+
+  // Paste a posting: requirements are reviewed before anything is compared
+  await page.getByLabel("Job posting text").fill("Test vacancy: Junior analyst. Python is not required. SQL is mandatory. Excel is preferred. No React experience is needed.");
+  await page.getByRole("button", { name: /read the posting/i }).click();
+  await page.getByRole("heading", { name: /check what we read/i }).waitFor({ timeout: 40000 });
+  const rr = page.locator("section[aria-labelledby=rr-h] li");
+  const rows = {};
+  for (let k = 0; k < await rr.count(); k++) { const sel = rr.nth(k).locator("select"); rows[await sel.nth(0).inputValue()] = await sel.nth(1).inputValue(); }
+  check(`${tag}: posting read correctly (${JSON.stringify(rows)})`, rows.sql === "required" && rows.excel === "preferred" && rows.python === "not-required" && rows.react === "not-required" && !rows["data-analysis"]);
+  await page.getByRole("button", { name: /confirm and compare/i }).click();
+  await page.getByRole("heading", { name: /How does your experience match this role/i }).waitFor({ timeout: 15000 });
+  check(`${tag}: not-required items listed as not compared`, await page.getByText(/Not compared \(2\)/).isVisible());
 
   // Employer sees consenting candidate
   await page.goto(`${BASE}/employer`);
-  await page.getByText("Lina").first().waitFor({ timeout: 10000 });
-  check(`${tag}: employer sees consenting candidate`, true);
+  check(`${tag}: shares for a role need its manage token`, await page.getByText(/visible only on the device that published it/).waitFor({ timeout: 10000 }).then(() => true, () => false));
   if (tag === "desktop") {
     await page.getByLabel("Organisation", { exact: true }).fill("Demo Studio");
     await page.getByLabel("Role title").fill("Junior React Developer");
@@ -140,6 +159,7 @@ async function run(viewport, tag) {
     await page.getByRole("button", { name: /publish role/i }).click();
     await page.getByRole("status").filter({ hasText: /demo database/ }).waitFor();
     check(`${tag}: employer published demo role with a recommended course`, true);
+    check(`${tag}: publisher can open its own role's shares`, await page.getByText(/shared their profile yet/).waitFor({ timeout: 10000 }).then(() => true, () => false));
   }
   await page.screenshot({ path: `${OUT}/${tag}-09-employer.png`, fullPage: true });
 
@@ -169,6 +189,16 @@ async function run(viewport, tag) {
     await page.getByRole("status").filter({ hasText: /Saved/ }).waitFor();
     check(`${tag}: admin edits a program record`, true);
     await page.getByRole("button", { name: /revert my edit/i }).click();
+    await page.getByRole("tab", { name: /work reviews/i }).click();
+    await page.getByRole("button", { name: "Review", exact: true }).first().click();
+    for (const cb of await page.locator("section[aria-labelledby=rv-h] fieldset input[type=checkbox]").all()) await cb.check();
+    await page.getByLabel(/reason the person will see/i).fill("Repository opens and the quiz uses JavaScript at the stated level.");
+    await page.getByLabel("Your name").fill("E2E reviewer");
+    await page.getByRole("button", { name: /save decision/i }).click();
+    check(`${tag}: reviewer records a rubric decision`, await page.getByRole("status").filter({ hasText: /reviewed against the rubric/i }).waitFor({ timeout: 5000 }).then(() => true, () => false));
+    await page.goto(`${BASE}/empower`);
+    check(`${tag}: person sees the decision`, await page.locator("section[aria-labelledby=skills-h]").getByText("Reviewed against a stated rubric").first().waitFor({ timeout: 8000 }).then(() => true, () => false));
+    await page.goto(`${BASE}/admin`);
     await page.getByRole("tab", { name: /AI review/ }).click();
     check(`${tag}: AI review log lists calls`, (await page.locator("tbody tr").count()) > 0);
     await page.getByRole("tab", { name: /provenance/i }).click();
@@ -195,7 +225,8 @@ await run({ width: 390, height: 844 }, "mobile");
 const rm = await browser.newContext({ reducedMotion: "reduce" });
 const p = await rm.newPage();
 await p.goto(BASE);
-check("reduced motion: still logo, no moving scene", (await p.locator(".bc-traveller").count()) === 0);
+await p.waitForTimeout(400);
+check("reduced motion: no running animations on the homepage", (await p.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length)) === 0);
 await rm.close();
 await browser.close();
 

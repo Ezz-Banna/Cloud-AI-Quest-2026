@@ -14,7 +14,7 @@ interface Overview {
   candidates: number;
   ai_log: AILogEntry[];
 }
-const TABS = ["overview", "data", "provenance", "opportunities", "ai", "import"] as const;
+const TABS = ["overview", "reviews", "data", "provenance", "opportunities", "ai", "import"] as const;
 
 export default function Admin() {
   const { tr } = useBridge();
@@ -59,8 +59,8 @@ export default function Admin() {
         <button className="btn-secondary" onClick={async () => { await fetch("/api/admin/logout", { method: "POST" }); setState("login"); }}>{tr("Sign out", "خروج")}</button>
       </div>
       <div className="flex flex-wrap gap-2" role="tablist">
-        {TABS.map((t) => <button key={t} role="tab" aria-selected={tab === t} className="chip" aria-pressed={tab === t} onClick={() => setTab(t)}>
-          {{ overview: tr("Overview", "نظرة عامة"), data: tr("Edit records", "تعديل السجلات"), provenance: tr(`Provenance (${ov.issues.length})`, `المصادر (${ov.issues.length})`), opportunities: tr("Opportunities", "الفرص"), ai: tr(`AI review (${errors.length})`, `مراجعة الذكاء الاصطناعي (${errors.length})`), import: tr("Import", "استيراد") }[t]}
+        {TABS.map((t) => <button key={t} role="tab" aria-selected={tab === t} className="chip" onClick={() => setTab(t)}>
+          {{ overview: tr("Overview", "نظرة عامة"), reviews: tr("Work reviews", "مراجعة الأعمال"), data: tr("Edit records", "تعديل السجلات"), provenance: tr(`Provenance (${ov.issues.length})`, `المصادر (${ov.issues.length})`), opportunities: tr("Opportunities", "الفرص"), ai: tr(`AI review (${errors.length})`, `مراجعة الذكاء الاصطناعي (${errors.length})`), import: tr("Import", "استيراد") }[t]}
         </button>)}
       </div>
 
@@ -73,6 +73,7 @@ export default function Admin() {
           <div className="card p-5"><p className="eyebrow">{tr("AI calls logged", "طلبات الذكاء الاصطناعي")}</p><p className="mt-2 text-3xl font-bold text-teal">{ov.ai_log.length}</p><p className="text-sm text-muted">{ov.ai_log.filter((e) => e.mode === "ai").length} AI · {ov.ai_log.filter((e) => e.mode === "offline").length} offline</p></div>
         </section>
       )}
+      {tab === "reviews" && <Reviews />}
       {tab === "data" && <RecordEditor ov={ov} onSaved={load} />}
       {tab === "provenance" && <Provenance issues={ov.issues} />}
       {tab === "opportunities" && (
@@ -238,5 +239,57 @@ function StudyPlanReader({ json, setJson }: { json: string; setJson: (s: string)
         </div>
       )}
     </details>
+  );
+}
+
+interface Rev { id: string; skill_id: string; level: number; evidence: { kind: string; value: string }[]; requested_at: string; decision?: string; reason?: string; reviewer?: string; decided_at?: string }
+type Crit = { id: string; en: string; ar: string };
+/** Minimal reviewer workflow: a team member checks submitted work against a fixed rubric and records a reason. */
+function Reviews() {
+  const { tr, lang } = useBridge();
+  const [data, setData] = useState<{ rubric: Crit[]; reviews: Rev[] } | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
+  const [met, setMet] = useState<Record<string, boolean>>({});
+  const [reason, setReason] = useState("");
+  const [reviewer, setReviewer] = useState("");
+  const [msg, setMsg] = useState<string | null>(null);
+  const load = useCallback(() => { fetch("/api/admin/reviews").then((r) => r.json()).then(setData).catch(() => setMsg(tr("Could not load reviews.", "تعذّر تحميل المراجعات."))); }, [tr]);
+  useEffect(load, [load]);
+  async function decide(id: string) {
+    setMsg(null);
+    const r = await fetch("/api/admin/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, reason, reviewer, rubric: data!.rubric.map((c) => ({ criterion: c.id, met: !!met[c.id] })) }) });
+    const d = await r.json();
+    if (!r.ok) { setMsg(d.error); return; }
+    setMsg(d.decision === "reviewed" ? tr("Saved as reviewed against the rubric.", "حُفظ كمُراجَع وفق المعايير.") : tr("Saved as needs clarification. The person will see your reason.", "حُفظ كيحتاج إلى توضيح. سيرى الشخص السبب."));
+    setOpen(null); setMet({}); setReason(""); load();
+  }
+  if (!data) return <div className="card h-24 animate-pulse bg-mist/60" />;
+  return (
+    <section className="card p-5" aria-labelledby="rv-h">
+      <h2 id="rv-h" className="h2">{tr("Work reviews", "مراجعة الأعمال")}</h2>
+      <p className="mt-1 max-w-3xl text-sm text-muted">{tr("Demo workflow: reviewers are Bridgecom team members, not external assessors. A decision is \"reviewed\" only when every rubric line is met; otherwise it is \"needs clarification\" with your reason. Requests are deleted 30 days after a decision (60 days if undecided).", "سير عمل تجريبي: المراجِعون أعضاء في فريق بريدجكوم وليسوا مقيّمين خارجيين. يكون القرار «روجِع» فقط عند تحقق كل معيار؛ وإلا «يحتاج إلى توضيح» مع سببك. تُحذف الطلبات بعد 30 يوماً من القرار (60 يوماً إن لم يُتخذ قرار).")}</p>
+      {msg && <p role="status" className="mt-3 rounded-xl bg-mist p-3 text-sm text-teal">{msg}</p>}
+      {data.reviews.length === 0 && <p className="mt-4 text-sm text-muted">{tr("No review requests.", "لا توجد طلبات مراجعة.")}</p>}
+      <ul className="mt-4 space-y-3">{data.reviews.map((r) => (
+        <li key={r.id} className="rounded-2xl border border-line p-4 text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="font-semibold text-teal">{r.skill_id} · {tr("level", "مستوى")} {r.level}</p>
+            <span className="text-xs text-muted">{r.decision ? `${r.decision} · ${r.reviewer}` : tr("Open", "مفتوح")} · {new Date(r.requested_at).toLocaleDateString()}</span>
+          </div>
+          <ul className="mt-2 space-y-0.5">{r.evidence.map((e, i) => <li key={i} className="truncate">{e.kind === "link" ? <a href={e.value} target="_blank" rel="noreferrer noopener" className="text-sage-600 underline">{e.value}</a> : <q className="text-muted">{e.value}</q>}</li>)}</ul>
+          {r.reason && <p className="mt-2 text-xs text-muted">{r.reason}</p>}
+          {!r.decision && (open === r.id ? (
+            <form className="mt-3 space-y-2" onSubmit={(e) => { e.preventDefault(); decide(r.id); }}>
+              <fieldset><legend className="text-xs font-semibold">{tr("Rubric", "المعايير")}</legend>
+                {data.rubric.map((c) => <label key={c.id} className="flex items-start gap-2"><input type="checkbox" className="mt-1 accent-teal" checked={!!met[c.id]} onChange={(e) => setMet({ ...met, [c.id]: e.target.checked })} />{lang === "ar" ? c.ar : c.en}</label>)}
+              </fieldset>
+              <label className="block"><span className="text-xs font-semibold">{tr("Reason the person will see", "السبب الذي سيراه الشخص")}</span><textarea className="input mt-1 min-h-16 text-sm" required minLength={10} value={reason} onChange={(e) => setReason(e.target.value)} /></label>
+              <label className="block"><span className="text-xs font-semibold">{tr("Your name", "اسمك")}</span><input className="input mt-1 !py-1.5" required minLength={2} value={reviewer} onChange={(e) => setReviewer(e.target.value)} /></label>
+              <div className="flex gap-2"><button className="btn-primary !py-1.5">{tr("Save decision", "احفظ القرار")}</button><button type="button" className="btn-ghost" onClick={() => setOpen(null)}>{tr("Cancel", "إلغاء")}</button></div>
+            </form>
+          ) : <button className="btn-secondary mt-3 !py-1.5" onClick={() => { setOpen(r.id); setMet({}); setReason(""); }}>{tr("Review", "راجِع")}</button>)}
+        </li>
+      ))}</ul>
+    </section>
   );
 }

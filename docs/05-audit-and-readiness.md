@@ -1,5 +1,7 @@
 # Bridgecom final audit and competition readiness
 
+> **Superseded.** This audit describes the earlier build that showed readiness percentages. The current build is described in `06-competition-readiness.md`.
+
 Audit date: 2026-10-09 (Jordan time, afternoon). Deadline: 2026-10-10 13:00. Sector 02, Smart Society & Public Services.
 Everything marked **Executed** was run in this build environment. Judge reviews (section 7) are **simulated** and labelled as such.
 

@@ -50,9 +50,27 @@ export const ProfileInput = z.object({
   university_type: z.enum(["public", "private", "any"]).optional(),
   accessibility_needs: z.array(z.string().max(200)).max(10).default([]),
   strengths: z.array(z.string().max(100)).max(20).default([]),
-  skills: z.array(z.object({ skill_id: z.string(), level: Level, status: z.enum(["self-reported", "evidence-attached", "practical-assessed", "issuer-verified"]), evidence: z.array(z.any()).default([]) })).max(60).default([]),
+  skills: z.array(z.object({ skill_id: z.string(), level: Level, status: z.enum(["self-reported", "evidence-attached", "awaiting-review", "reviewed", "needs-clarification"]), evidence: z.array(z.any()).default([]) })).max(60).default([]),
   achievements: z.array(z.any()).max(50).default([]),
   completed_courses: z.array(z.string()).max(200).default([]),
   consent_share_with_employers: z.boolean().default(false),
   name: z.string().max(80).optional(),
 }).passthrough();
+
+/** One requirement as confirmed by the person (or an employer). skill_id null = outside the skill list. */
+export const RequirementInput = z.object({
+  skill_id: z.string().max(60).nullable(),
+  level: z.number().int().min(1).max(3),
+  mandatory: z.boolean().optional(),
+  importance: z.enum(["required", "preferred", "not-required", "unclear"]).optional(),
+  label: z.string().max(120).optional(),
+  quote: z.string().max(600).optional(),
+  alt_group: z.string().max(40).optional(),
+  flags: z.array(z.enum(["conflicting-statements", "no-stated-requirement", "not-in-skill-list", "duplicate-merged", "ai-and-rules-disagree", "edited-by-user"])).max(6).optional(),
+}).transform((r) => ({ ...r, mandatory: r.mandatory ?? r.importance === "required" }));
+
+/** The only profile fields a comparison needs. Names, grades, cities and needs are not accepted. */
+export const ComparisonProfile = z.object({
+  skills: z.array(z.object({ skill_id: z.string().max(60), level: Level, status: z.enum(["self-reported", "evidence-attached", "awaiting-review", "reviewed", "needs-clarification"]) })).max(60).default([]),
+  completed_courses: z.array(z.string().max(80)).max(200).default([]),
+}).strict();

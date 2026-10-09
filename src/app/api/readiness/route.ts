@@ -1,22 +1,28 @@
 import { NextResponse } from "next/server";
 import * as z from "zod/v4";
-import { parseBody, ProfileInput } from "@/lib/api";
+import { ComparisonProfile, parseBody, RequirementInput } from "@/lib/api";
 import { getCourses, getRoles } from "@/lib/data/repo";
-import { assessRole, buildPathway } from "@/lib/engines/gap";
-import type { EmployerRole, LearnerProfile } from "@/lib/types";
+import { buildPathway, compareRole, type ComparisonInput } from "@/lib/engines/gap";
+import type { RoleRequirement } from "@/lib/types";
+
+// Compares recorded skills with a role's confirmed requirements. Receives only skills (id, level, evidence state)
+// and completed course ids; the rest of the profile stays on the device.
+const Body = z.object({
+  profile: ComparisonProfile,
+  language: z.enum(["en", "ar"]).default("en"),
+  role_id: z.string().max(80).optional(),
+  requirements: z.array(RequirementInput).max(40).optional(),
+}).strict();
 
 export async function POST(req: Request) {
-  const InlineRole = z.object({
-    id: z.string(), employer_id: z.string().default("pasted"), title: z.string().max(200), kind: z.enum(["job", "internship", "project"]).default("job"),
-    description: z.string().max(8000).default(""), verification: z.enum(["verified", "partial", "unverified", "synthetic"]).default("unverified"),
-    requirements: z.array(z.object({ skill_id: z.string(), level: z.number().int().min(1).max(3), mandatory: z.boolean() })).min(1).max(40),
-  });
-  const b = await parseBody(req, z.object({ profile: ProfileInput, role_id: z.string().optional(), role: InlineRole.optional() }));
+  const b = await parseBody(req, Body);
   if (!b.ok) return b.res;
-  const role = (b.data.role as EmployerRole | undefined) ?? getRoles().find((r) => r.id === b.data.role_id);
-  if (!role) return NextResponse.json({ error: "Role not found" }, { status: 404 });
-  const profile = b.data.profile as unknown as LearnerProfile;
+  const role = b.data.role_id ? getRoles().find((r) => r.id === b.data.role_id) : undefined;
+  if (b.data.role_id && !role) return NextResponse.json({ error: "Role not found" }, { status: 404 });
+  const requirements = (b.data.requirements as RoleRequirement[] | undefined) ?? role?.requirements ?? [];
   const courses = getCourses();
-  const readiness = assessRole(role, profile, courses);
-  return NextResponse.json({ role, readiness, pathway: buildPathway(readiness, profile, courses, role.recommended_course_ids ?? []) });
+  const input = b.data.profile as ComparisonInput;
+  const comparison = compareRole(requirements, input, courses);
+  const pathway = buildPathway(comparison, { ...input, language: b.data.language }, courses, role?.recommended_course_ids ?? []);
+  return NextResponse.json({ role_id: role?.id ?? null, comparison, pathway });
 }

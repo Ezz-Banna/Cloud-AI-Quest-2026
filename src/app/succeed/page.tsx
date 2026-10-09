@@ -2,24 +2,30 @@
 import { useEffect, useState } from "react";
 import { cityLabel, kindLabel } from "@/lib/i18n";
 import { useBridge } from "@/components/ProfileProvider";
-import { ModeBadge, VerificationBadge } from "@/components/Badges";
-import { Readiness } from "@/components/Readiness";
+import { AnalysisMode, ModeBadge, VerificationBadge } from "@/components/Badges";
+import { Comparison, type ComparedRole } from "@/components/Comparison";
+import { RequirementReview, type Draft } from "@/components/RequirementReview";
 import { SKILL_BY_ID } from "@/lib/data/taxonomy";
-import type { Employer, EmployerRole } from "@/lib/types";
+import { importanceOf, type Employer, type EmployerRole } from "@/lib/types";
 
 export default function Succeed() {
-  const { tr, lang, progress, setProgress, profile } = useBridge();
+  const { tr, lang, progress, setProgress, profile, logActivity, hydrated } = useBridge();
   const [roles, setRoles] = useState<EmployerRole[] | null>(null);
   const [emps, setEmps] = useState<Employer[]>([]);
-  const [pasted, setPasted] = useState<EmployerRole | null>(null);
   const [jd, setJd] = useState("");
   const [busy, setBusy] = useState(false);
-  const [mode, setMode] = useState<{ mode: "ai" | "offline"; model?: string } | null>(null);
+  const [review, setReview] = useState<{ title: string; items: Draft[]; ignored: number; suspicious: number; mode: "ai" | "offline" | "edit"; model?: string } | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => { fetch("/api/roles").then((r) => r.json()).then((d) => { setRoles(d.roles); setEmps(d.employers); }).catch(() => { setRoles([]); setErr(tr("We couldn't reach the Bridgecom server. Check your connection and refresh.", "تعذّر الوصول إلى خادم بريدجكوم. تحقق من الاتصال وحدّث الصفحة.")); }); }, [tr]);
-  const selected = pasted && progress.selected_role === pasted.id ? pasted : roles?.find((r) => r.id === progress.selected_role) ?? null;
-  const select = (id: string) => { setProgress((p) => ({ ...p, selected_role: id })); setTimeout(() => document.getElementById("readiness")?.scrollIntoView({ behavior: "smooth" }), 50); };
+
+  const pasted = progress.pasted_role;
+  const seeded = roles?.find((r) => r.id === progress.selected_role);
+  const selected: ComparedRole | null = pasted && progress.selected_role === pasted.id
+    ? { id: pasted.id, title: pasted.title, requirements: pasted.requirements, seeded: false }
+    : seeded ? { id: seeded.id, title: seeded.title, requirements: seeded.requirements, seeded: true } : null;
+  const focusResult = () => setTimeout(() => document.getElementById("result")?.focus(), 50);
+  const select = (id: string) => { setReview(null); setProgress((p) => ({ ...p, selected_role: id })); focusResult(); };
 
   async function parse(e: React.FormEvent) {
     e.preventDefault(); setBusy(true); setErr(null);
@@ -27,24 +33,42 @@ export default function Succeed() {
       const r = await fetch("/api/ai/job", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: jd }) });
       const d = await r.json();
       if (!r.ok) throw new Error(d.error);
-      if (!d.requirements.length) throw new Error(tr("No recognisable skills found in this posting.", "لم نجد مهارات معروفة في هذا الإعلان."));
-      const role: EmployerRole = { id: `pasted-${Date.now()}`, employer_id: "pasted", title: d.title, kind: "job", description: jd, verification: "unverified", requirements: d.requirements.map((x: { skill_id: string; level: number; mandatory: boolean }) => ({ skill_id: x.skill_id, level: x.level, mandatory: x.mandatory })) };
-      setPasted(role); setMode({ mode: d.mode, model: d.model }); select(role.id);
+      setReview({ title: d.title, items: d.items, ignored: d.ignored?.length ?? 0, suspicious: d.suspicious?.length ?? 0, mode: d.mode, model: d.model });
+      setTimeout(() => document.getElementById("rr-h")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
     } catch (e) { setErr(String((e as Error).message)); } finally { setBusy(false); }
   }
+  function confirm(items: Draft[]) {
+    const role: EmployerRole = {
+      id: `pasted-${Date.now()}`, employer_id: "pasted", title: review?.title || tr("Pasted posting", "إعلان ملصق"), kind: "job", description: "", verification: "unverified",
+      requirements: items.map(({ id: _id, ...x }) => ({ ...x, mandatory: x.importance === "required" })),
+    };
+    setProgress((p) => ({ ...p, pasted_role: role, selected_role: role.id }));
+    logActivity("requirements-confirmed", role.title);
+    setReview(null); focusResult();
+  }
+  const editPasted = () => {
+    if (!pasted) return;
+    setReview({ title: pasted.title, items: pasted.requirements.map((r, i) => ({ ...r, id: `e-${i}`, label: r.label ?? (r.skill_id ? SKILL_BY_ID[r.skill_id]?.name_en ?? r.skill_id : ""), importance: importanceOf(r), flags: r.flags ?? [] })), ignored: 0, suspicious: 0, mode: "edit" });
+  };
+  const chip = (q: EmployerRole["requirements"][number], i: number) => {
+    const imp = importanceOf(q);
+    const nm = q.skill_id ? (lang === "ar" ? SKILL_BY_ID[q.skill_id]?.name_ar : SKILL_BY_ID[q.skill_id]?.name_en) : q.label;
+    return <span key={i} className={`rounded-full px-2.5 py-0.5 text-xs ${imp === "required" ? "bg-teal/10 font-semibold text-teal" : "bg-mist text-muted"}`}>{nm}{imp === "preferred" && <span className="sr-only"> ({tr("preferred", "مفضّلة")})</span>}</span>;
+  };
 
   return (
     <div className="space-y-10">
       <div>
-        <p className="eyebrow">{tr("Stage 3 · Succeed", "المرحلة 3 · انجح")}</p>
-        <h1 className="h1 mt-2">{tr("How close are you to the job?", "كم أنت قريب من الوظيفة؟")}</h1>
-        <p className="mt-2 max-w-2xl text-muted">{tr("Pick a role or paste a real posting. We compare what it asks for with the skills you've shown evidence for, then build a learning path in the right order.", "اختر دوراً أو الصق إعلان وظيفة حقيقياً. نقارن ما يطلبه بالمهارات التي قدّمت أدلة عليها، ثم نبني مسار تعلم بالترتيب الصحيح.")}</p>
-        {profile.skills.length === 0 && <p className="mt-3 rounded-xl bg-sand-100 p-3 text-sm text-sand-700">{tr("Your skills profile is empty, so every skill will show as missing. Add achievements in Empower first.", "ملف مهاراتك فارغ، لذا ستظهر جميع المهارات كمفقودة. أضف إنجازاتك في مرحلة تمكَّن أولاً.")}</p>}
+        <p className="eyebrow">{tr("Compare with a role", "قارن بدور وظيفي")}</p>
+        <h1 className="h1 mt-2">{tr("Compare your experience with a role", "قارن خبرتك بدور وظيفي")}</h1>
+        <p className="mt-2 max-w-2xl text-muted">{tr("Pick an example role or paste a posting. You check what was read, then see what you've recorded against each requirement and one practical next step.", "اختر دوراً تجريبياً أو الصق إعلاناً. تتحقق مما قُرئ، ثم ترى ما سجّلته مقابل كل متطلب وخطوة عملية تالية واحدة.")}</p>
+        {hydrated && profile.skills.length === 0 && <p className="mt-3 max-w-2xl rounded-xl bg-sand-100 p-3 text-sm text-sand-700">{tr("You haven't recorded any experience yet. You can still see what a role asks for; to compare, describe your experience in Skills first.", "لم تسجّل أي خبرة بعد. ما زال بإمكانك الاطلاع على ما يطلبه الدور؛ وللمقارنة صِف خبرتك في «المهارات» أولاً.")}</p>}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <section aria-labelledby="roles-h">
-          <h2 id="roles-h" className="h2">{tr("Open roles", "الأدوار المتاحة")}</h2>
+          <h2 id="roles-h" className="h2">{tr("Example roles", "أدوار تجريبية")}</h2>
+          <p className="mt-1 text-xs text-muted">{tr("These employers and roles are synthetic, made up for the demo.", "أصحاب العمل والأدوار هنا تجريبية، أُنشئت لأغراض العرض.")}</p>
           {!roles && <div className="card mt-4 h-40 animate-pulse bg-mist/60" />}
           <ul className="mt-4 space-y-3">
             {roles?.map((r) => {
@@ -57,7 +81,7 @@ export default function Succeed() {
                       <div><p className="font-bold text-teal">{r.title}</p><p className="text-sm text-muted">{emp?.name ?? "—"} · {cityLabel(r.city, lang)} · {kindLabel(r.kind, lang)}</p></div>
                       <VerificationBadge v={r.verification} />
                     </div>
-                    <p className="mt-3 flex flex-wrap gap-1.5">{r.requirements.map((q) => <span key={q.skill_id} className={`rounded-full px-2.5 py-0.5 text-xs ${q.mandatory ? "bg-teal/10 font-semibold text-teal" : "bg-mist text-muted"}`}>{lang === "ar" ? SKILL_BY_ID[q.skill_id]?.name_ar : SKILL_BY_ID[q.skill_id]?.name_en}</span>)}</p>
+                    <p className="mt-3 flex flex-wrap gap-1.5">{r.requirements.filter((q) => importanceOf(q) !== "not-required").map(chip)}</p>
                   </button>
                 </li>
               );
@@ -67,26 +91,38 @@ export default function Succeed() {
 
         <section className="card h-fit p-5 sm:p-6" aria-labelledby="paste-h">
           <h2 id="paste-h" className="h2">{tr("Paste a job posting", "الصق إعلان وظيفة")}</h2>
-          <p className="mt-1 text-sm text-muted">{tr("AI turns the text into skill requirements, each tied to a quote from the posting.", "يحوّل الذكاء الاصطناعي النص إلى متطلبات مهارات، كل منها مرتبط باقتباس من الإعلان.")}</p>
+          <p className="mt-1 text-sm text-muted">{tr("Each requirement we find is tied to a quote from the posting. You check them before anything is compared.", "كل متطلب نجده مرتبط باقتباس من الإعلان. تتحقق منها قبل أي مقارنة.")}</p>
+          <div className="mt-2"><AnalysisMode /></div>
           <form onSubmit={parse} className="mt-4 space-y-3">
             <label htmlFor="jd" className="sr-only">{tr("Job posting text", "نص إعلان الوظيفة")}</label>
-            <textarea id="jd" className="input min-h-40 text-sm" required minLength={20} value={jd} onChange={(e) => setJd(e.target.value)} placeholder={tr("Paste the requirements section here…", "الصق قسم المتطلبات هنا…")} />
+            <textarea id="jd" dir="auto" className="input min-h-40 text-sm" required minLength={20} maxLength={8000} value={jd} onChange={(e) => setJd(e.target.value)} placeholder={tr("Paste the requirements section here, in English or Arabic…", "الصق قسم المتطلبات هنا، بالعربية أو الإنجليزية…")} />
             {err && <p role="alert" className="rounded-xl bg-bad-100 p-3 text-sm text-bad">{err}</p>}
-            <button className="btn-primary" disabled={busy}>{busy ? tr("Reading…", "جارٍ القراءة…") : tr("Analyse posting", "حلّل الإعلان")}</button>
+            <button className="btn-primary" disabled={busy}>{busy ? tr("Reading…", "جارٍ القراءة…") : tr("Read the posting", "اقرأ الإعلان")}</button>
           </form>
-          {pasted && mode && <div className="mt-3 flex items-center gap-2 text-sm"><ModeBadge mode={mode.mode} model={mode.model} /><span className="text-muted">{pasted.requirements.length} {tr("requirements found", "متطلبات")}</span></div>}
+          {pasted && !review && (
+            <p className="mt-3 text-sm">
+              <button type="button" className="font-semibold text-teal underline underline-offset-2" onClick={() => select(pasted.id)}>{tr("Your pasted posting", "إعلانك الملصق")}: {pasted.title}</button>
+            </p>
+          )}
         </section>
       </div>
 
-      <div id="readiness" className="scroll-mt-40">
-        {selected ? (
+      {review && (
+        <div>
+          {review.mode !== "edit" && <div className="mb-3"><ModeBadge mode={review.mode} model={review.model} /></div>}
+          <RequirementReview key={review.title + review.items.length} initial={review.items} ignored={review.ignored} suspicious={review.suspicious} onConfirm={confirm} onCancel={() => setReview(null)} />
+        </div>
+      )}
+
+      <div id="result" tabIndex={-1} className="scroll-mt-40 outline-none">
+        {!review && (selected ? (
           <>
-            <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted">{tr("Readiness for", "الجاهزية لـ")} <span className="text-teal">{selected.title}</span></h2>
-            <Readiness role={selected} />
+            <p className="mb-4 text-sm font-bold uppercase tracking-wider text-muted">{tr("Compared with", "مقارنة مع")} <span className="text-teal">{selected.title}</span></p>
+            <Comparison role={selected} onEditRequirements={selected.seeded ? undefined : editPasted} />
           </>
         ) : (
-          <p className="card p-8 text-center text-muted">{tr("Choose a role above to see your skills gap and learning pathway.", "اختر دوراً أعلاه لعرض فجوة مهاراتك ومسار تعلّمك.")}</p>
-        )}
+          <p className="card p-8 text-center text-muted">{tr("Choose an example role or paste a posting to compare.", "اختر دوراً تجريبياً أو الصق إعلاناً للمقارنة.")}</p>
+        ))}
       </div>
     </div>
   );

@@ -138,17 +138,42 @@ export interface Course {
 /** 0 none, 1 basic, 2 working, 3 strong */
 export type Level = 0 | 1 | 2 | 3;
 
+/**
+ * What is known about a skill claim. None of these states proves competence, ownership of work or employability:
+ * an attached link is not reviewed, and "reviewed" only means a named reviewer checked the submitted work against
+ * the stated task rubric.
+ */
 export type EvidenceStatus =
-  | "self-reported" // claimed, nothing attached
-  | "evidence-attached" // link/file attached, not checked by Bridgecom
-  | "practical-assessed" // completed a practical task reviewed by a person
-  | "issuer-verified"; // verified credential from the issuer (future)
+  | "self-reported" // the person says so; nothing attached
+  | "evidence-attached" // link/file attached, not opened or checked by anyone
+  | "awaiting-review" // the person asked for a review of the attached work
+  | "reviewed" // a reviewer checked the work against the task rubric and recorded a reason
+  | "needs-clarification"; // a reviewer could not confirm the work matches the task and said why
+
+export const EVIDENCE_STATUSES: EvidenceStatus[] = ["self-reported", "evidence-attached", "awaiting-review", "reviewed", "needs-clarification"];
+
+/** Older saved profiles used these values; they were never backed by a real review, so they become "evidence-attached". */
+export function normaliseEvidenceStatus(s: string | undefined): EvidenceStatus {
+  return (EVIDENCE_STATUSES as string[]).includes(s ?? "") ? (s as EvidenceStatus) : s === "practical-assessed" || s === "issuer-verified" ? "evidence-attached" : "self-reported";
+}
+
+export interface SkillReview {
+  id: string;
+  token: string; // lets this device read and withdraw its own request; never shown to others
+  requested_at: string;
+  decision?: "reviewed" | "needs-clarification";
+  reason?: string;
+  rubric?: { criterion: string; met: boolean }[];
+  reviewer?: string;
+  decided_at?: string;
+}
 
 export interface ProfileSkill {
   skill_id: string;
   level: Level;
   status: EvidenceStatus;
   evidence: { kind: "quote" | "link" | "file" | "course"; value: string; achievement_id?: string }[];
+  review?: SkillReview;
 }
 
 export interface Achievement {
@@ -198,10 +223,34 @@ export interface LearnerProfile {
   updated_at?: string;
 }
 
+/**
+ * required / preferred come from explicit wording in the posting. "not-required" items are kept so the person can
+ * see they were read, but are excluded from comparison and learning plans. "unclear" items (mentioned without a
+ * stated requirement, or contradicted elsewhere) are never scored until the person confirms them.
+ */
+export type RequirementImportance = "required" | "preferred" | "not-required" | "unclear";
+
 export interface RoleRequirement {
-  skill_id: string;
+  /** null = a skill outside Bridgecom's skill list; kept for review, never silently mapped to something broader. */
+  skill_id: string | null;
   level: Level;
+  /** Legacy flag kept for seeded roles: true = required. Use importanceOf(). */
   mandatory: boolean;
+  importance?: RequirementImportance;
+  /** The posting's own wording for the skill, e.g. "Excel". */
+  label?: string;
+  /** Exact sentence from the posting that supports this item. */
+  quote?: string;
+  /** Requirements sharing a group id are alternatives: any one of them satisfies the group. */
+  alt_group?: string;
+  /** Why this item needs a person to look at it. */
+  flags?: RequirementFlag[];
+}
+
+export type RequirementFlag = "conflicting-statements" | "no-stated-requirement" | "not-in-skill-list" | "duplicate-merged" | "ai-and-rules-disagree" | "edited-by-user";
+
+export function importanceOf(r: Pick<RoleRequirement, "importance" | "mandatory">): RequirementImportance {
+  return r.importance ?? (r.mandatory ? "required" : "preferred");
 }
 
 export interface EmployerRole {

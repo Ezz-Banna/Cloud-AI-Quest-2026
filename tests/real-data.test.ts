@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 import { getCourses, getPrograms, getRoles, getUniversities } from "@/lib/data/repo";
 import { rankPrograms } from "@/lib/engines/programs";
-import { assessRole, buildPathway } from "@/lib/engines/gap";
+import { buildPathway, compareRole, comparisonInput } from "@/lib/engines/gap";
 import { templateExplanation, numbersSupported } from "@/lib/ai/modules";
 import { SKILL_BY_ID } from "@/lib/data/taxonomy";
 import { DEMO_PROFILE } from "@/lib/demo";
@@ -47,9 +47,9 @@ describe("real dataset grounding", () => {
   it("skills-gap and pathway only use taxonomy skills and catalogued courses", () => {
     const courses = getCourses();
     for (const role of getRoles()) {
-      const rd = assessRole(role, DEMO_PROFILE, courses);
-      for (const g of rd.gaps) expect(SKILL_BY_ID[g.requirement.skill_id]).toBeDefined();
-      for (const step of buildPathway(rd, DEMO_PROFILE, courses, role.recommended_course_ids ?? [])) {
+      const rd = compareRole(role.requirements, comparisonInput(DEMO_PROFILE), courses);
+      for (const g of rd.checks) expect(SKILL_BY_ID[g.skill_id]).toBeDefined();
+      for (const step of buildPathway(rd, comparisonInput(DEMO_PROFILE), courses, role.recommended_course_ids ?? [])) {
         expect(SKILL_BY_ID[step.skill_id]).toBeDefined();
         if (step.course) expect(courses.some((c) => c.id === step.course!.id && c.url === step.course!.url)).toBe(true);
       }

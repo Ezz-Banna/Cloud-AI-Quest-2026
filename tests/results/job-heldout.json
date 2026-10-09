@@ -1,0 +1,31 @@
+{
+  "set": "job-postings.heldout.v1",
+  "cases": 20,
+  "tp": 56,
+  "fp": 1,
+  "fn": 17,
+  "precision": 0.982,
+  "recall": 0.767,
+  "alternative_groups": "1/2",
+  "misses": [
+    "en-data-analyst-python-or-r: sql expected required, got unclear",
+    "en-data-analyst-python-or-r: python expected required, got unclear",
+    "en-data-analyst-python-or-r: r-lang expected required, got unclear",
+    "en-data-analyst-python-or-r: data-analysis expected required, got unclear",
+    "en-data-analyst-python-or-r: excel expected required, got unclear",
+    "en-data-analyst-python-or-r: english expected required, got unclear",
+    "en-data-analyst-python-or-r: alternatives python/r-lang not grouped",
+    "en-long-company-text: python expected required, got unclear",
+    "en-long-company-text: machine-learning expected required, got unclear",
+    "en-long-company-text: english expected required, got unclear",
+    "en-java-not-javascript: sql expected required, got unclear",
+    "en-java-not-javascript: git expected required, got unclear",
+    "ar-yufaddal-mizah-idafiyah: react expected required, got unclear",
+    "ar-yufaddal-mizah-idafiyah: javascript expected required, got unclear",
+    "ar-jordanian-duplicate-node: nodejs expected required, got unclear",
+    "ar-jordanian-duplicate-node: javascript expected required, got unclear",
+    "ar-jordanian-duplicate-node: typescript expected preferred, got unclear",
+    "ar-long-company-text: communication expected required, got nothing",
+    "mixed-data-analyst-headings: unexpected data-analysis as required"
+  ]
+}

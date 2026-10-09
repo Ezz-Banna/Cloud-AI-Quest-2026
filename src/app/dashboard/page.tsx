@@ -4,6 +4,7 @@ import { FIELD_BY_ID } from "@/lib/data/taxonomy";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { EvidenceBadge, VerificationBadge } from "@/components/Badges";
+import { FitMeter } from "@/components/FitMeter";
 import { completeness } from "@/lib/completeness";
 import { SKILL_BY_ID } from "@/lib/data/taxonomy";
 import type { ProgramMatch } from "@/lib/engines/programs";
@@ -29,12 +30,28 @@ export default function Dashboard() {
   const name = (m: ProgramMatch) => `${(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)} · ${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`;
   const top = (matches ?? []).filter((m) => m.eligibility.status !== "stream-mismatch" && (profile.interests.length === 0 || profile.interests.includes(m.program.field))).slice(0, 3);
   const saved = (matches ?? []).filter((m) => (profile.saved_programs ?? []).includes(m.program.id));
-  const hist = progress.readiness_history.filter((h) => h.role_id === progress.selected_role);
+  const act = progress.activity;
+  const rolesCompared = new Set(act.filter((a) => a.kind === "role-compared").map((a) => a.ref)).size;
+  const withWork = profile.skills.filter((s) => s.status !== "self-reported").length;
+  const skillName = (id?: string) => (id ? (lang === "ar" ? SKILL_BY_ID[id]?.name_ar : SKILL_BY_ID[id]?.name_en) ?? id : "");
+  // Factual labels for what was done on this device. None of them is an outcome such as admission or a job.
   const stages = [
-    { n: 1, en: "Discover", ar: "اكتشف", done: progress.discover_done, href: "/discover/results" },
-    { n: 2, en: "Empower", ar: "تمكَّن", done: progress.empower_done, href: "/empower" },
-    { n: 3, en: "Succeed", ar: "انجح", done: !!hist.length, href: "/succeed" },
+    { n: 1, en: "Programs", ar: "البرامج", done: progress.discover_done, href: "/discover/results",
+      line: progress.discover_done ? tr(`Answers given · ${(profile.saved_programs ?? []).length} program(s) saved`, `تمت الإجابة · ${(profile.saved_programs ?? []).length} برنامج محفوظ`) : tr("Questions not answered yet", "لم تتم الإجابة بعد") },
+    { n: 2, en: "Skills", ar: "المهارات", done: profile.skills.length > 0, href: "/empower",
+      line: profile.skills.length ? tr(`${profile.skills.length} skill(s) recorded · ${withWork} with work attached`, `${profile.skills.length} مهارة مسجّلة · ${withWork} مع عمل مرفق`) : tr("No experience described yet", "لم تُوصف أي خبرة بعد") },
+    { n: 3, en: "Role comparison", ar: "المقارنة بدور", done: rolesCompared > 0, href: "/succeed",
+      line: rolesCompared ? tr(`Compared with ${rolesCompared} role(s)`, `تمت المقارنة مع ${rolesCompared} دور`) : tr("No role compared yet", "لم تتم مقارنة أي دور بعد") },
   ];
+  const ACT: Record<string, [string, string]> = {
+    "role-compared": ["Compared experience with", "قارنتَ خبرتك مع"],
+    "programs-saved": ["Saved a program", "حفظتَ برنامجاً"],
+    "evidence-submitted": ["Attached work for", "أرفقتَ عملاً لـ"],
+    "review-requested": ["Asked for a review of", "طلبتَ مراجعة"],
+    "next-task-selected": ["Chose next step:", "اخترت الخطوة التالية:"],
+    "requirements-confirmed": ["Confirmed requirements for", "أكّدتَ متطلبات"],
+  };
+  const actRef = (k: string, ref?: string) => (["evidence-submitted", "review-requested", "next-task-selected"].includes(k) ? skillName(ref) : ref ?? "");
 
   return (
     <div className="space-y-8">
@@ -51,7 +68,7 @@ export default function Dashboard() {
         {stages.map((s) => (
           <Link key={s.n} href={s.href} className="card flex items-center gap-4 p-5 hover:border-sage">
             <span className={`grid size-11 place-items-center rounded-full font-bold ${s.done ? "bg-sage text-white" : "border-2 border-line text-muted"}`}>{s.done ? "✓" : s.n}</span>
-            <span><span className="block font-bold text-teal">{tr(s.en, s.ar)}</span><span className="text-sm text-muted">{s.done ? tr("Completed", "مكتمل") : tr("Not finished", "غير مكتمل")}</span></span>
+            <span><span className="block font-bold text-teal">{tr(s.en, s.ar)}</span><span className="text-sm text-muted">{s.line}</span></span>
           </Link>
         ))}
       </section>
@@ -75,7 +92,7 @@ export default function Dashboard() {
           {!matches && <div className="mt-4 h-24 animate-pulse rounded-2xl bg-mist/60" />}
           {matches && top.length === 0 && <p className="mt-4 text-sm text-muted">{tr("Complete Discover to see matches.", "أكمل مرحلة اكتشف لعرض النتائج.")}</p>}
           <ol className="mt-4 space-y-2">{top.map((m) => (
-            <li key={m.program.id} className="flex items-center justify-between gap-3 rounded-xl bg-ivory p-3"><span className="min-w-0 truncate text-sm font-semibold text-teal">{name(m)}</span><span className="shrink-0 text-sm font-bold text-teal">{m.suitability}</span></li>
+            <li key={m.program.id} className="flex items-center justify-between gap-3 rounded-xl bg-ivory p-3"><span className="min-w-0 truncate text-sm font-semibold text-teal">{name(m)}</span><FitMeter compact fit={m.suitability} coverage={m.coverage} /></li>
           ))}</ol>
           <h3 className="mt-5 text-sm font-bold text-teal">{tr("Saved programs", "البرامج المحفوظة")} ({saved.length})</h3>
           {saved.length === 0 ? <p className="mt-1 text-sm text-muted">{tr("None yet.", "لا يوجد بعد.")}</p> : (
@@ -94,8 +111,16 @@ export default function Dashboard() {
               <li key={s.skill_id} className="flex items-center gap-1.5 rounded-full border border-line bg-white py-1 ps-3 pe-1 text-sm">{lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en} <span className="text-xs text-muted">L{s.level}</span><EvidenceBadge s={s.status} /></li>
             ))}</ul>
           )}
-          {hist.length > 0 && (
-            <p className="mt-4 rounded-xl bg-ok-100 p-3 text-sm text-ok">{tr(`Job readiness for your selected role: ${hist[hist.length - 1].pct}% (started at ${hist[0].pct}%)`, `الجاهزية للدور المختار: ${hist[hist.length - 1].pct}% (البداية ${hist[0].pct}%)`)}</p>
+          {progress.next_task && (
+            <p className="mt-4 rounded-xl bg-sage-100 p-3 text-sm text-teal">{tr("Your chosen next step:", "خطوتك التالية المختارة:")} <Link href="/succeed" className="font-semibold underline">{skillName(progress.next_task.skill_id)}</Link></p>
+          )}
+          {act.length > 0 && (
+            <details className="mt-4">
+              <summary className="cursor-pointer text-sm font-semibold text-teal">{tr("Recent activity on this device", "النشاط الأخير على هذا الجهاز")}</summary>
+              <ul className="mt-2 space-y-1 text-sm text-muted">{[...act].reverse().slice(0, 8).map((a, i) => (
+                <li key={i}>{tr(ACT[a.kind]?.[0] ?? a.kind, ACT[a.kind]?.[1] ?? a.kind)} {actRef(a.kind, a.ref)} <span className="text-xs">· {new Date(a.at).toLocaleDateString(lang === "ar" ? "ar" : undefined)}</span></li>
+              ))}</ul>
+            </details>
           )}
         </section>
 

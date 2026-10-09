@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "e2e": "node scripts/e2e.mjs"
+    "e2e": "node scripts/e2e.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "a11y": "node scripts/a11y.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.132.1",
@@ -30,5 +33,10 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.7"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "8.5.28"
+    }
   }
 }

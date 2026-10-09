@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import * as z from "zod/v4";
-import { parseBody } from "@/lib/api";
-import { getCourses, getEmployers, getRoles, readStore, writeStore } from "@/lib/data/repo";
+import { parseBody, RequirementInput } from "@/lib/api";
+import { getCourses, getEmployers, getRoles, readStore, updateStore } from "@/lib/data/repo";
+import { hashToken, newId, newToken } from "@/lib/tokens";
 import { SKILL_BY_ID } from "@/lib/data/taxonomy";
 import type { EmployerRole } from "@/lib/types";
 
@@ -21,28 +22,32 @@ const Body = z.object({
   kind: z.enum(["job", "internship", "project"]),
   city: z.string().max(60).optional(),
   description: z.string().max(8000).default(""),
-  requirements: z.array(z.object({ skill_id: z.string(), level: z.number().int().min(1).max(3), mandatory: z.boolean() })).min(1).max(30),
+  requirements: z.array(RequirementInput).min(1).max(30),
 });
 
 export async function POST(req: Request) {
   const b = await parseBody(req, Body);
   if (!b.ok) return b.res;
-  const unknown = b.data.requirements.filter((r) => !SKILL_BY_ID[r.skill_id]);
+  const unknown = b.data.requirements.filter((r) => r.skill_id !== null && !SKILL_BY_ID[r.skill_id]);
   if (unknown.length) return NextResponse.json({ error: `Unknown skills: ${unknown.map((u) => u.skill_id).join(", ")}` }, { status: 400 });
   const known = new Set(getCourses().map((c) => c.id));
   const badCourse = b.data.recommended_course_ids.filter((id) => !known.has(id));
   if (badCourse.length) return NextResponse.json({ error: `Unknown courses: ${badCourse.join(", ")}` }, { status: 400 });
-  const s = readStore();
-  const existing = (s.employers ?? []).find((e) => e.id === b.data.employer_id);
-  const empId = existing?.id ?? `emp-${Date.now().toString(36)}`;
+  const existing = (readStore().employers ?? []).find((e) => e.id === b.data.employer_id);
+  const empId = existing?.id ?? newId("emp");
   const role: EmployerRole = {
-    id: `role-${Date.now().toString(36)}`, employer_id: empId, title: b.data.title, kind: b.data.kind, city: b.data.city,
+    id: newId("role"), employer_id: empId, title: b.data.title, kind: b.data.kind, city: b.data.city,
     description: b.data.description, requirements: b.data.requirements.map((r) => ({ ...r, level: r.level as 1 | 2 | 3 })), verification: "unverified",
     recommended_course_ids: b.data.recommended_course_ids,
   };
   const emp = { id: empId, name: b.data.employer_name, sector: b.data.sector, city: b.data.city, about: b.data.about, website: b.data.website, verification: "unverified" as const, demo: true };
-  s.employers = [...(s.employers ?? []).filter((e) => e.id !== empId), emp];
-  s.roles = [...(s.roles ?? []), role];
-  writeStore(s);
-  return NextResponse.json({ role });
+  // The manage token is the only way to see who shared with this role. It is returned once and stored only as a hash.
+  const token = newToken();
+  const ok = updateStore((s) => {
+    s.employers = [...(s.employers ?? []).filter((e) => e.id !== empId), emp];
+    s.roles = [...(s.roles ?? []), role];
+    s.role_tokens = { ...(s.role_tokens ?? {}), [role.id]: hashToken(token) };
+  });
+  if (!ok) return NextResponse.json({ error: "Could not save the role. Please try again." }, { status: 503 });
+  return NextResponse.json({ role, manage_token: token });
 }

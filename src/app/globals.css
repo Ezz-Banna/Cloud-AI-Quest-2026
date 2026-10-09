@@ -70,31 +70,36 @@ body {
 @utility h1 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-teal; }
 @utility h2 { @apply text-xl sm:text-2xl font-bold tracking-tight text-teal; }
 
-/* The next-step connection (homepage hero). The only animated element on the homepage:
-   one path draws to the example goal (~1.4s), its example next action appears (~0.4s), then it stops.
-   Choosing a goal moves the highlight with a 300ms transition. Labels are never animated. */
-.bc-conn-svg { overflow: visible; }
-[dir="rtl"] .bc-conn-svg { transform: scaleX(-1); }
-.bc-conn-base { fill: none; stroke: var(--color-line); stroke-width: 3; stroke-linecap: round; }
-.bc-conn-path {
-  fill: none; stroke: var(--color-teal); stroke-width: 4.5; stroke-linecap: round;
-  stroke-dasharray: 1; stroke-dashoffset: 0; opacity: 0; transition: opacity .3s ease;
-}
-.bc-conn-path[data-on="true"] { opacity: 1; }
-.bc-conn-path.bc-conn-intro { animation: bc-conn-draw 1.2s cubic-bezier(.4, 0, .2, 1) .2s both; }
-.bc-conn-start { fill: var(--color-sand-100); stroke: var(--color-sand-700); stroke-width: 3; }
-.bc-conn-start-core { fill: var(--color-sand-700); }
-.bc-conn-node { fill: #fff; stroke: var(--color-sage); stroke-width: 3; transition: fill .3s ease, stroke .3s ease; }
-.bc-conn-node[data-on="true"] { fill: var(--color-teal); stroke: var(--color-teal); }
-.bc-conn-label { color: var(--color-muted); transition: color .3s ease; }
-.bc-conn-label[data-on="true"] { color: var(--color-teal); font-weight: 700; }
-.bc-conn-next { opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s; }
-.bc-conn-next[data-on="true"] { opacity: 1; visibility: visible; }
-.bc-conn-next.bc-conn-intro[data-on="true"] { animation: bc-conn-appear .4s ease-out 1.5s both; }
-@keyframes bc-conn-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes bc-conn-appear { from { opacity: 0; } to { opacity: 1; } }
-
 /* One central motion per page (Empower: the suggested skills; Succeed: the next step). It plays once, moves
    nothing else (transform/opacity only, space already reserved) and is reduced to its end state by the rule above. */
 @keyframes bc-arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .bc-arrive { animation: bc-arrive 420ms cubic-bezier(.2,.7,.2,1) both; }
+
+/* Journey path (homepage). Adjust speed and glow here. */
+.bc-journey { --bc-journey-speed: 3.2s; --bc-journey-glow: 111 156 148; }
+.bc-journey-line {
+  position: absolute; inset-block: 2.5rem; inset-inline-start: calc(50% - 1.5px); width: 3px; border-radius: 9999px;
+  background: linear-gradient(to bottom, var(--color-sage), var(--color-sand), var(--color-sage));
+  animation: bc-breathe var(--bc-journey-speed) ease-in-out infinite;
+}
+@keyframes bc-breathe {
+  0%, 100% { box-shadow: 0 0 4px 0 rgb(var(--bc-journey-glow) / .35); opacity: .75; }
+  50% { box-shadow: 0 0 14px 3px rgb(var(--bc-journey-glow) / .6); opacity: 1; }
+}
+.bc-journey-node {
+  position: absolute; top: calc(-1.5rem - 7px); inset-inline-start: calc(50% - 7px); width: 14px; height: 14px; border-radius: 9999px;
+  background: var(--color-sage); border: 3px solid #fff; box-shadow: 0 0 0 1px var(--color-line), 0 0 8px rgb(var(--bc-journey-glow) / .5);
+}
+.bc-journey-stage {
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease, border-color .35s ease, background-color .35s ease;
+  box-shadow: 0 1px 2px rgb(0 0 0 / .04);
+}
+.bc-journey-stage:hover { border-color: var(--color-sage); }
+.bc-journey-stage[data-on="true"] {
+  transform: scale(1.06); background: #fff; border-color: var(--color-sand);
+  box-shadow: 0 0 0 3px rgb(210 166 121 / .25), 0 10px 30px -6px rgb(210 166 121 / .55);
+}
+.bc-journey-reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.bc-journey-stage[data-on="true"] .bc-journey-reveal { grid-template-rows: 1fr; }
+.bc-journey-line-text { animation: bc-journey-in .4s ease-out both; }
+@keyframes bc-journey-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }

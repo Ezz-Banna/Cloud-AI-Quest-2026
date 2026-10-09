@@ -25,6 +25,9 @@ async function run(viewport, tag) {
   await page.getByRole("link", { name: /let.s start/i }).click();
   await page.waitForTimeout(600);
   check(`${tag}: "Let’s start" moves focus to the goals`, await page.evaluate(() => !!document.activeElement?.closest("#goals") || document.activeElement?.id === "goals"));
+  await page.goto(`${BASE}/`);
+  await page.getByRole("button", { name: /^Company/ }).click();
+  check(`${tag}: journey path: clicking a stage selects it and shows its sentence`, (await page.getByRole("button", { name: /^Company/ }).getAttribute("aria-pressed")) === "true" && (await page.getByRole("button", { name: /^University/ }).getAttribute("aria-pressed")) === "false" && await page.getByText("Turn your skills into a career.").isVisible());
   await page.screenshot({ path: `${OUT}/${tag}-02-home.png`, fullPage: true });
 
   await page.goto(`${BASE}/discover`);

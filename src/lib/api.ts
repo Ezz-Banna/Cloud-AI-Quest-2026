@@ -1,14 +1,35 @@
 import "server-only";
 import { NextResponse } from "next/server";
 import * as z from "zod/v4";
+import { bodyLimitFor } from "@/lib/request-guard";
 
 export function bad(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }
 
+// Reads the body as text but stops once it passes the size cap. The middleware already rejects a large
+// Content-Length; this also covers chunked uploads that send no Content-Length.
+async function readCapped(req: Request, max: number): Promise<string | null> {
+  if (!req.body) return "";
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.byteLength;
+    if (size > max) { await reader.cancel().catch(() => {}); return null; }
+    chunks.push(value);
+  }
+  return Buffer.concat(chunks).toString("utf8");
+}
+
 export async function parseBody<S extends z.ZodType>(req: Request, schema: S): Promise<{ ok: true; data: z.infer<S> } | { ok: false; res: NextResponse }> {
   let raw: unknown;
-  try { raw = await req.json(); } catch { return { ok: false, res: bad("Request body must be JSON") }; }
+  let text: string | null;
+  try { text = await readCapped(req, bodyLimitFor(new URL(req.url).pathname)); } catch { return { ok: false, res: bad("Could not read request body") }; }
+  if (text === null) return { ok: false, res: bad("Request body too large", 413) };
+  try { raw = JSON.parse(text); } catch { return { ok: false, res: bad("Request body must be JSON") }; }
   const r = schema.safeParse(raw);
   if (!r.success) return { ok: false, res: bad(r.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ")) };
   return { ok: true, data: r.data };

@@ -5,10 +5,12 @@ import { cityLabel, missingLabel, streamLabel } from "@/lib/i18n";
 import { useEffect, useMemo, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
+import { Icon } from "@/components/Visuals";
 import { FIELD_BY_ID } from "@/lib/data/taxonomy";
 import type { FollowUp, ProgramMatch } from "@/lib/engines/programs";
 import type { FitCriterion } from "@/lib/types";
 
+const PAGE = 5;
 type Crit = { id: FitCriterion; en: string; ar: string; weight: number };
 const CRIT_HELP: Record<FitCriterion, { en: string; ar: string }> = {
   interest: { en: "The field is one you picked", ar: "التخصص من المجالات التي اخترتها" },
@@ -47,6 +49,7 @@ export default function Results() {
   const [draftW, setDraftW] = useState<Partial<Record<FitCriterion, number>> | null>(null);
   const [showWeights, setShowWeights] = useState(false);
   const [updating, setUpdating] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -87,9 +90,12 @@ export default function Results() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="eyebrow">{tr("Stage 1 · Discover", "المرحلة 1 · اكتشف")}</p>
-          <h1 className="h1 mt-2">{profile.name ? tr(`${profile.name.split(" ")[0]}, here are your matches`, `${profile.name.split(" ")[0]}، هذه نتائجك`) : tr("Your program matches", "البرامج المناسبة لك")}</h1>
-          <p className="mt-2 max-w-2xl text-muted">{tr("Two separate questions, answered separately: can you meet the published admission minimum (rules, with source and year), and how well does the program fit you (your interests, career goals, budget and location).", "سؤالان منفصلان يُجاب عنهما بشكل منفصل: هل تحقق الحد الأدنى المنشور للقبول (قواعد مع المصدر والسنة)، وما مدى ملاءمة البرنامج لك (اهتماماتك وأهدافك المهنية وميزانيتك وموقعك).")}</p>
+          <h1 className="h1">{profile.name ? tr(`${profile.name.split(" ")[0]}, here are your matches`, `${profile.name.split(" ")[0]}، هذه نتائجك`) : tr("Your program matches", "البرامج المناسبة لك")}</h1>
+          <p className="mt-3 flex flex-wrap gap-2 text-sm" aria-label={tr("Each program gets two separate checks", "يحصل كل برنامج على فحصين منفصلين")}>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1 font-semibold text-teal"><Icon name="rules" className="size-4" />{tr("Can I apply? Published minimum", "هل يمكنني التقديم؟ الحد المنشور")}</span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1 font-semibold text-teal"><Icon name="reasons" className="size-4" />{tr("How well does it fit me?", "ما مدى ملاءمته لي؟")}</span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1 font-semibold text-teal"><Icon name="cost" className="size-4" />{tr("Yearly cost", "الكلفة السنوية")}</span>
+          </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href="/discover" className="btn-secondary">{tr("Edit my answers", "عدّل إجاباتي")}</Link>
@@ -115,7 +121,7 @@ export default function Results() {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 id="w-h" className="font-bold text-teal">{tr("What matters most to you?", "ما الأهم بالنسبة لك؟")}</h2>
-            <p className="text-sm text-muted">{tr("Move a slider and the ranking updates. 0 means ignore it.", "حرّك المؤشر وسيتحدث الترتيب. 0 يعني تجاهله.")}</p>
+            
           </div>
           <div className="flex gap-2">
             <button type="button" className="btn-ghost" aria-expanded={showWeights} aria-controls="weights" onClick={() => setShowWeights(!showWeights)}>{showWeights ? tr("Hide", "إخفاء") : tr("Adjust priorities", "عدّل الأولويات")}</button>
@@ -132,7 +138,7 @@ export default function Results() {
                 <p id={`wh-${c.id}`} className="text-xs text-muted">{tr(CRIT_HELP[c.id].en, CRIT_HELP[c.id].ar)}</p>
               </div>
             ))}
-            <p className="text-xs text-muted sm:col-span-2">{tr("How it works: each factor gets a score from 0 to 1 using the stored records, multiplied by your weight. Factors without data are left out instead of guessed, and the card says how much of what matters to you could be checked. The fit score is not a chance of admission.", "طريقة العمل: يحصل كل عامل على درجة من 0 إلى 1 من السجلات المخزنة، مضروبة في وزنك. العوامل بلا بيانات تُستبعد بدل تخمينها، وتوضح البطاقة نسبة ما أمكن التحقق منه مما يهمك. درجة الملاءمة ليست فرصة قبول.")}</p>
+            <p className="text-xs text-muted sm:col-span-2">{tr("0 ignores a factor. Factors without data are left out, not guessed.", "0 يعني تجاهل العامل. العوامل بلا بيانات تُستبعد ولا تُخمَّن.")}</p>
           </div>
         )}
         <p className="sr-only" aria-live="polite">{updating ? tr("Updating ranking", "جارٍ تحديث الترتيب") : ""}</p>
@@ -149,7 +155,7 @@ export default function Results() {
       )}
 
       {profile.accessibility_needs.length > 0 && (
-        <p className="mt-4 rounded-2xl bg-mist p-4 text-sm text-teal">{tr("You mentioned support needs. Ask each university's student affairs or disability support office about accommodations; we don't yet hold verified accessibility data per campus.", "ذكرت احتياجات دعم. اسأل شؤون الطلبة أو مكتب دعم ذوي الإعاقة في كل جامعة عن الترتيبات المتاحة؛ لا نملك بعد بيانات موثّقة عن إمكانية الوصول لكل حرم جامعي.")}</p>
+        <p className="mt-4 rounded-2xl bg-mist p-4 text-sm text-teal">{tr("For support needs, ask each university's student affairs office. We hold no verified accessibility data per campus yet.", "لاحتياجات الدعم، اسأل شؤون الطلبة في كل جامعة. لا نملك بعد بيانات موثّقة عن إمكانية الوصول لكل حرم.")}</p>
       )}
 
       {error && <p role="alert" className="mt-6 rounded-xl bg-bad-100 p-4 text-bad">{error}</p>}
@@ -163,7 +169,7 @@ export default function Results() {
 
       <p className="mt-6 text-sm text-muted" aria-live="polite">{matches ? tr(`${shown.length} of ${matches.length} programs in our verified subset`, `${shown.length} من ${matches.length} برنامجاً في مجموعتنا الموثّقة`) : ""}</p>
       <ol className="mt-3 space-y-4">
-        {shown.map((m) => {
+        {shown.slice(0, showAll ? undefined : PAGE).map((m) => {
           const id = m.program.id;
           const field = FIELD_BY_ID[m.program.field];
           return (
@@ -204,12 +210,12 @@ export default function Results() {
                 <div className="mt-4 grid gap-3 text-sm md:grid-cols-2">
                   <div>
                     <h3 className="text-xs font-bold uppercase tracking-wider text-ok">{tr("Why it fits", "لماذا يناسبك")}</h3>
-                    <ul className="mt-1 space-y-1">{m.strengths.slice(0, 3).map((r, i) => <li key={i} className="flex gap-2"><span aria-hidden="true" className="text-ok">+</span>{lang === "ar" ? r.ar : r.en}</li>)}
+                    <ul className="mt-1 space-y-1">{m.strengths.slice(0, 2).map((r, i) => <li key={i} className="flex gap-2"><span aria-hidden="true" className="text-ok">+</span>{lang === "ar" ? r.ar : r.en}</li>)}
                       {m.strengths.length === 0 && <li className="text-muted">{tr("No strong match on what you told us.", "لا تطابق قوياً مع ما أخبرتنا به.")}</li>}</ul>
                   </div>
                   <div>
                     <h3 className="text-xs font-bold uppercase tracking-wider text-warn">{tr("Trade-offs", "مقايضات")}</h3>
-                    <ul className="mt-1 space-y-1">{m.trade_offs.slice(0, 3).map((r, i) => <li key={i} className="flex gap-2"><span aria-hidden="true" className="text-warn">−</span>{lang === "ar" ? r.ar : r.en}</li>)}
+                    <ul className="mt-1 space-y-1">{m.trade_offs.slice(0, 2).map((r, i) => <li key={i} className="flex gap-2"><span aria-hidden="true" className="text-warn">−</span>{lang === "ar" ? r.ar : r.en}</li>)}
                       {m.trade_offs.length === 0 && <li className="text-muted">{tr("None found in the data we hold.", "لم نجد مقايضات في البيانات المتوفرة.")}</li>}</ul>
                   </div>
                 </div>
@@ -217,7 +223,7 @@ export default function Results() {
               {m.alternatives.length > 0 && (
                 <div className="mt-3 rounded-2xl bg-mist/60 p-3 text-sm">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-teal">{tr("Alternatives to consider", "بدائل تستحق النظر")}</h3>
-                  <ul className="mt-1 space-y-1">{m.alternatives.map((a) => <li key={a.program_id + a.kind}><a className="underline" href={`#prog-${a.program_id}`} onClick={() => { setOnlyInterests(false); setOnlyEligible(false); setOnlyBudget(false); }}>{lang === "ar" ? a.ar : a.en}</a></li>)}</ul>
+                  <ul className="mt-1 space-y-1">{m.alternatives.map((a) => <li key={a.program_id + a.kind}><a className="underline" href={`#prog-${a.program_id}`} onClick={() => { setOnlyInterests(false); setOnlyEligible(false); setOnlyBudget(false); setShowAll(true); }}>{lang === "ar" ? a.ar : a.en}</a></li>)}</ul>
                 </div>
               )}
               {m.missing_data.length > 0 && (
@@ -268,11 +274,12 @@ export default function Results() {
           );
         })}
       </ol>
+      {!showAll && shown.length > PAGE && <button type="button" className="btn-secondary mt-4" onClick={() => setShowAll(true)}>{tr(`Show ${shown.length - PAGE} more`, `اعرض ${shown.length - PAGE} أخرى`)}</button>}
 
       <section className="mt-12 rounded-[1.25rem] bg-teal p-8 text-ivory">
         <p className="eyebrow !text-sand">{tr("Next · Empower", "التالي · تمكَّن")}</p>
         <h2 className="mt-2 text-2xl font-bold">{tr("Your average is only part of your story.", "معدلك جزء من قصتك فقط.")}</h2>
-        <p className="mt-2 max-w-2xl text-mist">{tr("Add projects, volunteering and certificates. We'll help you describe the skills they show and find scholarships worth checking.", "أضف مشاريعك وتطوعك وشهاداتك. سنساعدك على وصف المهارات التي تظهرها ونقترح منحاً تستحق التحقق منها.")}</p>
+        <p className="mt-2 max-w-2xl text-mist">{tr("Turn projects and volunteering into skills, and find scholarships worth checking.", "حوّل مشاريعك وتطوعك إلى مهارات، واعثر على منح تستحق التحقق.")}</p>
         <Link href="/empower" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Build my skills profile", "ابنِ ملف مهاراتي")}</Link>
       </section>
     </div>
@@ -291,15 +298,15 @@ function Eligibility({ m }: { m: ProgramMatch }) {
     "missing-student-average": { cls: "bg-mist text-muted", en: "Add your average to check", ar: "أضف معدلك للتحقق" },
   }[e.status];
   const detail = e.status === "meets-published-minimum" || e.status === "below-published-minimum"
-    ? tr(`Your ${profile.tawjihi_avg} vs. published ${e.published_min}${e.year ? ` (${e.year}` : ""}${e.track ? `, ${e.track}` : ""}${e.year ? ")" : ""}. This is the minimum to apply, not the competitive cut-off, which is usually higher and changes yearly. Not an admission decision.`,
-         `معدلك ${profile.tawjihi_avg} مقابل الحد المنشور ${e.published_min}${e.year ? ` (${e.year})` : ""}. هذا الحد الأدنى للتقديم وليس معدل القبول التنافسي، الذي يكون عادةً أعلى ويتغير سنوياً. ليس قرار قبول.`)
-    : e.status === "minimum-not-verified" || e.status === "conflicting-sources" ? tr("Check the official admission list before deciding.", "تحقق من قوائم القبول الرسمية قبل اتخاذ القرار.") : "";
-  const cut = e.last_cutoff ? tr(`Past competitive cut-off: ${e.last_cutoff.value} (${e.last_cutoff.year}). History only, not a prediction.`, `معدل القبول التنافسي السابق: ${e.last_cutoff.value} (${e.last_cutoff.year}). للاطلاع فقط وليس توقعاً.`) : "";
+    ? tr(`Your ${profile.tawjihi_avg} vs. ${e.published_min} published${e.year ? ` (${e.year}${e.track ? `, ${e.track}` : ""})` : ""}.`, `معدلك ${profile.tawjihi_avg} مقابل ${e.published_min} المنشور${e.year ? ` (${e.year})` : ""}.`)
+    : e.status === "minimum-not-verified" || e.status === "conflicting-sources" ? tr("Check the official admission list.", "تحقق من قوائم القبول الرسمية.") : "";
+  const cut = e.last_cutoff ? tr(`Past competitive cut-off: ${e.last_cutoff.value} (${e.last_cutoff.year}), history only.`, `معدل القبول التنافسي السابق: ${e.last_cutoff.value} (${e.last_cutoff.year})، للاطلاع فقط.`) : "";
   return (
     <div>
       <p className="text-xs font-bold uppercase tracking-wider text-muted">{tr("Admission check (rules)", "فحص القبول (قواعد)")}</p>
       <span className={`mt-1.5 inline-flex rounded-full px-3 py-1 text-sm font-semibold ${cfg.cls}`}>{tr(cfg.en, cfg.ar)}</span>
       {detail && <p className="mt-1.5 text-xs text-muted">{detail}</p>}
+      {(e.status === "meets-published-minimum" || e.status === "below-published-minimum") && <p className="text-xs text-muted">{tr("Minimum to apply, not the competitive cut-off.", "الحد الأدنى للتقديم، لا معدل القبول التنافسي.")}</p>}
       {cut && <p className="mt-1 text-xs text-muted">{cut}</p>}
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
+import { StepStrip } from "@/components/Visuals";
 import { AnalysisMode, ModeBadge, VerificationBadge } from "@/components/Badges";
 import { RequirementReview, type Draft } from "@/components/RequirementReview";
 import { SKILLS, SKILL_BY_ID } from "@/lib/data/taxonomy";
@@ -71,7 +72,11 @@ export default function Employer() {
       <div>
         <p className="eyebrow">{tr("For employers", "لأصحاب العمل")}</p>
         <h1 className="h1 mt-2">{tr("Describe the skills. Meet people who are building them.", "صِف المهارات. وتعرّف على من يبنونها.")}</h1>
-        <p className="mt-2 max-w-2xl text-muted">{tr("Publish roles as skills with levels. People compare their recorded experience with it and get one practical next step. You see only people who chose to share with your role, and only job-related skill information.", "انشر الأدوار كمهارات بمستويات. يقارن الأشخاص خبراتهم المسجّلة بها ويحصلون على خطوة عملية تالية. ترى فقط من اختار المشاركة مع دورك، وفقط معلومات المهارات المرتبطة بالعمل.")}</p>
+        <div className="mt-4"><StepStrip label={tr("How it works for employers", "طريقة العمل لأصحاب العمل")} steps={[
+          { icon: "role", text: tr("Publish a role as skills and levels", "انشر دوراً كمهارات ومستويات") },
+          { icon: "step", text: tr("People compare and get a next step", "يقارن الأشخاص ويحصلون على خطوة تالية") },
+          { icon: "lock", text: tr("You see only those who share with you", "ترى فقط من يشارك معك") },
+        ]} /></div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -156,7 +161,11 @@ export default function Employer() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-xs text-muted">{tr("Shown: first name, skills, levels and evidence status only. Not shown: grades, school, city, budget, accessibility needs. Listed in the order people shared, not ranked. This is not a hiring recommendation.", "المعروض: الاسم الأول والمهارات والمستويات وحالة الأدلة فقط. غير المعروض: العلامات والمدرسة والمدينة والميزانية واحتياجات الوصول. القائمة مرتبة حسب وقت المشاركة دون تصنيف، وليست توصية توظيف.")}</p>
+          <dl className="mt-4 grid gap-2 text-xs sm:grid-cols-2">
+            <div className="rounded-xl bg-ok-100/60 p-3"><dt className="font-semibold text-ok">✓ {tr("Shown", "المعروض")}</dt><dd className="mt-0.5 text-ink">{tr("First name, skills, levels, evidence states", "الاسم الأول، المهارات، المستويات، حالات الأدلة")}</dd></div>
+            <div className="rounded-xl bg-mist p-3"><dt className="font-semibold text-muted">✗ {tr("Never shown", "لا يُعرض أبداً")}</dt><dd className="mt-0.5 text-ink">{tr("Grades, school, city, budget, support needs", "العلامات، المدرسة، المدينة، الميزانية، احتياجات الدعم")}</dd></div>
+          </dl>
+          <p className="mt-2 text-xs text-muted">{tr("In the order people shared, not ranked. Not a hiring recommendation.", "بترتيب المشاركة دون تصنيف. ليست توصية توظيف.")}</p>
         </section>
       </div>
     </div>

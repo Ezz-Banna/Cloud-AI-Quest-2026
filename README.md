@@ -103,4 +103,4 @@ The learner profile stays in the browser. Nothing is shared unless the person sh
 
 ## Docs
 
-`docs/06-competition-readiness.md` (this build's report), `docs/governance.md` (review workflow), `docs/04-fit-engine.md`, `docs/03-ai-modules.md`, `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md`. `docs/05-audit-and-readiness.md` describes the earlier build (readiness percentages) and is kept for history.
+`docs/06-competition-readiness.md` (this build's report), `docs/07-statistics-sources.md` (statistics register), `docs/governance.md` (review workflow), `docs/04-fit-engine.md`, `docs/03-ai-modules.md`, `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md`. `docs/05-audit-and-readiness.md` describes the earlier build (readiness percentages) and is kept for history.

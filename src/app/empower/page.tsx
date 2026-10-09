@@ -3,7 +3,8 @@ import Link from "next/link";
 import { kindLabel } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
-import { AnalysisMode, EvidenceBadge, evidenceHint, ModeBadge, VerificationBadge } from "@/components/Badges";
+import { AnalysisMode, EvidenceBadge, ModeBadge, VerificationBadge } from "@/components/Badges";
+import { EvidenceLadder, Icon } from "@/components/Visuals";
 import { canRequestReview, replaceSkill, requestReview, withdrawReview } from "@/lib/review-client";
 import { REVIEW_RUBRIC } from "@/lib/reviews";
 import { SKILLS, SKILL_BY_ID } from "@/lib/data/taxonomy";
@@ -33,6 +34,7 @@ export default function Empower() {
   const [evidenceUrl, setEvidenceUrl] = useState("");
   const [skillMsg, setSkillMsg] = useState<string | null>(null);
   const [pack, setPack] = useState<string | null>(null);
+  const [allOpps, setAllOpps] = useState(false);
 
   useEffect(() => {
     fetch("/api/match/opportunities", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile }) })
@@ -77,7 +79,7 @@ export default function Empower() {
     const r = await requestReview(sk);
     if (!r.ok) { setSkillMsg(r.error); return; }
     setProfile((p) => replaceSkill(p, r.skill)); logActivity("review-requested", sk.skill_id);
-    setSkillMsg(tr("Review requested. A Bridgecom team member will check the work against the rubric below. This demo has no external reviewers.", "تم طلب المراجعة. سيقارن أحد أعضاء فريق بريدجكوم العمل بالمعايير أدناه. لا يوجد مراجعون خارجيون في هذا العرض التجريبي."));
+    setSkillMsg(tr("Review requested. In this demo a Bridgecom team member reviews, not an outside assessor.", "تم طلب المراجعة. في هذا العرض يراجعها عضو من فريق بريدجكوم، لا مقيّم خارجي."));
   }
   async function withdraw(sk: ProfileSkill) {
     const next = await withdrawReview(sk);
@@ -109,9 +111,9 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
   return (
     <div className="space-y-10">
       <div>
-        <p className="eyebrow">{tr("Describe your skills", "صِف مهاراتك")}</p>
-        <h1 className="h1 mt-2">{tr("Describe your experience as skills", "صِف خبرتك كمهارات")}</h1>
-        <p className="mt-2 max-w-2xl text-muted">{tr("Add things you've done. We suggest the skills they show, each with the exact words from your description, and you decide what to keep. A skill you describe is self-reported; a link makes it “evidence attached”; only a person's review makes it “reviewed”.", "أضف ما أنجزته. نقترح المهارات التي يُظهرها، مع الكلمات نفسها من وصفك، وأنت تقرر ما تحتفظ به. المهارة التي تصفها إفادة ذاتية؛ والرابط يجعلها «دليل مرفق»؛ والمراجعة البشرية وحدها تجعلها «روجِعت».")}</p>
+        <h1 className="h1">{tr("Describe your experience as skills", "صِف خبرتك كمهارات")}</h1>
+        <p className="mt-2 max-w-2xl text-muted">{tr("Add something you've done. We suggest the skills it shows; you keep what's right.", "أضف شيئاً أنجزته. نقترح المهارات التي يُظهرها، وتحتفظ بما يصح.")}</p>
+        <div className="mt-4"><EvidenceLadder /></div>
         <div className="mt-2"><AnalysisMode /></div>
       </div>
 
@@ -129,7 +131,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                 <textarea id="d" className="input min-h-32" required minLength={5} value={desc} onChange={(e) => setDesc(e.target.value)} placeholder={tr("Describe your own part: tools you used, what you built, what happened.", "صف دورك أنت: الأدوات التي استخدمتها، وما بنيته، وما النتيجة.")} />
               </div>
               <div><label className="label" htmlFor="l">{tr("Evidence link (optional)", "رابط الدليل (اختياري)")}</label><input id="l" className="input" type="url" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://github.com/…" />
-                <p className="mt-1 text-xs text-muted">{tr("GitHub, portfolio, certificate page, or a public LinkedIn post. Adding a link marks the skill “Evidence attached”. The work has not been reviewed yet.", "GitHub أو معرض أعمال أو صفحة شهادة أو منشور عام على LinkedIn. عند إضافة الرابط، تظهر حالة المهارة «دليل مرفق». لم يُراجع العمل بعد.")}</p></div>
+                <p className="mt-1 text-xs text-muted">{tr("GitHub, portfolio or certificate page.", "GitHub أو معرض أعمال أو صفحة شهادة.")}</p></div>
               {err && <p role="alert" className="rounded-xl bg-bad-100 p-3 text-sm text-bad">{err}</p>}
               <button className="btn-primary" disabled={busy}>{busy ? tr("Reading…", "جارٍ القراءة…") : tr("Suggest skills", "اقترح المهارات")}</button>
             </form>
@@ -189,11 +191,11 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                     <span className="font-semibold text-teal">{lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en}</span>
                     <span className="flex items-center gap-2"><LevelDots level={s.level} /><EvidenceBadge s={s.status} /></span>
                   </div>
-                  <p className="mt-1 text-xs text-muted">{evidenceHint(s.status, lang)} · {s.evidence.filter((e) => e.kind === "link").length} {tr("link(s)", "رابط")} · {s.evidence.filter((e) => e.kind === "quote").length} {tr("quote(s)", "اقتباس")}</p>
+                  <p className="mt-1 flex gap-3 text-xs text-muted"><span className="inline-flex items-center gap-1"><Icon name="link" className="size-3.5" label={tr("Links", "روابط")} />{s.evidence.filter((e) => e.kind === "link").length}</span><span className="inline-flex items-center gap-1"><Icon name="said" className="size-3.5" label={tr("Quotes", "اقتباسات")} />{s.evidence.filter((e) => e.kind === "quote").length}</span></p>
                   <ReviewInfo s={s} onWithdraw={() => withdraw(s)} />
                   {canRequestReview(s) && <button className="mt-1 me-3 text-xs font-semibold text-teal underline underline-offset-2" onClick={() => askReview(s)}>{tr("Ask for a review", "اطلب مراجعة")}</button>}
                   {evidenceFor === s.skill_id ? (
-                    <form className="mt-2 flex gap-2" onSubmit={(e) => { e.preventDefault(); if (!isHttpUrl(evidenceUrl)) { setSkillMsg(tr("Enter a full link starting with https://", "أدخل رابطاً كاملاً يبدأ بـ https://")); return; } setProfile(attachEvidence(profile, s.skill_id, evidenceUrl.trim())); logActivity("evidence-submitted", s.skill_id); setEvidenceFor(null); setEvidenceUrl(""); setSkillMsg(tr("Link attached. The skill now shows “Evidence attached”. The work has not been reviewed yet.", "عند إضافة الرابط، تظهر حالة المهارة «دليل مرفق». لم يُراجع العمل بعد.")); }}>
+                    <form className="mt-2 flex gap-2" onSubmit={(e) => { e.preventDefault(); if (!isHttpUrl(evidenceUrl)) { setSkillMsg(tr("Enter a full link starting with https://", "أدخل رابطاً كاملاً يبدأ بـ https://")); return; } setProfile(attachEvidence(profile, s.skill_id, evidenceUrl.trim())); logActivity("evidence-submitted", s.skill_id); setEvidenceFor(null); setEvidenceUrl(""); setSkillMsg(tr("Link attached: “Evidence attached”, not reviewed yet.", "أُرفق الرابط: «دليل مرفق»، لم يُراجع بعد.")); }}>
                       <label className="sr-only" htmlFor={`ev-${s.skill_id}`}>{tr("Evidence URL", "رابط الدليل")}</label>
                       <input id={`ev-${s.skill_id}`} className="input !py-1.5 text-sm" type="url" required value={evidenceUrl} onChange={(e) => setEvidenceUrl(e.target.value)} placeholder="https://" />
                       <button className="btn-primary !py-1.5">{tr("Add", "أضف")}</button>
@@ -226,7 +228,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
                   </div>
                   <p className="mt-2 text-sm">{a.description}</p>
                   {a.links.map((l) => <a key={l} href={l} target="_blank" rel="noreferrer" className="mt-1 block truncate text-xs text-sage-600 underline">{l}</a>)}
-                  <p className="mt-2 text-xs text-muted">{linked.length ? `${tr("Shows", "يُظهر")}: ${linked.map((s) => (lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en)).join(", ")}` : tr("No skills linked yet.", "لا توجد مهارات مرتبطة بعد.")}</p>
+                  {linked.length > 0 ? <p className="mt-2 flex flex-wrap gap-1.5" aria-label={tr("Skills this shows", "المهارات التي يُظهرها")}>{linked.map((s) => <span key={s.skill_id} className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-semibold text-teal">{lang === "ar" ? SKILL_BY_ID[s.skill_id]?.name_ar : SKILL_BY_ID[s.skill_id]?.name_en}</span>)}</p> : <p className="mt-2 text-xs text-muted">{tr("No skills linked yet.", "لا توجد مهارات مرتبطة بعد.")}</p>}
                   <div className="mt-2 flex gap-3 text-xs font-semibold">
                     {linked.length === 0 && <button className="text-sage-600 underline" onClick={() => { setKind(a.kind); setTitle(a.title); setDesc(a.description); setLink(a.links[0] ?? ""); setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) }); document.getElementById("add-h")?.scrollIntoView({ behavior: "smooth" }); }}>{tr("Find skills in this", "استخرج المهارات منه")}</button>}
                     <button className="text-bad underline" onClick={() => setProfile({ ...profile, achievements: profile.achievements.filter((x) => x.id !== a.id) })}>{tr("Remove", "إزالة")}</button>
@@ -239,30 +241,30 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
       </section>
 
       <section aria-labelledby="opp-h">
-        <div className="flex flex-wrap items-end justify-between gap-2">
-          <div>
-            <h2 id="opp-h" className="h2">{tr("Scholarships and support worth checking", "منح ودعم يستحق التحقق منه")}</h2>
-            <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Matched on published criteria. A match means \"worth checking\", not a promise of funding. Always confirm on the official page.", "مطابقة وفق المعايير المنشورة. المطابقة تعني \"يستحق التحقق\" وليست وعداً بالتمويل. تحقق دائماً من الصفحة الرسمية.")}</p>
-          </div>
-        </div>
+        <h2 id="opp-h" className="h2">{tr("Scholarships and support worth checking", "منح ودعم يستحق التحقق منه")}</h2>
+        <p className="mt-1 max-w-2xl text-sm text-muted">{tr("A match means “worth checking”, not funding. Deadlines change each cycle: confirm on the official page.", "المطابقة تعني «يستحق التحقق» لا تمويلاً. المواعيد تتغير كل دورة: تحقق من الصفحة الرسمية.")}</p>
         {!opps && <div className="card mt-4 h-24 animate-pulse bg-mist/60" />}
         {opps && opps.length === 0 && <p className="card mt-4 p-6 text-muted">{tr("No opportunity data loaded yet.", "لم يتم تحميل بيانات الفرص بعد.")}</p>}
         <ul className="mt-4 grid gap-4 md:grid-cols-2">
-          {opps?.filter((o) => o.status !== "not-eligible").slice(0, 8).map((o) => (
+          {opps?.filter((o) => o.status !== "not-eligible").slice(0, allOpps ? 8 : 4).map((o) => (
             <li key={o.item.id} className="card flex flex-col p-5">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div><h3 className="font-bold text-teal">{lang === "ar" && o.item.name_ar ? o.item.name_ar : o.item.name_en}</h3><p className="text-sm text-muted">{o.item.provider} · {kindLabel(o.item.kind, lang)}</p></div>
                 <VerificationBadge v={o.item.verification} />
               </div>
               <span className={`mt-3 self-start rounded-full px-3 py-1 text-xs font-semibold ${o.status === "likely-relevant" ? "bg-ok-100 text-ok" : "bg-warn-100 text-warn"}`}>{o.status === "likely-relevant" ? tr("Your answers fit the published criteria", "إجاباتك توافق المعايير المنشورة") : tr("Some criteria unknown: check", "بعض المعايير غير معروفة: تحقّق")}</span>
+              <ul className="mt-3 space-y-1 text-sm" aria-label={tr("How your answers compare", "كيف تقارن إجاباتك")}>{o.reasons.map((r) => <li key={r.code} className="flex gap-2"><span aria-hidden="true" className={`font-bold ${r.weight > 0 ? "text-ok" : r.weight < 0 ? "text-bad" : "text-muted"}`}>{r.weight > 0 ? "✓" : r.weight < 0 ? "✗" : "?"}</span>{lang === "ar" ? r.ar : r.en}</li>)}</ul>
               <dl className="mt-3 flex-1 space-y-2 text-sm">
-                <div><dt className="text-xs font-semibold text-teal">{tr("Who can apply (as published)", "من يحق له التقديم (كما هو منشور)")}</dt><dd>{o.item.eligibility_text}</dd></div>
                 <div><dt className="text-xs font-semibold text-teal">{tr("What it covers", "ما الذي تغطيه")}</dt><dd>{o.item.coverage_text || <span className="text-muted">{tr("Not recorded; check the official page.", "غير مسجّل؛ تحقق من الصفحة الرسمية.")}</span>}</dd></div>
-                <div><dt className="text-xs font-semibold text-teal">{tr("Deadline", "الموعد النهائي")}</dt><dd className="text-muted">{tr("Not recorded. Deadlines change each cycle; check the official page.", "غير مسجّل. تتغير المواعيد كل دورة؛ تحقق من الصفحة الرسمية.")}</dd></div>
-                <div><dt className="text-xs font-semibold text-teal">{tr("Source", "المصدر")}</dt><dd className="text-xs text-muted">{o.item.sources[0]?.checked_at ? tr(`Page checked on ${o.item.sources[0].checked_at}. That does not confirm the current cycle is open.`, `تم التحقق من الصفحة في ${o.item.sources[0].checked_at}. هذا لا يؤكد أن الدورة الحالية مفتوحة.`) : tr("No check date recorded.", "لا يوجد تاريخ تحقق مسجّل.")}</dd></div>
-                <div><dt className="text-xs font-semibold text-teal">{tr("How your answers compare", "كيف تقارن إجاباتك")}</dt>
-                  <dd><ul className="space-y-1">{o.reasons.map((r) => <li key={r.code} className="flex gap-2"><span aria-hidden="true" className={r.weight > 0 ? "text-ok" : r.weight < 0 ? "text-bad" : "text-muted"}>{r.weight > 0 ? "+" : r.weight < 0 ? "−" : "?"}</span>{lang === "ar" ? r.ar : r.en}</li>)}</ul></dd></div>
               </dl>
+              <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
+                <span><span className="font-semibold text-teal">{tr("Deadline", "الموعد النهائي")}</span> {tr("not recorded", "غير مسجّل")}</span>
+                <span><span className="font-semibold text-teal">{tr("Page checked", "تاريخ التحقق")}</span> {o.item.sources[0]?.checked_at ?? tr("not recorded", "غير مسجّل")}</span>
+              </p>
+              <details className="mt-3 text-sm">
+                <summary className="cursor-pointer text-xs font-semibold text-teal">{tr("Who can apply (as published)", "من يحق له التقديم (كما هو منشور)")}</summary>
+                <p className="mt-1">{o.item.eligibility_text}</p>
+              </details>
               <div className="mt-4 flex flex-wrap gap-2">
                 <a href={o.item.url} target="_blank" rel="noreferrer" className="btn-secondary !py-1.5">{tr("Next: read the official page", "التالي: اقرأ الصفحة الرسمية")} ↗</a>
                 <button className="btn-ghost !py-1.5" onClick={() => buildPack(o)}>{tr("Prepare application pack", "جهّز ملف التقديم")}</button>
@@ -270,24 +272,22 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
             </li>
           ))}
         </ul>
+        {!allOpps && (opps?.filter((o) => o.status !== "not-eligible").length ?? 0) > 4 && <button type="button" className="btn-ghost mt-3" onClick={() => setAllOpps(true)}>{tr("Show more", "اعرض المزيد")}</button>}
         {pack && (
           <div className="card mt-4 p-5">
             <div className="flex items-center justify-between"><h3 className="font-bold text-teal">{tr("Application pack draft", "مسودة ملف التقديم")}</h3><button className="btn-ghost" onClick={() => setPack(null)}>{tr("Close", "إغلاق")}</button></div>
-            <p className="mt-1 text-sm text-muted">{tr("Bridgecom doesn't send anything or have funding partners yet. Copy this into the official application.", "لا يرسل بريدجكوم أي شيء وليس لديه شركاء تمويل بعد. انسخ هذا إلى طلب التقديم الرسمي.")}</p>
+            <p className="mt-1 text-sm text-muted">{tr("A draft for you to copy. Bridgecom sends nothing and has no funding partners.", "مسودة لتنسخها. لا يرسل بريدجكوم شيئاً وليس لديه شركاء تمويل.")}</p>
             <textarea readOnly className="input mt-3 min-h-64 font-mono text-xs" value={pack} aria-label={tr("Application pack text", "نص ملف التقديم")} />
             <button className="btn-secondary mt-2" onClick={() => navigator.clipboard?.writeText(pack)}>{tr("Copy", "نسخ")}</button>
           </div>
         )}
       </section>
 
-      <section className="card p-5 sm:p-6" aria-labelledby="share-h">
-        <h2 id="share-h" className="h2">{tr("Sharing with employers", "المشاركة مع أصحاب العمل")}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Nothing is shared by default. After you compare your experience with a role, you can choose to share your skills with that one role, and withdraw it later. Your average, city, budget and support needs are never shared.", "لا تتم مشاركة أي شيء افتراضياً. بعد مقارنة خبرتك بدور ما، يمكنك اختيار مشاركة مهاراتك مع ذلك الدور فقط، وسحبها لاحقاً. لا تتم مشاركة معدلك أو مدينتك أو ميزانيتك أو احتياجات الدعم أبداً.")}</p>
-      </section>
 
       <section className="rounded-[1.25rem] bg-teal p-8 text-ivory">
         <p className="eyebrow !text-sand">{tr("Next", "التالي")}</p>
         <h2 className="mt-2 text-2xl font-bold">{tr("See how your experience matches a role.", "اعرف كيف تتوافق خبرتك مع دور وظيفي.")}</h2>
+        <p className="mt-2 flex items-center gap-2 text-sm text-mist"><Icon name="lock" className="size-4" />{tr("Nothing is shared with employers unless you choose one role.", "لا يُشارك شيء مع أصحاب العمل إلا إذا اخترت دوراً بعينه.")}</p>
         <Link href="/succeed" className="btn mt-6 bg-sand text-teal-900 hover:bg-sand-100">{tr("Compare with a role", "قارن بدور وظيفي")}</Link>
       </section>
     </div>
@@ -332,7 +332,7 @@ function ReviewInfo({ s, onWithdraw }: { s: ProfileSkill; onWithdraw: () => void
       <summary className="cursor-pointer font-semibold text-teal">{r.decision === "reviewed" ? tr("Review note", "ملاحظة المراجعة") : tr("What the reviewer needs", "ما يحتاجه المراجِع")} · {r.reviewer} · {r.decided_at && date(r.decided_at)}</summary>
       <p className="mt-1">{r.reason}</p>
       <ul className="mt-1 space-y-0.5 text-muted">{(r.rubric ?? []).map((c) => { const d = REVIEW_RUBRIC.find((x) => x.id === c.criterion); return <li key={c.criterion}>{c.met ? "✓" : "✗"} {d ? (lang === "ar" ? d.ar : d.en) : c.criterion}</li>; })}</ul>
-      <p className="mt-1 text-muted">{tr("To contest a decision, add more work and ask for another review; a different team member will look at it where possible.", "للاعتراض على القرار، أضف عملاً إضافياً واطلب مراجعة أخرى؛ وسيتولاها عضو آخر من الفريق متى أمكن.")}</p>
+      <p className="mt-1 text-muted">{tr("To contest, add more work and ask again; another team member reviews where possible.", "للاعتراض، أضف عملاً واطلب مجدداً؛ يراجعه عضو آخر متى أمكن.")}</p>
     </details>
   );
 }

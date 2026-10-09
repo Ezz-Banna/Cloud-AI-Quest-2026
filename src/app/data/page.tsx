@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { datasetLabel } from "@/lib/i18n";
 import { useBridge } from "@/components/ProfileProvider";
@@ -11,19 +12,17 @@ type Cov = Record<string, { total: number; verified: number; partial: number; ot
 export default function DataPage() {
   const { tr, lang } = useBridge();
   const [d, setD] = useState<{ coverage: Cov; universities: University[]; programs: Program[]; scholarships: Scholarship[]; courses: Course[] } | null>(null);
-  const [status, setStatus] = useState<{ ai: boolean; model: string | null } | null>(null);
 
   const load = () => fetch("/api/data/coverage").then((r) => r.json()).then(setD);
-  useEffect(() => { load(); fetch("/api/status").then((r) => r.json()).then(setStatus); }, []);
+  useEffect(() => { load(); }, []);
 
   const unis = Object.fromEntries((d?.universities ?? []).map((u) => [u.id, u]));
   return (
     <div className="space-y-10">
       <div>
-        <p className="eyebrow">{tr("Transparency", "الشفافية")}</p>
-        <h1 className="h1 mt-2">{tr("About the data", "عن البيانات")}</h1>
-        <p className="mt-2 max-w-3xl text-muted">{tr("Bridgecom is designed to cover every accredited Jordanian university and program. This prototype holds a curated subset collected on 9 October 2026 from official and public sources. It is not complete coverage. Every record keeps its source and check date; missing values stay blank rather than estimated.",
-          "صُمّم بريدجكوم ليغطي جميع الجامعات والبرامج الأردنية المعتمدة. يضم هذا النموذج مجموعة مختارة جُمعت في 9 تشرين الأول 2026 من مصادر رسمية وعامة، وهي ليست تغطية كاملة. يحتفظ كل سجل بمصدره وتاريخ التحقق؛ وتبقى القيم الناقصة فارغة بدلاً من تقديرها.")}</p>
+        <h1 className="h1">{tr("About the data", "عن البيانات")}</h1>
+        <p className="mt-2 max-w-3xl text-muted">{tr("A curated subset collected on 9 October 2026 from public sources, not full coverage. Missing values stay blank, never estimated.", "مجموعة مختارة جُمعت في 9 تشرين الأول 2026 من مصادر عامة، وليست تغطية كاملة. القيم الناقصة تبقى فارغة ولا تُقدَّر.")}</p>
+        <p className="mt-2 text-sm"><Link href="/how" className="font-semibold text-teal underline underline-offset-2">{tr("What is live, simulated or planned", "ما الذي يعمل، وما المحاكى، وما المخطط")}</Link></p>
       </div>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label={tr("Coverage", "التغطية")}>
@@ -36,17 +35,6 @@ export default function DataPage() {
         ))}
       </section>
 
-      <section className="card p-5 sm:p-6">
-        <h2 className="h2">{tr("What is real, what is synthetic", "ما الحقيقي وما المصطنع")}</h2>
-        <ul className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
-          <li>✓ {tr("Universities, programs, fees and admission minimums: public sources, cited per record", "الجامعات والبرامج والرسوم والحدود الدنيا للقبول: مصادر عامة، موثّقة لكل سجل")}</li>
-          <li>✓ {tr("Scholarships and courses: real programs and resources, linked to official pages", "المنح والدورات: برامج وموارد حقيقية، مرتبطة بصفحاتها الرسمية")}</li>
-          <li>◇ {tr("Employers and job roles marked Synthetic are invented for the demo", "أصحاب العمل والأدوار المعلَّمة كمصطنعة مُختلقة لأغراض العرض")}</li>
-          <li>◇ {tr("The demo student \"Lina\" is synthetic", "الطالبة التجريبية \"لينا\" شخصية مصطنعة")}</li>
-          <li>✦ {tr("AI", "الذكاء الاصطناعي")}: {status ? (status.ai ? `${tr("connected", "متصل")} (${status.model})` : tr("not configured on this server, offline keyword rules in use", "غير مهيأ على هذا الخادم، تُستخدم قواعد الكلمات المفتاحية")) : "…"}</li>
-          <li>⚙ {tr("Eligibility, cost, matching and gap analysis are deterministic rules, not AI", "الأهلية والكلفة والمطابقة وتحليل الفجوات قواعد حتمية وليست ذكاءً اصطناعياً")}</li>
-        </ul>
-      </section>
 
       <section aria-labelledby="prog-h">
         <h2 id="prog-h" className="h2">{tr("Programs", "البرامج")}</h2>

@@ -107,7 +107,7 @@ async function run(viewport, tag) {
   if (tag === "desktop") {
     await page.getByRole("button", { name: /ask for a review/i }).first().click();
     check(`${tag}: review requested`, await page.getByRole("status").filter({ hasText: /Review requested/ }).waitFor({ timeout: 5000 }).then(() => true, () => false));
-    check(`${tag}: skill shows "Awaiting review"`, await page.getByText("Awaiting review").first().isVisible());
+    check(`${tag}: skill shows "Awaiting review"`, await page.locator("section[aria-labelledby=skills-h]").getByText("Awaiting review").first().isVisible());
   }
   await page.getByText(/fit the published criteria/i).first().waitFor({ timeout: 10000 });
   check(`${tag}: scholarship card separates who can apply, coverage, deadline and source`, await page.getByText("Who can apply (as published)").first().isVisible() && await page.getByText("Deadline", { exact: true }).first().isVisible());
@@ -124,7 +124,7 @@ async function run(viewport, tag) {
   const withWork = async () => (await cmp.locator("dl > div").nth(1).locator("dd").first().innerText()).split("/")[0].trim();
   const before = await withWork();
   await page.screenshot({ path: `${OUT}/${tag}-07-compare.png`, fullPage: true });
-  await page.getByRole("button", { name: /Already done this\? Attach your work/i }).first().click();
+  await page.getByRole("button", { name: /^Attach your work$/i }).first().click();
   await page.getByLabel("Link to your work").fill("https://example.org/synthetic-project");
   await page.getByRole("button", { name: /attach link/i }).click();
   await page.getByRole("status").filter({ hasText: /Evidence attached/ }).waitFor({ timeout: 5000 });
@@ -204,6 +204,16 @@ async function run(viewport, tag) {
     await page.getByRole("tab", { name: /provenance/i }).click();
     await page.screenshot({ path: `${OUT}/${tag}-12-admin.png`, fullPage: true });
   }
+
+  // How it works: every statistic shows a period and a clickable source
+  await page.goto(`${BASE}/how`);
+  await page.getByRole("heading", { name: /why guidance matters in jordan/i }).waitFor();
+  const stats = await page.locator("section[aria-labelledby=why-h] figure").evaluateAll((fs) => fs.map((f) => ({ link: f.querySelector("figcaption a")?.getAttribute("href") ?? "", text: f.textContent ?? "" })));
+  check(`${tag}: how-it-works statistics each have a source link and a year`, stats.length >= 3 && stats.every((x) => /^https:\/\//.test(x.link) && /20\d\d/.test(x.text)));
+  check(`${tag}: live/simulated/planned table present`, await page.getByRole("columnheader", { name: "Status" }).isVisible());
+  await page.screenshot({ path: `${OUT}/${tag}-13-how.png`, fullPage: true });
+  await page.goto(`${BASE}/`);
+  check(`${tag}: homepage shows at most one sourced statistic`, (await page.locator("section[aria-labelledby=ctx-title] figure").count()) === 1 && await page.locator("section[aria-labelledby=ctx-title] figcaption a").first().isVisible());
 
   // Data page + Arabic
   await page.goto(`${BASE}/data`);

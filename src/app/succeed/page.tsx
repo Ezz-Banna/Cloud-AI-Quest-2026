@@ -6,6 +6,8 @@ import { AnalysisMode, ModeBadge, VerificationBadge } from "@/components/Badges"
 import { Comparison, type ComparedRole } from "@/components/Comparison";
 import { RequirementReview, type Draft } from "@/components/RequirementReview";
 import { SKILL_BY_ID } from "@/lib/data/taxonomy";
+import { StepStrip } from "@/components/Visuals";
+import Link from "next/link";
 import { importanceOf, type Employer, type EmployerRole } from "@/lib/types";
 
 export default function Succeed() {
@@ -59,16 +61,18 @@ export default function Succeed() {
   return (
     <div className="space-y-10">
       <div>
-        <p className="eyebrow">{tr("Compare with a role", "قارن بدور وظيفي")}</p>
-        <h1 className="h1 mt-2">{tr("Compare your experience with a role", "قارن خبرتك بدور وظيفي")}</h1>
-        <p className="mt-2 max-w-2xl text-muted">{tr("Pick an example role or paste a posting. You check what was read, then see what you've recorded against each requirement and one practical next step.", "اختر دوراً تجريبياً أو الصق إعلاناً. تتحقق مما قُرئ، ثم ترى ما سجّلته مقابل كل متطلب وخطوة عملية تالية واحدة.")}</p>
-        {hydrated && profile.skills.length === 0 && <p className="mt-3 max-w-2xl rounded-xl bg-sand-100 p-3 text-sm text-sand-700">{tr("You haven't recorded any experience yet. You can still see what a role asks for; to compare, describe your experience in Skills first.", "لم تسجّل أي خبرة بعد. ما زال بإمكانك الاطلاع على ما يطلبه الدور؛ وللمقارنة صِف خبرتك في «المهارات» أولاً.")}</p>}
+        <h1 className="h1">{tr("Compare your experience with a role", "قارن خبرتك بدور وظيفي")}</h1>
+        <div className="mt-4"><StepStrip label={tr("How it works", "طريقة العمل")} steps={[
+          { icon: "role", text: tr("Pick a role or paste a posting", "اختر دوراً أو الصق إعلاناً") },
+          { icon: "edit", text: tr("Check what was read", "راجع ما قُرئ") },
+          { icon: "step", text: tr("Get one next step", "احصل على خطوة تالية") },
+        ]} /></div>
+        {hydrated && profile.skills.length === 0 && <p className="mt-3 max-w-2xl rounded-xl bg-sand-100 p-3 text-sm text-sand-700">{tr("No experience recorded yet. To compare, ", "لم تسجّل أي خبرة بعد. للمقارنة، ")}<Link href="/empower" className="font-semibold underline">{tr("describe your experience first", "صِف خبرتك أولاً")}</Link>.</p>}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <section aria-labelledby="roles-h">
-          <h2 id="roles-h" className="h2">{tr("Example roles", "أدوار تجريبية")}</h2>
-          <p className="mt-1 text-xs text-muted">{tr("These employers and roles are synthetic, made up for the demo.", "أصحاب العمل والأدوار هنا تجريبية، أُنشئت لأغراض العرض.")}</p>
+          <h2 id="roles-h" className="h2">{tr("Example roles", "أدوار تجريبية")} <span className="ms-1 align-middle rounded-full bg-sand-100 px-2.5 py-0.5 text-xs font-semibold text-sand-700">◇ {tr("Synthetic", "مصطنعة")}</span></h2>
           {!roles && <div className="card mt-4 h-40 animate-pulse bg-mist/60" />}
           <ul className="mt-4 space-y-3">
             {roles?.map((r) => {
@@ -79,7 +83,7 @@ export default function Succeed() {
                     className={`card w-full p-5 text-start transition hover:border-sage ${progress.selected_role === r.id ? "ring-2 ring-sage" : ""}`}>
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div><p className="font-bold text-teal">{r.title}</p><p className="text-sm text-muted">{emp?.name ?? "—"} · {cityLabel(r.city, lang)} · {kindLabel(r.kind, lang)}</p></div>
-                      <VerificationBadge v={r.verification} />
+                      {r.verification !== "synthetic" && <VerificationBadge v={r.verification} />}
                     </div>
                     <p className="mt-3 flex flex-wrap gap-1.5">{r.requirements.filter((q) => importanceOf(q) !== "not-required").map(chip)}</p>
                   </button>
@@ -91,7 +95,6 @@ export default function Succeed() {
 
         <section className="card h-fit p-5 sm:p-6" aria-labelledby="paste-h">
           <h2 id="paste-h" className="h2">{tr("Paste a job posting", "الصق إعلان وظيفة")}</h2>
-          <p className="mt-1 text-sm text-muted">{tr("Each requirement we find is tied to a quote from the posting. You check them before anything is compared.", "كل متطلب نجده مرتبط باقتباس من الإعلان. تتحقق منها قبل أي مقارنة.")}</p>
           <div className="mt-2"><AnalysisMode /></div>
           <form onSubmit={parse} className="mt-4 space-y-3">
             <label htmlFor="jd" className="sr-only">{tr("Job posting text", "نص إعلان الوظيفة")}</label>

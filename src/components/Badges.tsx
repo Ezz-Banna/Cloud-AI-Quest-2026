@@ -62,7 +62,7 @@ export function AnalysisMode() {
     statusPromise.then(setS).catch(() => setS(null));
   }, []);
   if (!s) return null;
-  if (s.ai) return <p className="text-xs text-muted">{tr("An AI model reads the text first; keyword rules then check every item against the original wording.", "يقرأ نموذج ذكاء اصطناعي النص أولاً، ثم تتحقق قواعد الكلمات المفتاحية من كل بند مقابل النص الأصلي.")}</p>;
-  const why = s.ai_reason === "daily-limit-reached" ? tr(" (today's AI limit was reached)", " (بلغ الاستخدام الحدّ اليومي)") : "";
-  return <p className="text-xs text-muted">{tr(`No AI model is connected right now${why}. Keyword rules read the text; they handle common wording but can miss unusual phrasing, so please check the result.`, `لا يوجد نموذج ذكاء اصطناعي متصل حالياً${why}. تقرأ قواعد الكلمات المفتاحية النص؛ وهي تتعامل مع الصياغات الشائعة لكنها قد تفوّت الصياغات غير المألوفة، لذا يُرجى مراجعة النتيجة.`)}</p>;
+  if (s.ai) return <p className="text-xs text-muted">{tr("✦ An AI model reads the text; rules check each item against your wording.", "✦ يقرأ نموذج ذكاء اصطناعي النص، وتتحقق القواعد من كل بند مقابل كلماتك.")}</p>;
+  const why = s.ai_reason === "daily-limit-reached" ? tr("; today's limit was reached", "؛ بلغ الاستخدام الحدّ اليومي") : "";
+  return <p className="text-xs text-muted">{tr(`⚙ Keyword rules read the text (no AI model connected${why}). They can miss unusual wording, so check the result.`, `⚙ تقرأ قواعد الكلمات المفتاحية النص (لا يوجد نموذج ذكاء اصطناعي متصل${why}). قد تفوّت الصياغات غير المألوفة، فراجع النتيجة.`)}</p>;
 }

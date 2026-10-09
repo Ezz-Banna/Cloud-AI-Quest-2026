@@ -2,6 +2,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
+import { Icon, type IconName } from "@/components/Visuals";
+import { StatCard } from "@/components/StatCard";
+import { JORDAN_STATS } from "@/lib/data/jordan-stats";
+
+const HOME_STATS = JORDAN_STATS.filter((s) => s.home);
 
 type GoalId = "programs" | "skills" | "role";
 
@@ -84,56 +89,45 @@ export default function Home() {
   const [intro, setIntro] = useState(true);
   const setActive = (g: GoalId) => { setIntro(false); setActiveRaw(g); };
 
-  const goals: { id: GoalId; href: string; title: string; who: string; get: string; start: string }[] = [
+  const goals: { id: GoalId; href: string; icon: IconName; title: string; who: string; get: string[]; start: string }[] = [
     {
-      id: "programs", href: "/discover",
+      id: "programs", href: "/discover", icon: "programs",
       title: tr("Choose a university program", "اختيار برنامج جامعي"),
-      who: tr("For Tawjihi students and anyone weighing a degree.", "لطلبة التوجيهي ولكل من يفكّر في دراسة جامعية."),
-      get: tr("Programs whose published admission minimum you meet, the yearly cost with its source and date, and why each one fits you. Fit is not an admission chance.",
-        "برامج تستوفي حدّها الأدنى المعلن للقبول، وكلفتها السنوية مع مصدرها وتاريخها، وسبب ملاءمة كلٍّ منها لك. الملاءمة ليست فرصة قبول."),
+      who: tr("Tawjihi students", "طلبة التوجيهي"),
+      get: [tr("Admission minimum check, with source", "فحص الحد الأدنى للقبول مع المصدر"), tr("Yearly cost in JOD, dated", "الكلفة السنوية بالدينار مع التاريخ"), tr("Why it fits you (not an admission chance)", "سبب ملاءمته لك (ليس فرصة قبول)")],
       start: tr("Start with programs", "ابدأ بالبرامج"),
     },
     {
-      id: "skills", href: "/empower",
+      id: "skills", href: "/empower", icon: "skills",
       title: tr("Describe my experience as skills", "وصف خبرتي كمهارات"),
-      who: tr("For students and graduates with projects, volunteering or work to show.", "للطلبة والخريجين ممن لديهم مشاريع أو تطوّع أو عمل."),
-      get: tr("Suggested skills, each quoting your own words. You confirm what is kept. Links you add are shown as attached, not verified.",
-        "مهارات مقترحة، كلٌّ منها مقتبس من كلماتك، وأنت من يؤكّد ما يُحفظ. الروابط التي تضيفها تظهر كأدلة مرفقة، لا موثّقة."),
+      who: tr("Students and graduates", "الطلبة والخريجون"),
+      get: [tr("Skills quoted from your own words", "مهارات مقتبسة من كلماتك"), tr("You choose what is kept", "أنت تختار ما يُحفظ"), tr("Links shown as attached, not verified", "الروابط تظهر كمرفقة لا موثّقة")],
       start: tr("Start with skills", "ابدأ بالمهارات"),
     },
     {
-      id: "role", href: "/succeed",
+      id: "role", href: "/succeed", icon: "role",
       title: tr("Compare my experience with a role", "مقارنة خبرتي بدور وظيفي"),
-      who: tr("For anyone preparing for a specific kind of work.", "لكل من يستعد لنوع محدد من العمل."),
-      get: tr("What your recorded experience already covers, what the role still asks for, and one practical next step.",
-        "ما تغطيه خبرتك المسجّلة، وما يتطلبه الدور بعد، وخطوة عملية واحدة تالية."),
+      who: tr("Anyone preparing for work", "كل من يستعد للعمل"),
+      get: [tr("What you already cover", "ما تغطيه خبرتك"), tr("What the role still asks for", "ما يطلبه الدور بعد"), tr("One practical next step", "خطوة عملية تالية واحدة")],
       start: tr("Start with a role", "ابدأ بدور وظيفي"),
     },
   ];
 
-  const trust = [
-    [tr("Sources and dates shown", "المصادر والتواريخ ظاهرة"),
-      tr("Admission minimums and costs come from published records and are shown with their source and the date they were collected.",
-        "الحدود الدنيا للقبول والكلف مأخوذة من سجلات منشورة، وتظهر مع مصدرها وتاريخ جمعها.")],
-    [tr("Reasons shown", "الأسباب ظاهرة"),
-      tr("Every suggestion lists why it was made, so you can disagree with a specific reason instead of trusting a score.",
-        "كل اقتراح يذكر أسبابه، فتستطيع أن تعترض على سبب بعينه بدل أن تثق برقم.")],
-    [tr("You confirm what was read", "أنت تؤكّد ما فُهم منك"),
-      tr("Before your words are used, you see what the system took from them and can correct it. Results say whether AI or keyword rules produced them.",
-        "قبل استخدام كلماتك، ترى ما استخلصه النظام منها ويمكنك تصحيحه. وتوضّح النتائج إن كانت من الذكاء الاصطناعي أو من قواعد الكلمات المفتاحية.")],
+  const trust: [IconName, string, string][] = [
+    ["source", tr("Sources and dates", "المصادر والتواريخ"), tr("Every minimum and cost links to where it came from.", "كل حد أدنى وكلفة مرتبط بمصدره.")],
+    ["reasons", tr("Reasons, not scores", "أسباب لا أرقام"), tr("Each suggestion says why, so you can disagree.", "كل اقتراح يذكر سببه، فتستطيع الاعتراض.")],
+    ["confirm", tr("You confirm first", "أنت تؤكّد أولاً"), tr("You check what was read, and whether AI or rules read it.", "تراجع ما قُرئ، وهل قرأه الذكاء الاصطناعي أم القواعد.")],
   ];
 
   return (
     <>
       <section aria-labelledby="hero-title" className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:py-6">
         <div className="min-w-0">
-          <p className="eyebrow">{tr("Education and skills guidance for Jordan", "إرشاد تعليمي ومهاري في الأردن")}</p>
           <h1 id="hero-title" className="mt-3 text-4xl font-bold leading-tight tracking-tight text-teal sm:text-5xl">
             {tr("Your next step, made clearer.", "خطوتك التالية، بوضوح أكبر.")}
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted">
-            {tr("For students, graduates and anyone in Jordan without access to one-to-one guidance. Pick the decision in front of you: which university program to consider, how to describe the skills you already have, or what a role still asks of you.",
-              "للطلبة والخريجين ولكل من في الأردن لا يتاح له إرشاد فردي. اختر القرار الذي أمامك: أيّ برنامج جامعي تدرسه، أو كيف تصف المهارات التي لديك، أو ما الذي ما زال يتطلبه منك دور وظيفي.")}
+            {tr("Pick the decision in front of you. No sign-up, in Arabic or English.", "اختر القرار الذي أمامك. دون تسجيل، بالعربية أو الإنجليزية.")}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href="#goals" className="btn-primary !px-7 !py-3 text-base"
@@ -149,7 +143,7 @@ export default function Home() {
             <Link href="/discover?demo=1" className="btn-secondary !px-7 !py-3 text-base">{tr("Explore an example", "استكشف مثالاً")}</Link>
           </div>
           <p className="mt-3 text-sm text-muted">
-            {tr("The example uses Lina, a synthetic demo student. No sign-up needed.", "يستخدم المثال «لينا»، وهي طالبة تجريبية مصطنعة. لا حاجة إلى التسجيل.")}
+            {tr("The example uses Lina, a synthetic student.", "يستخدم المثال «لينا»، وهي طالبة مصطنعة.")}
           </p>
         </div>
         <NextStepConnection active={active} intro={intro} />
@@ -157,18 +151,16 @@ export default function Home() {
 
       <section id="goals" tabIndex={-1} aria-labelledby="goals-title" className="mt-12 scroll-mt-24 focus:outline-none">
         <h2 id="goals-title" className="h2">{tr("Where would you like to start?", "من أين تودّ أن تبدأ؟")}</h2>
-        <p className="mt-2 max-w-2xl text-muted">
-          {tr("Start at the stage you are at now. Each step works on its own, and your answers stay on your device.",
-            "ابدأ من المرحلة التي أنت فيها الآن. كل خطوة تعمل وحدها، وإجاباتك تبقى على جهازك.")}
-        </p>
         <ul className="mt-6 grid gap-4 md:grid-cols-3">
           {goals.map((g) => {
             const on = g.id === active;
             return (
               <li key={g.id} className={`card flex flex-col p-5 transition-[border-color,box-shadow] duration-300 ${on ? "!border-sage ring-2 ring-sage/40" : ""}`}>
-                <h3 className="text-lg font-bold text-teal">{g.title}</h3>
-                <p className="mt-1 text-sm text-muted">{g.who}</p>
-                <p className="mt-3 flex-1 text-sm text-ink"><span className="font-semibold text-teal">{tr("You receive: ", "ستحصل على: ")}</span>{g.get}</p>
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sage-600"><Icon name={g.icon} className="size-5" />{g.who}</p>
+                <h3 className="mt-2 text-lg font-bold text-teal">{g.title}</h3>
+                <ul className="mt-3 flex-1 space-y-1.5 text-sm text-ink" aria-label={tr("You receive", "ستحصل على")}>
+                  {g.get.map((x) => <li key={x} className="flex gap-2"><span aria-hidden="true" className="font-bold text-ok">✓</span>{x}</li>)}
+                </ul>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <Link href={g.href} onFocus={() => setActive(g.id)} className="btn-primary">
                     {g.start} <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span>
@@ -184,22 +176,27 @@ export default function Home() {
         </ul>
       </section>
 
+      {HOME_STATS.length > 0 && (
+        <section aria-labelledby="ctx-title" className="mt-12">
+          <h2 id="ctx-title" className="h2">{tr("Why guidance matters in Jordan", "لماذا يهم الإرشاد في الأردن")}</h2>
+          <div className="mt-4 grid items-center gap-4 sm:grid-cols-[minmax(0,26rem)_1fr]">
+            <StatCard s={HOME_STATS[0]} compact />
+            <p className="text-sm"><Link href="/how" className="font-semibold text-teal underline underline-offset-2">{tr("More Jordanian context, with sources", "مزيد من السياق الأردني مع المصادر")} <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span></Link></p>
+          </div>
+        </section>
+      )}
+
       <section aria-labelledby="trust-title" className="mt-14">
         <h2 id="trust-title" className="h2">{tr("Guidance you can check", "إرشاد يمكنك التحقق منه")}</h2>
         <ul className="mt-5 grid gap-4 md:grid-cols-3">
-          {trust.map(([h, b]) => (
-            <li key={h} className="rounded-[1.25rem] bg-mist p-5">
-              <h3 className="font-bold text-teal">{h}</h3>
-              <p className="mt-2 text-sm text-muted">{b}</p>
+          {trust.map(([icon, h, b]) => (
+            <li key={h} className="flex gap-3 rounded-[1.25rem] bg-mist p-5">
+              <Icon name={icon} className="mt-0.5 size-6 text-sage-600" />
+              <div><h3 className="font-bold text-teal">{h}</h3><p className="mt-1 text-sm text-muted">{b}</p></div>
             </li>
           ))}
         </ul>
-        <p className="mt-5 max-w-3xl text-sm text-muted">
-          {tr("Bridgecom gives guidance, not admission or hiring decisions. Employers and the demo student in this prototype are synthetic.",
-            "يقدّم بريدجكوم إرشاداً، لا قرارات قبول أو توظيف. أصحاب العمل والطالبة التجريبية في هذا النموذج الأولي بيانات مصطنعة.")}
-          {" "}
-          <Link href="/employer" className="underline underline-offset-2 hover:text-teal">{tr("Employer access", "دخول أصحاب العمل")}</Link>
-        </p>
+        <p className="mt-5 text-sm"><Link href="/how" className="font-semibold text-teal underline underline-offset-2">{tr("How Bridgecom works", "كيف يعمل بريدجكوم")} <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span></Link></p>
       </section>
     </>
   );

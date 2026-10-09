@@ -10,6 +10,14 @@
   {
     "lang": "en",
     "width": 390,
+    "path": "/how",
+    "overflow": 0,
+    "h1": 1,
+    "violations": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
     "path": "/discover",
     "overflow": 0,
     "h1": 1,
@@ -82,6 +90,14 @@
   {
     "lang": "en",
     "width": 640,
+    "path": "/how",
+    "overflow": 0,
+    "h1": 1,
+    "violations": []
+  },
+  {
+    "lang": "en",
+    "width": 640,
     "path": "/discover",
     "overflow": 0,
     "h1": 1,
@@ -154,6 +170,14 @@
   {
     "lang": "en",
     "width": 1366,
+    "path": "/how",
+    "overflow": 0,
+    "h1": 1,
+    "violations": []
+  },
+  {
+    "lang": "en",
+    "width": 1366,
     "path": "/discover",
     "overflow": 0,
     "h1": 1,
@@ -226,6 +250,14 @@
   {
     "lang": "ar",
     "width": 390,
+    "path": "/how",
+    "overflow": 0,
+    "h1": 1,
+    "violations": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
     "path": "/discover",
     "overflow": 0,
     "h1": 1,
@@ -291,6 +323,14 @@
     "lang": "ar",
     "width": 640,
     "path": "/",
+    "overflow": 0,
+    "h1": 1,
+    "violations": []
+  },
+  {
+    "lang": "ar",
+    "width": 640,
+    "path": "/how",
     "overflow": 0,
     "h1": 1,
     "violations": []
@@ -363,6 +403,14 @@
     "lang": "ar",
     "width": 1366,
     "path": "/",
+    "overflow": 0,
+    "h1": 1,
+    "violations": []
+  },
+  {
+    "lang": "ar",
+    "width": 1366,
+    "path": "/how",
     "overflow": 0,
     "h1": 1,
     "violations": []

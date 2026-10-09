@@ -17,7 +17,7 @@ export function Header() {
         <div className="flex items-center gap-1 sm:gap-2">
           <Link href="/dashboard" className="btn-ghost !px-3">{tr("My dashboard", "لوحتي")}</Link>
           <Link href="/employer" className="btn-ghost hidden md:inline-flex">{tr("For employers", "لأصحاب العمل")}</Link>
-          <Link href="/data" className="btn-ghost hidden lg:inline-flex">{tr("About the data", "عن البيانات")}</Link>
+          <Link href="/how" className="btn-ghost hidden lg:inline-flex">{tr("How it works", "كيف يعمل")}</Link>
           <button type="button" className="btn-secondary !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
             {lang === "en" ? "العربية" : "English"}
           </button>
@@ -35,6 +35,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>{tr("Bridgecom: your next step, made clearer. A hackathon prototype (AI Quest 2026). Guidance only, not admission or hiring decisions.", "بريدجكوم: خطوتك التالية، بوضوح أكبر. نموذج أولي ضمن هاكاثون AI Quest 2026. إرشاد فقط، وليس قرارات قبول أو توظيف.")}</p>
         <nav aria-label={tr("Footer", "تذييل الصفحة")} className="flex flex-wrap gap-x-4 gap-y-2">
+          <Link href="/how" className="underline underline-offset-2">{tr("How it works", "كيف يعمل")}</Link>
           <Link href="/data" className="underline underline-offset-2">{tr("About the data", "عن البيانات")}</Link>
           <Link href="/employer" className="underline underline-offset-2">{tr("For employers", "لأصحاب العمل")}</Link>
           <Link href="/admin" className="underline underline-offset-2">{tr("Admin", "الإدارة")}</Link>

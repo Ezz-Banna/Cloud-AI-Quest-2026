@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useBridge } from "./ProfileProvider";
 import { EvidenceBadge, VerificationBadge } from "./Badges";
+import { CountBar } from "./Visuals";
 import { SKILL_BY_ID } from "@/lib/data/taxonomy";
 import { comparisonInput, type Comparison as C, type ExperienceState, type PathwayStep, type RequirementCheck } from "@/lib/engines/gap";
 import { isHttpUrl, mergeSkill } from "@/lib/profile-ops";
@@ -52,7 +53,7 @@ export function Comparison({ role, onEditRequirements }: { role: ComparedRole; o
     setProfile((p) => mergeSkill(p, { skill_id: skill, level, status: "evidence-attached", evidence: [{ kind: "link", value: url.trim() }] }));
     logActivity("evidence-submitted", skill);
     setLinkFor(null); setUrl("");
-    setMsg(tr("Link attached. The skill now shows “Evidence attached”. Nobody has reviewed the work yet.", "عند إضافة الرابط، تظهر حالة المهارة «دليل مرفق». لم يُراجع العمل بعد."));
+    setMsg(tr("Link attached: “Evidence attached”, not reviewed yet.", "أُرفق الرابط: «دليل مرفق»، لم يُراجع بعد."));
   }
   async function askReview(skillId: string) {
     const s = profile.skills.find((x) => x.skill_id === skillId);
@@ -61,7 +62,7 @@ export function Comparison({ role, onEditRequirements }: { role: ComparedRole; o
     if (!r.ok) { setMsg(r.error); return; }
     setProfile((p) => replaceSkill(p, r.skill));
     logActivity("review-requested", skillId);
-    setMsg(tr("Review requested. A Bridgecom team member will check the work against a stated rubric. This demo has no external reviewers.", "تم طلب المراجعة. سيقارن أحد أعضاء فريق بريدجكوم العمل بمعايير معلنة. لا يوجد مراجعون خارجيون في هذا العرض التجريبي."));
+    setMsg(tr("Review requested. In this demo a Bridgecom team member reviews, not an outside assessor.", "تم طلب المراجعة. في هذا العرض يراجعها عضو من فريق بريدجكوم، لا مقيّم خارجي."));
   }
   const choose = (s: PathwayStep) => { setProgress((p) => ({ ...p, next_task: { role_id: role.id, skill_id: s.skill_id, at: new Date().toISOString() } })); logActivity("next-task-selected", s.skill_id); };
 
@@ -72,7 +73,7 @@ export function Comparison({ role, onEditRequirements }: { role: ComparedRole; o
         <Summary c={c} />
         <NextActionCard c={c} step={next} onEdit={onEditRequirements} onChoose={choose} chosen={progress.next_task?.role_id === role.id && progress.next_task.skill_id === next?.skill_id} askReview={askReview} />
         {msg && <p role="status" className="mt-3 rounded-xl bg-sage-100 p-3 text-sm text-teal">{msg}</p>}
-        <p className="mt-4 text-xs text-muted">{tr("This compares what you recorded with what the posting asks for. It is not a hiring decision or a prediction.", "هذه مقارنة بين ما سجّلته وما يطلبه الإعلان. وليست قرار توظيف ولا توقّعاً.")}</p>
+        <p className="mt-4 text-xs text-muted">{tr("Not a hiring decision or a prediction.", "ليست قرار توظيف ولا توقّعاً.")}</p>
       </section>
 
       {c.checks.length > 0 && (
@@ -103,7 +104,7 @@ export function Comparison({ role, onEditRequirements }: { role: ComparedRole; o
       {pathway.length > 0 && (
         <section aria-labelledby="path-h">
           <h2 id="path-h" className="h2">{tr("Practice plan", "خطة التدرّب")}</h2>
-          <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Ordered so that what a task builds on comes first. A finished course is not proof of a skill; the task and the work you attach are what an employer can look at.", "مرتّبة بحيث يأتي أولاً ما تعتمد عليه المهمة. إنهاء الدورة ليس إثباتاً للمهارة؛ المهمة والعمل الذي ترفقه هما ما يمكن لصاحب العمل الاطلاع عليه.")}</p>
+          <p className="mt-1 max-w-2xl text-sm text-muted">{tr("What a task builds on comes first.", "يأتي أولاً ما تعتمد عليه المهمة.")}</p>
           {next && <ol className="mt-4"><Step s={next} n={1} name={name} lv={lv} first onAttach={() => { setLinkFor(`step:${next.skill_id}`); setMsg(null); }} attaching={linkFor === `step:${next.skill_id}`} url={url} setUrl={setUrl} submit={() => addLink(next.skill_id, next.target_level)} /></ol>}
           {later.length > 0 && (
             <details className="mt-4">
@@ -127,14 +128,14 @@ function Summary({ c }: { c: C }) {
   if (c.status === "no-experience-recorded") return <p className="mt-2 text-muted">{tr(`The role asks for ${n.required} required and ${n.preferred} preferred skills. You haven't described any experience yet, so there is nothing to compare.`, `يطلب الدور ${n.required} مهارات أساسية و${n.preferred} مهارات مفضّلة. لم تصف أي خبرة بعد، لذا لا يوجد ما نقارنه.`)}</p>;
   return (
     <dl className="mt-4 grid gap-3 sm:grid-cols-3">
-      <Stat label={tr("Required: recorded at the requested level", "الأساسية: مسجّلة بالمستوى المطلوب")} value={of(n.required_recorded, n.required)} />
-      <Stat label={tr("Required: with work attached", "الأساسية: مع عمل مرفق")} value={of(n.required_with_evidence, n.required)} sub={tr(`${n.required_reviewed} reviewed`, `${n.required_reviewed} روجِعت`)} />
-      <Stat label={tr("Preferred: recorded", "المفضّلة: مسجّلة")} value={of(n.preferred_recorded, n.preferred)} />
+      <Stat label={tr("Required: recorded at the requested level", "الأساسية: مسجّلة بالمستوى المطلوب")} value={of(n.required_recorded, n.required)} a={n.required_recorded} b={n.required} />
+      <Stat label={tr("Required: with work attached", "الأساسية: مع عمل مرفق")} value={of(n.required_with_evidence, n.required)} a={n.required_with_evidence} b={n.required} sub={tr(`${n.required_reviewed} reviewed`, `${n.required_reviewed} روجِعت`)} />
+      <Stat label={tr("Preferred: recorded", "المفضّلة: مسجّلة")} value={of(n.preferred_recorded, n.preferred)} a={n.preferred_recorded} b={n.preferred} />
     </dl>
   );
 }
-function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return <div className="rounded-2xl bg-ivory p-4"><dt className="text-xs text-muted">{label}</dt><dd className="mt-1 text-2xl font-bold text-teal">{value}</dd>{sub && <dd className="text-xs text-muted">{sub}</dd>}</div>;
+function Stat({ label, value, sub, a, b }: { label: string; value: string; sub?: string; a: number; b: number }) {
+  return <div className="rounded-2xl bg-ivory p-4"><dt className="text-xs text-muted">{label}</dt><dd className="mt-1 text-2xl font-bold text-teal">{value}</dd><dd aria-hidden="true"><CountBar a={a} b={b} label="" /></dd>{sub && <dd className="mt-1 text-xs text-muted">{sub}</dd>}</div>;
 }
 
 function NextActionCard({ c, step, onEdit, onChoose, chosen, askReview }: { c: C; step?: PathwayStep; onEdit?: () => void; onChoose: (s: PathwayStep) => void; chosen: boolean; askReview: (id: string) => void }) {
@@ -162,7 +163,7 @@ function NextActionCard({ c, step, onEdit, onChoose, chosen, askReview }: { c: C
 }
 
 const STATE: Record<ExperienceState, { en: string; ar: string }> = {
-  "none-recorded": { en: "No experience recorded yet", ar: "لم تُسجَّل خبرة بعد" },
+  "none-recorded": { en: "Not recorded", ar: "غير مسجّلة" },
   "self-reported": { en: "Self-reported", ar: "إفادة ذاتية" },
   "evidence-attached": { en: "Evidence attached", ar: "دليل مرفق" },
   "awaiting-review": { en: "Awaiting review", ar: "بانتظار المراجعة" },
@@ -189,7 +190,7 @@ function CheckRow({ k, name, lv, onAttach, attaching, url, setUrl, submit, canRe
       {k.course_completed && k.state === "none-recorded" && <p className="mt-1 text-xs text-muted">{tr("You finished a related course. Describe what you did in it to record the skill.", "أنهيت دورة ذات صلة. صِف ما أنجزته فيها لتسجيل المهارة.")}</p>}
       {quote && <p className="mt-2 text-xs text-muted">{tr("From the posting:", "من الإعلان:")} <q>{quote}</q></p>}
       {(k.state === "self-reported" || k.state === "none-recorded" || k.state === "needs-clarification") && !attaching && (
-        <button type="button" className="mt-2 text-sm font-semibold text-sage-600 underline underline-offset-2" onClick={onAttach}>{k.state === "none-recorded" ? tr("Already done this? Attach your work", "أنجزت هذا من قبل؟ أرفق عملك") : tr("Attach a link to your work", "أرفق رابطاً لعملك")}</button>
+        <button type="button" className="mt-2 text-sm font-semibold text-sage-600 underline underline-offset-2" onClick={onAttach}>{tr("Attach your work", "أرفق عملك")}</button>
       )}
       {attaching && <LinkForm id={`l-${k.key}`} url={url} setUrl={setUrl} submit={submit} />}
       {canReview && <button type="button" className="mt-2 ms-3 text-sm font-semibold text-teal underline underline-offset-2" onClick={askReview}>{tr("Ask for a review", "اطلب مراجعة")}</button>}
@@ -228,12 +229,11 @@ function Step({ s, n, name, lv, first, onAttach, attaching, url, setUrl, submit 
         {attaching ? <LinkForm id={`s-${s.skill_id}`} url={url} setUrl={setUrl} submit={submit} /> : (
           <button type="button" className="mt-2 text-sm font-semibold text-sage-600 underline underline-offset-2" onClick={onAttach}>{s.kind === "show" ? tr("Attach a link to my work", "أرفق رابطاً لعملي") : tr("Already know this? Show it instead", "تعرف هذا مسبقاً؟ اعرض عملك بدلاً من ذلك")}</button>
         )}
-        <p className="mt-1 text-xs text-muted">{tr("Adding a link marks the skill “Evidence attached”. The work has not been reviewed yet.", "عند إضافة الرابط، تظهر حالة المهارة «دليل مرفق». لم يُراجع العمل بعد.")}</p>
       </div>
 
       {s.kind === "learn" && (c ? (
-        <details className="mt-3 rounded-2xl bg-ivory p-4" open={first}>
-          <summary className="cursor-pointer text-sm font-semibold text-teal">{tr("If you need to learn it first: a suggested course", "إن احتجت أن تتعلمها أولاً: دورة مقترحة")}</summary>
+        <details className="mt-3 rounded-2xl bg-ivory p-4">
+          <summary className="cursor-pointer text-sm font-semibold text-teal">{tr("Need to learn it first? Suggested course", "تحتاج أن تتعلمها أولاً؟ دورة مقترحة")}</summary>
           <div className="mt-2 flex flex-wrap items-start justify-between gap-2">
             <div>
               <a href={c.url} target="_blank" rel="noreferrer" className="font-semibold text-teal underline-offset-2 hover:underline">{c.title} ↗</a>
@@ -258,7 +258,7 @@ function CourseDone({ id }: { id: string }) {
   return (
     <label className="mt-2 inline-flex items-center gap-2 text-xs">
       <input type="checkbox" className="accent-teal" checked={done} onChange={(e) => setProfile((p) => ({ ...p, completed_courses: e.target.checked ? [...new Set([...p.completed_courses, id])] : p.completed_courses.filter((x) => x !== id) }))} />
-      {tr("I finished this course (a course alone does not record the skill)", "أنهيت هذه الدورة (الدورة وحدها لا تسجّل المهارة)")}
+      {tr("I finished this course (a course alone doesn't record the skill)", "أنهيت هذه الدورة (الدورة وحدها لا تسجّل المهارة)")}
     </label>
   );
 }
@@ -290,7 +290,7 @@ function ShareBox({ roleId }: { roleId: string }) {
   return (
     <section className="card p-5" aria-labelledby="share-h">
       <h2 id="share-h" className="font-semibold text-teal">{tr("Share with this employer (optional)", "المشاركة مع صاحب العمل هذا (اختياري)")}</h2>
-      <p className="mt-1 text-sm text-muted">{tr("Off unless you turn it on. Only your skills, levels, evidence states and completed courses are shared, with this role only. No grades, city, school or needs. You can withdraw at any time.", "مغلقة ما لم تفعّلها. تُشارك فقط مهاراتك ومستوياتها وحالات أدلتها والدورات المكتملة، مع هذا الدور فقط. دون معدلات أو مدينة أو مدرسة أو احتياجات. يمكنك السحب في أي وقت.")}</p>
+      <p className="mt-1 text-sm text-muted">{tr("Off by default. Shares skills, levels, evidence states and finished courses with this role only; never grades, city or needs. Withdraw any time.", "مغلقة افتراضياً. تُشارك المهارات ومستوياتها وحالات أدلتها والدورات المكتملة مع هذا الدور فقط؛ لا المعدلات ولا المدينة ولا الاحتياجات. اسحبها متى شئت.")}</p>
       {share ? (
         <div className="mt-3 flex flex-wrap items-center gap-3"><span className="text-sm text-ok">✓ {tr(`Shared on ${new Date(share.at).toLocaleDateString()}`, `تمت المشاركة في ${new Date(share.at).toLocaleDateString("ar")}`)}</span><button className="btn-secondary !py-1.5" disabled={busy} onClick={off}>{tr("Withdraw", "اسحب المشاركة")}</button></div>
       ) : <button className="btn-secondary mt-3 !py-1.5" disabled={busy || payload.skills.length === 0} onClick={on}>{tr("Share my skills with this role", "شارك مهاراتي مع هذا الدور")}</button>}

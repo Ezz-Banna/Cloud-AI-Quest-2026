@@ -7,7 +7,7 @@ const axeSource = fs.readFileSync(createRequire(import.meta.url).resolve("axe-co
 const BASE = process.argv[2] || "http://localhost:3000";
 const exe = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
 const browser = await chromium.launch(fs.existsSync(exe) ? { executablePath: exe } : {});
-const PAGES = ["/", "/discover", "/discover/results", "/compare", "/empower", "/succeed", "/dashboard", "/employer", "/data"];
+const PAGES = ["/", "/how", "/discover", "/discover/results", "/compare", "/empower", "/succeed", "/dashboard", "/employer", "/data"];
 const out = [];
 for (const lang of ["en", "ar"]) for (const vp of [{ width: 390, height: 844 }, { width: 640, height: 400 }, { width: 1366, height: 860 }]) {
   const ctx = await browser.newContext({ viewport: vp });

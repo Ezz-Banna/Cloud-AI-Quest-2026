@@ -32,8 +32,7 @@ export default function Discover() {
       {demoRequested && <p role="status" className="mb-4 rounded-xl bg-sand-100 px-4 py-3 text-sm text-ink">{tr("Loading the synthetic demo student…", "جارٍ تحميل الطالبة التجريبية المصطنعة…")}</p>}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="eyebrow">{tr("Stage 1 · Discover", "المرحلة 1 · اكتشف")}</p>
-          <h1 className="h1 mt-2">{tr("Let's find programs that fit you", "لنجد البرامج التي تناسبك")}</h1>
+          <h1 className="h1">{tr("Let's find programs that fit you", "لنجد البرامج التي تناسبك")}</h1>
         </div>
         <button type="button" className="btn-ghost text-sm" onClick={startDemo}>
           {tr("Use the synthetic demo student", "استخدم الطالبة التجريبية")}
@@ -47,7 +46,7 @@ export default function Discover() {
       </div>
       <p className="mt-2 text-sm text-muted">{mode === "form"
         ? tr("Eight short steps. Every answer can be changed later.", "ثماني خطوات قصيرة. يمكنك تغيير أي إجابة لاحقاً.")
-        : tr("Answer in your own words, in Arabic or English. We turn your answers into a profile that you check before we use it.", "أجب بكلماتك بالعربية أو الإنجليزية. نحوّل إجاباتك إلى ملف تتحقق منه قبل استخدامه.")}</p>
+        : tr("Answer in your own words. You check the profile before it's used.", "أجب بكلماتك. تراجع الملف قبل استخدامه.")}</p>
         <div className="mt-2"><AnalysisMode /></div>
       <div className="mt-4">{mode === "form" ? <OnboardingForm onDone={done} /> : <ChatOnboarding onDone={done} />}</div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { kindLabel } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { EvidenceBadge, ModeBadge, VerificationBadge } from "@/components/Badges";
@@ -33,7 +34,7 @@ export default function Empower() {
 
   useEffect(() => {
     fetch("/api/match/opportunities", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile }) })
-      .then((r) => r.json()).then((d) => setOpps(d.matches ?? [])).catch(() => setOpps([]));
+      .then((r) => { if (!r.ok) throw new Error(); return r.json(); }).then((d) => setOpps(d.matches ?? [])).catch(() => setOpps([]));
   }, [profile]);
 
   async function analyse(e: React.FormEvent) {
@@ -238,7 +239,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
           {opps?.filter((o) => o.status !== "not-eligible").slice(0, 8).map((o) => (
             <li key={o.item.id} className="card flex flex-col p-5">
               <div className="flex flex-wrap items-start justify-between gap-2">
-                <div><h3 className="font-bold text-teal">{lang === "ar" && o.item.name_ar ? o.item.name_ar : o.item.name_en}</h3><p className="text-sm text-muted">{o.item.provider} · {o.item.kind}</p></div>
+                <div><h3 className="font-bold text-teal">{lang === "ar" && o.item.name_ar ? o.item.name_ar : o.item.name_en}</h3><p className="text-sm text-muted">{o.item.provider} · {kindLabel(o.item.kind, lang)}</p></div>
                 <VerificationBadge v={o.item.verification} />
               </div>
               <span className={`mt-3 self-start rounded-full px-3 py-1 text-xs font-semibold ${o.status === "likely-relevant" ? "bg-ok-100 text-ok" : "bg-warn-100 text-warn"}`}>{o.status === "likely-relevant" ? tr("Likely relevant", "مرجّح أن يناسبك") : tr("Check eligibility", "تحقق من الأهلية")}</span>

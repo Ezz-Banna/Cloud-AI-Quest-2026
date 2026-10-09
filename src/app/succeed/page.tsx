@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { cityLabel, kindLabel } from "@/lib/i18n";
 import { useBridge } from "@/components/ProfileProvider";
 import { ModeBadge, VerificationBadge } from "@/components/Badges";
 import { Readiness } from "@/components/Readiness";
@@ -16,7 +17,7 @@ export default function Succeed() {
   const [mode, setMode] = useState<{ mode: "ai" | "offline"; model?: string } | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
-  useEffect(() => { fetch("/api/roles").then((r) => r.json()).then((d) => { setRoles(d.roles); setEmps(d.employers); }).catch(() => setRoles([])); }, []);
+  useEffect(() => { fetch("/api/roles").then((r) => r.json()).then((d) => { setRoles(d.roles); setEmps(d.employers); }).catch(() => { setRoles([]); setErr(tr("We couldn't reach the Bridgecom server. Check your connection and refresh.", "تعذّر الوصول إلى خادم بريدجكوم. تحقق من الاتصال وحدّث الصفحة.")); }); }, [tr]);
   const selected = pasted && progress.selected_role === pasted.id ? pasted : roles?.find((r) => r.id === progress.selected_role) ?? null;
   const select = (id: string) => { setProgress((p) => ({ ...p, selected_role: id })); setTimeout(() => document.getElementById("readiness")?.scrollIntoView({ behavior: "smooth" }), 50); };
 
@@ -53,7 +54,7 @@ export default function Succeed() {
                   <button type="button" onClick={() => select(r.id)} aria-pressed={progress.selected_role === r.id}
                     className={`card w-full p-5 text-start transition hover:border-sage ${progress.selected_role === r.id ? "ring-2 ring-sage" : ""}`}>
                     <div className="flex flex-wrap items-start justify-between gap-2">
-                      <div><p className="font-bold text-teal">{r.title}</p><p className="text-sm text-muted">{emp?.name ?? "—"} · {r.city ?? ""} · {r.kind}</p></div>
+                      <div><p className="font-bold text-teal">{r.title}</p><p className="text-sm text-muted">{emp?.name ?? "—"} · {cityLabel(r.city, lang)} · {kindLabel(r.kind, lang)}</p></div>
                       <VerificationBadge v={r.verification} />
                     </div>
                     <p className="mt-3 flex flex-wrap gap-1.5">{r.requirements.map((q) => <span key={q.skill_id} className={`rounded-full px-2.5 py-0.5 text-xs ${q.mandatory ? "bg-teal/10 font-semibold text-teal" : "bg-mist text-muted"}`}>{lang === "ar" ? SKILL_BY_ID[q.skill_id]?.name_ar : SKILL_BY_ID[q.skill_id]?.name_en}</span>)}</p>

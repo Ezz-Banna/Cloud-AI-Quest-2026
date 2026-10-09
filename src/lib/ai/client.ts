@@ -44,8 +44,14 @@ export async function structured<S extends z.ZodType>(schema: S, system: string,
       if (res.parsed_output == null) { lastErr = "AI returned an invalid structure"; continue; }
       return { ok: true, data: res.parsed_output as z.infer<S>, mode: "ai", model: MODEL, latency_ms: Date.now() - t0 };
     } catch (e) {
-      if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.BadRequestError) return { ok: false, error: e.message };
-      lastErr = e instanceof Error ? e.message : String(e);
+      // Short categories only: raw API error bodies are not sent to the browser.
+      if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) return { ok: false, error: "AI key rejected" };
+      if (e instanceof Anthropic.BadRequestError) return { ok: false, error: "AI request rejected" };
+      lastErr = e instanceof Anthropic.APIConnectionTimeoutError ? "AI timed out"
+        : e instanceof Anthropic.APIConnectionError ? "AI service unreachable"
+        : e instanceof Anthropic.RateLimitError ? "AI rate limited"
+        : e instanceof Anthropic.APIError ? `AI service error ${e.status ?? ""}`.trim()
+        : "AI call failed";
     }
   }
   return { ok: false, error: lastErr };

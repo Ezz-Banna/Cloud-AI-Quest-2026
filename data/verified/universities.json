@@ -117,7 +117,7 @@
   {
     "id": "aabu",
     "name_en": "Al al-Bayt University",
-    "name_ar": null,
+    "name_ar": "جامعة آل البيت",
     "type": "public",
     "city": "Mafraq",
     "governorate": "Mafraq",
@@ -136,12 +136,12 @@
       }
     ],
     "verification": "verified",
-    "notes": ""
+    "notes": " name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source."
   },
   {
     "id": "gju",
     "name_en": "German Jordanian University",
-    "name_ar": null,
+    "name_ar": "الجامعة الألمانية الأردنية",
     "type": "public",
     "city": "Mushaqar (near Madaba) / Amman",
     "governorate": "Madaba",
@@ -160,12 +160,12 @@
       }
     ],
     "verification": "partial",
-    "notes": "Public. Main campus at Mushaqar near Madaba (Wikipedia says 'near Madaba'; governorate not explicitly stated in source). GJU fee sheet found is in USD with scrambled layout and includes a compulsory German-year fee; per-program JD fees not reliably extractable, so no GJU programs included."
+    "notes": "Public. Main campus at Mushaqar near Madaba (Wikipedia says 'near Madaba'; governorate not explicitly stated in source). GJU fee sheet found is in USD with scrambled layout and includes a compulsory German-year fee; per-program JD fees not reliably extractable, so no GJU programs included. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source."
   },
   {
     "id": "psut",
     "name_en": "Princess Sumaya University for Technology",
-    "name_ar": null,
+    "name_ar": "جامعة الأميرة سمية للتكنولوجيا",
     "type": "private",
     "city": "Amman",
     "governorate": "Amman",
@@ -184,12 +184,12 @@
       }
     ],
     "verification": "verified",
-    "notes": "Private non-profit university."
+    "notes": "Private non-profit university. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source."
   },
   {
     "id": "htu",
     "name_en": "Al Hussein Technical University",
-    "name_ar": null,
+    "name_ar": "جامعة الحسين التقنية",
     "type": "private",
     "city": "Amman",
     "governorate": "Amman",
@@ -208,7 +208,7 @@
       }
     ],
     "verification": "partial",
-    "notes": "Address: King Hussein Business Park (KHBP), Building 17, Amman. Tuition page: 120 JD per credit hour for Jordanian students (Bachelor's and Technical degrees, regular program); 175 JD for international programme. Bachelor admission (engineering programmes): Tawjihi avg 80 + Math 80 + Physics 80 (htu.edu.jo/admission/requirements). Type 'private' not confirmed on a fetched page (HTU is commonly described as a non-profit university founded by the Crown Prince Foundation) - verify before display. Program list page is JS-rendered so no HTU program records."
+    "notes": "Address: King Hussein Business Park (KHBP), Building 17, Amman. Tuition page: 120 JD per credit hour for Jordanian students (Bachelor's and Technical degrees, regular program); 175 JD for international programme. Bachelor admission (engineering programmes): Tawjihi avg 80 + Math 80 + Physics 80 (htu.edu.jo/admission/requirements). Type 'private' not confirmed on a fetched page (HTU is commonly described as a non-profit university founded by the Crown Prince Foundation) - verify before display. Program list page is JS-rendered so no HTU program records. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source."
   },
   {
     "id": "zuj",
@@ -237,7 +237,7 @@
   {
     "id": "pu",
     "name_en": "Philadelphia University",
-    "name_ar": null,
+    "name_ar": "جامعة فيلادلفيا",
     "type": "private",
     "city": "Amman (Jerash road)",
     "governorate": "Amman",
@@ -256,6 +256,6 @@
       }
     ],
     "verification": "partial",
-    "notes": "Wikipedia gives location as Amman; governorate not stated in source."
+    "notes": "Wikipedia gives location as Amman; governorate not stated in source. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source."
   }
 ]

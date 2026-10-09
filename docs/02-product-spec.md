@@ -105,12 +105,12 @@ Global: header (logo, My dashboard, employers, data, language toggle), journey i
 
 | Layer | What | How | Result (2026-10-09) |
 |---|---|---|---|
-| Unit | Eligibility, cost, ranking, priorities, scholarships, gap, learning priority, pathway, profile merge, completeness, admin tokens | Vitest, `npm test` | 52/52 pass |
+| Unit | Eligibility, cost, ranking, priorities, scholarships, gap, learning priority, pathway, profile merge, completeness, admin tokens | Vitest, `npm test` | 54/54 pass |
 | AI guards | Quote check, invented average removed, Arabic digits, dedupe, fallback on failure | Vitest with mocked model | Included above, pass |
 | End to end | Form path (desktop) and chat path (mobile), explain, save and compare, dashboard, employer publish with course, intro, Arabic RTL, reduced motion, consent, evidence raising readiness, course not raising it, import blocked without admin, admin login, record edit and revert, AI log | `node scripts/e2e.mjs` (Playwright) | 50/50 pass, no unexpected browser errors (offline AI mode) |
 | Data | Every seed row validated by Zod at load; counts on /data | Automatic | 113 rows, 0 rejected |
 | Live AI | 15 onboarding transcripts, 20 achievements, 10 postings (synthetic) | Run with `ANTHROPIC_API_KEY` set | **Not yet run: no API key in the build environment** |
-| Accessibility | Keyboard walk-through, screen reader spot check, contrast | Manual | To do |
+| Accessibility | axe-core WCAG 2 A/AA scan, 10 pages EN/AR | Script (audit) | 0 violations after contrast fixes; manual screen-reader check still to do |
 | Usability | 5 students, 2 employers, think-aloud | Manual | To do |
 
 ## 7. Hackathon MVP scope

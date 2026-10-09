@@ -27,13 +27,15 @@ export default function Employer() {
   const [msg, setMsg] = useState<string | null>(null);
   const name_ = (id: string) => (lang === "ar" ? SKILL_BY_ID[id]?.name_ar : SKILL_BY_ID[id]?.name_en) ?? id;
 
-  const loadRoles = () => fetch("/api/roles").then((r) => r.json()).then((d) => { setRoles(d.roles); setRoleId((x) => x || d.roles[0]?.id || ""); });
-  useEffect(() => { loadRoles(); fetch("/api/data/coverage").then((r) => r.json()).then((d) => setCourses(d.courses ?? [])); }, []);
+  const netErr = () => setMsg(tr("We couldn't reach the Bridgecom server. Check your connection and refresh.", "تعذّر الوصول إلى خادم بريدجكوم. تحقق من الاتصال وحدّث الصفحة."));
+  const loadRoles = () => fetch("/api/roles").then((r) => r.json()).then((d) => { setRoles(d.roles); setRoleId((x) => x || d.roles[0]?.id || ""); }).catch(netErr);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { loadRoles(); fetch("/api/data/coverage").then((r) => r.json()).then((d) => setCourses(d.courses ?? [])).catch(netErr); }, []);
   const relevantCourses = courses.filter((c) => c.skills.some((s) => reqs.some((q) => q.skill_id === s)));
   useEffect(() => {
     if (!roleId) return;
     setCands(null);
-    fetch(`/api/candidates?role_id=${encodeURIComponent(roleId)}`).then((r) => r.json()).then((d) => setCands(d.candidates ?? []));
+    fetch(`/api/candidates?role_id=${encodeURIComponent(roleId)}`).then((r) => r.json()).then((d) => setCands(d.candidates ?? [])).catch(() => setCands([]));
   }, [roleId]);
 
   async function parse() {

@@ -48,13 +48,13 @@ Production: `npm run build && npm start`. Deploy to a Node host with a writable 
 ## Tests
 
 ```bash
-npm test                        # 52 unit tests: engines, 10 fit-engine scenarios, offline rules, AI output guards, completeness, admin tokens
+npm test                        # 54 unit tests: engines, 10 fit-engine scenarios, real-data grounding, offline rules, AI output guards, completeness, admin tokens
 npm run build
 ADMIN_PASSWORD=test-admin npm start &    # the e2e script logs in with this password
 node scripts/e2e.mjs http://localhost:3000 ./e2e-screens   # 50 browser checks, desktop + mobile
 ```
 
-Last run (2026-10-09): 52/52 unit tests and 50/50 end-to-end checks passed, no unexpected browser console errors, in offline AI mode. `npx tsc --noEmit` and `npm run lint` are clean.
+Last run (2026-10-09): 54/54 unit tests and 50/50 end-to-end checks passed; axe-core accessibility scan (WCAG 2 A/AA) of 10 pages in English and Arabic found 0 violations, no unexpected browser console errors, in offline AI mode. `npx tsc --noEmit` and `npm run lint` are clean.
 
 ## Architecture
 
@@ -71,7 +71,7 @@ Next.js route handlers (Node)
 The language model only interprets and phrases language. Admission eligibility, tuition, funding status, skill status and readiness are computed by rules from sourced records; course completion never counts as proof of a skill.
 
 - Stack: Next.js 15 (App Router), TypeScript, Tailwind CSS 4, Zod, Anthropic TypeScript SDK, Vitest, Playwright.
-- Docs: `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md` (PRD, journeys, IA, design system, test plan, MVP scope, roadmap), `docs/03-ai-modules.md`, `docs/04-fit-engine.md` (fit engine: data architecture, import and audit, eligibility rules, ranking method, AI guards, endpoints, tests, source provenance), `db/schema.sql`.
+- Docs: `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md` (PRD, journeys, IA, design system, test plan, MVP scope, roadmap), `docs/03-ai-modules.md`, `docs/05-audit-and-readiness.md` (audit results, demo script, backup plan, pitch and Q&A), `docs/04-fit-engine.md` (fit engine: data architecture, import and audit, eligibility rules, ranking method, AI guards, endpoints, tests, source provenance), `db/schema.sql`.
 - Data schema for seed and import files: `data/verified/SCHEMA.md`.
 
 ## Environment variables

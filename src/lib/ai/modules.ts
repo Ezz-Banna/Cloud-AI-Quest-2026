@@ -205,8 +205,8 @@ export interface CompareFacts {
 
 export function templateComparison(fs: CompareFacts[], lang: "en" | "ar") {
   const lines = fs.map((f) => lang === "ar"
-    ? `${f.program} (${f.university}): أبرز ما فيه ${f.strengths[0] ?? "لا توجد نقطة قوة واضحة"}؛ ${f.trade_offs[0] ? `يجب الانتباه إلى ${f.trade_offs[0]}` : "لا توجد مقايضات واضحة"}${f.missing.length ? `؛ بيانات ناقصة: ${f.missing.join("، ")}` : ""}.`
-    : `${f.program} (${f.university}): strongest on ${f.strengths[0] ?? "nothing in particular"}; ${f.trade_offs[0] ? `watch out for ${f.trade_offs[0]}` : "no clear trade-off"}${f.missing.length ? `; missing: ${f.missing.join(", ")}` : ""}.`);
+    ? `${f.program} (${f.university}): نقطة القوة: ${f.strengths[0] ?? "لا توجد نقطة قوة واضحة"}. ${f.trade_offs[0] ? `يجب الانتباه: ${f.trade_offs[0]}.` : "لا توجد مقايضات واضحة."}${f.missing.length ? ` بيانات ناقصة: ${f.missing.join("، ")}.` : ""}`
+    : `${f.program} (${f.university}). Best point: ${f.strengths[0] ?? "nothing stands out"}. ${f.trade_offs[0] ? `Watch out: ${f.trade_offs[0]}.` : "No clear trade-off."}${f.missing.length ? ` Missing: ${f.missing.join(", ")}.` : ""}`);
   return lines.join(" ");
 }
 

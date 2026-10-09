@@ -1,5 +1,7 @@
 "use client";
 import Link from "next/link";
+import { cityLabel, missingLabel } from "@/lib/i18n";
+import { FIELD_BY_ID } from "@/lib/data/taxonomy";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
@@ -8,6 +10,7 @@ import type { ProgramMatch } from "@/lib/engines/programs";
 export default function Compare() {
   const { profile, setProfile, tr, lang, hydrated } = useBridge();
   const [matches, setMatches] = useState<ProgramMatch[] | null>(null);
+  const [loadErr, setLoadErr] = useState(false);
   const saved = profile.saved_programs ?? [];
   const [ai, setAi] = useState<{ text: string; mode: "ai" | "offline" } | "loading" | null>(null);
   async function compareAI(ids: string[]) {
@@ -23,7 +26,7 @@ export default function Compare() {
   useEffect(() => {
     if (!hydrated) return;
     fetch("/api/match/programs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile }) })
-      .then((r) => r.json()).then((d) => setMatches(d.matches ?? [])).catch(() => setMatches([]));
+      .then((r) => { if (!r.ok) throw new Error(); return r.json(); }).then((d) => { setMatches(d.matches ?? []); setLoadErr(false); }).catch(() => { setMatches([]); setLoadErr(true); });
   }, [hydrated, profile]);
 
   const rows = (matches ?? []).filter((m) => saved.includes(m.program.id)).slice(0, 4);
@@ -38,7 +41,7 @@ export default function Compare() {
   const dash = <span className="text-warn">{tr("Not verified", "غير موثّق")}</span>;
   const lines: [string, (m: ProgramMatch) => React.ReactNode][] = [
     [tr("University", "الجامعة"), (m) => `${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`],
-    [tr("City · type", "المدينة · النوع"), (m) => `${m.university.city ?? "—"} · ${m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}`],
+    [tr("City · type", "المدينة · النوع"), (m) => `${cityLabel(m.university.city, lang)} · ${m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}`],
     [tr("Fit for you", "الملاءمة"), (m) => <><strong className="text-teal">{m.suitability}/100</strong><span className="block text-xs text-muted">{tr(`${Math.round(m.coverage * 100)}% of your priorities checked`, `تم التحقق من ${Math.round(m.coverage * 100)}% من أولوياتك`)}</span></>],
     [tr("Admission check", "فحص القبول"), (m) => `${elig(m.eligibility.status)}${m.eligibility.published_min != null ? ` (${m.eligibility.published_min}${m.eligibility.year ? `, ${m.eligibility.year}` : ""})` : ""}`],
     [tr("Fee per credit hour", "رسوم الساعة"), (m) => (m.program.tuition_jod_per_credit_hour != null ? `${m.program.tuition_jod_per_credit_hour} JOD${m.program.tuition_track ? ` (${m.program.tuition_track})` : ""}` : dash)],
@@ -51,7 +54,7 @@ export default function Compare() {
     [tr("Practical training", "التدريب العملي"), (m) => m.program.internship_note ?? dash],
     [tr("Study plan", "الخطة الدراسية"), (m) => (m.program.study_plan_url ? <a className="underline" href={m.program.study_plan_url} target="_blank" rel="noreferrer">{tr("Open", "افتح")} ↗</a> : dash)],
     [tr("Past competitive cut-off", "معدل القبول التنافسي السابق"), (m) => (m.eligibility.last_cutoff ? `${m.eligibility.last_cutoff.value} (${m.eligibility.last_cutoff.year})` : dash)],
-    [tr("Missing data", "بيانات ناقصة"), (m) => (m.missing_data.length ? m.missing_data.join(", ") : tr("None", "لا شيء"))],
+    [tr("Missing data", "بيانات ناقصة"), (m) => (m.missing_data.length ? m.missing_data.map((x) => missingLabel(x, lang)).join(lang === "ar" ? "، " : ", ") : tr("None", "لا شيء"))],
     [tr("Data status", "حالة البيانات"), (m) => <VerificationBadge v={m.program.verification} />],
     [tr("Sources", "المصادر"), (m) => <Sources sources={m.program.sources} />],
   ];
@@ -62,7 +65,8 @@ export default function Compare() {
       <h1 className="h1 mt-2">{tr("Compare saved programs", "قارن البرامج المحفوظة")}</h1>
       <p className="mt-2 text-muted">{tr("Up to four programs side by side. Blank values are not verified yet; we never estimate them.", "حتى أربعة برامج جنباً إلى جنب. القيم الفارغة غير موثّقة بعد ولا نقدّرها.")}</p>
       {!matches && <div className="card mt-6 h-48 animate-pulse bg-mist/60" aria-busy="true" />}
-      {matches && rows.length === 0 && (
+      {loadErr && <p role="alert" className="mt-6 rounded-xl bg-bad-100 p-4 text-bad">{tr("We couldn't reach the Bridgecom server. Check your connection and refresh.", "تعذّر الوصول إلى خادم بريدجكوم. تحقق من الاتصال وحدّث الصفحة.")}</p>}
+      {matches && !loadErr && rows.length === 0 && (
         <div className="card mt-6 p-8 text-center">
           <p className="text-muted">{tr("You haven't saved any programs yet. Use ☆ Save on your matches.", "لم تحفظ أي برنامج بعد. استخدم ☆ احفظ في نتائجك.")}</p>
           <Link href="/discover/results" className="btn-primary mt-4">{tr("Go to my matches", "اذهب إلى نتائجي")}</Link>
@@ -77,7 +81,7 @@ export default function Compare() {
                 <td className="w-40 p-3" />
                 {rows.map((m) => (
                   <th key={m.program.id} scope="col" className="p-3 text-start align-top">
-                    <span className="block text-base font-bold text-teal">{lang === "ar" && m.program.name_ar ? m.program.name_ar : m.program.name_en}</span>
+                    <span className="block text-base font-bold text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}</span>
                     <button className="mt-1 text-xs font-normal text-bad underline" onClick={() => setProfile((p) => ({ ...p, saved_programs: p.saved_programs.filter((x) => x !== m.program.id) }))}>{tr("Remove", "إزالة")}</button>
                   </th>
                 ))}

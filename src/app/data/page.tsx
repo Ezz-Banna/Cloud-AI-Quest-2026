@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { datasetLabel } from "@/lib/i18n";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
 import type { Course, Program, Scholarship, University } from "@/lib/types";
@@ -8,7 +9,7 @@ import { programCompleteness } from "@/lib/data/record-completeness";
 type Cov = Record<string, { total: number; verified: number; partial: number; other: number; invalid: number }>;
 
 export default function DataPage() {
-  const { tr } = useBridge();
+  const { tr, lang } = useBridge();
   const [d, setD] = useState<{ coverage: Cov; universities: University[]; programs: Program[]; scholarships: Scholarship[]; courses: Course[] } | null>(null);
   const [status, setStatus] = useState<{ ai: boolean; model: string | null } | null>(null);
 
@@ -28,7 +29,7 @@ export default function DataPage() {
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label={tr("Coverage", "التغطية")}>
         {d && Object.entries(d.coverage).map(([k, v]) => (
           <div key={k} className="card p-5">
-            <p className="eyebrow">{k}</p>
+            <p className="eyebrow">{datasetLabel(k, lang)}</p>
             <p className="mt-2 text-3xl font-bold text-teal">{v.total}</p>
             <p className="text-sm text-muted">{v.verified} {tr("verified", "موثّق")} · {v.partial} {tr("partial", "جزئي")}{v.other ? ` · ${v.other} ${tr("other", "أخرى")}` : ""}{v.invalid ? ` · ${v.invalid} ${tr("rejected", "مرفوض")}` : ""}</p>
           </div>

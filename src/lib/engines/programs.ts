@@ -11,6 +11,7 @@
 //   counts as halfway, so missing data neither helps nor hurts a program. Programs are ranked by
 //   eligibility group first (eligible, unknown, ineligible), then rank_score.
 import type { FitCriterion, LearnerProfile, Program, University } from "../types";
+import { cityLabel } from "../i18n";
 import { FIELD_BY_ID, SUBJECT_TOPICS, STRENGTH_TOPICS, CURRICULUM_TOPICS, TOPIC_BY_ID } from "../data/taxonomy";
 
 export type EligibilityStatus =
@@ -242,10 +243,10 @@ export function scoreProgram(p: LearnerProfile, prog: Program, uni: University):
   const places = [uni.city, ...(uni.campuses ?? [])].filter(Boolean) as string[];
   if (p.preferred_cities.length === 0) add("location", null, "No preferred city given", "لم تحدد مدينة مفضلة");
   else if (places.length === 0) { add("location", null, "Campus location not verified", "موقع الحرم غير موثّق"); missing.push("campus location"); }
-  else if (p.preferred_cities.some((c) => places.some((pl) => norm(pl).includes(norm(c))))) add("location", 1, `Campus in ${places.join(", ")}, one of your preferred cities`, `حرم في ${places.join("، ")}، إحدى مدنك المفضلة`);
+  else if (p.preferred_cities.some((c) => places.some((pl) => norm(pl).includes(norm(c))))) add("location", 1, `Campus in ${places.join(", ")}, one of your preferred cities`, `حرم في ${places.map((x) => cityLabel(x, "ar")).join("، ")}، إحدى مدنك المفضلة`);
   else {
-    add("location", p.open_to_relocate === false ? 0 : 0.35, `In ${uni.city}, outside your preferred cities`, `في ${uni.city}، خارج مدنك المفضلة`);
-    trade.push({ code: "outside-city", weight: 0, en: `Campus is in ${uni.city}, so you may need daily travel or housing${uni.transport_note || uni.accommodation_note ? "" : " (transport and housing details not verified)"}`, ar: `الحرم في ${uni.city}، وقد تحتاج إلى تنقل يومي أو سكن` });
+    add("location", p.open_to_relocate === false ? 0 : 0.35, `In ${uni.city}, outside your preferred cities`, `في ${cityLabel(uni.city, "ar")}، خارج مدنك المفضلة`);
+    trade.push({ code: "outside-city", weight: 0, en: `Campus is in ${uni.city}, so you may need daily travel or housing${uni.transport_note || uni.accommodation_note ? "" : " (transport and housing details not verified)"}`, ar: `الحرم في ${cityLabel(uni.city, "ar")}، وقد تحتاج إلى تنقل يومي أو سكن` });
   }
 
   // Public or private

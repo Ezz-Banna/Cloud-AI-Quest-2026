@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { cityLabel, missingLabel, streamLabel } from "@/lib/i18n";
 import { useEffect, useMemo, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
@@ -97,9 +98,9 @@ export default function Results() {
 
       <div className="mt-6 flex flex-wrap gap-2 text-sm">
         {profile.tawjihi_avg != null && <span className="chip">{tr("Average", "المعدل")}: {profile.tawjihi_avg}</span>}
-        {profile.stream && <span className="chip">{tr("Stream", "الفرع")}: {profile.stream}</span>}
+        {profile.stream && <span className="chip">{tr("Stream", "الفرع")}: {streamLabel(profile.stream, lang)}</span>}
         {profile.budget_jod_per_year != null && <span className="chip">{tr("Budget", "الميزانية")}: {profile.budget_jod_per_year} JOD/{tr("yr", "سنة")}</span>}
-        {profile.preferred_cities.length > 0 && <span className="chip">{profile.preferred_cities.join(", ")}</span>}
+        {profile.preferred_cities.length > 0 && <span className="chip">{profile.preferred_cities.map((c) => cityLabel(c, lang)).join(lang === "ar" ? "، " : ", ")}</span>}
       </div>
 
       <fieldset className="mt-4 flex flex-wrap gap-2">
@@ -168,8 +169,9 @@ export default function Results() {
             <li key={id} id={`prog-${id}`} className="card scroll-mt-24 p-5 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <h2 className="text-lg font-bold text-teal">{lang === "ar" && m.program.name_ar ? m.program.name_ar : m.program.name_en}</h2>
-                  <p className="text-muted">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en} · {m.university.city ?? "—"} · {m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}</p>
+                  <h2 className="text-lg font-bold text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}</h2>
+                  {lang === "ar" && !m.program.name_ar && <p lang="en" dir="ltr" className="text-xs text-muted">{m.program.name_en}</p>}
+                  <p className="text-muted">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en} · {cityLabel(m.university.city, lang)} · {m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <VerificationBadge v={m.program.verification} />
@@ -224,7 +226,7 @@ export default function Results() {
               )}
               {m.missing_data.length > 0 && (
                 <p className="mt-3 flex flex-wrap gap-1.5 text-xs" aria-label={tr("Missing data", "بيانات ناقصة")}>
-                  {m.missing_data.map((x) => <span key={x} className="rounded-full border border-dashed border-warn px-2 py-0.5 text-warn">{tr("Missing", "ناقص")}: {x}</span>)}
+                  {m.missing_data.map((x) => <span key={x} className="rounded-full border border-dashed border-warn px-2 py-0.5 text-warn">{tr("Missing", "ناقص")}: {missingLabel(x, lang)}</span>)}
                 </p>
               )}
               <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -257,7 +259,7 @@ export default function Results() {
                     </table>
                     <p className="mt-3 text-xs text-muted">{tr("Cost basis", "أساس الكلفة")}: {lang === "ar" ? m.cost.basis_ar : m.cost.basis}</p>
                     {m.program.study_plan_url && <p className="mt-1 text-xs"><a className="underline" href={m.program.study_plan_url} target="_blank" rel="noreferrer">{tr("Published study plan", "الخطة الدراسية المنشورة")} ↗</a></p>}
-                    {m.missing_data.length > 0 && <p className="mt-2 text-xs text-warn">{tr("Not yet verified", "غير موثّق بعد")}: {m.missing_data.join(", ")}</p>}
+                    {m.missing_data.length > 0 && <p className="mt-2 text-xs text-warn">{tr("Not yet verified", "غير موثّق بعد")}: {m.missing_data.map((x) => missingLabel(x, lang)).join(lang === "ar" ? "، " : ", ")}</p>}
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-teal">{tr("Sources", "المصادر")}</h3>

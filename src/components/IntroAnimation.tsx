@@ -66,7 +66,7 @@ export function IntroAnimation({ force = false, onDone }: { force?: boolean; onD
         {reduced ? (
           <div className="flex flex-col items-center gap-4 py-10">
             <LogoMark size={96} />
-            <span className="text-3xl font-bold text-teal">Bridge<span className="text-sage">com</span></span>
+            <span className="text-3xl font-bold text-teal">Bridge<span className="text-sage-600">com</span></span>
           </div>
         ) : (
           <>
@@ -98,7 +98,7 @@ export function IntroAnimation({ force = false, onDone }: { force?: boolean; onD
             </svg>
             <div className="bc-logo absolute inset-0 flex flex-col items-center justify-center gap-4">
               <LogoMark size={96} />
-              <span className="text-3xl font-bold text-teal">Bridge<span className="text-sage">com</span></span>
+              <span className="text-3xl font-bold text-teal">Bridge<span className="text-sage-600">com</span></span>
             </div>
           </>
         )}

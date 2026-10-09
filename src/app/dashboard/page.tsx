@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { FIELD_BY_ID } from "@/lib/data/taxonomy";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { EvidenceBadge, VerificationBadge } from "@/components/Badges";
@@ -12,17 +13,20 @@ export default function Dashboard() {
   const { profile, progress, tr, lang, hydrated } = useBridge();
   const [matches, setMatches] = useState<ProgramMatch[] | null>(null);
   const [opps, setOpps] = useState<OpportunityMatch[] | null>(null);
+  const [loadError, setLoadError] = useState(false);
   const c = completeness(profile, progress.selected_role);
 
   useEffect(() => {
     if (!hydrated) return;
     const body = JSON.stringify({ profile });
     const h = { "Content-Type": "application/json" };
-    fetch("/api/match/programs", { method: "POST", headers: h, body }).then((r) => r.json()).then((d) => setMatches(d.matches ?? [])).catch(() => setMatches([]));
-    fetch("/api/match/opportunities", { method: "POST", headers: h, body }).then((r) => r.json()).then((d) => setOpps(d.matches ?? [])).catch(() => setOpps([]));
+    const get = (url: string) => fetch(url, { method: "POST", headers: h, body }).then((r) => { if (!r.ok) throw new Error(String(r.status)); return r.json(); });
+    setLoadError(false);
+    get("/api/match/programs").then((d) => setMatches(d.matches ?? [])).catch(() => { setMatches([]); setLoadError(true); });
+    get("/api/match/opportunities").then((d) => setOpps(d.matches ?? [])).catch(() => { setOpps([]); setLoadError(true); });
   }, [hydrated, profile]);
 
-  const name = (m: ProgramMatch) => `${lang === "ar" && m.program.name_ar ? m.program.name_ar : m.program.name_en} · ${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`;
+  const name = (m: ProgramMatch) => `${(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)} · ${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`;
   const top = (matches ?? []).filter((m) => m.eligibility.status !== "stream-mismatch" && (profile.interests.length === 0 || profile.interests.includes(m.program.field))).slice(0, 3);
   const saved = (matches ?? []).filter((m) => (profile.saved_programs ?? []).includes(m.program.id));
   const hist = progress.readiness_history.filter((h) => h.role_id === progress.selected_role);
@@ -34,6 +38,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
+      {loadError && <p role="alert" className="rounded-xl bg-bad-100 p-4 text-bad">{tr("We couldn't load your matches right now. Your profile is safe on this device; please refresh in a moment.", "تعذّر تحميل نتائجك الآن. ملفك محفوظ على هذا الجهاز؛ حدّث الصفحة بعد قليل.")}</p>}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="eyebrow">{tr("My dashboard", "لوحتي")}</p>
@@ -51,7 +56,7 @@ export default function Dashboard() {
         ))}
       </section>
 
-      <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <section className="card p-5 sm:p-6" aria-labelledby="comp-h">
           <h2 id="comp-h" className="h2">{tr("Profile completeness", "اكتمال الملف")}</h2>
           <div className="mt-3 flex items-center gap-3">
@@ -80,7 +85,7 @@ export default function Dashboard() {
         </section>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-2">
         <section className="card p-5 sm:p-6" aria-labelledby="sk-h">
           <div className="flex items-center justify-between"><h2 id="sk-h" className="h2">{tr("Skills and achievements", "المهارات والإنجازات")}</h2><Link href="/empower" className="text-sm font-semibold text-sage-600 underline">{tr("Edit", "تعديل")}</Link></div>
           <p className="mt-1 text-sm text-muted">{profile.achievements.length} {tr("achievements", "إنجازات")} · {profile.skills.length} {tr("skills", "مهارات")} · {profile.completed_courses.length} {tr("courses completed", "دورات مكتملة")}</p>

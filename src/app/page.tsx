@@ -45,9 +45,9 @@ export default function Home() {
             <path d="M120 110 Q200 40 280 110" fill="none" stroke="#264653" strokeWidth="5" strokeLinecap="round" />
             <line x1="120" y1="112" x2="280" y2="112" stroke="#264653" strokeWidth="6" strokeLinecap="round" />
             {[150, 175, 200, 225, 250].map((x) => <line key={x} x1={x} x2={x} y1={112} y2={x === 200 ? 75 : x === 175 || x === 225 ? 80 : 92} stroke="#264653" strokeWidth="2.5" />)}
-            <circle cx="60" cy="96" r="7" fill="#D2A679" /><text x="44" y="80" fontSize="12" fill="#264653" fontWeight="700">School</text>
-            <circle cx="200" cy="62" r="7" fill="#D2A679" /><text x="172" y="46" fontSize="12" fill="#264653" fontWeight="700">University</text>
-            <circle cx="340" cy="96" r="7" fill="#D2A679" /><text x="326" y="80" fontSize="12" fill="#264653" fontWeight="700">Work</text>
+            <circle cx="60" cy="96" r="7" fill="#D2A679" /><text x="44" y="80" fontSize="12" fill="#264653" fontWeight="700">{tr("School", "المدرسة")}</text>
+            <circle cx="200" cy="62" r="7" fill="#D2A679" /><text x="172" y="46" fontSize="12" fill="#264653" fontWeight="700">{tr("University", "الجامعة")}</text>
+            <circle cx="340" cy="96" r="7" fill="#D2A679" /><text x="326" y="80" fontSize="12" fill="#264653" fontWeight="700">{tr("Work", "العمل")}</text>
           </svg>
           <p className="mt-2 text-center text-sm text-muted">{tr("One profile. Three transitions. Fully explained.", "ملف واحد. ثلاث مراحل انتقال. كل شيء مُفسَّر.")}</p>
         </div>

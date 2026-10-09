@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
 import type { Course, Program, Scholarship, University } from "@/lib/types";
+import { programCompleteness } from "@/lib/data/record-completeness";
 
 type Cov = Record<string, { total: number; verified: number; partial: number; other: number; invalid: number }>;
 
@@ -51,7 +52,7 @@ export default function DataPage() {
         <div className="card mt-4 overflow-x-auto">
           <table className="w-full min-w-[820px] text-sm">
             <thead><tr className="border-b border-line text-xs uppercase tracking-wider text-muted">
-              {[tr("Program", "البرنامج"), tr("University", "الجامعة"), tr("Fee/credit hr", "رسوم الساعة"), tr("Credit hrs", "الساعات"), tr("Min. avg", "الحد الأدنى"), tr("Status", "الحالة"), tr("Source", "المصدر")].map((h) => <th key={h} scope="col" className="p-3 text-start">{h}</th>)}
+              {[tr("Program", "البرنامج"), tr("University", "الجامعة"), tr("Fee/credit hr", "رسوم الساعة"), tr("Credit hrs", "الساعات"), tr("Min. avg", "الحد الأدنى"), tr("Complete", "الاكتمال"), tr("Status", "الحالة"), tr("Source", "المصدر")].map((h) => <th key={h} scope="col" className="p-3 text-start">{h}</th>)}
             </tr></thead>
             <tbody>{d?.programs.map((p) => (
               <tr key={p.id} className="border-b border-line align-top last:border-0">
@@ -60,6 +61,7 @@ export default function DataPage() {
                 <td className="p-3">{p.tuition_jod_per_credit_hour ?? <span className="text-muted">—</span>}</td>
                 <td className="p-3">{p.credit_hours ?? <span className="text-muted">—</span>}</td>
                 <td className="p-3">{p.min_admission_avg != null ? `${p.min_admission_avg}${p.min_admission_year ? ` (${p.min_admission_year})` : ""}` : <span className="text-muted">—</span>}</td>
+                <td className="p-3" title={programCompleteness(p).missing.join(", ")}>{programCompleteness(p).pct}%{p.study_plan_url && <span className="block text-xs text-muted">{tr("study plan read", "قُرئت الخطة")}</span>}</td>
                 <td className="p-3"><VerificationBadge v={p.verification} /></td>
                 <td className="max-w-64 p-3"><Sources sources={p.sources} /></td>
               </tr>

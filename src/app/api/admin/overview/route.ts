@@ -3,6 +3,8 @@ import { adminConfigured, isAdmin } from "@/lib/admin";
 import { coverage, getAll, getEmployers, getRoles, readStore } from "@/lib/data/repo";
 import { readAILog } from "@/lib/ai/log";
 import type { DatasetName } from "@/lib/data/schemas";
+import { programCompleteness, universityCompleteness } from "@/lib/data/record-completeness";
+import type { Program, University } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 const STALE_DAYS = 180;
@@ -33,6 +35,13 @@ export async function GET() {
       const missing = KEY_FIELDS[name].filter((f) => r[f] == null || r[f] === "");
       if (missing.length) issues.push({ dataset: name, id, issue: `Missing: ${missing.join(", ")}` });
       if (r.verification === "verified" && missing.length) issues.push({ dataset: name, id, issue: "Marked verified but key fields are missing" });
+      for (const c of (r.conflicts as { field: string; values: { value: unknown; layer: string; source?: string }[] }[] | undefined) ?? []) {
+        issues.push({ dataset: name, id, issue: `Sources disagree on ${c.field}: ${c.values.map((v) => `${v.layer} ${String(v.value)}${v.source ? ` (${v.source})` : ""}`).join(" vs ")}. Excluded from scoring until resolved; save the correct value as an admin edit.` });
+      }
+      if (name === "programs" || name === "universities") {
+        const c = name === "programs" ? programCompleteness(r as unknown as Program) : universityCompleteness(r as unknown as University);
+        r.completeness = c.pct;
+      }
     }
   }
   const store = readStore();

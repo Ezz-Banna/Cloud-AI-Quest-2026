@@ -23,9 +23,23 @@ create table universities (
   governorate text,
   website text,
   accreditation_note text,
+  accreditation_status text check (accreditation_status in ('listed', 'not-listed')),  -- null = not checked
+  accreditation_source_id bigint references sources(id),
+  transport_note text,
+  accommodation_note text,
   verification verification not null default 'unverified',
   notes text,
   updated_at timestamptz not null default now()
+);
+
+-- Institution-level facts that are lists. Each row must cite a source; the AI never writes these.
+create table university_campuses (university_id text references universities(id) on delete cascade, city text not null, primary key (university_id, city));
+create table university_facts (
+  id bigserial primary key,
+  university_id text not null references universities(id) on delete cascade,
+  kind text not null check (kind in ('exchange-program', 'research-highlight', 'verified-achievement', 'accessibility-facility')),
+  text text not null,
+  source_id bigint not null references sources(id)
 );
 
 create table fields (
@@ -46,8 +60,35 @@ create table programs (
   verification verification not null default 'unverified',
   internship_note text,
   career_tags text[] not null default '{}',
+  study_plan_url text,
+  study_plan_source_id bigint references sources(id),
+  accreditation_status text check (accreditation_status in ('listed', 'not-listed')),
+  accreditation_source_id bigint references sources(id),
+  graduate_outcomes_note text,          -- only when the university publishes outcomes
   notes text,
   updated_at timestamptz not null default now()
+);
+
+-- Curriculum topics read from the published study plan (program-level), each with the course title that shows it.
+create table curriculum_topics (id text primary key, name_en text not null, name_ar text not null);
+create table program_topics (
+  program_id text references programs(id) on delete cascade,
+  topic_id text references curriculum_topics(id),
+  evidence_quote text not null,        -- exact course title from the study plan
+  primary key (program_id, topic_id)
+);
+
+-- Mandatory fees other than per-credit-hour tuition (registration, services, labs). university-wide when program_id is null.
+create table extra_fees (
+  id bigserial primary key,
+  university_id text references universities(id) on delete cascade,
+  program_id text references programs(id) on delete cascade,
+  name text not null,
+  amount_jod numeric(8,2) not null check (amount_jod >= 0),
+  per text not null check (per in ('semester', 'year', 'once')),
+  academic_year text,
+  source_id bigint not null references sources(id),
+  check (university_id is not null or program_id is not null)
 );
 
 -- Fees vary by track (competitive, parallel, international, private) and by year.
@@ -71,6 +112,29 @@ create table admission_rules (
   competitive_cutoff numeric(5,2) check (competitive_cutoff between 40 and 100),
   eligible_streams text[] not null default '{}',
   source_id bigint not null references sources(id)
+);
+
+-- Import staging and audit: every import is kept, compared with the current record, and conflicts stay open
+-- until a data maintainer resolves them. Disputed facts are excluded from eligibility and scoring meanwhile.
+create table import_batches (
+  id bigserial primary key,
+  dataset text not null,
+  imported_by text not null,
+  imported_at timestamptz not null default now(),
+  rows_valid integer not null,
+  rows_invalid integer not null
+);
+create table fact_conflicts (
+  id bigserial primary key,
+  record_type text not null,
+  record_id text not null,
+  field text not null,
+  current_value text,
+  imported_value text,
+  import_batch_id bigint references import_batches(id),
+  resolved_at timestamptz,
+  resolved_by text,
+  resolution text
 );
 
 create table record_sources (
@@ -143,6 +207,13 @@ create table learners (
   consent_updated_at timestamptz,
   created_at timestamptz not null default now()
 );
+-- Student-set weights for the fit score (0-5 per criterion).
+create table learner_fit_weights (
+  learner_id uuid references learners(id) on delete cascade,
+  criterion text not null check (criterion in ('interest', 'curriculum', 'career', 'affordability', 'location', 'type', 'applied')),
+  weight smallint not null check (weight between 0 and 5),
+  primary key (learner_id, criterion)
+);
 create table learner_interests (learner_id uuid references learners(id) on delete cascade, field_id text references fields(id), primary key (learner_id, field_id));
 
 create table achievements (
@@ -211,7 +282,7 @@ create table readiness_snapshots (
 -- AI audit log: no raw personal text stored, only references, model, latency and validation outcome.
 create table ai_requests (
   id bigserial primary key,
-  module text not null,                -- 'profile' | 'skills' | 'job'
+  module text not null,                -- 'profile' | 'skills' | 'job' | 'explain' | 'compare' | 'curriculum'
   learner_id uuid references learners(id) on delete set null,
   model text,
   mode text not null check (mode in ('ai', 'offline')),

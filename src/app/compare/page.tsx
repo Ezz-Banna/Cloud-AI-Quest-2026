@@ -9,6 +9,16 @@ export default function Compare() {
   const { profile, setProfile, tr, lang, hydrated } = useBridge();
   const [matches, setMatches] = useState<ProgramMatch[] | null>(null);
   const saved = profile.saved_programs ?? [];
+  const [ai, setAi] = useState<{ text: string; mode: "ai" | "offline" } | "loading" | null>(null);
+  async function compareAI(ids: string[]) {
+    setAi("loading");
+    try {
+      const r = await fetch("/api/ai/compare", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile, program_ids: ids }) });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error);
+      setAi(d);
+    } catch (e) { setAi({ text: String((e as Error).message), mode: "offline" }); }
+  }
 
   useEffect(() => {
     if (!hydrated) return;
@@ -21,20 +31,26 @@ export default function Compare() {
     "meets-published-minimum": tr("Meets minimum to apply", "يحقق الحد الأدنى للتقديم"),
     "below-published-minimum": tr("Below minimum to apply", "أقل من الحد الأدنى"),
     "stream-mismatch": tr("Stream not eligible", "الفرع غير مؤهل"),
-    "minimum-not-verified": tr("Minimum not verified", "الحد الأدنى غير موثّق"),
+    "minimum-not-verified": tr("Unknown: minimum not verified", "غير معروف: الحد الأدنى غير موثّق"),
+    "conflicting-sources": tr("Unknown: sources disagree", "غير معروف: المصادر مختلفة"),
     "missing-student-average": tr("Add your average", "أضف معدلك"),
   } as Record<string, string>)[s];
   const dash = <span className="text-warn">{tr("Not verified", "غير موثّق")}</span>;
   const lines: [string, (m: ProgramMatch) => React.ReactNode][] = [
     [tr("University", "الجامعة"), (m) => `${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`],
     [tr("City · type", "المدينة · النوع"), (m) => `${m.university.city ?? "—"} · ${m.university.type === "public" ? tr("Public", "حكومية") : tr("Private", "خاصة")}`],
-    [tr("Fit for you", "الملاءمة"), (m) => <strong className="text-teal">{m.suitability}/100</strong>],
+    [tr("Fit for you", "الملاءمة"), (m) => <><strong className="text-teal">{m.suitability}/100</strong><span className="block text-xs text-muted">{tr(`${Math.round(m.coverage * 100)}% of your priorities checked`, `تم التحقق من ${Math.round(m.coverage * 100)}% من أولوياتك`)}</span></>],
     [tr("Admission check", "فحص القبول"), (m) => `${elig(m.eligibility.status)}${m.eligibility.published_min != null ? ` (${m.eligibility.published_min}${m.eligibility.year ? `, ${m.eligibility.year}` : ""})` : ""}`],
     [tr("Fee per credit hour", "رسوم الساعة"), (m) => (m.program.tuition_jod_per_credit_hour != null ? `${m.program.tuition_jod_per_credit_hour} JOD${m.program.tuition_track ? ` (${m.program.tuition_track})` : ""}` : dash)],
     [tr("Credit hours", "الساعات المعتمدة"), (m) => m.program.credit_hours ?? dash],
     [tr("Total tuition", "إجمالي الرسوم"), (m) => (m.cost.total_tuition_jod != null ? `${m.cost.total_tuition_jod.toLocaleString()} JOD` : dash)],
     [tr("Per year (approx.)", "سنوياً (تقريباً)"), (m) => (m.cost.per_year_jod != null ? <span className={m.cost.within_budget === false ? "font-semibold text-bad" : ""}>{m.cost.per_year_jod.toLocaleString()} JOD</span> : dash)],
-    [tr("Top reasons", "أبرز الأسباب"), (m) => <ul className="space-y-1">{m.reasons.filter((r) => r.weight !== 0).slice(0, 4).map((r) => <li key={r.code}>{r.weight > 0 ? "+ " : "− "}{lang === "ar" ? r.ar : r.en}</li>)}</ul>],
+    [tr("Other mandatory fees", "رسوم إلزامية أخرى"), (m) => (m.cost.extra_fees_jod != null ? `${m.cost.extra_fees_jod.toLocaleString()} JOD` : dash)],
+    [tr("Strengths", "نقاط القوة"), (m) => <ul className="space-y-1">{m.strengths.slice(0, 4).map((r, i) => <li key={i}>+ {lang === "ar" ? r.ar : r.en}</li>)}</ul>],
+    [tr("Trade-offs", "المقايضات"), (m) => <ul className="space-y-1">{m.trade_offs.slice(0, 4).map((r, i) => <li key={i}>− {lang === "ar" ? r.ar : r.en}</li>)}{m.trade_offs.length === 0 && <li className="text-muted">{tr("None found", "لا يوجد")}</li>}</ul>],
+    [tr("Practical training", "التدريب العملي"), (m) => m.program.internship_note ?? dash],
+    [tr("Study plan", "الخطة الدراسية"), (m) => (m.program.study_plan_url ? <a className="underline" href={m.program.study_plan_url} target="_blank" rel="noreferrer">{tr("Open", "افتح")} ↗</a> : dash)],
+    [tr("Past competitive cut-off", "معدل القبول التنافسي السابق"), (m) => (m.eligibility.last_cutoff ? `${m.eligibility.last_cutoff.value} (${m.eligibility.last_cutoff.year})` : dash)],
     [tr("Missing data", "بيانات ناقصة"), (m) => (m.missing_data.length ? m.missing_data.join(", ") : tr("None", "لا شيء"))],
     [tr("Data status", "حالة البيانات"), (m) => <VerificationBadge v={m.program.verification} />],
     [tr("Sources", "المصادر"), (m) => <Sources sources={m.program.sources} />],
@@ -77,6 +93,20 @@ export default function Compare() {
             </tbody>
           </table>
         </div>
+      )}
+      {rows.length >= 2 && (
+        <section className="mt-6 card p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="font-bold text-teal">{tr("Talk me through the differences", "اشرح لي الفروق")}</h2>
+            <button type="button" className="btn-secondary" disabled={ai === "loading"} onClick={() => compareAI(rows.map((m) => m.program.id))}>✦ {ai === "loading" ? tr("Writing…", "جارٍ الكتابة…") : tr("Compare in plain words", "قارن بكلمات بسيطة")}</button>
+          </div>
+          {ai && ai !== "loading" && (
+            <div role="status" className="mt-3 rounded-2xl bg-mist p-4 text-sm">
+              <p>{ai.text}</p>
+              <p className="mt-2 text-xs text-muted">{ai.mode === "ai" ? tr("Written by AI from the table above; numbers checked against the data. It does not choose for you.", "كتبه الذكاء الاصطناعي من الجدول أعلاه؛ تم التحقق من الأرقام. لا يختار نيابة عنك.") : tr("Template summary (AI unavailable or its answer failed our checks).", "ملخص من قالب (الذكاء الاصطناعي غير متاح أو لم تجتز إجابته فحوصاتنا).")}</p>
+            </div>
+          )}
+        </section>
       )}
       {saved.length > 4 && <p className="mt-3 text-sm text-muted">{tr("Showing the first four saved programs.", "يتم عرض أول أربعة برامج محفوظة.")}</p>}
     </div>

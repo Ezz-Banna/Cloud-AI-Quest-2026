@@ -46,7 +46,7 @@ describe("ranking", () => {
       prog({ id: "c", university_id: "u1", field: "medicine", min_admission_avg: 70 }),
     ], [uni("u1", "Amman"), uni("u2", "Irbid")]);
     expect(r[0].program.id).toBe("b");
-    expect(r[0].reasons.map((x) => x.code)).toContain("preferred-city");
+    expect(r[0].reasons.map((x) => x.code)).toContain("location");
     expect(r[r.length - 1].program.id).toBe("a");
   });
 });

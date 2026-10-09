@@ -53,6 +53,7 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
   const [hobbies, setHobbies] = useState(profile.hobbies.join(", "));
   const [access, setAccess] = useState(profile.accessibility_needs.join(", "));
   const [noAvg, setNoAvg] = useState(false);
+  const [unsureField, setUnsureField] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const L = (o: Opt) => (lang === "ar" ? o.ar : o.en);
   const toggle = <K extends "subjects" | "interests" | "strengths" | "industries" | "preferred_cities">(k: K, v: string) =>
@@ -65,7 +66,7 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
       if (!p.stream) return tr("Choose your stream (or IGCSE / other).", "اختر فرعك (أو IGCSE / أخرى).");
       if (!noAvg && (p.tawjihi_avg == null || p.tawjihi_avg < 40 || p.tawjihi_avg > 100)) return tr("Enter an average between 40 and 100, or tick \"I don't have it yet\".", "أدخل معدلاً بين 40 و100، أو اختر \"ليس لدي بعد\".");
     }
-    if (step === 2 && p.interests.length === 0) return tr("Pick at least one field you might like to study.", "اختر تخصصاً واحداً على الأقل قد ترغب بدراسته.");
+    if (step === 2 && p.interests.length === 0 && !unsureField) return tr("Pick at least one field, or choose \"I'm not sure yet\".", "اختر تخصصاً واحداً على الأقل، أو اختر \"لست متأكداً بعد\".");
     if (step === 5 && p.budget_jod_per_year != null && p.budget_jod_per_year < 0) return tr("Budget can't be negative.", "لا يمكن أن تكون الميزانية سالبة.");
     if (step === 6 && p.priorities.length > 3) return tr("Pick up to three priorities.", "اختر حتى ثلاث أولويات.");
     return null;
@@ -127,11 +128,16 @@ export function OnboardingForm({ onDone }: { onDone: (p: LearnerProfile) => void
         {step === 2 && (<>
           <div><p className="label">{tr("Favourite school subjects", "موادك المفضلة")}</p>{chips(SUBJECTS, "subjects")}</div>
           <div><p className="label">{tr("Fields you might like to study", "تخصصات قد ترغب بدراستها")}</p>{chips(FIELDS.map((f) => ({ v: f.id, en: f.name_en, ar: f.name_ar })), "interests")}
-            {why("These are the fields in our current verified dataset.", "هذه التخصصات المتوفرة في بياناتنا الموثّقة حالياً.")}</div>
+            <button type="button" className="chip mt-2" aria-pressed={unsureField} onClick={() => { setUnsureField(!unsureField); if (!unsureField) setP((x) => ({ ...x, interests: [] })); }}>{tr("I'm not sure yet", "لست متأكداً بعد")}</button>
+            {why("These are the fields in our current verified dataset. Not sure? We'll show a wider range and ask follow-up questions only where they change the results.", "هذه التخصصات المتوفرة في بياناتنا الموثّقة حالياً. لست متأكداً؟ سنعرض نطاقاً أوسع ونسأل أسئلة إضافية فقط عندما تغيّر النتائج.")}</div>
           <div><label className="label" htmlFor="hb">{tr("Hobbies and interests outside school", "هواياتك واهتماماتك خارج المدرسة")}</label><input id="hb" className="input" value={hobbies} onChange={(e) => setHobbies(e.target.value)} placeholder={tr("e.g. robotics, drawing, football", "مثال: الروبوتات، الرسم، كرة القدم")} /></div>
         </>)}
         {step === 3 && (<>
           <div><p className="label">{tr("Your strengths", "نقاط قوتك")}</p>{chips(STRENGTHS, "strengths")}</div>
+          <div><p className="label">{tr("How do you like to learn?", "كيف تفضّل أن تتعلم؟")}</p>
+            <div className="flex flex-wrap gap-2">{([["hands-on", "By doing (labs, projects, training)", "بالممارسة (مختبرات، مشاريع، تدريب)"], ["theory", "By understanding the theory first", "بفهم النظرية أولاً"], ["mixed", "A mix of both", "مزيج من الاثنين"]] as const).map(([v, en, ar]) => (
+              <button key={v} type="button" className="chip" aria-pressed={p.learning_style === v} onClick={() => setP({ ...p, learning_style: p.learning_style === v ? null : v })}>{tr(en, ar)}</button>))}</div>
+            {why("If you learn by doing, programs with published practical training count more for you.", "إذا كنت تتعلم بالممارسة، تحصل البرامج ذات التدريب العملي المنشور على وزن أكبر.")}</div>
           <div><label className="label" htmlFor="ach">{tr("Projects or achievements you're proud of (one per line, optional)", "مشاريع أو إنجازات تفخر بها (واحد في كل سطر، اختياري)")}</label>
             <textarea id="ach" className="input min-h-24" value={achText} onChange={(e) => setAchText(e.target.value)} />
             {why("Saved to your portfolio as self-reported. In Empower you can add details and evidence.", "تُحفظ في ملف إنجازاتك كإفادة ذاتية. يمكنك إضافة التفاصيل والأدلة في مرحلة تمكَّن.")}</div>

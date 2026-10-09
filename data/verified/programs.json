@@ -85,7 +85,7 @@
     "min_admission_year": "2024",
     "admission_track": "unified-competitive",
     "eligible_streams": [],
-    "internship_note": null,
+    "internship_note": "Internship (AI 490), 3 credit hours: at least six weeks with a local organisation, after 90 credit hours",
     "career_tags": [
       "data-analyst",
       "ml-engineer",
@@ -101,10 +101,26 @@
         "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
         "title": "JUST - Fees Regular 2023",
         "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
+        "title": "JUST - B.Sc. Artificial Intelligence study plan",
+        "checked_at": "2026-10-09"
       }
     ],
     "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+    "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
+    "curriculum_topics": [
+      "programming",
+      "ai",
+      "data",
+      "mathematics",
+      "statistics",
+      "networks-security",
+      "web-mobile",
+      "entrepreneurship"
+    ]
   },
   {
     "id": "just-ds",
@@ -157,7 +173,7 @@
     "min_admission_year": "2024",
     "admission_track": "unified-competitive",
     "eligible_streams": [],
-    "internship_note": null,
+    "internship_note": "Clinical courses in each nursing area plus a final Clinical Training course (Nur 494); from the 2009/2010 plan, which may have been updated since",
     "career_tags": [
       "registered-nurse"
     ],
@@ -171,10 +187,23 @@
         "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2023.pdf",
         "title": "JUST - Fees Regular 2023",
         "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.just.edu.jo/FacultiesandDepartments/FacultyofNursing/Documents/Bachelor%20of%20Science%20in%20Nursing%20Curriculum.pdf",
+        "title": "JUST - B.Sc. Nursing curriculum (2009/2010 study plan)",
+        "checked_at": "2026-10-09"
       }
     ],
     "verification": "verified",
-    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 50 / 70. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+    "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 50 / 70. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+    "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/FacultyofNursing/Documents/Bachelor%20of%20Science%20in%20Nursing%20Curriculum.pdf",
+    "curriculum_topics": [
+      "patient-care",
+      "human-body",
+      "research",
+      "communication",
+      "management"
+    ]
   },
   {
     "id": "just-civil",
@@ -321,7 +350,7 @@
     "name_ar": null,
     "field": "software-engineering",
     "degree": "bachelor",
-    "credit_hours": null,
+    "credit_hours": 132,
     "tuition_jod_per_credit_hour": 45,
     "tuition_track": "competitive",
     "tuition_year": null,
@@ -329,7 +358,7 @@
     "min_admission_year": null,
     "admission_track": "unified-competitive",
     "eligible_streams": [],
-    "internship_note": null,
+    "internship_note": "Practical Training, 3 credit hours, after 80 credit hours (2020 advisory plan)",
     "career_tags": [
       "software-developer",
       "web-developer",
@@ -345,10 +374,26 @@
         "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
         "title": "HU - BA programs fee schedule (incl. international)",
         "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf",
+        "title": "HU - B.Sc. Software Engineering advisory plan (2020)",
+        "checked_at": "2026-10-09"
       }
     ],
     "verification": "partial",
-    "notes": "Fee = first of three per-credit-hour values in the row (45, 75, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled."
+    "notes": "Fee = first of three per-credit-hour values in the row (45, 75, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+    "study_plan_url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf",
+    "curriculum_topics": [
+      "programming",
+      "web-mobile",
+      "data",
+      "mathematics",
+      "statistics",
+      "networks-security",
+      "management",
+      "entrepreneurship"
+    ]
   },
   {
     "id": "hu-ds-ai",
@@ -931,7 +976,7 @@
     "min_admission_year": null,
     "admission_track": "private-university",
     "eligible_streams": [],
-    "internship_note": null,
+    "internship_note": "Practical Training course, 3 credit hours, after completing 90 credit hours (2021-2022 study plan)",
     "career_tags": [
       "software-developer",
       "web-developer"
@@ -941,10 +986,26 @@
         "url": "https://psut.edu.jo/en/study-plans",
         "title": "PSUT - Programs & Fees (study plans)",
         "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
+        "title": "PSUT - B.Sc. Computer Science study plan (2021-2022 plan)",
+        "checked_at": "2026-10-09"
       }
     ],
     "verification": "partial",
-    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD)."
+    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+    "study_plan_url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
+    "curriculum_topics": [
+      "programming",
+      "web-mobile",
+      "data",
+      "ai",
+      "networks-security",
+      "mathematics",
+      "statistics",
+      "physics"
+    ]
   },
   {
     "id": "psut-se",
@@ -961,7 +1022,7 @@
     "min_admission_year": null,
     "admission_track": "private-university",
     "eligible_streams": [],
-    "internship_note": null,
+    "internship_note": "Practical Training course, 3 credit hours, after completing 90 credit hours (2021-2022 study plan)",
     "career_tags": [
       "software-developer",
       "web-developer",
@@ -972,10 +1033,24 @@
         "url": "https://psut.edu.jo/en/study-plans",
         "title": "PSUT - Programs & Fees (study plans)",
         "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
+        "title": "PSUT - B.Sc. Software Engineering study plan (2021-2022 plan)",
+        "checked_at": "2026-10-09"
       }
     ],
     "verification": "partial",
-    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD)."
+    "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+    "study_plan_url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
+    "curriculum_topics": [
+      "programming",
+      "web-mobile",
+      "data",
+      "networks-security",
+      "design",
+      "management"
+    ]
   },
   {
     "id": "psut-ds-ai",
@@ -1053,7 +1128,7 @@
     "min_admission_year": null,
     "admission_track": "private-university",
     "eligible_streams": [],
-    "internship_note": null,
+    "internship_note": "Practical Training, 3 credit hours, year 4 (2021/2022 study plan)",
     "career_tags": [
       "software-developer",
       "web-developer"
@@ -1063,10 +1138,24 @@
         "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
         "title": "ZUJ - Specialties and Fees",
         "checked_at": "2026-10-09"
+      },
+      {
+        "url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf",
+        "title": "ZUJ - B.Sc. Computer Science study plan (2021/2022)",
+        "checked_at": "2026-10-09"
       }
     ],
     "verification": "verified",
-    "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page."
+    "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
+    "study_plan_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf",
+    "curriculum_topics": [
+      "programming",
+      "web-mobile",
+      "data",
+      "ai",
+      "networks-security",
+      "mathematics"
+    ]
   },
   {
     "id": "zuj-se",

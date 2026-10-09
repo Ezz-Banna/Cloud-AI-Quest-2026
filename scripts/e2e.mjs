@@ -63,8 +63,18 @@ async function run(viewport, tag) {
   await page.getByRole("button", { name: /why this recommendation/i }).first().waitFor({ timeout: 15000 });
   const cards = await page.locator("main ol > li").count();
   check(`${tag}: program matches listed (${cards})`, cards > 0);
+  check(`${tag}: cards show trade-offs and the not-a-chance note`, (await page.getByRole("heading", { name: "Trade-offs" }).first().isVisible()) && (await page.getByText("Not a chance of admission.").first().isVisible()));
   await page.getByRole("button", { name: /why this recommendation/i }).first().click();
   check(`${tag}: reasons and sources expand`, await page.getByRole("heading", { name: "Sources" }).first().isVisible());
+  check(`${tag}: factor table adds up to the fit score`, await page.locator("tfoot").first().getByText("Fit score").isVisible());
+  const meter = page.locator("main ol > li").first().getByRole("meter");
+  const fitBefore = await meter.getAttribute("aria-valuenow");
+  await page.getByRole("button", { name: /adjust priorities/i }).click();
+  await page.getByLabel("Location", { exact: false }).first().fill("0");
+  await page.waitForFunction((b) => document.querySelector("main ol > li [role=meter]")?.getAttribute("aria-valuenow") !== b, fitBefore, { timeout: 10000 }).catch(() => {});
+  const fitAfter = await page.locator("main ol > li").first().getByRole("meter").getAttribute("aria-valuenow");
+  check(`${tag}: priority slider re-ranks live (top fit ${fitBefore} -> ${fitAfter})`, fitBefore !== fitAfter);
+  await page.getByRole("button", { name: "Reset" }).click();
   await page.getByRole("button", { name: /explain in plain words/i }).first().click();
   await page.getByText(/Template explanation|Written by AI/).first().waitFor({ timeout: 40000 });
   check(`${tag}: plain-words explanation shown`, true);
@@ -75,6 +85,9 @@ async function run(viewport, tag) {
   await page.waitForURL("**/compare");
   await page.getByRole("table").waitFor({ timeout: 15000 });
   check(`${tag}: compare view shows 2 programs`, (await page.locator("thead th").count()) === 2);
+  check(`${tag}: compare view lists trade-offs`, await page.getByRole("rowheader", { name: "Trade-offs" }).isVisible());
+  await page.getByRole("button", { name: /compare in plain words/i }).click();
+  check(`${tag}: plain-words comparison shown`, await page.getByText(/Template summary|Written by AI from the table/).first().waitFor({ timeout: 40000 }).then(() => true, () => false));
   await page.screenshot({ path: `${OUT}/${tag}-04b-compare.png`, fullPage: true });
 
   // Empower

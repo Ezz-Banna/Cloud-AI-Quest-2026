@@ -144,7 +144,7 @@ function RecordEditor({ ov, onSaved }: { ov: Overview; onSaved: () => void }) {
         <ul className="mt-3 max-h-[55vh] divide-y divide-line overflow-y-auto">{rows.map((r) => (
           <li key={String(r.id)}><button className={`flex w-full items-center justify-between gap-2 p-2 text-start text-sm hover:bg-mist ${sel?.id === r.id ? "bg-mist" : ""}`} onClick={() => open(r)}>
             <span className="min-w-0 truncate">{String(r.name_en ?? r.title ?? r.id)} <span className="text-xs text-muted">{String(r.university_id ?? r.provider ?? "")}</span></span>
-            <VerificationBadge v={r.verification as Verification} /></button></li>
+            <span className="flex shrink-0 items-center gap-2">{typeof r.completeness === "number" && <span className="text-xs text-muted" title={tr("Record completeness", "اكتمال السجل")}>{r.completeness}%</span>}<VerificationBadge v={r.verification as Verification} /></span></button></li>
         ))}</ul>
       </div>
       <div className="card p-4">
@@ -157,6 +157,7 @@ function RecordEditor({ ov, onSaved }: { ov: Overview; onSaved: () => void }) {
           {msg && <p role="status" className="mt-2 rounded-xl bg-mist p-3 text-sm">{msg}</p>}
           <div className="mt-3 flex gap-2"><button className="btn-primary" onClick={save}>{tr("Save", "حفظ")}</button>
             {sel && <button className="btn-ghost" onClick={async () => { await fetch(`/api/admin/record?dataset=${ds}&id=${encodeURIComponent(String(sel.id))}`, { method: "DELETE" }); setMsg(tr("Admin edit removed (original restored if one exists).", "تمت إزالة التعديل (استُعيد الأصل إن وجد).")); onSaved(); }}>{tr("Revert my edit", "تراجع عن تعديلي")}</button>}</div>
+          {ds === "programs" && <StudyPlanReader json={json} setJson={setJson} />}
         </>) : <p className="text-muted">{tr("Choose a record or create a new one.", "اختر سجلاً أو أنشئ سجلاً جديداً.")}</p>}
       </div>
     </section>
@@ -196,5 +197,46 @@ function Import({ onDone }: { onDone: () => void }) {
       <div className="mt-3 flex gap-2"><button className="btn-secondary" onClick={() => run(true)}>{tr("Validate (dry run)", "تحقق (تجربة)")}</button><button className="btn-primary" onClick={() => run(false)}>{tr("Import", "استيراد")}</button></div>
       {out && <pre role="status" className="mt-3 whitespace-pre-wrap rounded-xl bg-mist p-3 text-xs">{out}</pre>}
     </section>
+  );
+}
+
+function StudyPlanReader({ json, setJson }: { json: string; setJson: (s: string) => void }) {
+  const { tr } = useBridge();
+  const [text, setText] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [out, setOut] = useState<{ mode: string; topics: { topic_id: string; quote: string }[]; internship_quote: string | null; dropped: number } | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  async function read() {
+    setBusy(true); setErr(null);
+    const r = await fetch("/api/admin/curriculum", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
+    const d = await r.json(); setBusy(false);
+    if (!r.ok) { setErr(d.error ?? "Error"); return; }
+    setOut(d);
+  }
+  function apply() {
+    if (!out) return;
+    try {
+      const rec = JSON.parse(json);
+      rec.curriculum_topics = [...new Set([...(rec.curriculum_topics ?? []), ...out.topics.map((t) => t.topic_id)])];
+      if (out.internship_quote && !rec.internship_note) rec.internship_note = out.internship_quote;
+      setJson(JSON.stringify(rec, null, 2));
+    } catch { setErr(tr("The record JSON above is invalid.", "JSON السجل أعلاه غير صالح.")); }
+  }
+  return (
+    <details className="mt-5 rounded-2xl bg-ivory p-3">
+      <summary className="cursor-pointer text-sm font-semibold text-teal">✦ {tr("Read a study plan into curriculum topics", "اقرأ خطة دراسية إلى مواضيع")}</summary>
+      <label className="label mt-3" htmlFor="sp">{tr("Paste the course list from the official study plan", "الصق قائمة المواد من الخطة الدراسية الرسمية")}</label>
+      <textarea id="sp" className="input min-h-32 text-xs" value={text} onChange={(e) => setText(e.target.value)} />
+      <button className="btn-secondary mt-2" disabled={busy || text.trim().length < 20} onClick={read}>{busy ? tr("Reading…", "جارٍ القراءة…") : tr("Suggest topics", "اقترح المواضيع")}</button>
+      {err && <p role="alert" className="mt-2 text-sm text-bad">{err}</p>}
+      {out && (
+        <div role="status" className="mt-3 text-sm">
+          <p className="text-xs text-muted">{out.mode === "ai" ? tr("AI suggestions; each topic is backed by a course title found in your text.", "اقتراحات الذكاء الاصطناعي؛ كل موضوع مدعوم بعنوان مادة موجود في النص.") : tr("Offline keyword rules (AI unavailable).", "قواعد كلمات مفتاحية (الذكاء الاصطناعي غير متاح).")}{out.dropped ? ` ${tr(`${out.dropped} suggestion(s) dropped: quote not in the text.`, `تم استبعاد ${out.dropped} اقتراح: الاقتباس غير موجود في النص.`)}` : ""}</p>
+          <ul className="mt-2 space-y-1">{out.topics.map((t) => <li key={t.topic_id}><strong>{t.topic_id}</strong> <span className="text-muted">“{t.quote}”</span></li>)}</ul>
+          {out.internship_quote && <p className="mt-2">{tr("Practical training", "التدريب العملي")}: <span className="text-muted">“{out.internship_quote}”</span></p>}
+          <button className="btn-ghost mt-2" onClick={apply}>{tr("Add to the record above (then review and save)", "أضف إلى السجل أعلاه (ثم راجع واحفظ)")}</button>
+        </div>
+      )}
+    </details>
   );
 }

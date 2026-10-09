@@ -11,14 +11,40 @@ const readJson = (rel: string): unknown[] => {
   catch { return []; }
 };
 
+/** Facts compared between imported rows and the verified seed. Disagreement is surfaced, never silently resolved. */
+export const CONFLICT_FIELDS: Record<string, string[]> = {
+  programs: ["tuition_jod_per_credit_hour", "credit_hours", "min_admission_avg"],
+  universities: ["type", "city"],
+};
+
+export function findConflicts(field: string[], imported: Record<string, unknown> | undefined, verified: Record<string, unknown> | undefined) {
+  if (!imported || !verified) return [];
+  const src = (r: Record<string, unknown>) => ((r.sources as { url: string }[] | undefined) ?? [])[0]?.url;
+  return field.filter((f) => imported[f] != null && verified[f] != null && imported[f] !== verified[f])
+    .map((f) => ({ field: f, values: [
+      { value: imported[f], layer: "imported" as const, source: src(imported) },
+      { value: verified[f], layer: "verified" as const, source: src(verified) },
+    ] }));
+}
+
 function load<T>(name: DatasetName): { rows: T[]; invalid: number } {
   const verified = readJson(`data/verified/${name}.json`);
   const imported = readJson(`data/runtime/imported-${name}.json`);
   const overrides = readJson(`data/runtime/overrides-${name}.json`);
   // Admin edits win over imports, which win over the seed files (first id seen is kept).
+  // Where an import disagrees with the verified seed on a key fact, the record carries `conflicts`
+  // and the engines treat that fact as unknown until an admin resolves it (an admin edit clears it).
   const { valid, errors } = validateRecords(DATASETS[name] as never, [...overrides, ...imported, ...verified]);
+  const byLayer = (rows: unknown[]) => Object.fromEntries((rows as Record<string, unknown>[]).filter((r) => r && typeof r.id === "string").map((r) => [r.id as string, r]));
+  const imp = byLayer(imported), ver = byLayer(verified), ovr = byLayer(overrides);
+  const fields = CONFLICT_FIELDS[name] ?? [];
   const seen = new Set<string>();
-  const rows = (valid as (T & { id: string })[]).filter((r) => (seen.has(r.id) ? false : (seen.add(r.id), true)));
+  const rows = (valid as (T & { id: string })[]).filter((r) => (seen.has(r.id) ? false : (seen.add(r.id), true)))
+    .map((r) => {
+      if (!fields.length || ovr[r.id]) return r;
+      const c = findConflicts(fields, imp[r.id], ver[r.id]);
+      return c.length ? { ...r, conflicts: c } : r;
+    });
   return { rows, invalid: errors.length };
 }
 

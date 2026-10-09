@@ -25,6 +25,7 @@ export async function POST(req: Request) {
     tuition_per_year_jod: m.cost.per_year_jod,
     reasons: m.reasons.map((r) => ({ code: r.code, text: lang === "ar" ? r.ar : r.en })),
     missing: m.missing_data,
+    trade_offs: m.trade_offs.map((r) => ({ code: r.code, text: lang === "ar" ? r.ar : r.en })),
   };
   return NextResponse.json(await explainMatch(facts, lang));
 }

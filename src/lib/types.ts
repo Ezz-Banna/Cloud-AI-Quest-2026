@@ -8,6 +8,25 @@ export interface Source {
   checked_at?: string;
 }
 
+/** A fee other than tuition per credit hour (registration, services, lab...). */
+export interface ExtraFee {
+  name: string;
+  amount_jod: number;
+  per: "semester" | "year" | "once";
+  source_url?: string | null;
+}
+
+/** A sourced statement (achievement, facility, exchange program). Never written by the AI. */
+export interface SourcedFact {
+  text: string;
+  source_url: string;
+  checked_at?: string | null;
+}
+
+/** "listed" = the institution or program appears on an official list we checked (with a source); null = not checked. */
+export type AccreditationStatus = "listed" | "not-listed" | null;
+
+// Institution-level characteristics. Program-level ones live on Program.
 export interface University {
   id: string;
   name_en: string;
@@ -15,11 +34,36 @@ export interface University {
   type: "public" | "private";
   city?: string | null;
   governorate?: string | null;
+  campuses?: string[]; // cities of other campuses, when published
   website?: string | null;
   accreditation_note?: string | null;
+  accreditation_status?: AccreditationStatus;
+  accreditation_source?: string | null;
+  additional_fees?: ExtraFee[]; // institution-wide mandatory fees
+  exchange_programs?: SourcedFact[];
+  research_highlights?: SourcedFact[];
+  verified_achievements?: SourcedFact[];
+  accessibility_facilities?: SourcedFact[];
+  transport_note?: string | null;
+  accommodation_note?: string | null;
   sources: Source[];
   verification: Verification;
   notes?: string | null;
+}
+
+/** A published admission threshold from a past year. Never a prediction. */
+export interface HistoricalThreshold {
+  year: string;
+  kind: "minimum-to-apply" | "competitive-cutoff";
+  value: number;
+  track?: string | null;
+  source_url: string;
+}
+
+/** Two data layers disagree on a fact. Set by the repository, never stored in seed files. */
+export interface FactConflict {
+  field: string;
+  values: { value: unknown; layer: "imported" | "verified"; source?: string }[];
 }
 
 export interface Program {
@@ -39,6 +83,15 @@ export interface Program {
   eligible_streams?: string[];
   internship_note?: string | null;
   career_tags?: string[];
+  study_plan_url?: string | null;
+  curriculum_topics?: string[]; // topic ids from CURRICULUM_TOPICS, read from the published study plan
+  additional_fees?: ExtraFee[]; // program-specific mandatory fees
+  historical_thresholds?: HistoricalThreshold[];
+  accreditation_status?: AccreditationStatus;
+  accreditation_source?: string | null;
+  graduate_outcomes_note?: string | null; // only when the university publishes it
+  verified_achievements?: SourcedFact[];
+  conflicts?: FactConflict[];
   sources: Source[];
   verification: Verification;
   notes?: string | null;
@@ -110,6 +163,9 @@ export interface Achievement {
 export type Stream = "scientific" | "literary" | "it" | "industrial" | "health" | "other";
 
 export type EducationLevel = "grade-12" | "tawjihi-graduate" | "university-student" | "graduate" | "other";
+export type LearningStyle = "hands-on" | "theory" | "mixed";
+/** Criteria of the fit score. Students can set a weight 0-5 for each. */
+export type FitCriterion = "interest" | "curriculum" | "career" | "affordability" | "location" | "type" | "applied";
 export type Priority = "affordability" | "location" | "career-fit" | "interest-fit" | "public-university" | "private-university";
 
 export interface LearnerProfile {
@@ -119,6 +175,8 @@ export interface LearnerProfile {
   hobbies: string[];
   industries: string[];
   priorities: Priority[]; // up to 3, most important first
+  learning_style?: LearningStyle | null;
+  fit_weights?: Partial<Record<FitCriterion, number>>; // student-set weights; overrides the defaults
   saved_programs: string[];
   language: "en" | "ar";
   tawjihi_avg?: number | null;

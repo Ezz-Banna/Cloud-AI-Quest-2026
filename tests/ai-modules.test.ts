@@ -5,7 +5,7 @@ vi.mock("@/lib/ai/log", () => ({ logAI: () => {}, readAILog: () => [] }));
 const structured = vi.fn();
 vi.mock("@/lib/ai/client", () => ({ structured: (...a: unknown[]) => structured(...a) }));
 
-import { extractSkills, interpretProfile, parseJob } from "@/lib/ai/modules";
+import { extractSkills, interpretProfile, parseJob, compareOptions, extractCurriculum } from "@/lib/ai/modules";
 
 beforeEach(() => structured.mockReset());
 
@@ -63,5 +63,38 @@ describe("explanation guard", () => {
     const r = await explainMatch(facts, "en");
     expect(r.mode).toBe("offline");
     expect(r.text).toContain("JUST");
+  });
+});
+
+describe("comparison and study-plan guards (model output mocked)", () => {
+  const facts = [
+    { id: "a", program: "CS", university: "U1", city: "Irbid", eligibility: "meets-published-minimum", fit_score: 80, tuition_per_year_jod: 1089, strengths: ["Close to home"], trade_offs: [], missing: ["study plan"] },
+    { id: "b", program: "CS", university: "U2", city: "Amman", eligibility: "meets-published-minimum", fit_score: 70, tuition_per_year_jod: 2970, strengths: ["Public"], trade_offs: ["Above budget"], missing: [] },
+  ];
+  it("accepts a comparison whose numbers all come from the facts", async () => {
+    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 1, data: { text: "U1 costs about 1089 JOD a year, U2 about 2970.", used_program_ids: ["a", "b"] } });
+    const r = await compareOptions(facts, "en");
+    expect(r.mode).toBe("ai");
+  });
+  it("replaces a comparison with an invented number or program", async () => {
+    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 1, data: { text: "U1 has a 95% employment rate.", used_program_ids: ["a"] } });
+    expect((await compareOptions(facts, "en")).mode).toBe("offline");
+    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 1, data: { text: "Consider U3.", used_program_ids: ["zzz"] } });
+    expect((await compareOptions(facts, "en")).mode).toBe("offline");
+  });
+  it("drops study-plan topics whose quote is not in the pasted text", async () => {
+    const text = "CS 101 Introduction to Programming\nMATH 101 Calculus I\nCS 490 Practical Training";
+    structured.mockResolvedValue({ ok: true, model: "m", latency_ms: 1, data: { topics: [{ topic_id: "programming", quote: "Introduction to Programming" }, { topic_id: "ai", quote: "Machine Learning" }], internship_quote: "Practical Training" } });
+    const r = await extractCurriculum(text);
+    expect(r.topics.map((t) => t.topic_id)).toEqual(["programming"]);
+    expect(r.dropped).toBe(1);
+    expect(r.internship_quote).toBe("Practical Training");
+  });
+  it("falls back to keyword rules for study plans when the AI is unavailable", async () => {
+    structured.mockResolvedValue({ ok: false, error: "no-key" });
+    const r = await extractCurriculum("Database Systems\nComputer Networks and Security\nField Training (internship)");
+    expect(r.mode).toBe("offline");
+    expect(r.topics.map((t) => t.topic_id)).toEqual(expect.arrayContaining(["data", "networks-security"]));
+    expect(r.internship_quote).toMatch(/internship/);
   });
 });

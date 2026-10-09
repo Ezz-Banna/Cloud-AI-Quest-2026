@@ -72,19 +72,60 @@ export interface FieldDef {
   /** Tawjihi streams that typically qualify. Shown as guidance only; the program record decides. */
   typical_streams: string[];
   nominal_years: number;
+  /** Fields a student could consider as an alternative path (similar subjects or careers). Guidance only. */
+  related: string[];
 }
 
 export const FIELDS: FieldDef[] = [
-  { id: "computer-science", name_en: "Computer Science", name_ar: "علم الحاسوب", careers: ["software", "developer", "programmer", "ai", "data", "cybersecurity", "web"], typical_streams: ["scientific", "it"], nominal_years: 4 },
-  { id: "software-engineering", name_en: "Software Engineering", name_ar: "هندسة البرمجيات", careers: ["software", "developer", "web", "mobile", "programmer"], typical_streams: ["scientific", "it"], nominal_years: 4 },
-  { id: "ai-data-science", name_en: "Artificial Intelligence / Data Science", name_ar: "الذكاء الاصطناعي / علم البيانات", careers: ["ai", "data", "machine learning", "research", "analyst"], typical_streams: ["scientific", "it"], nominal_years: 4 },
-  { id: "medicine", name_en: "Medicine", name_ar: "الطب", careers: ["doctor", "physician", "surgeon", "health", "medical"], typical_streams: ["scientific"], nominal_years: 6 },
-  { id: "nursing", name_en: "Nursing", name_ar: "التمريض", careers: ["nurse", "health", "care", "hospital"], typical_streams: ["scientific", "health"], nominal_years: 4 },
-  { id: "pharmacy", name_en: "Pharmacy", name_ar: "الصيدلة", careers: ["pharmacist", "health", "pharma", "medical"], typical_streams: ["scientific"], nominal_years: 5 },
-  { id: "civil-engineering", name_en: "Civil Engineering", name_ar: "الهندسة المدنية", careers: ["engineer", "construction", "infrastructure", "architect"], typical_streams: ["scientific"], nominal_years: 5 },
-  { id: "business-administration", name_en: "Business Administration", name_ar: "إدارة الأعمال", careers: ["business", "manager", "entrepreneur", "marketing", "finance", "startup"], typical_streams: ["scientific", "literary", "it", "other"], nominal_years: 4 },
+  { id: "computer-science", name_en: "Computer Science", name_ar: "علم الحاسوب", careers: ["software", "developer", "programmer", "ai", "data", "cybersecurity", "web"], typical_streams: ["scientific", "it"], nominal_years: 4, related: ["software-engineering", "ai-data-science"] },
+  { id: "software-engineering", name_en: "Software Engineering", name_ar: "هندسة البرمجيات", careers: ["software", "developer", "web", "mobile", "programmer"], typical_streams: ["scientific", "it"], nominal_years: 4, related: ["computer-science", "ai-data-science"] },
+  { id: "ai-data-science", name_en: "Artificial Intelligence / Data Science", name_ar: "الذكاء الاصطناعي / علم البيانات", careers: ["ai", "data", "machine learning", "research", "analyst"], typical_streams: ["scientific", "it"], nominal_years: 4, related: ["computer-science", "software-engineering"] },
+  { id: "medicine", name_en: "Medicine", name_ar: "الطب", careers: ["doctor", "physician", "surgeon", "health", "medical"], typical_streams: ["scientific"], nominal_years: 6, related: ["pharmacy", "nursing"] },
+  { id: "nursing", name_en: "Nursing", name_ar: "التمريض", careers: ["nurse", "health", "care", "hospital"], typical_streams: ["scientific", "health"], nominal_years: 4, related: ["pharmacy", "medicine"] },
+  { id: "pharmacy", name_en: "Pharmacy", name_ar: "الصيدلة", careers: ["pharmacist", "health", "pharma", "medical"], typical_streams: ["scientific"], nominal_years: 5, related: ["nursing", "medicine"] },
+  { id: "civil-engineering", name_en: "Civil Engineering", name_ar: "الهندسة المدنية", careers: ["engineer", "construction", "infrastructure", "architect"], typical_streams: ["scientific"], nominal_years: 5, related: [] },
+  { id: "business-administration", name_en: "Business Administration", name_ar: "إدارة الأعمال", careers: ["business", "manager", "entrepreneur", "marketing", "finance", "startup"], typical_streams: ["scientific", "literary", "it", "other"], nominal_years: 4, related: [] },
 ];
 
 export const FIELD_BY_ID = Object.fromEntries(FIELDS.map((f) => [f.id, f]));
 
 export const CITIES = ["Amman", "Irbid", "Zarqa", "Salt", "Madaba", "Karak", "Mafraq", "Aqaba", "Tafilah", "Ma'an", "Jerash", "Ajloun"];
+
+/** Curriculum topics used to compare a program's published study plan with what a student enjoys. */
+export interface TopicDef { id: string; name_en: string; name_ar: string; keywords: string[] }
+export const CURRICULUM_TOPICS: TopicDef[] = [
+  { id: "programming", name_en: "Programming", name_ar: "البرمجة", keywords: ["programming", "coding", "code", "software", "app", "website", "برمجة", "تطبيق", "موقع"] },
+  { id: "web-mobile", name_en: "Web and mobile development", name_ar: "تطوير الويب والتطبيقات", keywords: ["web", "website", "mobile", "app", "مواقع", "تطبيقات"] },
+  { id: "mathematics", name_en: "Mathematics", name_ar: "الرياضيات", keywords: ["math", "mathematics", "calculus", "algebra", "رياضيات"] },
+  { id: "statistics", name_en: "Statistics", name_ar: "الإحصاء", keywords: ["statistics", "probability", "إحصاء"] },
+  { id: "data", name_en: "Data and databases", name_ar: "البيانات وقواعدها", keywords: ["data", "database", "analytics", "بيانات"] },
+  { id: "ai", name_en: "Artificial intelligence", name_ar: "الذكاء الاصطناعي", keywords: ["ai", "artificial intelligence", "machine learning", "robot", "ذكاء اصطناعي", "روبوت"] },
+  { id: "networks-security", name_en: "Networks and security", name_ar: "الشبكات والأمن", keywords: ["network", "security", "cyber", "hacking", "شبكات", "أمن"] },
+  { id: "physics", name_en: "Physics", name_ar: "الفيزياء", keywords: ["physics", "فيزياء"] },
+  { id: "chemistry", name_en: "Chemistry", name_ar: "الكيمياء", keywords: ["chemistry", "كيمياء"] },
+  { id: "biology", name_en: "Biology", name_ar: "الأحياء", keywords: ["biology", "أحياء"] },
+  { id: "human-body", name_en: "Anatomy and physiology", name_ar: "التشريح ووظائف الأعضاء", keywords: ["anatomy", "physiology", "human body", "تشريح"] },
+  { id: "patient-care", name_en: "Patient care", name_ar: "رعاية المرضى", keywords: ["patient", "caring", "care", "hospital", "volunteer", "رعاية", "مستشفى", "تطوع"] },
+  { id: "pharmacology", name_en: "Medicines and pharmacology", name_ar: "الأدوية وعلم الأدوية", keywords: ["medicine", "drugs", "pharma", "أدوية"] },
+  { id: "design", name_en: "Design", name_ar: "التصميم", keywords: ["design", "drawing", "art", "ui", "تصميم", "رسم", "فن"] },
+  { id: "structures", name_en: "Structures and construction", name_ar: "الإنشاءات", keywords: ["building", "construction", "bridge", "structure", "بناء", "إنشاء"] },
+  { id: "management", name_en: "Management", name_ar: "الإدارة", keywords: ["management", "leadership", "organising", "إدارة", "قيادة"] },
+  { id: "finance-accounting", name_en: "Finance and accounting", name_ar: "المالية والمحاسبة", keywords: ["finance", "accounting", "economics", "money", "مالية", "محاسبة", "اقتصاد"] },
+  { id: "marketing", name_en: "Marketing", name_ar: "التسويق", keywords: ["marketing", "social media", "sales", "تسويق"] },
+  { id: "entrepreneurship", name_en: "Entrepreneurship", name_ar: "ريادة الأعمال", keywords: ["startup", "entrepreneur", "business idea", "ريادة"] },
+  { id: "communication", name_en: "Communication and languages", name_ar: "التواصل واللغات", keywords: ["communication", "english", "writing", "presenting", "تواصل", "كتابة"] },
+  { id: "research", name_en: "Research methods", name_ar: "مناهج البحث", keywords: ["research", "experiment", "science fair", "بحث", "تجربة"] },
+];
+export const TOPIC_BY_ID = Object.fromEntries(CURRICULUM_TOPICS.map((t) => [t.id, t]));
+
+/** Onboarding subject chips → curriculum topics they relate to. */
+export const SUBJECT_TOPICS: Record<string, string[]> = {
+  math: ["mathematics", "statistics"], physics: ["physics", "structures"], chemistry: ["chemistry", "pharmacology"],
+  biology: ["biology", "human-body"], computing: ["programming", "web-mobile", "data"], english: ["communication"],
+  arabic: ["communication"], business: ["management", "finance-accounting", "marketing", "entrepreneurship"], arts: ["design"],
+};
+/** Strength chips → topics. */
+export const STRENGTH_TOPICS: Record<string, string[]> = {
+  "problem solving": ["programming", "mathematics"], creativity: ["design"], "caring for others": ["patient-care"],
+  leadership: ["management"], communication: ["communication"], "attention to detail": ["data"],
+};

@@ -2,12 +2,14 @@
 import "server-only";
 import * as z from "zod/v4";
 import { structured } from "./client";
-import { CITIES, FIELDS, SKILLS } from "../data/taxonomy";
+import { CITIES, CURRICULUM_TOPICS, FIELDS, SKILLS, SUBJECT_TOPICS } from "../data/taxonomy";
 import { fallbackJob, fallbackProfile, fallbackSkills, quoteInText, normDigits } from "./fallback";
 import { logAI } from "./log";
 
 const FIELD_IDS = FIELDS.map((f) => f.id) as [string, ...string[]];
 const SKILL_IDS = SKILLS.map((s) => s.id) as [string, ...string[]];
+const TOPIC_IDS = CURRICULUM_TOPICS.map((t) => t.id) as [string, ...string[]];
+const SUBJECT_IDS = Object.keys(SUBJECT_TOPICS) as [string, ...string[]];
 
 // ---------- Module 1: student profile intelligence ----------
 export const ProfileDraft = z.object({
@@ -23,6 +25,8 @@ export const ProfileDraft = z.object({
   university_type: z.enum(["public", "private", "any"]),
   accessibility_needs: z.array(z.string()),
   strengths: z.array(z.string()),
+  subjects: z.array(z.enum(SUBJECT_IDS)).describe("School subjects the student said they enjoy"),
+  learning_style: z.enum(["hands-on", "theory", "mixed"]).nullable().describe("Only if the student described how they like to learn"),
   clarifications: z.array(z.string()).describe("Short questions about anything ambiguous or missing"),
 });
 export type ProfileDraft = z.infer<typeof ProfileDraft>;
@@ -34,6 +38,8 @@ Rules:
 - preferred_cities must use these English names when they match: ${CITIES.join(", ")}.
 - Accessibility needs are recorded in neutral, respectful language.
 - clarifications: at most 3 short questions, in the student's language, about missing or contradictory information that matters for recommendations.
+- Do not infer gender, religion, origin, family background, health or any other sensitive characteristic, and never narrow fields of study because of who the student is. Map ambitions to fields only from what they said they enjoy or want to do.
+- If the student is unsure about their career, leave careers empty rather than inventing one.
 - You are not deciding admission eligibility; that is checked separately against published rules.`;
 
 export async function interpretProfile(answers: { q: string; a: string }[]) {
@@ -131,7 +137,8 @@ const EXPLAIN_SYSTEM = `You explain a university program recommendation to a Jor
 Rules:
 - Use ONLY the facts in the JSON. Do not add facts about the university, rankings, jobs or salaries.
 - Every number you write must appear in the JSON exactly.
-- Mention the admission check honestly: a minimum average to apply is not a guarantee of admission.
+- Mention the admission check honestly: a minimum average to apply is not a guarantee of admission. The fit score is not an admission chance.
+- Mention the most important trade-off if there is one.
 - If data is missing, say so briefly.
 - Write in the requested language (en or ar). 2-3 sentences. List the reason codes you used.`;
 
@@ -139,16 +146,19 @@ export interface ExplainFacts {
   program: string; university: string; city: string | null;
   eligibility: { status: string; published_min: number | null | undefined; year: string | null | undefined; student_avg: number | null | undefined };
   fit_score: number; tuition_per_year_jod: number | null; reasons: { code: string; text: string }[]; missing: string[];
+  trade_offs?: { code: string; text: string }[];
 }
 
 export function templateExplanation(f: ExplainFacts, lang: "en" | "ar") {
   const top = f.reasons.filter((r) => !r.code.startsWith("partial")).slice(0, 3).map((r) => r.text);
   if (lang === "ar") {
     const elig = f.eligibility.status === "meets-published-minimum" ? `معدلك ${f.eligibility.student_avg} يحقق الحد الأدنى للتقديم (${f.eligibility.published_min})، وهذا لا يضمن القبول.` : f.eligibility.status === "below-published-minimum" ? `معدلك أقل من الحد الأدنى للتقديم (${f.eligibility.published_min}).` : "لم نتحقق بعد من الحد الأدنى للقبول لهذا البرنامج.";
-    return `${f.program} في ${f.university}: ${top.join("؛ ") || "لا توجد مؤشرات قوية"}. ${elig}${f.missing.length ? ` بيانات ناقصة: ${f.missing.join("، ")}.` : ""}`;
+    const tr = f.trade_offs?.[0] ? ` يجب الانتباه: ${f.trade_offs[0].text}.` : "";
+    return `${f.program} في ${f.university}: ${top.join("؛ ") || "لا توجد مؤشرات قوية"}. ${elig}${tr}${f.missing.length ? ` بيانات ناقصة: ${f.missing.join("، ")}.` : ""}`;
   }
   const elig = f.eligibility.status === "meets-published-minimum" ? `Your ${f.eligibility.student_avg} meets the minimum average to apply (${f.eligibility.published_min}), which does not guarantee admission.` : f.eligibility.status === "below-published-minimum" ? `Your average is below the minimum to apply (${f.eligibility.published_min}).` : "We have not verified the admission minimum for this program yet.";
-  return `${f.program} at ${f.university}: ${top.join("; ") || "no strong signals either way"}. ${elig}${f.missing.length ? ` Missing data: ${f.missing.join(", ")}.` : ""}`;
+  const tr = f.trade_offs?.[0] ? ` Worth weighing: ${f.trade_offs[0].text}.` : "";
+  return `${f.program} at ${f.university}: ${top.join("; ") || "no strong signals either way"}. ${elig}${tr}${f.missing.length ? ` Missing data: ${f.missing.join(", ")}.` : ""}`;
 }
 
 export function numbersSupported(text: string, facts: unknown) {
@@ -159,7 +169,7 @@ export function numbersSupported(text: string, facts: unknown) {
 
 export async function explainMatch(f: ExplainFacts, lang: "en" | "ar") {
   const r = await structured(Explanation, EXPLAIN_SYSTEM, `Language: ${lang}\nFacts:\n${JSON.stringify(f)}`, 1500);
-  const codes = new Set(f.reasons.map((x) => x.code));
+  const codes = new Set([...f.reasons, ...(f.trade_offs ?? [])].map((x) => x.code));
   if (r.ok) {
     const okCodes = r.data.used_reason_codes.every((c) => codes.has(c) || c === "eligibility");
     const okNums = numbersSupported(r.data.text, f);
@@ -172,4 +182,87 @@ export async function explainMatch(f: ExplainFacts, lang: "en" | "ar") {
   }
   logAI({ module: "explain", mode: "offline", error: r.error, returned: 1, dropped_by_validation: 0 });
   return { mode: "offline" as const, text: templateExplanation(f, lang), reason: r.error };
+}
+
+// ---------- Module 9b: comparing options (facts come from the engine) ----------
+export const Comparison = z.object({
+  text: z.string().describe("3-5 short sentences in the requested language"),
+  used_program_ids: z.array(z.string()),
+});
+
+const COMPARE_SYSTEM = `You help a Jordanian student compare university programs they saved.
+Rules:
+- Use ONLY the facts in the JSON. No rankings, reputations, salaries, job guarantees or admission chances.
+- Every number you write must appear in the JSON exactly.
+- Point out the real trade-offs between the options (cost, location, eligibility, missing data) and what each option is strongest on.
+- Do not tell the student which one to choose; end with what they could check next (for example missing data).
+- Write in the requested language (en or ar). List the program ids you mentioned.`;
+
+export interface CompareFacts {
+  id: string; program: string; university: string; city: string | null; eligibility: string; fit_score: number;
+  tuition_per_year_jod: number | null; strengths: string[]; trade_offs: string[]; missing: string[];
+}
+
+export function templateComparison(fs: CompareFacts[], lang: "en" | "ar") {
+  const lines = fs.map((f) => lang === "ar"
+    ? `${f.program} (${f.university}): أبرز ما فيه ${f.strengths[0] ?? "لا توجد نقطة قوة واضحة"}؛ ${f.trade_offs[0] ? `يجب الانتباه إلى ${f.trade_offs[0]}` : "لا توجد مقايضات واضحة"}${f.missing.length ? `؛ بيانات ناقصة: ${f.missing.join("، ")}` : ""}.`
+    : `${f.program} (${f.university}): strongest on ${f.strengths[0] ?? "nothing in particular"}; ${f.trade_offs[0] ? `watch out for ${f.trade_offs[0]}` : "no clear trade-off"}${f.missing.length ? `; missing: ${f.missing.join(", ")}` : ""}.`);
+  return lines.join(" ");
+}
+
+export async function compareOptions(fs: CompareFacts[], lang: "en" | "ar") {
+  const r = await structured(Comparison, COMPARE_SYSTEM, `Language: ${lang}\nOptions:\n${JSON.stringify(fs)}`, 2000);
+  if (r.ok) {
+    const ids = new Set(fs.map((f) => f.id));
+    const ok = r.data.used_program_ids.every((i) => ids.has(i)) && numbersSupported(r.data.text, fs);
+    if (ok) {
+      logAI({ module: "compare", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: 1, dropped_by_validation: 0 });
+      return { mode: "ai" as const, model: r.model, text: r.data.text };
+    }
+    logAI({ module: "compare", mode: "offline", model: r.model, returned: 0, dropped_by_validation: 1, notes: "comparison failed validation; replaced by template" });
+    return { mode: "offline" as const, text: templateComparison(fs, lang), reason: "validation" };
+  }
+  logAI({ module: "compare", mode: "offline", error: r.error, returned: 1, dropped_by_validation: 0 });
+  return { mode: "offline" as const, text: templateComparison(fs, lang), reason: r.error };
+}
+
+// ---------- Module 2b: reading a published study plan (admin tool) ----------
+export const CurriculumRead = z.object({
+  topics: z.array(z.object({
+    topic_id: z.enum(TOPIC_IDS),
+    quote: z.string().describe("Exact course title or phrase from the study plan that shows this topic"),
+  })),
+  internship_quote: z.string().nullable().describe("Exact text about practical training or internship, or null"),
+});
+
+const CURRICULUM_SYSTEM = `You read a university study plan (course list) and tag which curriculum topics it covers.
+Rules:
+- Choose only from the allowed topic ids, and only when a course title in the text clearly covers that topic.
+- Each topic needs an exact quote (a course title) copied from the text.
+- internship_quote: copy the exact text about practical training or internship if present, else null.
+- Do not add anything that is not in the text.`;
+
+export function fallbackCurriculum(text: string) {
+  const t = text.toLowerCase();
+  const topics = CURRICULUM_TOPICS.flatMap((tp) => {
+    const kw = tp.keywords.find((k) => k.length > 3 && t.includes(k));
+    if (!kw) return [];
+    const line = text.split(/\n/).find((l) => l.toLowerCase().includes(kw)) ?? kw;
+    return [{ topic_id: tp.id, quote: line.trim().slice(0, 160) }];
+  });
+  const il = text.split(/\n/).find((l) => /internship|practical training|clinical training|تدريب ميداني|تدريب عملي/i.test(l));
+  return { topics, internship_quote: il?.trim() ?? null };
+}
+
+export async function extractCurriculum(text: string) {
+  const r = await structured(CurriculumRead, CURRICULUM_SYSTEM, text.slice(0, 20000), 2000);
+  if (r.ok) {
+    const kept = r.data.topics.filter((x) => quoteInText(x.quote, text));
+    const by = new Map(kept.map((x) => [x.topic_id, x]));
+    const intern = r.data.internship_quote && quoteInText(r.data.internship_quote, text) ? r.data.internship_quote : null;
+    logAI({ module: "curriculum", mode: "ai", model: r.model, latency_ms: r.latency_ms, returned: by.size, dropped_by_validation: r.data.topics.length - kept.length });
+    return { mode: "ai" as const, topics: [...by.values()], internship_quote: intern, dropped: r.data.topics.length - kept.length };
+  }
+  logAI({ module: "curriculum", mode: "offline", error: r.error, returned: 0, dropped_by_validation: 0 });
+  return { mode: "offline" as const, reason: r.error, dropped: 0, ...fallbackCurriculum(text) };
 }

@@ -5,7 +5,7 @@ import path from "node:path";
 
 export interface AILogEntry {
   at: string;
-  module: "profile" | "skills" | "job" | "explain";
+  module: "profile" | "skills" | "job" | "explain" | "compare" | "curriculum";
   mode: "ai" | "offline";
   model?: string;
   latency_ms?: number;

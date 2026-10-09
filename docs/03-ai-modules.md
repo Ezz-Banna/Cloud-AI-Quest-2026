@@ -17,6 +17,8 @@ Cost reference (list prices at the time of writing: $4 per million input tokens,
 | 7 | Skills-gap assessment | No | `assessRole` in `src/lib/engines/gap.ts` |
 | 8 | Personalised pathway generation | No | `buildPathway` |
 | 9 | Explainable recommendations | Optional (wording only) | engines return `reasons[]`; `explainMatch` rewords them |
+| 11 | Option comparison | Optional (wording only) | `compareOptions` (see `04-fit-engine.md`) |
+| 12 | Study-plan reading (admin) | Yes | `extractCurriculum` |
 | 10 | Progress insights | No | readiness history in `Readiness.tsx` |
 
 ---
@@ -34,6 +36,8 @@ Cost reference (list prices at the time of writing: $4 per million input tokens,
 - **Failure:** invalid rows are rejected and counted on the About the data page.
 
 ## 3. Transparent program matching
+
+> Superseded in detail by `04-fit-engine.md` (weighted criteria with student sliders, coverage, trade-offs, alternatives). The summary below describes the earlier version.
 - **Eligibility (hard rule):** compares the student's average with the program's `min_admission_avg` (currently the minimum to apply, with year and track) and stream list. Outcomes: meets, below, stream mismatch, minimum not verified, average missing. Never estimated, never decided by the LLM.
 - **Fit score (0-100):** interest match 35, career match 25, budget +15/−20, preferred city +10/−10, university type ±5, sourced internship +5, unverified data −3. Every point comes with an EN/AR reason.
 - **Cost:** credit hours × fee per hour from the same sourced record, tuition only, shown with its basis; null if either number is missing.

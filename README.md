@@ -13,9 +13,11 @@ Every row marked Working was exercised by the automated tests listed under Tests
 | `/` Landing: intro animation (skippable, reduced motion), three-stage journey, trust principles | Working |
 | `/discover` Step-by-step onboarding: 8 steps with progress bar and validation (education level, stream and average, subjects, interests and hobbies, strengths, projects, career dreams, industries, budget, locations, university priorities, accessibility), then a review screen | Working |
 | `/discover` Optional chat onboarding: AI turns answers into a profile, student reviews and edits | Working offline. AI path unit-tested with mocked model output; **not yet run against the live API** (no key in the build environment) |
-| `/discover/results` Recommendations: rule-based eligibility vs published minimum (year, track, source), fit score with per-factor reasons, tuition estimate, missing-data chips, sources, filters, save | Working |
+| `/discover/results` Personalised fit engine: eligibility as eligible / ineligible / unknown (published minimum, year, track, source; past cut-offs as history only), fit score from student-weighted criteria with data-less criteria left out, coverage shown, priority sliders that re-rank live, strengths, trade-offs, rule-based alternatives, follow-up questions only when they change the results, cost with fee year and check date, missing data, sources, save | Working. See `docs/04-fit-engine.md` |
+| Study plans: curriculum topics and practical training from official study plans (6 programs so far); admin tool reads a pasted study plan into topics backed by exact course-title quotes | Working (offline keyword path tested end to end; AI path unit-tested with mocked output) |
+| Conflicting sources: an import that disagrees with verified data on fees, credit hours or minimum average is flagged in admin and excluded from scoring until resolved | Working (unit-tested) |
 | "Explain in plain words": AI rewording of the computed reasons; any number or reason not in the facts is rejected and a template is shown | Working offline (template); same AI caveat |
-| `/compare` Side-by-side comparison of saved programs (eligibility, fit, cost, missing data, sources) | Working |
+| `/compare` Side-by-side comparison of up to four saved programs (eligibility, fit and coverage, cost and other fees, strengths, trade-offs, practical training, study plan, past cut-off, missing data, sources) plus a plain-language comparison | Working (comparison text: template offline, AI path same caveat) |
 | `/dashboard` Profile completeness, top matches, saved programs, skills, opportunities, journey progress, readiness | Working |
 | `/empower` Achievements with evidence links, AI skill suggestions with exact quotes, My skills, portfolio, scholarship matching, application pack draft, opt-in sharing | Working (same AI caveat for suggestions). Bridgecom has **no funding partners** and sends nothing |
 | `/employer` Demo organisation, role, skills with proficiency and importance, recommended courses, paste-a-posting parsing, publish to the demo store, consenting candidates only | Working. Organisations created here are labelled **Demo organisation**, distinct from verified employers |
@@ -27,7 +29,7 @@ Every row marked Working was exercised by the automated tests listed under Tests
 | Persistence | Learner profile: browser localStorage. Employer roles, consented snapshots, admin edits and imports, AI log: JSON files in `data/runtime/` on the server. Verified by e2e on one Node process; not suitable for read-only/serverless hosting |
 | Student accounts, file uploads, LinkedIn import, real employer verification | Not built (roadmap) |
 
-**Synthetic data, disclosed:** the three employers and their roles, and the demo student "Lina", are invented and labelled in the UI. Universities, programs, fees, minimum averages, scholarships and courses come from public sources collected on 2026-10-09; each record stores its source URL and check date. The dataset is a curated subset (11 universities, 44 programs, 13 support programs, 45 courses), not full national coverage. Missing values are left blank, never estimated.
+**Synthetic data, disclosed:** the three employers and their roles, and the demo student "Lina", are invented and labelled in the UI. Universities, programs, fees, minimum averages, scholarships and courses come from public sources collected on 2026-10-09; each record stores its source URL and check date. The dataset is a curated subset (11 universities, 44 programs, 13 support programs, 45 courses; 6 programs with study plans read), not full national coverage. Accreditation status, other mandatory fees and past competitive cut-offs are not collected yet; they show as missing and are left out of scoring. Missing values are left blank, never estimated.
 
 ## Run it
 
@@ -46,13 +48,13 @@ Production: `npm run build && npm start`. Deploy to a Node host with a writable 
 ## Tests
 
 ```bash
-npm test                        # 35 unit tests: engines, offline rules, AI output guards, completeness, admin tokens
+npm test                        # 52 unit tests: engines, 10 fit-engine scenarios, offline rules, AI output guards, completeness, admin tokens
 npm run build
 ADMIN_PASSWORD=test-admin npm start &    # the e2e script logs in with this password
-node scripts/e2e.mjs http://localhost:3000 ./e2e-screens   # 40 browser checks, desktop + mobile
+node scripts/e2e.mjs http://localhost:3000 ./e2e-screens   # 50 browser checks, desktop + mobile
 ```
 
-Last run (2026-10-09): 35/35 unit tests and 40/40 end-to-end checks passed, no unexpected browser console errors, in offline AI mode. `npx tsc --noEmit` and `npm run lint` are clean.
+Last run (2026-10-09): 52/52 unit tests and 50/50 end-to-end checks passed, no unexpected browser console errors, in offline AI mode. `npx tsc --noEmit` and `npm run lint` are clean.
 
 ## Architecture
 
@@ -69,7 +71,7 @@ Next.js route handlers (Node)
 The language model only interprets and phrases language. Admission eligibility, tuition, funding status, skill status and readiness are computed by rules from sourced records; course completion never counts as proof of a skill.
 
 - Stack: Next.js 15 (App Router), TypeScript, Tailwind CSS 4, Zod, Anthropic TypeScript SDK, Vitest, Playwright.
-- Docs: `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md` (PRD, journeys, IA, design system, test plan, MVP scope, roadmap), `docs/03-ai-modules.md`, `db/schema.sql`.
+- Docs: `docs/01-architecture-and-priorities.md`, `docs/02-product-spec.md` (PRD, journeys, IA, design system, test plan, MVP scope, roadmap), `docs/03-ai-modules.md`, `docs/04-fit-engine.md` (fit engine: data architecture, import and audit, eligibility rules, ranking method, AI guards, endpoints, tests, source provenance), `db/schema.sql`.
 - Data schema for seed and import files: `data/verified/SCHEMA.md`.
 
 ## Environment variables

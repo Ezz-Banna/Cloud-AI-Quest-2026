@@ -24,6 +24,12 @@ const FIELD_WORDS: Record<string, string[]> = {
 
 const CITY_AR: Record<string, string> = { "عمان": "Amman", "عمّان": "Amman", "إربد": "Irbid", "اربد": "Irbid", "الزرقاء": "Zarqa", "السلط": "Salt", "مادبا": "Madaba", "الكرك": "Karak", "المفرق": "Mafraq", "العقبة": "Aqaba", "الطفيلة": "Tafilah", "معان": "Ma'an", "جرش": "Jerash", "عجلون": "Ajloun" };
 
+const SUBJECT_WORDS: Record<string, string[]> = {
+  math: ["math", "رياضيات"], physics: ["physics", "فيزياء"], chemistry: ["chemistry", "كيمياء"], biology: ["biology", "أحياء", "احياء"],
+  computing: ["computer", "programming", "coding", "حاسوب", "برمجة"], english: ["english", "إنجليزي", "انجليزي"],
+  arabic: ["arabic language", "لغة عربية"], business: ["business", "economics", "اقتصاد"], arts: ["drawing", "art ", "design", "رسم", "تصميم"],
+};
+
 export function fallbackProfile(text: string) {
   const t = ` ${normDigits(text).toLowerCase()} `;
   const avgMatch = t.match(/(\d{2}(?:\.\d{1,2})?)\s*(?:%|٪|percent|average|معدل|in the|scientific|literary|stream|tawjihi|توجيهي|علمي|أدبي|ادبي|في)/) || t.match(/(?:average|avg|معدل|معدلي)[^\d]{0,15}(\d{2}(?:\.\d{1,2})?)/);
@@ -48,6 +54,8 @@ export function fallbackProfile(text: string) {
     university_type: (/private|خاصة/.test(t) ? "private" : /public|government|حكومية|رسمية/.test(t) ? "public" : "any") as "public" | "private" | "any",
     accessibility_needs: /wheelchair|visual|hearing|disab|كرسي|إعاقة|بصري|سمعي/.test(t) ? ["Mentioned an accessibility need (please review)"] : [],
     strengths: [] as string[],
+    subjects: Object.entries(SUBJECT_WORDS).filter(([, ws]) => ws.some((w) => t.includes(w))).map(([k]) => k),
+    learning_style: (/hands[- ]on|practical|عملي|تطبيق/.test(t) ? "hands-on" : null) as "hands-on" | "theory" | "mixed" | null,
     clarifications: ["The AI service was unavailable, so only simple keywords were read. Please review every field."],
   };
 }

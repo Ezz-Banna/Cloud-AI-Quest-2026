@@ -263,3 +263,8 @@ Manual check: screenshots of the results page (87%, medicine), Empower scholarsh
 - 2026/2027 fees
 - accreditation checks
 - any admission probability
+
+
+## Update 2026-10-10: verified records only
+
+At the user's request, every record marked partly verified or unverified was removed: 25 programs, 13 scholarships and support programs, 12 courses, and 17 universities that had no remaining program (the directory-only entries). Each removal is logged in `data/verified/revisions.json` with reason "User asked to remove every record that is not fully verified." HTU was re-checked and marked verified (Arabic name on htu.edu.jo/ar, MoHE special-law list, official address). PSUT stays because its four programs are verified; its private/non-profit status is the one university-level label not confirmed on an official page we could open. Counts above this section describe the earlier dataset; current counts are in `src/lib/data/coverage.json` and `docs/09-data-audit-tables.md`.

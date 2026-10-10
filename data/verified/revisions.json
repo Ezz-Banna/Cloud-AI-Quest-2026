@@ -3531,5 +3531,685 @@
   "new": "14 course titles",
   "reason": "Course titles copied as printed in the official study plan.",
   "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "htu",
+  "field": "verification",
+  "old": "partial",
+  "new": "verified",
+  "reason": "Arabic name, type and city all confirmed on official pages.",
+  "source_url": "https://htu.edu.jo/ar"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-cs",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-se",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-ds-ai",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-medicine",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-nursing",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-civil",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-business",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-pharmacy",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://pic.hu.edu.jo/Upload/42000000/The programs and the fees in JD _2027.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-cs",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-ds-ai",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-nursing",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-civil",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-business",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-business",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://psut.edu.jo/en/study-plans"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-cs",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-ds-ai",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-nursing",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-business",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-cs",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-se",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-ds-ai",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-nursing",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-pharmacy",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-business",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "princess-muna-fund-nursing",
+  "field": "(record)",
+  "old": "unverified",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://aabu.edu.jo/EN/DeanShips/StudentAffairs/Departments/SS/Pages/information.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "mohe-top-ranked-governorate",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://dsamohe.gov.jo/Internal/First"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "royal-court-grants",
+  "field": "(record)",
+  "old": "unverified",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.dsamohe.gov.jo/IGLSFinalResults2025-2026/note.html"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "royal-makruma-teachers-children",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://jo24.net/article/578622"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "orange-johud-scholarships",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://orange.jo/en/corporate/csr/scholarships"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "jkb-psut-scholarship",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.psut.edu.jo/en/news/princess-sumaya-university-for-technology-signs-cooperation-agreement-with-jordan-kuwait-bank"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "htu-tamweelcom",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://htu.edu.jo/news/htu-and-tamweelcom-sign-mou-to-support-student-education-and-training-opportunities"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "chevening-jordan",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.chevening.org/scholarship/jordan/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "just-interest-free-loans",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.just.edu.jo/Deanships/DeanshipofStudentsAffairs/Pages/Scholarships.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "khcf-university-scholarships",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.khcc.jo/en/news/jordan-kuwait-bank-continues-supporting-the-khcf-university-scholarships-program-for-the-fourth-year"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "htu-scholarships-for-the-future",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://htu.edu.jo/news/htu-launches-'scholarships-for-the-future'-to-empower-jordanian-youth-in-technology-and-future-sciences"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "unhcr-dafi-jordan",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.unhcr.org/jo/node/143"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "scholarships",
+  "id": "royal-makruma-badia-schools",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.admhec.gov.jo/RulesRoyality.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "odin-javascript",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.theodinproject.com/paths/full-stack-javascript"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "odin-react",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.theodinproject.com/paths/full-stack-javascript"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "odin-nodejs",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.theodinproject.com/paths/full-stack-javascript"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "odin-databases",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.theodinproject.com/paths/full-stack-javascript"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "odin-adv-html-css",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.theodinproject.com/paths/full-stack-javascript"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "learn-git-branching",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://learngitbranching.js.org/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "javascript-info-ar",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://ar.javascript.info/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "cs50x-edraak",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://edraak.org/en/partner/CS50"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "meta-react-ar",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.coursera.org/learn/react-basics-ar"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "kaggle-intro-ml",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "kaggle-python",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://www.kaggle.com/learn/python"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "courses",
+  "id": "sqlbolt",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://sqlbolt.com/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "gju",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "pu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "meu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "bau",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ahu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ttu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Official_Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "aau",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "jadara",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ammanu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "isra",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "uop",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Private__Jordanian__Universities_"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "zu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "aut",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "amsu",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "isums",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://studyinjordan.jo/UnivCategory.aspx"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "wise",
+  "field": "(record)",
+  "old": "partial",
+  "new": "removed",
+  "reason": "User asked to remove every record that is not fully verified.",
+  "source_url": "https://mohe.gov.jo/EN/List/Universities_Operating_under_special_Law"
  }
 ]

@@ -98,8 +98,8 @@ describe("audit scenarios on real data", () => {
   });
 
   it("7. incomplete tuition or admissions data: cost and eligibility stay unknown, never zero", () => {
-    const incomplete = programs.filter((x) => x.tuition_jod_per_credit_hour == null || x.credit_hours == null || x.min_admission_avg == null);
-    expect(incomplete.length).toBeGreaterThan(0);
+    // Only fully verified records are shipped now, so blank out fields on copies to test the rule.
+    const incomplete: Program[] = programs.slice(0, 3).flatMap((x) => [{ ...x, tuition_jod_per_credit_hour: null }, { ...x, credit_hours: null }, { ...x, min_admission_avg: null, min_admission_year: null }]);
     const p = P({ tawjihi_avg: 80, budget_jod_per_year: 3000 });
     for (const prog of incomplete) {
       const m = scoreProgram(p, prog, unis.find((u) => u.id === prog.university_id)!);

@@ -1,51 +1,51 @@
 {
  "measured_on": "2026-10-10",
  "universities": {
-  "total": 26,
-  "verified": 7,
-  "with_programs": 9,
-  "public": 10,
-  "private": 14,
-  "special_law": 2
+  "total": 9,
+  "verified": 8,
+  "with_programs": 5,
+  "public": 6,
+  "private": 2,
+  "special_law": 1
  },
  "programs": {
-  "total": 53,
+  "total": 28,
   "verified": 28,
-  "with_fee_hours_and_minimum": 35,
-  "with_fee": 48,
-  "with_minimum": 44,
-  "with_competitive_cutoffs": 6,
-  "fees_undated_or_older_than_2025_26": 48
+  "with_fee_hours_and_minimum": 28,
+  "with_fee": 28,
+  "with_minimum": 28,
+  "with_competitive_cutoffs": 4,
+  "fees_undated_or_older_than_2025_26": 28
  },
  "scholarships": {
-  "total": 22,
+  "total": 9,
   "verified": 9,
   "by_window": {
    "open": 0,
    "announced": 0,
-   "closed": 9,
-   "historical": 4,
-   "unverified": 9
+   "closed": 6,
+   "historical": 0,
+   "unverified": 3
   }
  },
  "national_rules": 2,
  "sources": {
-  "records": 101,
-  "with_checked_source_link": 101,
+  "records": 46,
+  "with_checked_source_link": 46,
   "pct_with_checked_source_link": 100,
-  "with_official_source": 100,
-  "pct_with_official_source": 99
+  "with_official_source": 46,
+  "pct_with_official_source": 100
  },
  "revisions": {
-  "total": 305,
-  "field_changes": 270,
+  "total": 373,
+  "field_changes": 271,
   "records_added": 34,
-  "records_removed": 1,
+  "records_removed": 68,
   "by_kind": {
    "label corrected": 65,
    "value added": 21,
-   "status set": 22,
-   "removed": 1,
+   "status set": 23,
+   "removed": 68,
    "value withheld": 6,
    "added": 34,
    "fees added": 2,
@@ -59,6 +59,6 @@
  },
  "validation": {
   "errors": 0,
-  "warnings": 63
+  "warnings": 28
  }
 }

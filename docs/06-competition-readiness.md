@@ -52,7 +52,7 @@ Scores are my judgement against the evidence above; a 9 needs evidence, not inte
 | Security and privacy | 7 | Tokens hashed, per-role consent, minimised payloads, rate limits, CSP, admin sessions | No user accounts; one shared admin password; IP from first `X-Forwarded-For` hop can be spoofed; CSP allows inline scripts |
 | UX, accessibility and Arabic | 7 | axe 54/54, EN/AR, 200% approximation, one primary action, editable results | No usability study, no screen-reader run, Arabic copy not reviewed by a native editor |
 | Feasibility and scalability | 6 | Runs on a free Node host; Postgres schema drafted | No database, no staging, single instance, sleeps when idle |
-| Impact on Jordan | 6 | Real, sourced data for 49 programs at 8 universities (26 in the directory) and 22 support programs; audit in docs/09 | No users, no pilot, no partners; impact is not yet measured |
+| Impact on Jordan | 6 | Real, fully verified data for 28 programs at 5 universities (9 universities in all) and 9 support programs; audit in docs/09 | No users, no pilot, no partners; impact is not yet measured |
 | Innovation | 7 | Grounded, reviewable reading of postings and experience in two languages; one next step instead of a score | Components are known techniques; novelty is in the combination |
 | Presentation | Not scored | Deck and brochure exist | Deck needs the claims updated to this build (section 9) |
 

@@ -4,132 +4,6 @@
   "warnings": [
     {
       "dataset": "programs",
-      "id": "hu-cs",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-cs",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-se",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-se",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-ds-ai",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-ds-ai",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-medicine",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-medicine",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-nursing",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-nursing",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-civil",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-civil",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-business",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-business",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-pharmacy",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "hu-pharmacy",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "aabu-cs",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "aabu-ds-ai",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "aabu-nursing",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "aabu-civil",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "aabu-business",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
       "id": "psut-cs",
       "check": "missing-fee-year",
       "msg": "fee shown without an academic year"
@@ -163,12 +37,6 @@
       "id": "psut-ds-ai",
       "check": "missing-minimum-year",
       "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "psut-business",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
     },
     {
       "dataset": "programs",
@@ -256,78 +124,6 @@
     },
     {
       "dataset": "programs",
-      "id": "meu-cs",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-cs",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-se",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-se",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-ds-ai",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-ds-ai",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-nursing",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-nursing",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-pharmacy",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-pharmacy",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-business",
-      "check": "missing-fee-year",
-      "msg": "fee shown without an academic year"
-    },
-    {
-      "dataset": "programs",
-      "id": "meu-business",
-      "check": "missing-minimum-year",
-      "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "programs",
       "id": "psut-cyber",
       "check": "missing-fee-year",
       "msg": "fee shown without an academic year"
@@ -373,12 +169,6 @@
       "id": "htu-ds-ai",
       "check": "missing-minimum-year",
       "msg": "minimum average without an academic year"
-    },
-    {
-      "dataset": "scholarships",
-      "id": "royal-makruma-teachers-children",
-      "check": "secondary-source-only",
-      "msg": "backed only by news coverage"
     }
   ]
 }

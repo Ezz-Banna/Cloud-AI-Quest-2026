@@ -22,6 +22,17 @@ async function run(viewport, tag) {
   check(`${tag}: no compulsory intro`, (await page.getByRole("dialog").count()) === 0);
   check(`${tag}: one h1 with the headline and the slogan beside the brand`, (await page.locator("h1").count()) === 1 && /what.s your next move/i.test(await page.locator("h1").innerText()) && /your next step, clearer/i.test(await page.locator("footer").innerText()));
   check(`${tag}: example entry point offered`, await page.getByRole("link", { name: /see an example/i }).isVisible());
+  if (tag === "desktop") {
+    // The example keeps the questionnaire on screen with Lina's answers filled in.
+    const demoCtx = await page.context().browser().newContext({ viewport: { width: 1366, height: 900 } });
+    const demo = await demoCtx.newPage();
+    await demo.goto(`${BASE}/discover?demo=1`);
+    check(`${tag}: example shows the questionnaire pre-filled`, await demo.getByText("Lina’s answers are filled in.").waitFor({ timeout: 15000 }).then(() => true, () => false) && await demo.getByRole("button", { name: /Finished Tawjihi/ }).getAttribute("aria-pressed") === "true");
+    for (let i = 0; i < 8; i++) await demo.getByRole("button", { name: /^(Continue|See my options)$/ }).click();
+    check(`${tag}: stepping through the example reaches Lina's results`, await demo.waitForURL("**/discover/results", { timeout: 15000 }).then(() => true, () => false));
+    await demo.screenshot({ path: `${OUT}/${tag}-00-demo-results.png` });
+    await demoCtx.close();
+  }
   await page.getByRole("link", { name: /let.s start/i }).click();
   await page.waitForTimeout(600);
   check(`${tag}: "Let’s start" moves focus to the goals`, await page.evaluate(() => !!document.activeElement?.closest("#goals") || document.activeElement?.id === "goals"));

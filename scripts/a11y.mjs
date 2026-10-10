@@ -12,7 +12,10 @@ const out = [];
 for (const lang of ["en", "ar"]) for (const vp of [{ width: 390, height: 844 }, { width: 640, height: 400 }, { width: 1366, height: 860 }]) {
   const ctx = await browser.newContext({ viewport: vp });
   const page = await ctx.newPage();
-  await page.goto(`${BASE}/discover?demo=1`); await page.waitForURL("**/discover/results");
+  // The example fills the questionnaire with Lina's answers; step through it to her results.
+  await page.goto(`${BASE}/discover?demo=1`); await page.getByText("Lina’s answers are filled in.").waitFor({ timeout: 15000 });
+  for (let i = 0; i < 8; i++) await page.getByRole("button", { name: /^(Continue|See my options)$/ }).click();
+  await page.waitForURL("**/discover/results");
   if (lang === "ar") { await page.getByRole("button", { name: "العربية" }).click(); await page.waitForTimeout(300); }
   for (const path of PAGES) {
     await page.goto(BASE + path); await page.waitForTimeout(2600); // after the homepage motion has finished

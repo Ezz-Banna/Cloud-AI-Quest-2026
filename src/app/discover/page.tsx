@@ -13,7 +13,11 @@ export default function Discover() {
   const router = useRouter();
   const [mode, setMode] = useState<"form" | "chat">("form");
   const done = (p: LearnerProfile) => { setProfile(p); router.push("/discover/results"); };
-  const startDemo = () => { loadDemo({ ...DEMO_PROFILE, language: lang }); router.push("/discover/results"); };
+  // The example fills in the questionnaire with Lina's answers; the presenter steps through it and can change anything.
+  const [formKey, setFormKey] = useState(0);
+  const [demoFilled, setDemoFilled] = useState(false);
+  const fillDemo = () => { loadDemo({ ...DEMO_PROFILE, language: lang }); setMode("form"); setFormKey((k) => k + 1); setDemoFilled(true); };
+  const startDemo = fillDemo;
 
   // /discover?demo=1 (the homepage's "Explore an example") loads the synthetic demo student, exactly like the button below.
   // Waits for the stored profile to load so the visitor's chosen language is kept.
@@ -23,13 +27,14 @@ export default function Discover() {
   useEffect(() => {
     if (!demoRequested || !hydrated || demoStarted.current) return;
     demoStarted.current = true;
-    loadDemo({ ...DEMO_PROFILE, language: lang });
-    router.replace("/discover/results");
+    fillDemo();
+    router.replace("/discover");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [demoRequested, hydrated, lang, loadDemo, router]);
 
   return (
     <div className="mx-auto max-w-3xl">
-      {demoRequested && <p role="status" className="mb-4 rounded-xl bg-sand-100 px-4 py-3 text-sm text-ink">{tr("Loading Lina’s example…", "عم نجهّز مثال لينا…")}</p>}
+      {demoRequested && !demoFilled && <p role="status" className="mb-4 rounded-xl bg-sand-100 px-4 py-3 text-sm text-ink">{tr("Loading Lina’s example…", "عم نجهّز مثال لينا…")}</p>}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="h1">{tr("Let's find options that fit you", "خلّينا نلاقي خيارات بتناسبك.")}</h1>
@@ -49,7 +54,12 @@ export default function Discover() {
         ? tr("8 quick steps. You can change any answer later.", "8 خطوات سريعة، وبتقدر تغيّر أي جواب بعدين.")
         : tr("Answer in your own words. You check the summary before it’s used.", "جاوب بكلامك، وبتراجع الملخص قبل ما نستخدمه.")}</p>
         <div className="mt-2"><AnalysisMode /></div>
-      <div className="mt-4">{mode === "form" ? <OnboardingForm onDone={done} /> : <ChatOnboarding onDone={done} />}</div>
+      {demoFilled && mode === "form" && (
+        <p role="status" className="mt-4 rounded-xl border border-sand bg-sand-100 px-4 py-3 text-sm text-ink">
+          <strong>{tr("Lina’s answers are filled in.", "إجابات لينا معبّاة.")}</strong> {tr("She is a made-up student. Press Continue through the 8 steps, change any answer, then see her results.", "لينا طالبة افتراضية. اضغط «التالي» عبر الخطوات الثماني، غيّر أي إجابة، ثم شوف نتائجها.")}
+        </p>
+      )}
+      <div className="mt-4">{mode === "form" ? <OnboardingForm key={formKey} onDone={done} /> : <ChatOnboarding onDone={done} />}</div>
     </div>
   );
 }

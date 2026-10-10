@@ -263,13 +263,26 @@ function CourseDone({ id }: { id: string }) {
   );
 }
 
-/** Off by default. Shares only skills, levels, evidence states and completed course ids with this one role. */
+/** Off by default. Shares skills, levels, evidence states and completed course ids with this one role, plus the
+ *  accomplishments and contact details the person ticks here. Nothing else leaves the device. */
 function ShareBox({ roleId }: { roleId: string }) {
-  const { tr, profile, progress, setProgress } = useBridge();
+  const { tr, lang, profile, progress, setProgress } = useBridge();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const share = progress.shares?.[roleId];
-  const payload = { skills: profile.skills.filter((s) => s.level > 0).map((s) => ({ skill_id: s.skill_id, level: s.level, status: s.status, evidence_count: s.evidence.length })), completed_courses: profile.completed_courses };
+  const achs = profile.achievements.filter((a) => a.title.trim());
+  const [picked, setPicked] = useState<string[]>(() => achs.map((a) => a.id));
+  const [withContact, setWithContact] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [preferred, setPreferred] = useState<"email" | "phone" | "whatsapp">("email");
+  const skillsOf = (aid: string) => [...new Set(profile.skills.filter((s) => s.evidence.some((e) => e.achievement_id === aid)).map((s) => s.skill_id))];
+  const payload = {
+    skills: profile.skills.filter((s) => s.level > 0).map((s) => ({ skill_id: s.skill_id, level: s.level, status: s.status, evidence_count: s.evidence.length })),
+    completed_courses: profile.completed_courses,
+    achievements: achs.filter((a) => picked.includes(a.id)).slice(0, 8).map((a) => ({ title: a.title.slice(0, 120), kind: a.kind, description: (a.description ?? "").slice(0, 600), links: a.links.filter((l) => /^https?:\/\//.test(l)).slice(0, 3), skills: skillsOf(a.id), date: a.date ?? null })),
+    contact: withContact && (email.trim() || phone.trim()) ? { email: email.trim() || null, phone: phone.trim() || null, preferred } : null,
+  };
   async function on() {
     setBusy(true); setErr(null);
     try {
@@ -287,13 +300,44 @@ function ShareBox({ roleId }: { roleId: string }) {
       setProgress((p) => { const s = { ...(p.shares ?? {}) }; delete s[roleId]; return { ...p, shares: s }; });
     } catch (e) { setErr(String((e as Error).message)); } finally { setBusy(false); }
   }
+  const contactBad = withContact && !email.trim() && !phone.trim();
   return (
     <section className="card p-5" aria-labelledby="share-h">
       <h2 id="share-h" className="font-semibold text-teal">{tr("Share with this employer (optional)", "المشاركة مع صاحب العمل هذا (اختياري)")}</h2>
-      <p className="mt-1 text-sm text-muted">{tr("Off by default. Shares skills, levels, evidence states and finished courses with this role only; never grades, city or needs. Withdraw any time.", "مغلقة افتراضياً. تُشارك المهارات ومستوياتها وحالات أدلتها والدورات المكتملة مع هذا الدور فقط؛ لا المعدلات ولا المدينة ولا الاحتياجات. اسحبها متى شئت.")}</p>
+      <p className="mt-1 text-sm text-muted">{tr("Off by default. Shares your skills, levels, evidence states and finished courses with this role only, plus the accomplishments and contact details you tick below. Never grades, city or needs. Withdraw any time.", "مغلقة افتراضياً. تُشارك مهاراتك ومستوياتها وحالات أدلتها والدورات المكتملة مع هذا الدور فقط، إضافة إلى الإنجازات وبيانات التواصل التي تختارها أدناه. لا المعدلات ولا المدينة ولا الاحتياجات. يمكنك السحب في أي وقت.")}</p>
       {share ? (
         <div className="mt-3 flex flex-wrap items-center gap-3"><span className="text-sm text-ok">✓ {tr(`Shared on ${new Date(share.at).toLocaleDateString()}`, `تمت المشاركة في ${new Date(share.at).toLocaleDateString("ar")}`)}</span><button className="btn-secondary !py-1.5" disabled={busy} onClick={off}>{tr("Withdraw", "اسحب المشاركة")}</button></div>
-      ) : <button className="btn-secondary mt-3 !py-1.5" disabled={busy || payload.skills.length === 0} onClick={on}>{tr("Share my skills with this role", "شارك مهاراتي مع هذا الدور")}</button>}
+      ) : (
+        <>
+          <fieldset className="mt-4">
+            <legend className="label">{tr("Accomplishments to show", "الإنجازات التي ستظهر")}</legend>
+            {achs.length === 0 ? <p className="text-xs text-muted">{tr("You haven't added accomplishments yet. Add them in Career preparation to show your work.", "لم تُضف إنجازات بعد. أضفها في الاستعداد المهني لتعرض عملك.")}</p> : (
+              <ul className="space-y-1.5">
+                {achs.map((a) => (
+                  <li key={a.id}><label className="flex items-start gap-2 text-sm"><input type="checkbox" className="mt-1 accent-teal" checked={picked.includes(a.id)} onChange={(e) => setPicked(e.target.checked ? [...picked, a.id] : picked.filter((x) => x !== a.id))} />
+                    <span>{a.title}{skillsOf(a.id).length > 0 && <span className="text-xs text-muted"> · {skillsOf(a.id).map((x) => (lang === "ar" ? SKILL_BY_ID[x]?.name_ar : SKILL_BY_ID[x]?.name_en) ?? x).join(", ")}</span>}</span></label></li>
+                ))}
+              </ul>
+            )}
+          </fieldset>
+          <fieldset className="mt-4">
+            <label className="flex items-start gap-2 text-sm"><input type="checkbox" className="mt-1 accent-teal" checked={withContact} onChange={(e) => setWithContact(e.target.checked)} />
+              <span>{tr("Let this employer contact me directly", "اسمح لصاحب العمل هذا بالتواصل معي مباشرة")}<span className="block text-xs text-muted">{tr("Only this role's employer sees these details. Withdrawing removes them.", "يراها صاحب عمل هذا الدور فقط. سحب المشاركة يحذفها.")}</span></span></label>
+            {withContact && (
+              <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                <div><label className="label" htmlFor="sh-email">{tr("Email", "البريد الإلكتروني")}</label><input id="sh-email" type="email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></div>
+                <div><label className="label" htmlFor="sh-phone">{tr("Phone / WhatsApp", "الهاتف / واتساب")}</label><input id="sh-phone" type="tel" inputMode="tel" className="input" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+962 7X XXX XXXX" autoComplete="tel" /></div>
+                <div><label className="label" htmlFor="sh-pref">{tr("Preferred", "الطريقة المفضّلة")}</label>
+                  <select id="sh-pref" className="input" value={preferred} onChange={(e) => setPreferred(e.target.value as typeof preferred)}>
+                    <option value="email">{tr("Email", "البريد الإلكتروني")}</option><option value="phone">{tr("Phone call", "اتصال هاتفي")}</option><option value="whatsapp">WhatsApp</option>
+                  </select></div>
+              </div>
+            )}
+            {contactBad && <p className="mt-1 text-xs text-warn">{tr("Add an email or a phone number, or untick this box.", "أضف بريداً أو رقم هاتف، أو ألغِ اختيار هذا المربع.")}</p>}
+          </fieldset>
+          <button className="btn-secondary mt-4 !py-1.5" disabled={busy || payload.skills.length === 0 || contactBad} onClick={on}>{tr("Share with this role", "شارك مع هذا الدور")}</button>
+        </>
+      )}
       {err && <p role="alert" className="mt-2 text-sm text-bad">{err}</p>}
     </section>
   );

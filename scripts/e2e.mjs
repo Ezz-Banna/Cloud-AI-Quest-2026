@@ -136,7 +136,7 @@ async function run(viewport, tag) {
   const after = await withWork();
   check(`${tag}: attaching work updates the "with work attached" count (${before} -> ${after})`, Number(after) > Number(before));
   check(`${tag}: later steps are collapsed`, (await page.locator("section[aria-labelledby=path-h] details:not([open])").count()) >= 0);
-  await page.getByRole("button", { name: /share my skills with this role/i }).click();
+  await page.getByRole("button", { name: /^share with this role$/i }).click();
   check(`${tag}: per-role share works`, await page.getByRole("button", { name: /^Withdraw$/ }).waitFor({ timeout: 5000 }).then(() => true, () => false));
   await page.screenshot({ path: `${OUT}/${tag}-08-compare-after.png`, fullPage: true });
 
@@ -164,6 +164,20 @@ async function run(viewport, tag) {
     await page.getByRole("status").filter({ hasText: /demo database/ }).waitFor();
     check(`${tag}: employer published demo role with a recommended course`, true);
     check(`${tag}: publisher can open its own role's shares`, await page.getByText(/shared their profile yet/).waitFor({ timeout: 10000 }).then(() => true, () => false));
+    // The person shares with that role, including an accomplishment and contact details; the employer sees both.
+    await page.goto(`${BASE}/succeed`);
+    await page.getByRole("button", { name: /Junior React Developer/ }).click();
+    await page.getByRole("heading", { name: /How does your experience match this role/i }).waitFor({ timeout: 15000 });
+    await page.getByLabel(/let this employer contact me directly/i).check();
+    await page.getByLabel("Email", { exact: true }).fill("synthetic.student@example.org");
+    await page.getByRole("button", { name: /^share with this role$/i }).click();
+    await page.getByRole("button", { name: /^Withdraw$/ }).waitFor({ timeout: 5000 });
+    await page.goto(`${BASE}/employer/candidates`);
+    await page.getByRole("heading", { name: "Skills you need" }).first().waitFor({ timeout: 10000 });
+    check(`${tag}: employer candidate screen shows accomplishments`, await page.getByText("Personal portfolio website").first().isVisible());
+    check(`${tag}: employer candidate screen shows required-skill matches`, await page.getByRole("heading", { name: "Skills you need" }).first().isVisible());
+    check(`${tag}: employer can contact the person directly`, (await page.locator('a[href^="mailto:synthetic.student@example.org"]').count()) === 1);
+    await page.screenshot({ path: `${OUT}/${tag}-09c-candidates.png`, fullPage: true });
   }
   await page.screenshot({ path: `${OUT}/${tag}-09-employer.png`, fullPage: true });
 

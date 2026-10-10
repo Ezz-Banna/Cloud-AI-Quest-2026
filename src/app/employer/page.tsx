@@ -1,21 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
+import Link from "next/link";
 import { StepStrip } from "@/components/Visuals";
+import { CandidateBoard } from "@/components/CandidateBoard";
 import { AnalysisMode, ModeBadge, VerificationBadge } from "@/components/Badges";
 import { RequirementReview, type Draft } from "@/components/RequirementReview";
 import { SKILLS, SKILL_BY_ID } from "@/lib/data/taxonomy";
 import { importanceOf, type Course, type EmployerRole, type RoleRequirement } from "@/lib/types";
 
-interface Cand { id: string; display_name: string; shared_at: string; status: string; counts: { required: number; required_recorded: number; required_with_evidence: number; required_reviewed: number; preferred: number; preferred_recorded: number }; checks: { skill_id: string; importance: string; state: string; level_ok: boolean | null }[] }
 
 export default function Employer() {
-  const { tr, lang, progress, setProgress } = useBridge();
+  const { tr, lang, setProgress } = useBridge();
   const [draft, setDraft] = useState<Draft[] | null>(null);
-  const [candErr, setCandErr] = useState<string | null>(null);
   const [roles, setRoles] = useState<EmployerRole[]>([]);
   const [roleId, setRoleId] = useState<string>("");
-  const [cands, setCands] = useState<Cand[] | null>(null);
   const [name, setName] = useState("");
   const [sector, setSector] = useState("");
   const [city, setCity] = useState("");
@@ -36,15 +35,6 @@ export default function Employer() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { loadRoles(); fetch("/api/data/coverage").then((r) => r.json()).then((d) => setCourses(d.courses ?? [])).catch(netErr); }, []);
   const relevantCourses = courses.filter((c) => c.skills.some((s) => reqs.some((q) => q.skill_id === s)));
-  useEffect(() => {
-    if (!roleId) return;
-    setCands(null); setCandErr(null);
-    const token = progress.role_tokens?.[roleId];
-    if (!token) { setCandErr(tr("Shared profiles for this role are visible only on the device that published it, or to a signed-in admin.", "الملفات المشاركة لهذا الدور تظهر فقط على الجهاز الذي نشره، أو لمسؤول مسجّل الدخول.")); setCands([]); return; }
-    fetch(`/api/candidates?role_id=${encodeURIComponent(roleId)}`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
-      .then(async (r) => { const d = await r.json(); if (r.status === 403) { setCandErr(tr("Shared profiles for this role are visible only on the device that published it, or to a signed-in admin.", "الملفات المشاركة لهذا الدور تظهر فقط على الجهاز الذي نشره، أو لمسؤول مسجّل الدخول.")); setCands([]); return; } setCands(d.candidates ?? []); })
-      .catch(() => setCands([]));
-  }, [roleId, progress.role_tokens, tr]);
 
   async function parse() {
     setBusy(true); setMsg(null);
@@ -149,23 +139,12 @@ export default function Employer() {
             {roles.map((r) => <option key={r.id} value={r.id}>{r.title}{r.verification === "synthetic" ? ` (${tr("synthetic", "مصطنع")})` : r.verification === "unverified" ? ` (${tr("demo, unverified", "تجريبي، غير موثّق")})` : ""}</option>)}
           </select>
           {roles.find((r) => r.id === roleId) && <div className="mt-2"><VerificationBadge v={roles.find((r) => r.id === roleId)!.verification} /></div>}
-          {!cands && <div className="mt-4 h-24 animate-pulse rounded-2xl bg-mist/60" />}
-          {candErr && <p className="mt-4 rounded-2xl bg-sand-100 p-4 text-sm text-sand-700">{candErr}</p>}
-          {cands && cands.length === 0 && !candErr && <p className="empty-state mt-4 text-sm">{tr("No candidates have shared their profile yet. People choose to share, per role, after comparing.", "لم يشارك أحد ملفه بعد. يختار الأشخاص المشاركة لكل دور بعد المقارنة.")}</p>}
-          <ul className="mt-4 space-y-3">
-            {cands?.map((c) => (
-              <li key={c.id} className="rounded-2xl border border-line p-4">
-                <div className="flex items-center justify-between"><p className="font-bold text-teal">{c.display_name}</p><p className="text-xs text-muted">{new Date(c.shared_at).toLocaleDateString(lang === "ar" ? "ar" : undefined)}</p></div>
-                <p className="mt-1 text-sm">{tr(`Required: ${c.counts.required_recorded} of ${c.counts.required} recorded, ${c.counts.required_with_evidence} with work attached, ${c.counts.required_reviewed} reviewed.`, `الأساسية: ${c.counts.required_recorded} من ${c.counts.required} مسجّلة، ${c.counts.required_with_evidence} مع عمل مرفق، ${c.counts.required_reviewed} روجِعت.`)}</p>
-                <p className="mt-2 flex flex-wrap gap-1.5">{c.checks.map((g) => <span key={g.skill_id} className={`rounded-full px-2 py-0.5 text-xs ${g.state === "reviewed" ? "bg-ok-100 text-ok" : g.state === "none-recorded" ? "bg-mist text-muted" : "bg-sage-100 text-teal"}`}>{name_(g.skill_id)} · {g.state === "none-recorded" ? tr("not recorded", "غير مسجّلة") : g.state === "self-reported" ? tr("self-reported", "إفادة ذاتية") : g.state === "reviewed" ? tr("reviewed", "روجِعت") : tr("work attached", "عمل مرفق")}</span>)}</p>
-              </li>
-            ))}
-          </ul>
+          <CandidateBoard roleId={roleId} roleTitle={roles.find((r) => r.id === roleId)?.title} />
+          <Link href={`/employer/candidates${roleId ? `?role=${encodeURIComponent(roleId)}` : ""}`} className="btn-ghost mt-3 !px-0">{tr("Open the full candidate screen", "افتح شاشة المرشحين كاملة")} →</Link>
           <dl className="mt-4 grid gap-2 text-xs sm:grid-cols-2">
-            <div className="rounded-xl bg-ok-100/60 p-3"><dt className="font-semibold text-ok">✓ {tr("Shown", "المعروض")}</dt><dd className="mt-0.5 text-ink">{tr("First name, skills, levels, evidence states", "الاسم الأول، المهارات، المستويات، حالات الأدلة")}</dd></div>
+            <div className="rounded-xl bg-ok-100/60 p-3"><dt className="font-semibold text-ok">✓ {tr("Shown", "المعروض")}</dt><dd className="mt-0.5 text-ink">{tr("First name, skills, levels, evidence states, and only if the person ticks them: accomplishments and contact details", "الاسم الأول، المهارات، المستويات، حالات الأدلة، وفقط إن اختارها الشخص: الإنجازات وبيانات التواصل")}</dd></div>
             <div className="rounded-xl bg-mist p-3"><dt className="font-semibold text-muted">✗ {tr("Never shown", "لا يُعرض أبداً")}</dt><dd className="mt-0.5 text-ink">{tr("Grades, school, city, budget, support needs", "العلامات، المدرسة، المدينة، الميزانية، احتياجات الدعم")}</dd></div>
           </dl>
-          <p className="mt-2 text-xs text-muted">{tr("In the order people shared, not ranked. Not a hiring recommendation.", "بترتيب المشاركة دون تصنيف. ليست توصية توظيف.")}</p>
         </section>
       </div>
     </div>

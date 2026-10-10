@@ -84,8 +84,14 @@ export interface CandidateSnapshot {
   display_name: string;
   skills: { skill_id: string; level: number; status: string; evidence_count: number }[];
   completed_courses: string[];
+  /** Accomplishments the person chose to share with this role (titles, descriptions, links, linked skills). */
+  achievements?: SharedAchievement[];
+  /** Contact details the person chose to give this employer; absent unless they opted in. */
+  contact?: SharedContact | null;
   shared_at: string;
 }
+export interface SharedAchievement { title: string; kind: string; description: string; links: string[]; skills: string[]; date?: string | null }
+export interface SharedContact { email?: string | null; phone?: string | null; preferred?: "email" | "phone" | "whatsapp" | null; note?: string | null }
 export interface ReviewRequest {
   id: string;
   token_hash: string;

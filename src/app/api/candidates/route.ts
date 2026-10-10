@@ -10,7 +10,8 @@ export const dynamic = "force-dynamic";
 
 // Sharing is off by default and is always for one role. The person gets a private token that updates or withdraws
 // the share; the employer sees shares for a role only with that role's manage token (or a signed-in admin).
-// Employers see counts of what is recorded, never a score, a ranking or a hiring verdict.
+// Employers see counts of what is recorded, never a score, a ranking or a hiring verdict. Accomplishments and contact
+// details are included only when the person ticked them on the share form, and only for this one role.
 
 const SharedSkills = z.object({
   skills: z.array(z.object({
@@ -19,6 +20,17 @@ const SharedSkills = z.object({
     evidence_count: z.number().int().min(0).max(50).default(0),
   })).max(60),
   completed_courses: z.array(z.string().max(80)).max(200).default([]),
+  // Optional, chosen by the person on the share form. Never filled in automatically.
+  achievements: z.array(z.object({
+    title: z.string().trim().min(1).max(120), kind: z.string().max(20).default("other"), description: z.string().max(600).default(""),
+    links: z.array(z.string().url().max(400).refine((u) => /^https?:\/\//.test(u), "links must be web links")).max(3).default([]),
+    skills: z.array(z.string().max(60)).max(12).default([]), date: z.string().max(20).nullable().optional(),
+  })).max(8).default([]),
+  contact: z.object({
+    email: z.string().email().max(120).nullable().optional(),
+    phone: z.string().regex(/^\+?[0-9 ()-]{7,20}$/, "phone number: digits, spaces, + ( ) - only").nullable().optional(),
+    preferred: z.enum(["email", "phone", "whatsapp"]).nullable().optional(), note: z.string().max(200).nullable().optional(),
+  }).refine((c) => !!(c.email || c.phone), "give an email or a phone number, or leave contact off").nullable().optional(),
 });
 
 async function canSeeRole(req: Request, roleId: string) {
@@ -43,7 +55,8 @@ export async function GET(req: Request) {
   const rows = (readStore().candidates ?? []).filter((c) => c.role_id === roleId).map((c) => {
     const cmp = compareRole(role.requirements, { skills: c.skills.map((s) => ({ skill_id: s.skill_id, level: s.level as 0 | 1 | 2 | 3, status: s.status as never })), completed_courses: c.completed_courses }, courses);
     return { id: c.id, display_name: c.display_name, shared_at: c.shared_at, status: cmp.status, counts: cmp.counts,
-      checks: cmp.checks.map((k) => ({ skill_id: k.skill_id, importance: k.importance, state: k.state, level_ok: k.level_ok })) };
+      checks: cmp.checks.map((k) => ({ skill_id: k.skill_id, importance: k.importance, state: k.state, level_ok: k.level_ok, level_needed: k.level_needed, level_recorded: k.level_recorded })),
+      achievements: c.achievements ?? [], contact: c.contact ?? null };
   }).sort((a, b) => a.shared_at.localeCompare(b.shared_at)); // order of sharing, not a ranking
   return NextResponse.json({ role, candidates: rows });
 }
@@ -59,7 +72,8 @@ export async function POST(req: Request) {
     s.candidates = [...(s.candidates ?? []), {
       id, token_hash: hashToken(token), role_id: b.data.role_id,
       display_name: b.data.display_name?.trim().split(/\s+/)[0] || "Candidate",
-      skills: b.data.skills, completed_courses: b.data.completed_courses, shared_at: new Date().toISOString(),
+      skills: b.data.skills, completed_courses: b.data.completed_courses, achievements: b.data.achievements, contact: b.data.contact ?? null,
+      shared_at: new Date().toISOString(),
     }];
   });
   if (!ok) return NextResponse.json({ error: "Could not save. Your profile was not shared." }, { status: 503 });
@@ -74,7 +88,7 @@ export async function PUT(req: Request) {
   if (!c || !tokenMatches(bearer(req), c.token_hash)) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const ok = updateStore((s) => {
     const t = (s.candidates ?? []).find((x) => x.id === b.data.id);
-    if (t) { t.skills = b.data.skills; t.completed_courses = b.data.completed_courses; t.shared_at = new Date().toISOString(); }
+    if (t) { t.skills = b.data.skills; t.completed_courses = b.data.completed_courses; t.achievements = b.data.achievements; t.contact = b.data.contact ?? null; t.shared_at = new Date().toISOString(); }
   });
   if (!ok) return NextResponse.json({ error: "Could not save the update." }, { status: 503 });
   return NextResponse.json({ shared: true, id: b.data.id });

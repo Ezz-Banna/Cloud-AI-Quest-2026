@@ -2,7 +2,7 @@
 import { FitMeter } from "@/components/FitMeter";
 import Link from "next/link";
 import { cityLabel, missingLabel, streamLabel } from "@/lib/i18n";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
 import { Icon } from "@/components/Visuals";
@@ -61,6 +61,10 @@ export default function Results() {
   const [showWeights, setShowWeights] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  // After a priority change: how far each program moved, so the student sees the effect of the change.
+  const [moves, setMoves] = useState<Record<string, number> | null>(null);
+  const prevOrder = useRef<{ key: string; ids: string[] } | null>(null);
+  const prefKey = JSON.stringify([profile.fit_weights ?? null, profile.university_type ?? null]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -69,9 +73,19 @@ export default function Results() {
     const ctl = new AbortController();
     fetch("/api/match/programs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile }), signal: ctl.signal })
       .then(async (r) => { if (!r.ok) throw new Error((await r.json()).error); return r.json(); })
-      .then((d) => { setMatches(d.matches); setCriteria(d.criteria); setFollowUps(d.follow_ups ?? []); setUpdating(false); setProgress((p) => ({ ...p, discover_done: true })); })
+      .then((d) => {
+        const ids = (d.matches as ProgramMatch[]).map((m) => m.program.id);
+        const prev = prevOrder.current;
+        if (prev && prev.key !== prefKey) {
+          const mv: Record<string, number> = {};
+          ids.forEach((id, i) => { const j = prev.ids.indexOf(id); if (j >= 0 && j !== i) mv[id] = j - i; });
+          setMoves(mv);
+        } else if (!prev || prev.key !== prefKey) setMoves(null);
+        prevOrder.current = { key: prefKey, ids };
+        setMatches(d.matches); setCriteria(d.criteria); setFollowUps(d.follow_ups ?? []); setUpdating(false); setProgress((p) => ({ ...p, discover_done: true })); })
       .catch((e) => { if ((e as Error).name !== "AbortError") { setError(String(e.message ?? e)); setUpdating(false); } });
     return () => ctl.abort();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated, profile, setProgress]);
 
   // Slider changes re-rank shortly after the student stops dragging.
@@ -149,11 +163,28 @@ export default function Results() {
                 <p id={`wh-${c.id}`} className="text-xs text-muted">{tr(CRIT_HELP[c.id].en, CRIT_HELP[c.id].ar)}</p>
               </div>
             ))}
+            <div className="sm:col-span-2">
+              <p className="text-sm font-semibold text-teal" id="ut-l">{tr("Public or private?", "حكومية أو خاصة؟")}</p>
+              <div className="mt-1 flex flex-wrap gap-2" role="group" aria-labelledby="ut-l">
+                {([["any", "No preference", "لا فرق"], ["public", "Public", "حكومية"], ["private", "Private", "خاصة"]] as const).map(([v, en, ar]) => (
+                  <button key={v} type="button" className="chip" aria-pressed={(profile.university_type ?? "any") === v}
+                    onClick={() => { setProfile((p) => ({ ...p, university_type: v, fit_weights: v !== "any" && !(p.fit_weights?.type) ? { ...(p.fit_weights ?? {}), type: Math.max(3, p.fit_weights?.type ?? 0) } : p.fit_weights })); setDraftW((d) => (d ? { ...d, type: v === "any" ? d.type : Math.max(3, d.type ?? 0) } : d)); }}>{tr(en, ar)}</button>
+                ))}
+              </div>
+              {(profile.university_type ?? "any") === "any" && weightOf(criteria.find((c) => c.id === "type") ?? { id: "type", en: "", ar: "", weight: 0 }) > 0 && <p className="mt-1 text-xs text-warn">{tr("Pick public or private above, or the public/private slider has nothing to compare.", "اختر حكومية أو خاصة أعلاه، وإلا فلن يكون لمؤشر حكومية/خاصة ما يقارنه.")}</p>}
+            </div>
             <p className="text-xs text-muted sm:col-span-2">{tr("0 ignores a factor. Factors without data are left out, not guessed.", "0 يعني تجاهل العامل. العوامل بلا بيانات تُستبعد ولا تُخمَّن.")}</p>
           </div>
         )}
         {saveMsg && <p role="status" className="fixed bottom-4 start-1/2 z-40 -translate-x-1/2 rtl:translate-x-1/2 rounded-full bg-teal px-4 py-2 text-sm font-semibold text-ivory shadow-lg">{saveMsg}</p>}
         <p className="sr-only" aria-live="polite">{updating ? tr("Updating ranking", "جارٍ تحديث الترتيب") : ""}</p>
+        {moves && !updating && (() => { const moved = shown.filter((m) => moves[m.program.id]).length; return (
+          <p role="status" className={`mt-3 rounded-xl px-3 py-2 text-sm ${moved ? "bg-ok-100 text-ok" : "bg-mist text-muted"}`}>
+            {moved
+              ? tr(`Ranking updated: ${moved} of your programs moved. Look for ↑ and ↓ on the cards.`, `تحدّث الترتيب: تغيّر مكان ${moved} من برامجك. انظر إلى ↑ و↓ على البطاقات.`)
+              : tr("Scores updated, but the order stayed the same: your options score alike on this factor.", "تحدّثت النتائج لكن الترتيب بقي كما هو: خياراتك متقاربة في هذا العامل.")}
+          </p>
+        ); })()}
       </section>
 
       {followUps.length > 0 && (
@@ -188,7 +219,8 @@ export default function Results() {
             <li key={id} id={`prog-${id}`} className="card scroll-mt-24 p-5 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <h2 className="text-xl font-bold leading-snug text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}</h2>
+                  <h2 className="text-xl font-bold leading-snug text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}
+                    {moves?.[id] ? <span className={`ms-2 inline-flex rounded-full px-2 py-0.5 align-middle text-xs font-semibold ${moves[id] > 0 ? "bg-ok-100 text-ok" : "bg-warn-100 text-warn"}`}>{moves[id] > 0 ? `↑ ${moves[id]}` : `↓ ${-moves[id]}`}<span className="sr-only">{moves[id] > 0 ? tr(" places up after your change", " مراتب للأعلى بعد تغييرك") : tr(" places down after your change", " مراتب للأسفل بعد تغييرك")}</span></span> : null}</h2>
                   {lang === "ar" && !m.program.name_ar && <p lang="en" dir="ltr" className="text-xs text-muted">{m.program.name_en}</p>}
                   <p className="mt-0.5 text-muted"><span className="font-medium text-ink">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}</span> · {cityLabel(m.university.city, lang)} · {m.university.type === "public" ? tr("Public", "حكومية") : m.university.type === "private" ? tr("Private", "خاصة") : tr("Special law", "بقانون خاص")}</p>
                 </div>

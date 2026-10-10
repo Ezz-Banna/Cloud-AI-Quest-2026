@@ -77,6 +77,7 @@ async function run(viewport, tag) {
   await page.waitForFunction(([sel, b]) => document.querySelector(sel)?.getAttribute("aria-label") !== b, [meterSel, fitBefore], { timeout: 10000 }).catch(() => {});
   const fitAfter = await page.locator(meterSel).first().getAttribute("aria-label");
   check(`${tag}: priority slider re-ranks live`, fitBefore !== fitAfter);
+  check(`${tag}: priority change says what moved`, await page.getByRole("status").filter({ hasText: /Ranking updated|order stayed the same/ }).first().waitFor({ timeout: 5000 }).then(() => true, () => false));
   await page.getByRole("button", { name: "Reset" }).click();
   await page.getByRole("button", { name: /explain in plain words/i }).first().click();
   await page.getByText(/Template explanation|Written by AI/).first().waitFor({ timeout: 40000 });

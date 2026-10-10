@@ -244,7 +244,8 @@ export function scoreProgram(p: LearnerProfile, prog: Program, uni: University):
   else {
     const hits = topics.filter((t) => mine.has(t));
     const names = (lang: "en" | "ar") => hits.slice(0, 3).map((t) => (lang === "ar" ? TOPIC_BY_ID[t]?.name_ar : TOPIC_BY_ID[t]?.name_en) ?? t);
-    add("curriculum", Math.min(1, hits.length / Math.min(3, topics.length)),
+    // Share of the subjects the student enjoys that this plan covers, so plans differ instead of all scoring 1.
+    add("curriculum", Math.min(1, hits.length / Math.max(1, Math.min(mine.size, topics.length))),
       hits.length ? `Study plan covers ${names("en").join(", ")}, which you enjoy` : "Study plan topics don't overlap with subjects you enjoy",
       hits.length ? `الخطة الدراسية تشمل ${names("ar").join("، ")} مما تحبه` : "مواضيع الخطة الدراسية لا تتقاطع مع موادك المفضلة");
   }

@@ -188,7 +188,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
         <section className="card p-5 sm:p-6" aria-labelledby="skills-h">
           <div className="flex items-center justify-between gap-2"><h2 id="skills-h" className="h2">{tr("My skills", "مهاراتي")}</h2><span className="text-sm text-muted">{profile.skills.length}</span></div>
           {profile.skills.length === 0 ? (
-            <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("No skills yet. Add one experience and we’ll suggest some.", "لسّه ما في مهارات. ضيف تجربة وحدة ومنقترح عليك.")}</p>
+            <p className="empty-state mt-4 text-sm">{tr("No skills yet. Add one experience and we’ll suggest some.", "لسّه ما في مهارات. ضيف تجربة وحدة ومنقترح عليك.")}</p>
           ) : (
             <ul className="mt-4 divide-y divide-line">
               {profile.skills.map((s) => (
@@ -221,7 +221,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
       <section className="card p-5 sm:p-6" aria-labelledby="pf-h">
         <div className="flex flex-wrap items-center justify-between gap-2"><h2 id="pf-h" className="h2">{tr("My experiences", "تجاربي")}</h2><span className="text-sm text-muted">{profile.achievements.length}</span></div>
         {profile.achievements.length === 0 ? (
-          <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("Your projects, courses and activities will show up here.", "مشاريعك ودوراتك ونشاطاتك رح تظهر هون.")}</p>
+          <p className="empty-state mt-4 text-sm">{tr("Your projects, courses and activities will show up here.", "مشاريعك ودوراتك ونشاطاتك رح تظهر هون.")}</p>
         ) : (
           <ul className="mt-4 grid gap-3 md:grid-cols-2">
             {profile.achievements.map((a) => {
@@ -250,7 +250,7 @@ Prepared with Bridgecom. Bridgecom does not submit applications and has no fundi
         <h2 id="opp-h" className="h2">{tr("Worried about study costs?", "تكاليف الدراسة شاغلة بالك؟")}</h2>
         <p className="mt-1 max-w-2xl text-sm text-muted">{tr("Explore scholarships and support, and check the provider’s conditions. A match means worth checking, not a promise of funding; deadlines change each cycle.", "استكشف المنح وخيارات الدعم، وتأكد من شروط الجهة المانحة. المطابقة تعني أن الفرصة تستحق التحقق، وليست وعداً بالتمويل، والمواعيد تتغير كل دورة.")}</p>
         {!opps && <div className="card mt-4 h-24 animate-pulse bg-mist/60" />}
-        {opps && opps.length === 0 && <p className="card mt-4 p-6 text-muted">{tr("No opportunity data loaded yet.", "لم يتم تحميل بيانات الفرص بعد.")}</p>}
+        {opps && opps.length === 0 && <p className="empty-state mt-4">{tr("No opportunity data loaded yet.", "لم يتم تحميل بيانات الفرص بعد.")}</p>}
         <ul className="mt-4 grid gap-4 md:grid-cols-2">
           {opps?.filter((o) => o.status !== "not-eligible").slice(0, allOpps ? 8 : 4).map((o) => (
             <li key={o.item.id} className="card flex flex-col p-5">

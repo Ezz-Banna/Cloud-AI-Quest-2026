@@ -56,19 +56,45 @@ body {
 :focus-visible { outline: 3px solid var(--color-sand); outline-offset: 2px; border-radius: 6px; }
 
 @utility card { @apply rounded-[1.25rem] bg-white border border-line shadow-[0_1px_2px_rgba(38,70,83,0.04),0_8px_24px_-12px_rgba(38,70,83,0.12)]; }
-@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
-@utility btn-primary { @apply btn bg-teal text-ivory hover:bg-teal-700; }
-@utility btn-secondary { @apply btn bg-mist text-teal hover:bg-sage-100 border border-line; }
+/* Interaction system: one timing (180ms, ease-out) for every control. Hover changes colour, pressing nudges the control
+   down 1px, focus always shows the sand ring. The reduced-motion rule above removes the movement. */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold leading-5 select-none
+    transition-[background-color,border-color,color,box-shadow,transform] duration-[180ms] ease-out
+    active:translate-y-px disabled:opacity-50 disabled:cursor-not-allowed disabled:active:translate-y-0;
+}
+@utility btn-primary { @apply btn bg-teal text-ivory hover:bg-teal-700 hover:shadow-[0_6px_16px_-8px_rgba(38,70,83,0.55)]; }
+@utility btn-secondary { @apply btn bg-mist text-teal hover:bg-sage-100 hover:border-sage/60 border border-line; }
 @utility btn-ghost { @apply btn text-teal hover:bg-mist; }
 @utility chip {
-  @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-1.5 text-sm text-ink hover:border-sage transition-colors;
-  &[aria-pressed="true"] { @apply bg-teal text-ivory border-teal; }
+  @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-1.5 text-sm text-ink hover:border-sage hover:bg-ivory
+    transition-[background-color,border-color,color] duration-[180ms] ease-out;
+  &[aria-pressed="true"] { @apply bg-teal text-ivory border-teal hover:bg-teal-700; }
 }
-@utility input { @apply w-full rounded-xl border border-line bg-white px-4 py-2.5 text-ink placeholder:text-muted/70 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/30; }
+@utility input {
+  @apply w-full rounded-xl border border-line bg-white px-4 py-2.5 text-ink placeholder:text-muted/70 hover:border-sage/60
+    focus:border-sage focus:outline-none focus:ring-4 focus:ring-sage/20 transition-[border-color,box-shadow] duration-[180ms] ease-out;
+  &[aria-invalid="true"] { @apply border-bad focus:ring-bad/15; }
+}
 @utility label { @apply block text-sm font-semibold text-teal mb-1.5; }
 @utility eyebrow { @apply text-xs font-bold uppercase tracking-[0.14em] text-sage-600; }
-@utility h1 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-teal; }
-@utility h2 { @apply text-xl sm:text-2xl font-bold tracking-tight text-teal; }
+/* Type scale: two heading sizes and a body size, balanced line breaks so headlines never leave one word alone. */
+@utility h1 { @apply text-3xl sm:text-[2.6rem] sm:leading-[1.12] font-bold tracking-tight text-teal text-balance; }
+@utility h2 { @apply text-xl sm:text-2xl leading-snug font-bold tracking-tight text-teal text-balance; }
+
+/* Empty and "nothing yet" states: a quiet dashed panel, so they never look like a broken card. */
+@utility empty-state { @apply rounded-[1.25rem] border border-dashed border-sage/50 bg-mist/40 p-6 text-center text-muted; }
+
+/* Cards that are themselves links or buttons lift slightly on hover, so it is clear they can be opened. */
+a.card, button.card, label.card { transition: border-color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out; }
+a.card:hover, button.card:hover, label.card:hover { border-color: color-mix(in srgb, var(--color-sage) 55%, transparent); transform: translateY(-1px);
+  box-shadow: 0 1px 2px rgba(38,70,83,0.05), 0 14px 30px -16px rgba(38,70,83,0.28); }
+a.card:active, button.card:active { transform: none; }
+
+/* Readable running text: no lonely last words in paragraphs, comfortable measure for long lines. */
+main p { text-wrap: pretty; }
+details > summary { transition: color 180ms ease-out; }
+details > summary:hover { color: var(--color-teal-700); }
 
 /* One central motion per page (Empower: the suggested skills; Succeed: the next step). It plays once, moves
    nothing else (transform/opacity only, space already reserved) and is reduced to its end state by the rule above. */
@@ -84,7 +110,7 @@ body {
 }
 @keyframes bc-breathe {
   0%, 100% { box-shadow: 0 0 4px 0 rgb(var(--bc-journey-glow) / .35); opacity: .75; }
-  50% { box-shadow: 0 0 14px 3px rgb(var(--bc-journey-glow) / .6); opacity: 1; }
+  50% { box-shadow: 0 0 10px 2px rgb(var(--bc-journey-glow) / .45); opacity: 1; }
 }
 .bc-journey-node {
   position: absolute; top: calc(-1.5rem - 7px); inset-inline-start: calc(50% - 7px); width: 14px; height: 14px; border-radius: 9999px;
@@ -96,8 +122,8 @@ body {
 }
 .bc-journey-stage:hover { border-color: var(--color-sage); }
 .bc-journey-stage[data-on="true"] {
-  transform: scale(1.06); background: #fff; border-color: var(--color-sand);
-  box-shadow: 0 0 0 3px rgb(210 166 121 / .25), 0 10px 30px -6px rgb(210 166 121 / .55);
+  transform: scale(1.04); background: #fff; border-color: var(--color-sand);
+  box-shadow: 0 0 0 3px rgb(210 166 121 / .22), 0 12px 28px -14px rgb(38 70 83 / .35);
 }
 .bc-journey-reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
 .bc-journey-stage[data-on="true"] .bc-journey-reveal { grid-template-rows: 1fr; }

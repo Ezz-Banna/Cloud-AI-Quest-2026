@@ -24,7 +24,7 @@ export function Header() {
         <Link href="/" className="min-w-0 rounded-xl"><Wordmark descriptor={tr("Your next step, clearer.", "خطوتك الجايّة أوضح.")} /></Link>
         <nav aria-label={tr("Main", "القائمة الرئيسية")} className="hidden items-center gap-1 md:flex">{links("btn-ghost !px-3")}</nav>
         <div className="flex shrink-0 items-center gap-2">
-          <Link href="/employer" aria-current={path.startsWith("/employer") ? "page" : undefined} className={`btn-ghost !px-2.5 text-sm md:!px-3 md:text-base ${path.startsWith("/employer") ? "!text-teal underline decoration-sage decoration-2 underline-offset-8" : ""}`}><span className="md:hidden">{tr("Employers", "أصحاب العمل")}</span><span className="hidden md:inline">{tr("For employers", "لأصحاب العمل")}</span></Link>
+          <Link href="/employer" aria-current={path.startsWith("/employer") ? "page" : undefined} className={`btn-ghost !px-2.5 md:!px-3 ${path.startsWith("/employer") ? "!text-teal underline decoration-sage decoration-2 underline-offset-8" : ""}`}><span className="md:hidden">{tr("Employers", "أصحاب العمل")}</span><span className="hidden md:inline">{tr("For employers", "لأصحاب العمل")}</span></Link>
           <button type="button" className="btn-secondary shrink-0 !px-3.5" onClick={() => setLang(lang === "en" ? "ar" : "en")} lang={lang === "en" ? "ar" : "en"}>
             {lang === "en" ? "العربية" : "English"}
           </button>
@@ -42,11 +42,11 @@ export function Footer() {
     <footer className="mt-20 border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p><span className="font-semibold text-teal">{tr("Your next step, clearer.", "خطوتك الجايّة أوضح.")}</span> {tr("A hackathon prototype (AI Quest 2026). Guidance only: Bridgecom does not decide admission, funding or hiring.", "نموذج أولي ضمن هاكاثون AI Quest 2026. إرشاد فقط: بريدجكوم لا يقرّر القبول أو التمويل أو التوظيف.")}</p>
-        <nav aria-label={tr("Footer", "تذييل الصفحة")} className="flex flex-wrap gap-x-4 gap-y-2">
-          <Link href="/how" className="underline underline-offset-2">{tr("How it works", "كيف يعمل")}</Link>
-          <Link href="/data" className="underline underline-offset-2">{tr("About the data", "عن البيانات")}</Link>
-          <Link href="/employer" className="underline underline-offset-2">{tr("For employers", "لأصحاب العمل")}</Link>
-          <Link href="/admin" className="underline underline-offset-2">{tr("Admin", "الإدارة")}</Link>
+        <nav aria-label={tr("Footer", "تذييل الصفحة")} className="flex shrink-0 flex-wrap gap-x-5 gap-y-2 whitespace-nowrap">
+          <Link href="/how" className="underline decoration-line underline-offset-4 transition-colors duration-[180ms] hover:text-teal hover:decoration-sage">{tr("How it works", "كيف يعمل")}</Link>
+          <Link href="/data" className="underline decoration-line underline-offset-4 transition-colors duration-[180ms] hover:text-teal hover:decoration-sage">{tr("About the data", "عن البيانات")}</Link>
+          <Link href="/employer" className="underline decoration-line underline-offset-4 transition-colors duration-[180ms] hover:text-teal hover:decoration-sage">{tr("For employers", "لأصحاب العمل")}</Link>
+          <Link href="/admin" className="underline decoration-line underline-offset-4 transition-colors duration-[180ms] hover:text-teal hover:decoration-sage">{tr("Admin", "الإدارة")}</Link>
         </nav>
       </div>
     </footer>

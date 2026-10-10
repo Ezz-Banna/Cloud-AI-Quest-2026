@@ -151,7 +151,7 @@ export default function Employer() {
           {roles.find((r) => r.id === roleId) && <div className="mt-2"><VerificationBadge v={roles.find((r) => r.id === roleId)!.verification} /></div>}
           {!cands && <div className="mt-4 h-24 animate-pulse rounded-2xl bg-mist/60" />}
           {candErr && <p className="mt-4 rounded-2xl bg-sand-100 p-4 text-sm text-sand-700">{candErr}</p>}
-          {cands && cands.length === 0 && !candErr && <p className="mt-4 rounded-2xl bg-mist p-5 text-sm text-muted">{tr("No candidates have shared their profile yet. People choose to share, per role, after comparing.", "لم يشارك أحد ملفه بعد. يختار الأشخاص المشاركة لكل دور بعد المقارنة.")}</p>}
+          {cands && cands.length === 0 && !candErr && <p className="empty-state mt-4 text-sm">{tr("No candidates have shared their profile yet. People choose to share, per role, after comparing.", "لم يشارك أحد ملفه بعد. يختار الأشخاص المشاركة لكل دور بعد المقارنة.")}</p>}
           <ul className="mt-4 space-y-3">
             {cands?.map((c) => (
               <li key={c.id} className="rounded-2xl border border-line p-4">

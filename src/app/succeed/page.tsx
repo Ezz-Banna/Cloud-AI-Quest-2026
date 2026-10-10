@@ -124,7 +124,7 @@ export default function Succeed() {
             <Comparison role={selected} onEditRequirements={selected.seeded ? undefined : editPasted} />
           </>
         ) : (
-          <p className="card p-8 text-center text-muted">{tr("Choose an example role or paste a posting to compare.", "اختر دوراً تجريبياً أو الصق إعلاناً للمقارنة.")}</p>
+          <p className="empty-state">{tr("Choose an example role or paste a posting to compare.", "اختر دوراً تجريبياً أو الصق إعلاناً للمقارنة.")}</p>
         ))}
       </div>
     </div>

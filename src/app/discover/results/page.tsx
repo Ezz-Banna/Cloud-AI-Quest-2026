@@ -173,10 +173,10 @@ export default function Results() {
       {error && <p role="alert" className="mt-6 rounded-xl bg-bad-100 p-4 text-bad">{error}</p>}
       {!matches && !error && <ul className="mt-6 space-y-3" aria-busy="true">{[0, 1, 2].map((i) => <li key={i} className="card h-28 animate-pulse bg-mist/60" />)}</ul>}
       {matches && matches.length === 0 && (
-        <p className="card mt-6 p-6 text-muted">{tr("No program data is loaded yet. See About the data.", "لم يتم تحميل بيانات البرامج بعد. راجع صفحة عن البيانات.")}</p>
+        <p className="empty-state mt-6">{tr("No program data is loaded yet. See About the data.", "لم يتم تحميل بيانات البرامج بعد. راجع صفحة عن البيانات.")}</p>
       )}
       {matches && matches.length > 0 && shown.length === 0 && (
-        <p className="card mt-6 p-6 text-muted">{tr("No programs match these filters. Try removing one.", "لا توجد برامج تطابق عوامل التصفية. جرّب إزالة أحدها.")}</p>
+        <p className="empty-state mt-6">{tr("No programs match these filters. Try removing one.", "لا توجد برامج تطابق عوامل التصفية. جرّب إزالة أحدها.")}</p>
       )}
 
       <p className="mt-6 text-sm text-muted" aria-live="polite">{matches ? tr(`${shown.length} of ${matches.length} programs in our verified subset`, `${shown.length} من ${matches.length} برنامجاً في مجموعتنا الموثّقة`) : ""}</p>
@@ -188,9 +188,9 @@ export default function Results() {
             <li key={id} id={`prog-${id}`} className="card scroll-mt-24 p-5 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <h2 className="text-lg font-bold text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}</h2>
+                  <h2 className="text-xl font-bold leading-snug text-teal">{(lang === "ar" ? m.program.name_ar ?? FIELD_BY_ID[m.program.field]?.name_ar ?? m.program.name_en : m.program.name_en)}</h2>
                   {lang === "ar" && !m.program.name_ar && <p lang="en" dir="ltr" className="text-xs text-muted">{m.program.name_en}</p>}
-                  <p className="text-muted">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en} · {cityLabel(m.university.city, lang)} · {m.university.type === "public" ? tr("Public", "حكومية") : m.university.type === "private" ? tr("Private", "خاصة") : tr("Special law", "بقانون خاص")}</p>
+                  <p className="mt-0.5 text-muted"><span className="font-medium text-ink">{lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}</span> · {cityLabel(m.university.city, lang)} · {m.university.type === "public" ? tr("Public", "حكومية") : m.university.type === "private" ? tr("Private", "خاصة") : tr("Special law", "بقانون خاص")}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <VerificationBadge v={m.program.verification} />
@@ -200,7 +200,7 @@ export default function Results() {
                 </div>
               </div>
 
-              <div className="mt-4 grid gap-4 md:grid-cols-[1fr_1fr_auto]">
+              <div className="mt-4 grid gap-4 border-t border-line pt-4 md:grid-cols-[1fr_1fr_auto] md:gap-6">
                 <Eligibility m={m} />
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-muted">{tr("Fit for you", "مدى الملاءمة")}</p>
@@ -239,8 +239,9 @@ export default function Results() {
                 </div>
               )}
               {m.missing_data.length > 0 && (
-                <p className="mt-3 flex flex-wrap gap-1.5 text-xs" aria-label={tr("Missing data", "بيانات ناقصة")}>
-                  {m.missing_data.map((x) => <span key={x} className="rounded-full border border-dashed border-warn px-2 py-0.5 text-warn">{tr("Missing", "ناقص")}: {missingLabel(x, lang)}</span>)}
+                <p className="mt-3 flex flex-wrap items-baseline gap-x-1.5 gap-y-1 rounded-xl bg-ivory px-3 py-2 text-xs text-muted" aria-label={tr("Missing data", "بيانات ناقصة")}>
+                  <span className="font-semibold text-warn">{tr("Not yet verified", "غير موثّق بعد")}:</span>
+                  {m.missing_data.map((x, i) => <span key={x}>{missingLabel(x, lang)}{i < m.missing_data.length - 1 ? (lang === "ar" ? "،" : ",") : ""}</span>)}
                 </p>
               )}
               <div className="mt-3 flex flex-wrap items-center gap-2">

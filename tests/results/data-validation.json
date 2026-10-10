@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-10-09",
+  "checked_on": "2026-10-10",
   "errors": [],
   "warnings": [
     {
@@ -136,15 +136,33 @@
     },
     {
       "dataset": "programs",
+      "id": "psut-cs",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
+    },
+    {
+      "dataset": "programs",
       "id": "psut-se",
       "check": "missing-fee-year",
       "msg": "fee shown without an academic year"
     },
     {
       "dataset": "programs",
+      "id": "psut-se",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
+    },
+    {
+      "dataset": "programs",
       "id": "psut-ds-ai",
       "check": "missing-fee-year",
       "msg": "fee shown without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "psut-ds-ai",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
     },
     {
       "dataset": "programs",
@@ -305,6 +323,54 @@
     {
       "dataset": "programs",
       "id": "meu-business",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "psut-cyber",
+      "check": "missing-fee-year",
+      "msg": "fee shown without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "psut-cyber",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "htu-cs",
+      "check": "missing-fee-year",
+      "msg": "fee shown without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "htu-cs",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "htu-cyber",
+      "check": "missing-fee-year",
+      "msg": "fee shown without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "htu-cyber",
+      "check": "missing-minimum-year",
+      "msg": "minimum average without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "htu-ds-ai",
+      "check": "missing-fee-year",
+      "msg": "fee shown without an academic year"
+    },
+    {
+      "dataset": "programs",
+      "id": "htu-ds-ai",
       "check": "missing-minimum-year",
       "msg": "minimum average without an academic year"
     },

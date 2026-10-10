@@ -9,6 +9,8 @@ const Source = z.object({ url: z.string().url(), title: z.string().optional().nu
 const num = z.number().nullable().optional();
 const ExtraFee = z.object({ name: z.string().min(1), amount_jod: z.number().min(0).max(20000), per: z.enum(["semester", "year", "once"]), source_url: z.string().url().nullable().optional() });
 const SourcedFact = z.object({ text: z.string().min(3), source_url: z.string().url(), checked_at: z.string().nullable().optional() });
+const Ranking = z.object({ ranking: z.string().min(4), subject: z.string().nullable().optional(), rank: z.string().min(1), source_url: z.string().url(),
+  source_kind: z.enum(["ranking publisher", "university announcement", "news"]), checked_at: z.string().nullable().optional() });
 const Accreditation = z.enum(["listed", "not-listed"]).nullable().optional();
 const Threshold = z.object({ year: z.string().min(4), kind: z.enum(["minimum-to-apply", "competitive-cutoff"]), value: z.number().min(40).max(100), track: z.string().nullable().optional(), source_url: z.string().url() });
 
@@ -19,7 +21,7 @@ export const UniversitySchema = z.object({
   campuses: z.array(z.string()).optional(), accreditation_status: Accreditation, accreditation_source: z.string().url().nullable().optional(),
   additional_fees: z.array(ExtraFee).optional(), exchange_programs: z.array(SourcedFact).optional(),
   research_highlights: z.array(SourcedFact).optional(), verified_achievements: z.array(SourcedFact).optional(),
-  accessibility_facilities: z.array(SourcedFact).optional(), transport_note: z.string().nullable().optional(), accommodation_note: z.string().nullable().optional(),
+  accessibility_facilities: z.array(SourcedFact).optional(), rankings: z.array(Ranking).optional(), transport_note: z.string().nullable().optional(), accommodation_note: z.string().nullable().optional(),
   sources: z.array(Source), verification: Verification, notes: z.string().nullable().optional(),
 });
 
@@ -33,7 +35,7 @@ export const ProgramSchema = z.object({
   min_admission_year: z.string().nullable().optional(), admission_track: z.string().nullable().optional(),
   eligible_streams: z.array(z.string()).optional(), internship_note: z.string().nullable().optional(),
   career_tags: z.array(z.string()).optional(), study_plan_url: z.string().url().nullable().optional(),
-  curriculum_topics: z.array(z.enum(TOPIC_IDS)).optional(), additional_fees: z.array(ExtraFee).optional(),
+  curriculum_topics: z.array(z.enum(TOPIC_IDS)).optional(), key_courses: z.array(z.string().min(2)).max(20).optional(), plan_year: z.string().nullable().optional(), additional_fees: z.array(ExtraFee).optional(),
   historical_thresholds: z.array(Threshold).optional(), accreditation_status: Accreditation, accreditation_source: z.string().url().nullable().optional(),
   graduate_outcomes_note: z.string().nullable().optional(), verified_achievements: z.array(SourcedFact).optional(),
   sources: z.array(Source).min(1, "every program needs at least one source"), verification: Verification, notes: z.string().nullable().optional(),

@@ -27,6 +27,16 @@ export interface SourcedFact {
 export type AccreditationStatus = "listed" | "not-listed" | null;
 
 // Institution-level characteristics. Program-level ones live on Program.
+/** A rank exactly as a ranking publisher (or the university announcing it) printed it. */
+export interface PublishedRanking {
+  ranking: string; // e.g. "QS World University Rankings 2027"
+  subject?: string | null; // e.g. "Computer Science"; null = whole-university ranking
+  rank: string; // as printed: "326", "51-60"
+  source_url: string;
+  source_kind: "ranking publisher" | "university announcement" | "news";
+  checked_at?: string | null;
+}
+
 export interface University {
   id: string;
   name_en: string;
@@ -45,6 +55,7 @@ export interface University {
   research_highlights?: SourcedFact[];
   verified_achievements?: SourcedFact[];
   accessibility_facilities?: SourcedFact[];
+  rankings?: PublishedRanking[]; // only editions we opened; absence means "not listed or not checked", never "low"
   transport_note?: string | null;
   accommodation_note?: string | null;
   sources: Source[];
@@ -86,6 +97,8 @@ export interface Program {
   career_tags?: string[];
   study_plan_url?: string | null;
   curriculum_topics?: string[]; // topic ids from CURRICULUM_TOPICS, read from the published study plan
+  key_courses?: string[]; // course titles exactly as printed in the published study plan
+  plan_year?: string | null; // year printed on the study plan, when it prints one
   additional_fees?: ExtraFee[]; // program-specific mandatory fees
   historical_thresholds?: HistoricalThreshold[];
   accreditation_status?: AccreditationStatus;

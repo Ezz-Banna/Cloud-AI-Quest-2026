@@ -24,10 +24,45 @@
     "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
     "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/CS-English-Study%20Plan%202025-UPDATED-OCT_2025.pdf",
+    "title": "Official study plan 2025",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 75. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 75. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024).",
+  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/CS-English-Study%20Plan%202025-UPDATED-OCT_2025.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "research"
+  ],
+  "key_courses": [
+   "Analysis and Design of Algorithms",
+   "Theory of Computing",
+   "Artificial Intelligence",
+   "Operating Systems",
+   "Computer Networks",
+   "Distributed Computer Systems",
+   "Computer Architecture",
+   "Human-Computer Interaction",
+   "Fundamentals of Software Engineering",
+   "Cryptography",
+   "Fundamental Database Systems",
+   "Wireless Networks",
+   "Internet Programming",
+   "Mobile Applications Design and Development"
+  ],
+  "plan_year": "2025"
  },
  {
   "id": "just-se",
@@ -55,10 +90,45 @@
     "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
     "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/SE/SiteAssets/Pages/Programs/SE_English_StudyPlan2025_12OCT2025.pdf",
+    "title": "Official study plan",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 85. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 75 / 85. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024).",
+  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/SE/SiteAssets/Pages/Programs/SE_English_StudyPlan2025_12OCT2025.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "research"
+  ],
+  "key_courses": [
+   "Fundamentals of Software Engineering",
+   "Java Programming",
+   "User interface design & programming",
+   "Systems Analysis, Modeling, and Design",
+   "Software Architecture & Design",
+   "Software Requirements Engineering and Documentation",
+   "Software Engineering for Web Applications",
+   "Design and Development of Parallel and Distributed Systems",
+   "Software Testing & Quality Assurance",
+   "Software Processes & Project Management",
+   "Software Maintenance & Configuration Management",
+   "Secure Software Construction",
+   "Analysis and Design of Algorithms",
+   "Mobile Application Development"
+  ],
+  "plan_year": null
  },
  {
   "id": "just-ai",
@@ -91,21 +161,44 @@
     "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
     "title": "JUST - B.Sc. Artificial Intelligence study plan",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-UPDATED-OCT-2025.pdf",
+    "title": "Official study plan",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
   "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan.",
-  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
+  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-UPDATED-OCT-2025.pdf",
   "curriculum_topics": [
    "programming",
-   "ai",
-   "data",
+   "web-mobile",
    "mathematics",
    "statistics",
+   "data",
+   "ai",
    "networks-security",
-   "web-mobile",
-   "entrepreneurship"
-  ]
+   "physics",
+   "research"
+  ],
+  "key_courses": [
+   "Introduction to Artificial Intelligence",
+   "Artificial Intelligence Programming",
+   "Machine Learning",
+   "Deep Learning",
+   "Big Data Processing",
+   "Data Science",
+   "Natural Language Processing",
+   "Computer Vision",
+   "Digital Image Processing",
+   "Robotics",
+   "Intelligent Embedded Systems",
+   "Artificial Intelligence for Games and Virtual Reality",
+   "Computer Networks and Security",
+   "Analysis and Design of Algorithms"
+  ],
+  "plan_year": null
  },
  {
   "id": "just-ds",
@@ -133,10 +226,45 @@
     "url": "https://services.just.edu.jo/applic/Documents/Fees_Regular_2024_En.pdf",
     "title": "JUST - Fees, Regular & Parallel programs (Fees_Regular_2024_En.pdf)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cis/SiteAssets/Pages/Programs/DS_StudyPlan_En_OCT2025.pdf",
+    "title": "Official study plan 2024",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024)."
+  "notes": "min_admission_avg is the published minimum high-school (Tawjihi) average to apply, NOT the unified-admission competitive cut-off. Fee = 'Regular program' column (Jordanians / cultural agreements); row also lists Parallel fees: 100 / 120. Column mapping read from table header order (Regular, then Parallel: Jordanian HS / non-Jordanian HS). Year inferred from document filename (2024).",
+  "study_plan_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cis/SiteAssets/Pages/Programs/DS_StudyPlan_En_OCT2025.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "management",
+   "research"
+  ],
+  "key_courses": [
+   "Fundamentals of Data Science and Artificial Intelligence",
+   "Programming for Data Science",
+   "Machine Learning",
+   "Deep Learning",
+   "Big Data",
+   "Data Engineering and Analysis",
+   "Visual Data Processing",
+   "Natural Language Processing",
+   "Business Analytics",
+   "Information Governance",
+   "Information Security",
+   "Project Management for Data Science",
+   "Fundamentals of Database Systems",
+   "Analysis and Design of Algorithms"
+  ],
+  "plan_year": "2024"
  },
  {
   "id": "just-nursing",
@@ -330,10 +458,45 @@
     "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
     "title": "HU - BA programs fee schedule (incl. international)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/upload/67000000/67010000/cs_tree_english.pdf",
+    "title": "Official study plan",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Fee = first of three per-credit-hour values in the row (45, 70, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file."
+  "notes": "Fee = first of three per-credit-hour values in the row (45, 70, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file.",
+  "study_plan_url": "https://pic.hu.edu.jo/upload/67000000/67010000/cs_tree_english.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "research"
+  ],
+  "key_courses": [
+   "Introduction to Programming",
+   "Object Oriented Programming 1",
+   "Object Oriented Programming 2",
+   "Data Structures",
+   "Visual Programming",
+   "Algorithms",
+   "Principles of Software Engineering",
+   "Introduction to Database Systems",
+   "Web Programming",
+   "Computer Networks",
+   "Operating System",
+   "Parallel and Distributed Computing",
+   "Artificial Intelligence",
+   "Information Systems Security"
+  ],
+  "plan_year": null
  },
  {
   "id": "hu-se",
@@ -379,13 +542,33 @@
   "curriculum_topics": [
    "programming",
    "web-mobile",
-   "data",
    "mathematics",
    "statistics",
+   "data",
    "networks-security",
+   "design",
    "management",
-   "entrepreneurship"
-  ]
+   "entrepreneurship",
+   "communication",
+   "research"
+  ],
+  "key_courses": [
+   "Fundamentals of Software Engineering",
+   "Software Requirements Engineering",
+   "Software Design",
+   "Software Systems Analysis and Design",
+   "Software Testing",
+   "Software Quality Assurance",
+   "Software Project Management",
+   "Software Documentation",
+   "Software Ethics and Security",
+   "Object Oriented Software Development",
+   "Advanced Object-Oriented",
+   "Visual Programming for Software",
+   "Data Structures",
+   "Algorithms"
+  ],
+  "plan_year": "Advisory Plan 2020"
  },
  {
   "id": "hu-ds-ai",
@@ -418,10 +601,42 @@
     "url": "https://pic.hu.edu.jo/Upload/42000000/Bac.pdf",
     "title": "HU - BA programs fee schedule (incl. international)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://pic.hu.edu.jo/Upload/67000000/67050000/Faculty%20of%20Prince%20Al.pdf",
+    "title": "Official study plan",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Fee = first of three per-credit-hour values in the row (60, 80, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file."
+  "notes": "Fee = first of three per-credit-hour values in the row (60, 80, 80), read as the Regular programme (Jordanian students, Jordanian secondary) - column headers in the PDF are scrambled, so treat the track mapping as unconfirmed. Credit hours not given in the document. Year not stated (file name contains 2027). min avg = published minimum secondary result, not competitive cut-off. Min avg 65% taken from the older HU BA fee schedule (Bac.pdf); the _2027 file's percentage for this row was garbled. Re-checked 2026-10-09: no academic year in the document text ('2027' appears only in the file name), so fees are shown without a year. The 65% minimum comes from an older, undated HU programme file; it is not in the _2027 file.",
+  "study_plan_url": "https://pic.hu.edu.jo/Upload/67000000/67050000/Faculty%20of%20Prince%20Al.pdf",
+  "curriculum_topics": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "research"
+  ],
+  "key_courses": [
+   "Programming for Data Science and Artificial Intelligence",
+   "Advanced Programming for Data Science and Artificial Intelligence",
+   "Introduction to Data Science",
+   "Introduction to Artificial Intelligence",
+   "Algorithms Analysis and Design",
+   "Data Engineering",
+   "Machine Learning",
+   "Neural Networks and Deep Learning",
+   "Big Data",
+   "Data Mining",
+   "Digital Image Processing",
+   "Computer Vision",
+   "Natural Language Processing and Text Mining",
+   "Robot Programming"
+  ],
+  "plan_year": null
  },
  {
   "id": "hu-medicine",
@@ -652,10 +867,16 @@
     "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
     "title": "AABU - Credit hour fees for undergraduate students",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/CS/PublishingImages/Pages/programstudyplan/CS.pdf",
+    "title": "Official study plan 2022-2023",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+  "notes": "Regular System (Jordanian students) 30 JD/credit hour; Parallel 50 JD; International (non-Jordanians) 71 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated. Study plan opened 2026-10-10 but its text extracted badly (garbled Arabic), so courses are not listed.",
+  "study_plan_url": "https://www.aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/CS/PublishingImages/Pages/programstudyplan/CS.pdf"
  },
  {
   "id": "aabu-ds-ai",
@@ -683,10 +904,42 @@
     "url": "https://aabu.edu.jo/EN/Departments/finance/Pages/hourfeesforundergraduate.aspx",
     "title": "AABU - Credit hour fees for undergraduate students",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/DSAI/PublishingImages/Pages/proStuPlan/Study%20Plan%20%E2%80%93%20Data%20Science%20and%20Artificial%20Intelligence.pdf",
+    "title": "Official study plan 2023-2022",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Regular System (Jordanian students) 40 JD/credit hour; Parallel 60 JD; International (non-Jordanians) 93 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated."
+  "notes": "Regular System (Jordanian students) 40 JD/credit hour; Parallel 60 JD; International (non-Jordanians) 93 JD. The page's 'No. of Credit Hours' column is a first-semester example load, not the degree total, so credit_hours is null. No year stated; no minimum average on page. Re-checked 2026-10-09. The 13/14/12 hours on the AABU page are a one-semester sample load, not programme credit hours. No academic year stated.",
+  "study_plan_url": "https://aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/DSAI/PublishingImages/Pages/proStuPlan/Study%20Plan%20%E2%80%93%20Data%20Science%20and%20Artificial%20Intelligence.pdf",
+  "curriculum_topics": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "research"
+  ],
+  "key_courses": [
+   "Data Science Foundations",
+   "Statistics for Data Science",
+   "Data Visualization and Exploration",
+   "Big Data",
+   "Data Science Programming Using R",
+   "Machine Learning",
+   "Natural Language Processing",
+   "Deep Learning",
+   "Data Engineering",
+   "High Performance Computing",
+   "Data Mining",
+   "Artificial Intelligence",
+   "Algorithm Design and Analysis",
+   "Databases"
+  ],
+  "plan_year": "2023-2022"
  },
  {
   "id": "aabu-nursing",
@@ -802,10 +1055,46 @@
     "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
     "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf",
+    "title": "Official study plan",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '65134457099'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split."
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '65134457099'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split. The study plan (https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf) prints 135 credit hours, while the fee source gives 134; cost uses the fee source's figure until the university confirms.",
+  "study_plan_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "entrepreneurship",
+   "research"
+  ],
+  "key_courses": [
+   "البرمجة الكينونية",
+   "تراكيب البيانات والخوارزميات",
+   "برمجة متقدمة",
+   "حل المسائل",
+   "النظرية الاحتسابية",
+   "اساسيات نظم التشغيل",
+   "تصميم منطق الحاسوب",
+   "معمارية الحاسوب",
+   "تراسل البيانات والشبكات",
+   "الذكاء الاصطناعي",
+   "التعلم الآلي والشبكات العصبونية",
+   "برمجة تطبيقات الهواتف الذكية",
+   "مدخل الى هندسة البرمجيات",
+   "مبادئ الأمن السيبراني"
+  ],
+  "plan_year": null
  },
  {
   "id": "yu-ds-ai",
@@ -833,10 +1122,44 @@
     "url": "https://study.yu.edu.jo/images/docs/Undergraduate_programs.pdf",
     "title": "Yarmouk University - Undergraduate programs (non-Jordanian student page, 2024/2025-2025/2026)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf",
+    "title": "Official study plan",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '651345580113'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split."
+  "notes": "Yarmouk's published table (regular JD / parallel JD / international-parallel USD per credit hour, plus program credit hours and minimum average) extracts as unseparated digit runs (raw: '651345580113'), so values were not split to avoid guessing. All numbers null; check the PDF manually. PDF text runs the numbers together (e.g. '65134457099'); split as minimum, credit hours, regular JD, parallel JD, international USD. The USD column is about 1.41 x the parallel fee on every row, which confirms the split. The study plan (https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf) prints 135 credit hours, while the fee source gives 134; cost uses the fee source's figure until the university confirms.",
+  "study_plan_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf",
+  "curriculum_topics": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "research"
+  ],
+  "key_courses": [
+   "اساسيات علم البيانات",
+   "اساسيات الذكاء الاصطناعي",
+   "نظم الحوسبة لعلم البيانات والذكاء الاصطناعي",
+   "هندسة البيانات وتحليلاتها",
+   "تمثيل واستدلال المعرفة",
+   "التعلم الآلي والشبكات العصبونية",
+   "تمييز الانماط",
+   "تنقيب البيانات ومستودعاتها",
+   "نمذجة البيانات ومحاكاتها",
+   "التعلم العميق",
+   "البيانات الضخمة والمرئية",
+   "معالجة اللغات الطبيعية وتنقيب النصوص",
+   "الربوتات المتنقلة الذكية",
+   "تراكيب البيانات والخوارزميات"
+  ],
+  "plan_year": null
  },
  {
   "id": "yu-nursing",
@@ -998,7 +1321,7 @@
   "tuition_jod_per_credit_hour": 130,
   "tuition_track": "private",
   "tuition_year": null,
-  "min_admission_avg": null,
+  "min_admission_avg": 75,
   "min_admission_year": null,
   "admission_track": "private-university",
   "eligible_streams": [],
@@ -1017,21 +1340,47 @@
     "url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
     "title": "PSUT - B.Sc. Computer Science study plan (2021-2022 plan)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://psut.edu.jo/en/faqs",
+    "title": "PSUT - FAQs (minimum admission average: computing majors 75%)",
+    "checked_at": "2026-10-10"
    }
   ],
-  "verification": "partial",
-  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked.",
+  "verification": "verified",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked. 2026-10-10: minimum 75 from the PSUT FAQ ('The minimum admission average for the majors of King Hussein School of Computing Sciences ... is 75%'); school-wide figure, no academic year printed; admission is also competitive with a university entrance exam (psut.edu.jo/en/entry-requirements-and-fees).",
   "study_plan_url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf",
   "curriculum_topics": [
    "programming",
    "web-mobile",
+   "mathematics",
+   "statistics",
    "data",
    "ai",
    "networks-security",
-   "mathematics",
-   "statistics",
-   "physics"
-  ]
+   "physics",
+   "design",
+   "management",
+   "communication",
+   "research"
+  ],
+  "key_courses": [
+   "Object Oriented Programming",
+   "Data Structures and Introduction to Algorithms",
+   "Algorithms Design and Analysis",
+   "Theory of Computation",
+   "Database Systems",
+   "Operating Systems",
+   "Data Communications & Computer Networks",
+   "Information Systems Security",
+   "Webpage Design and Internet programming",
+   "Software Engineering",
+   "Artificial Intelligence",
+   "Computer Architecture",
+   "Graduation Project 1",
+   "Practical Training"
+  ],
+  "plan_year": "2021-2022"
  },
  {
   "id": "psut-se",
@@ -1044,7 +1393,7 @@
   "tuition_jod_per_credit_hour": 130,
   "tuition_track": "private",
   "tuition_year": null,
-  "min_admission_avg": null,
+  "min_admission_avg": 75,
   "min_admission_year": null,
   "admission_track": "private-university",
   "eligible_streams": [],
@@ -1064,19 +1413,51 @@
     "url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
     "title": "PSUT - B.Sc. Software Engineering study plan (2021-2022 plan)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://psut.edu.jo/en/faqs",
+    "title": "PSUT - FAQs (minimum admission average: computing majors 75%)",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://www.psut.edu.jo/uploads/2026/06/se-english.pdf",
+    "title": "Official study plan 2021-2022",
+    "checked_at": "2026-10-10"
    }
   ],
-  "verification": "partial",
-  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked.",
-  "study_plan_url": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
+  "verification": "verified",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Study plan read 2026-10-09: curriculum_topics mapped by hand from the published course titles; internship_note quoted from the plan. Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked. 2026-10-10: minimum 75 from the PSUT FAQ ('The minimum admission average for the majors of King Hussein School of Computing Sciences ... is 75%'); school-wide figure, no academic year printed; admission is also competitive with a university entrance exam (psut.edu.jo/en/entry-requirements-and-fees).",
+  "study_plan_url": "https://www.psut.edu.jo/uploads/2026/06/se-english.pdf",
   "curriculum_topics": [
    "programming",
    "web-mobile",
+   "mathematics",
+   "statistics",
    "data",
+   "ai",
    "networks-security",
    "design",
-   "management"
-  ]
+   "management",
+   "communication",
+   "research"
+  ],
+  "key_courses": [
+   "Introduction to Software Engineering",
+   "Software Construction",
+   "Software Requirements Analysis",
+   "Sotware Design and Architecture",
+   "Software Quality Assurance and Testing",
+   "Software Project Management",
+   "Software Engineering Approaches to Human Computer Interaction",
+   "System Analysis And Design",
+   "Object Oriented Programming",
+   "Data Structures and Introduction to Algorithms",
+   "Database Systems",
+   "Data Communications & Computer Networks",
+   "Webpage Design and Internet programming",
+   "Practical Training"
+  ],
+  "plan_year": "2021-2022"
  },
  {
   "id": "psut-ds-ai",
@@ -1089,7 +1470,7 @@
   "tuition_jod_per_credit_hour": 130,
   "tuition_track": "private",
   "tuition_year": null,
-  "min_admission_avg": null,
+  "min_admission_avg": 75,
   "min_admission_year": null,
   "admission_track": "private-university",
   "eligible_streams": [],
@@ -1104,10 +1485,50 @@
     "url": "https://psut.edu.jo/en/study-plans",
     "title": "PSUT - Programs & Fees (study plans)",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://psut.edu.jo/en/faqs",
+    "title": "PSUT - FAQs (minimum admission average: computing majors 75%)",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://www.psut.edu.jo/uploads/2026/04/data-science-artificial-intelligence.pdf",
+    "title": "Official study plan 2022-2023",
+    "checked_at": "2026-10-10"
    }
   ],
-  "verification": "partial",
-  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked."
+  "verification": "verified",
+  "notes": "Credit hours and JOD per credit hour from PSUT Programs & Fees table; no year stated. Minimum Tawjihi average not on the page. PSUT also offers Cyber Security (132 h, 130 JOD). Re-checked 2026-10-09: fee and credit hours match the PSUT study-plans table ('Tuition (per credit hour) (JOD)'); no year stated; PSUT publishes no undergraduate minimum average on the pages checked. 2026-10-10: minimum 75 from the PSUT FAQ ('The minimum admission average for the majors of King Hussein School of Computing Sciences ... is 75%'); school-wide figure, no academic year printed; admission is also competitive with a university entrance exam (psut.edu.jo/en/entry-requirements-and-fees).",
+  "study_plan_url": "https://www.psut.edu.jo/uploads/2026/04/data-science-artificial-intelligence.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "management",
+   "communication",
+   "research"
+  ],
+  "key_courses": [
+   "Introduction to Data Science",
+   "Data Engineering",
+   "Statistics and Probability for Data Science",
+   "Artificial Intelligence",
+   "Natural Language Processing",
+   "High Performance Computing for Big Data",
+   "Data Visualization",
+   "Pattern Recognition",
+   "Data Mining",
+   "Business Intelligence",
+   "Computer Architecture for Machine Learning",
+   "Data Structures and Introduction to Algorithms",
+   "Database Systems",
+   "Practical Training"
+  ],
+  "plan_year": "2022-2023"
  },
  {
   "id": "psut-business",
@@ -1177,11 +1598,32 @@
   "curriculum_topics": [
    "programming",
    "web-mobile",
+   "mathematics",
+   "statistics",
    "data",
    "ai",
    "networks-security",
-   "mathematics"
-  ]
+   "design",
+   "communication",
+   "research"
+  ],
+  "key_courses": [
+   "Data Structures",
+   "Algorithms",
+   "Databases",
+   "Operating Systems",
+   "Internet Application Development",
+   "Software Engineering Principles",
+   "Computer Networks I",
+   "Artificial Intelligence Principles",
+   "Computation Theory",
+   "Data and Information Security",
+   "Distributed Systems",
+   "Game Programming",
+   "Mobile Device Programming",
+   "Practical Training"
+  ],
+  "plan_year": "2021/2022"
  },
  {
   "id": "zuj-se",
@@ -1209,10 +1651,44 @@
     "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
     "title": "ZUJ - Specialties and Fees",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.zuj.edu.jo/ZUJ-CMS/Uploaded_Files/Dept_Program_2_639051235837506880.pdf",
+    "title": "Official study plan 2024/2025",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply).",
+  "study_plan_url": "https://www.zuj.edu.jo/ZUJ-CMS/Uploaded_Files/Dept_Program_2_639051235837506880.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "entrepreneurship",
+   "research"
+  ],
+  "key_courses": [
+   "Fundamentals of Software Engineering",
+   "Software Requirements Engineering",
+   "Software Architectural Engineering",
+   "Software Testing and Maintenance",
+   "Intelligent Systems Development",
+   "User Experience Design",
+   "Software project management",
+   "Software Security",
+   "Data Structures and Algorithms",
+   "Database Design and Development",
+   "Systems Analysis and Design",
+   "Internet Applications Programming 1",
+   "Professional Practices Bootcamp",
+   "Field Training"
+  ],
+  "plan_year": "2024/2025"
  },
  {
   "id": "zuj-ds-ai",
@@ -1240,10 +1716,42 @@
     "url": "https://www.zuj.edu.jo/Admission/Specialties-And-Fees.aspx",
     "title": "ZUJ - Specialties and Fees",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681178947719364.pdf",
+    "title": "Official study plan 2021/2022",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "verified",
-  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply)."
+  "notes": "ZUJ table: 133 credit hours, 75 JOD (USD 107) per credit hour, 'High Secondary school GPA limit' 75%. Academic year not stated on page. Re-checked 2026-10-09: all values match the ZUJ page; no academic year is stated on the page. Minimum is the 'High Secondary school GPA limit' (minimum to apply).",
+  "study_plan_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681178947719364.pdf",
+  "curriculum_topics": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "research"
+  ],
+  "key_courses": [
+   "Basics of Data Science",
+   "Basics of Artificial Intelligence",
+   "Data Sciences and Artificial Intelligence Programming (1)",
+   "Statistics and Probabilities for Data Science and Artificial Intelligence",
+   "Machine Learning",
+   "Big Data",
+   "Data Mining",
+   "Principles of Natural Language Processing",
+   "Artificial Neural Networks and Deep Learning",
+   "Computer Vision",
+   "Robotics",
+   "Machine Learning Applications",
+   "Cognitive and Knowledge Science",
+   "Training"
+  ],
+  "plan_year": "2021/2022"
  },
  {
   "id": "zuj-nursing",
@@ -1388,10 +1896,16 @@
     "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
     "title": "Philadelphia University - Fee Brochure 2025-2026",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.philadelphia.edu.jo/it/cs/study-plan-2021-2022-ar.pdf",
+    "title": "Official study plan (2022/2021)",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored. Study plan opened 2026-10-10 but its text extracted badly (garbled Arabic), so courses are not listed.",
+  "study_plan_url": "https://www.philadelphia.edu.jo/it/cs/study-plan-2021-2022-ar.pdf"
  },
  {
   "id": "pu-se",
@@ -1419,10 +1933,43 @@
     "url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf",
     "title": "Philadelphia University - Fee Brochure 2025-2026",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://philadelphia.edu.jo/it/se/study-plan-2021-2022-en.pdf",
+    "title": "Official study plan 2021-2022",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored."
+  "notes": "Brochure prices vary by Tawjihi average tier (JD/credit hour, extracted from scrambled PDF text - possibly post-discount/scholarship columns): 70-79.9%: 47.5; 80-84.9%: 45; 85-89.9%: 40; 90%+: 32.5. Single value left null because the column (primary cost vs after discount/scholarship) could not be confirmed. Philadelphia prices each credit hour by Tawjihi-average band (60-69.9, 70-79.9, 80-89.9, 90+), so no single fee per credit hour is stored.",
+  "study_plan_url": "https://philadelphia.edu.jo/it/se/study-plan-2021-2022-en.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "research"
+  ],
+  "key_courses": [
+   "Software Engineering Fundamentals",
+   "Data Structures",
+   "Software Modelling",
+   "Software Requirements",
+   "Software Architecture",
+   "System Analysis and Design",
+   "Database Management",
+   "Software Development and Documentation",
+   "Software Project Management",
+   "Web Software Engineering",
+   "Software Production",
+   "Secure Software Construction",
+   "Software Testing",
+   "Practical Training"
+  ],
+  "plan_year": "2021-2022"
  },
  {
   "id": "pu-ds-ai",
@@ -1539,10 +2086,41 @@
     "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
     "title": "MEU - University faculties and majors for undergraduate studies",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8%202020-2021.pdf",
+    "title": "Official study plan 2026/2025",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01.",
+  "study_plan_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8%202020-2021.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "networks-security",
+   "design",
+   "research"
+  ],
+  "key_courses": [
+   "البرمجة الكينونية (1)",
+   "تراكيب البيانات",
+   "تصميم وتحليل الخوارزميات",
+   "البرمجة الكينونية (2)",
+   "تطوير برمجيات الويب (1)",
+   "تنظيم وعمارة الحاسوب",
+   "نظم قواعد البيانات",
+   "البرمجة المرئية",
+   "نظم التشغيل",
+   "شبكات الحاسوب",
+   "تحليل وتصميم نظم المعلومات",
+   "قواعد البيانات المتقدمة",
+   "برمجة تطبيقات الهواتف الذكية",
+   "التدريب الميداني"
+  ],
+  "plan_year": "2026/2025"
  },
  {
   "id": "meu-se",
@@ -1568,10 +2146,41 @@
     "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
     "title": "MEU - University faculties and majors for undergraduate studies",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA.pdf",
+    "title": "Official study plan 2026/2025",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01.",
+  "study_plan_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "design",
+   "management",
+   "research"
+  ],
+  "key_courses": [
+   "أساسيات هندسة البرمجيات",
+   "هندسة متطلبات البرمجيات",
+   "تصميم ومعمارية البرمجيات",
+   "تطوير البرمجيات وتوثيقها",
+   "فحص البرمجيات وضمان جودتها",
+   "برمجة قواعد البيانات",
+   "إدارة المشاريع البرمجية",
+   "مشروع تخرج (1)",
+   "مشروع تخرج (2)",
+   "التدريب الميداني",
+   "تطوير تطبيقات الويب المتقدمة",
+   "تصميم واجهات وتجربة المستخدم",
+   "صيانة البرمجيات",
+   "اقتصاديات مشاريع البرمجيات"
+  ],
+  "plan_year": "2026/2025"
  },
  {
   "id": "meu-ds-ai",
@@ -1598,10 +2207,39 @@
     "url": "https://www.meu.edu.jo/admission/bachelor-programmes/university-faculties-and-majors-for-undergraduate-studies/",
     "title": "MEU - University faculties and majors for undergraduate studies",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf",
+    "title": "Official study plan 2026/2025",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+  "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01.",
+  "study_plan_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf",
+  "curriculum_topics": [
+   "programming",
+   "data",
+   "ai",
+   "research"
+  ],
+  "key_courses": [
+   "برمجة علوم البيانات والذكاء الاصطناعي (1)",
+   "أساسيات علم البيانات",
+   "أساسيات الذكاء الاصطناعي",
+   "تحليل البيانات الضخمة",
+   "تنقيب البيانات",
+   "الشبكات العصبونية والتعلم العميق",
+   "معالجة اللغات الطبيعية",
+   "خوارزميات التحسين الذكية",
+   "الرؤية الحاسوبية",
+   "نظم الحوسبة لعلم البيانات والذكاء الاصطناعي",
+   "الروبوتات المتنقلة الذكية",
+   "مشروع تخرج (1)",
+   "مشروع تخرج (2)",
+   "التدريب الميداني"
+  ],
+  "plan_year": "2026/2025"
  },
  {
   "id": "meu-nursing",
@@ -1689,5 +2327,216 @@
   ],
   "verification": "partial",
   "notes": "Added 2026-10-09. MEU table columns 'JD | US$ | Min Avg. | Hours'; the JD column is not labelled 'per credit hour' but is read as such (a per-semester or per-year reading is impossible at these amounts). No academic year stated; page metadata shows an update on 2025-02-01."
+ },
+ {
+  "id": "psut-cyber",
+  "university_id": "psut",
+  "name_en": "Cyber Security",
+  "name_ar": null,
+  "field": "cybersecurity",
+  "degree": "bachelor",
+  "credit_hours": 132,
+  "tuition_jod_per_credit_hour": 130,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 75,
+  "min_admission_year": null,
+  "admission_track": "private-university",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "cybersecurity-analyst",
+   "network-engineer"
+  ],
+  "sources": [
+   {
+    "url": "https://psut.edu.jo/en/study-plans",
+    "title": "PSUT - Programs & Fees (study plans)",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://psut.edu.jo/en/faqs",
+    "title": "PSUT - FAQs (minimum admission average: computing majors 75%)",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://psut.edu.jo/en/school/school_of_computing_sciences",
+    "title": "PSUT - King Hussein School of Computing Sciences",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://www.psut.edu.jo/uploads/2026/04/cybersecurity.pdf",
+    "title": "Official study plan 2023-2024",
+    "checked_at": "2026-10-10"
+   }
+  ],
+  "verification": "verified",
+  "notes": "Credit hours and fee from the PSUT Programs & Fees table (no year stated). Minimum 75 is the school-wide figure from the PSUT FAQ (no year printed).",
+  "study_plan_url": "https://www.psut.edu.jo/uploads/2026/04/cybersecurity.pdf",
+  "curriculum_topics": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "management",
+   "research"
+  ],
+  "key_courses": [
+   "Cybersecurity Fundamentals",
+   "Programming for Security Professionals",
+   "Networks Fundamentals",
+   "Secure Web Design and Development",
+   "Cryptography",
+   "Database Security",
+   "Network Security and Protocols",
+   "Artificial Intelligence and Data Analytics",
+   "Secure Systems Development and Design",
+   "Infrastructure Security using Linux",
+   "Digital Forensics and Incident Response",
+   "Malware Analysis and Reverse Engineering",
+   "Ethical Hacking and Penetration Testing",
+   "Information systems risk management"
+  ],
+  "plan_year": "2023-2024"
+ },
+ {
+  "id": "htu-cs",
+  "university_id": "htu",
+  "name_en": "Computer Science",
+  "name_ar": null,
+  "field": "computer-science",
+  "degree": "bachelor",
+  "credit_hours": 139,
+  "tuition_jod_per_credit_hour": 120,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "htu-direct",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "software-developer",
+   "web-developer"
+  ],
+  "study_plan_url": "https://sismobile.htu.edu.jo/uploads/73f333d7-5819-ed11-b847-00155d140b05_7f90de28460448f5b469be7fc7abd512.pdf",
+  "sources": [
+   {
+    "url": "https://htu.edu.jo/programs/computer-science",
+    "title": "Computer Science - HTU program page",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://sis.htu.edu.jo/New/images/Admission_policy.pdf",
+    "title": "HTU Admission policy (Academic Criteria) PDF",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/schools/sci",
+    "title": "HTU School of Computing and Informatics",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/admission/tuition-and-fees",
+    "title": "HTU Tuition and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "HTU bachelor's (139 credit hours per the program page; HTU also offers this as a 115-hour Technical and 72-hour Technician degree). Fee 120 JOD per credit hour is HTU's rate for Jordanian students on bachelor's and technical degrees, regular programme (htu.edu.jo/admission/tuition-and-fees, no year printed). Admission (HTU admission policy, Academic Criteria): Tawjihi average 80% AND Math 80%; no subject below 50%; no academic year printed. Eligible streams for 2026 certificates: Engineering; Technology & Informatics or Medical Science with scientific Math at 12th grade; for 2025 and earlier: scientific streams. HTU is listed by MoHE as a university operating under a special law. Study plan PDF is linked but could not be read automatically (host blocks automated fetching), so courses are not listed."
+ },
+ {
+  "id": "htu-cyber",
+  "university_id": "htu",
+  "name_en": "Cyber Security",
+  "name_ar": null,
+  "field": "cybersecurity",
+  "degree": "bachelor",
+  "credit_hours": 139,
+  "tuition_jod_per_credit_hour": 120,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "htu-direct",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "cybersecurity-analyst",
+   "network-engineer"
+  ],
+  "study_plan_url": "https://sismobile.htu.edu.jo/uploads/73f333d7-5819-ed11-b847-00155d140b05_dc244d83a4674f8e960344332e7374d7.pdf",
+  "sources": [
+   {
+    "url": "https://htu.edu.jo/programs/cyber-security",
+    "title": "Cyber Security - HTU program page",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://sis.htu.edu.jo/New/images/Admission_policy.pdf",
+    "title": "HTU Admission policy (Academic Criteria) PDF",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/schools/sci",
+    "title": "HTU School of Computing and Informatics",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/admission/tuition-and-fees",
+    "title": "HTU Tuition and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "HTU bachelor's (139 credit hours per the program page; HTU also offers this as a 115-hour Technical and 72-hour Technician degree). Fee 120 JOD per credit hour is HTU's rate for Jordanian students on bachelor's and technical degrees, regular programme (htu.edu.jo/admission/tuition-and-fees, no year printed). Admission (HTU admission policy, Academic Criteria): Tawjihi average 80% AND Math 80%; no subject below 50%; no academic year printed. Eligible streams for 2026 certificates: Engineering; Technology & Informatics or Medical Science with scientific Math at 12th grade; for 2025 and earlier: scientific streams. HTU is listed by MoHE as a university operating under a special law. Study plan PDF is linked but could not be read automatically (host blocks automated fetching), so courses are not listed."
+ },
+ {
+  "id": "htu-ds-ai",
+  "university_id": "htu",
+  "name_en": "Data Science and Artificial Intelligence",
+  "name_ar": null,
+  "field": "ai-data-science",
+  "degree": "bachelor",
+  "credit_hours": 139,
+  "tuition_jod_per_credit_hour": 120,
+  "tuition_track": "private",
+  "tuition_year": null,
+  "min_admission_avg": 80,
+  "min_admission_year": null,
+  "admission_track": "htu-direct",
+  "eligible_streams": [],
+  "internship_note": null,
+  "career_tags": [
+   "data-analyst",
+   "ml-engineer",
+   "data-scientist"
+  ],
+  "study_plan_url": "https://sismobile.htu.edu.jo/uploads/73f333d7-5819-ed11-b847-00155d140b05_21f85505140f47e7b9301487f2c56364.pdf",
+  "sources": [
+   {
+    "url": "https://htu.edu.jo/programs/data-science-and-artificial-intelligence",
+    "title": "Data Science and Artificial Intelligence - HTU program page",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://sis.htu.edu.jo/New/images/Admission_policy.pdf",
+    "title": "HTU Admission policy (Academic Criteria) PDF",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/schools/sci",
+    "title": "HTU School of Computing and Informatics",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/admission/tuition-and-fees",
+    "title": "HTU Tuition and Fees",
+    "checked_at": "2026-10-09"
+   }
+  ],
+  "verification": "verified",
+  "notes": "HTU bachelor's (139 credit hours per the program page; HTU also offers this as a 115-hour Technical and 72-hour Technician degree). Fee 120 JOD per credit hour is HTU's rate for Jordanian students on bachelor's and technical degrees, regular programme (htu.edu.jo/admission/tuition-and-fees, no year printed). Admission (HTU admission policy, Academic Criteria): Tawjihi average 80% AND Math 80%; no subject below 50%; no academic year printed. Eligible streams for 2026 certificates: Engineering; Technology & Informatics or Medical Science with scientific Math at 12th grade; for 2025 and earlier: scientific streams. HTU is listed by MoHE as a university operating under a special law. Study plan PDF is linked but could not be read automatically (host blocks automated fetching), so courses are not listed."
  }
 ]

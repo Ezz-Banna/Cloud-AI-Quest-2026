@@ -89,6 +89,7 @@ async function run(viewport, tag) {
   await page.getByRole("table").waitFor({ timeout: 15000 });
   check(`${tag}: compare view shows 2 programs`, (await page.locator("thead th").count()) === 2);
   check(`${tag}: compare view lists trade-offs`, await page.getByRole("rowheader", { name: "Trade-offs" }).isVisible());
+  check(`${tag}: compare view shows curriculum, key courses and rankings rows`, await page.getByRole("rowheader", { name: "What you'd study" }).isVisible() && await page.getByRole("rowheader", { name: "Key courses" }).isVisible() && await page.getByRole("rowheader", { name: "Published rankings" }).isVisible());
   await page.getByRole("button", { name: /compare in plain words/i }).click();
   check(`${tag}: plain-words comparison shown`, await page.getByText(/Template summary|Written by AI from the table/).first().waitFor({ timeout: 40000 }).then(() => true, () => false));
   await page.screenshot({ path: `${OUT}/${tag}-04b-compare.png`, fullPage: true });

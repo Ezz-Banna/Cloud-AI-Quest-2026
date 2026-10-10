@@ -286,7 +286,8 @@ export function scoreProgram(p: LearnerProfile, prog: Program, uni: University):
   // Public or private
   const typePref = typePreference(p);
   if (!typePref) add("type", null, "No preference between public and private", "لا تفضيل بين الحكومية والخاصة");
-  else add("type", typePref === uni.type ? 1 : 0, uni.type === "public" ? "A public university" : uni.type === "private" ? "A private university" : "A university under a special law", uni.type === "public" ? "جامعة حكومية" : uni.type === "private" ? "جامعة خاصة" : "جامعة بقانون خاص");
+  // A special-law university (HTU, WISE) is neither public nor private, so it half-matches either preference.
+  else add("type", uni.type === "special-law" ? 0.5 : typePref === uni.type ? 1 : 0, uni.type === "public" ? "A public university" : uni.type === "private" ? "A private university" : "A university under a special law", uni.type === "public" ? "جامعة حكومية" : uni.type === "private" ? "جامعة خاصة" : "جامعة بقانون خاص");
 
   // Applied learning
   if (prog.internship_note) add("applied", 1, `Practical training: ${prog.internship_note}`, `تدريب عملي: ${prog.internship_note}`);

@@ -2175,5 +2175,1361 @@
   "new": "special-law",
   "reason": "MoHE classifies it this way.",
   "source_url": "https://mohe.gov.jo/EN/List/Universities_Operating_under_special_Law"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "uj",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 326",
+  "reason": "Published ranking (news).",
+  "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "just",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 449",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.topuniversities.com/universities/jordan-university-science-technology"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "just",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2026: 461",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.topuniversities.com/universities/jordan-university-science-technology"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "aau",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 643",
+  "reason": "Published ranking (news).",
+  "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 761-770",
+  "reason": "Published ranking (news).",
+  "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2026: 791-800",
+  "reason": "Published ranking (news).",
+  "source_url": "https://www.jordannews.jo/Section-113/All/Applied-Science-University-Ranks-First-Among-Jordanian-Private-Universities-in-QS-World-Rankings-Progress-for-2026-42724"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "gju",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 781-790",
+  "reason": "Published ranking (news).",
+  "source_url": "https://www.petra.gov.jo/en/news/german-jordanian-university-advances-in-qs-world-rankings-2027"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "yu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 901-950",
+  "reason": "Published ranking (news).",
+  "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "psut",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2027: 951-1000",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://topuniversities.com/universities/princess-sumaya-university-technology"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "psut",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings 2026: 901-950",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://topuniversities.com/universities/princess-sumaya-university-technology"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "uj",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 10",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "just",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 16",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ammanu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 32",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 37",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "gju",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 39",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "yu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 40",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "hu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 51-60",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "mutah",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 51-60",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "psut",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 51-60",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "bau",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 71-80",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "meu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 91-100",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "aau",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 91-100",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "zuj",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 111-120",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "uop",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 121-130",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "pu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 121-130",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ahu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 121-130",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "aabu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 141-150",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "zu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 141-150",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ttu",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 151-160",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "isra",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 161-170",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "jadara",
+  "field": "rankings",
+  "old": null,
+  "new": "QS Arab Region University Rankings 2026: 161-170",
+  "reason": "Published ranking (news).",
+  "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "aau",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings by Subject 2026 (Computer Science & Information Systems): within top 600 (exact band not stated)",
+  "reason": "Published ranking (university announcement).",
+  "source_url": "https://newsletter.aau.edu.jo/?p=19456"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "psut",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings by Subject 2023 (Computer Science & Information Systems): 351-400",
+  "reason": "Published ranking (university announcement).",
+  "source_url": "https://psut.edu.jo/en/university-ranking"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "psut",
+  "field": "rankings",
+  "old": null,
+  "new": "QS World University Rankings by Subject 2022 (Computer Science & Information Systems): 401-450",
+  "reason": "Published ranking (university announcement).",
+  "source_url": "https://psut.edu.jo/en/university-ranking"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ammanu",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings 2026: 401-500",
+  "reason": "Published ranking (university announcement).",
+  "source_url": "https://www.ammanu.edu.jo/news/al-ahliyya-amman-university-ranks-first-in-jordan-and-401-500-worldwide-in-the-times-higher-education-world-university-rankings-2026/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "uj",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings 2026: 601-800",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.timeshighereducation.com/world-university-rankings/university-jordan"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "just",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings 2026: 801-1000",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.timeshighereducation.com/world-university-rankings/jordan-university-science-and-technology"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings 2027: 401-450",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.timeshighereducation.com/world-university-rankings/applied-science-private-university"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "uj",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings by Subject 2026 (Computer Science): 301-400",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.timeshighereducation.com/world-university-rankings/university-jordan"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "ammanu",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings by Subject 2026 (Computer Science): 301-400",
+  "reason": "Published ranking (university announcement).",
+  "source_url": "https://www.ammanu.edu.jo/news/al-ahliyya-amman-university-tops-jordanian-universities-in-five-disciplines-and-ranks-first-among-private-universities-in-business-and-medicine-in-the-2026-times-subject-rankings/"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "asu",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings by Subject 2026 (Computer Science): 401-500",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.timeshighereducation.com/world-university-rankings/applied-science-private-university"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "universities",
+  "id": "just",
+  "field": "rankings",
+  "old": null,
+  "new": "THE World University Rankings by Subject 2026 (Computer Science): 601-800",
+  "reason": "Published ranking (ranking publisher).",
+  "source_url": "https://www.timeshighereducation.com/world-university-rankings/jordan-university-science-and-technology"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cs",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 75,
+  "reason": "PSUT FAQ: minimum admission average for King Hussein School of Computing Sciences majors is 75%. School-wide, no year printed.",
+  "source_url": "https://psut.edu.jo/en/faqs"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-se",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 75,
+  "reason": "PSUT FAQ: minimum admission average for King Hussein School of Computing Sciences majors is 75%. School-wide, no year printed.",
+  "source_url": "https://psut.edu.jo/en/faqs"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-ds-ai",
+  "field": "min_admission_avg",
+  "old": null,
+  "new": 75,
+  "reason": "PSUT FAQ: minimum admission average for King Hussein School of Computing Sciences majors is 75%. School-wide, no year printed.",
+  "source_url": "https://psut.edu.jo/en/faqs"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cyber",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "PSUT computing program listed with credit hours and fee.",
+  "source_url": "https://psut.edu.jo/en/study-plans"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "htu-cs",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "HTU School of Computing and Informatics bachelor program with credit hours, fee and admission rule.",
+  "source_url": "https://htu.edu.jo/programs/computer-science"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "htu-cyber",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "HTU School of Computing and Informatics bachelor program with credit hours, fee and admission rule.",
+  "source_url": "https://htu.edu.jo/programs/cyber-security"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "htu-ds-ai",
+  "field": "(record)",
+  "old": null,
+  "new": "added",
+  "reason": "HTU School of Computing and Informatics bachelor program with credit hours, fee and admission rule.",
+  "source_url": "https://htu.edu.jo/programs/data-science-and-artificial-intelligence"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-cs",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/CS-English-Study%20Plan%202025-UPDATED-OCT_2025.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/CS-English-Study%20Plan%202025-UPDATED-OCT_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-cs",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/CS-English-Study%20Plan%202025-UPDATED-OCT_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-cs",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/CS-English-Study%20Plan%202025-UPDATED-OCT_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-se",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/SE/SiteAssets/Pages/Programs/SE_English_StudyPlan2025_12OCT2025.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/SE/SiteAssets/Pages/Programs/SE_English_StudyPlan2025_12OCT2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-se",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/SE/SiteAssets/Pages/Programs/SE_English_StudyPlan2025_12OCT2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-se",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/SE/SiteAssets/Pages/Programs/SE_English_StudyPlan2025_12OCT2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-ai",
+  "field": "study_plan_url",
+  "old": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-.pdf",
+  "new": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-UPDATED-OCT-2025.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-UPDATED-OCT-2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-ai",
+  "field": "curriculum_topics",
+  "old": [
+   "programming",
+   "ai",
+   "data",
+   "mathematics",
+   "statistics",
+   "networks-security",
+   "web-mobile",
+   "entrepreneurship"
+  ],
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-UPDATED-OCT-2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cs/SiteAssets/Pages/Programs/AI-English-StudyPlan-UPDATED-OCT-2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-ds",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cis/SiteAssets/Pages/Programs/DS_StudyPlan_En_OCT2025.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cis/SiteAssets/Pages/Programs/DS_StudyPlan_En_OCT2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-ds",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "management",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cis/SiteAssets/Pages/Programs/DS_StudyPlan_En_OCT2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "just-ds",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.just.edu.jo/FacultiesandDepartments/it/Departments/cis/SiteAssets/Pages/Programs/DS_StudyPlan_En_OCT2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-cs",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://pic.hu.edu.jo/upload/67000000/67010000/cs_tree_english.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://pic.hu.edu.jo/upload/67000000/67010000/cs_tree_english.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-cs",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://pic.hu.edu.jo/upload/67000000/67010000/cs_tree_english.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-cs",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://pic.hu.edu.jo/upload/67000000/67010000/cs_tree_english.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-se",
+  "field": "curriculum_topics",
+  "old": [
+   "programming",
+   "web-mobile",
+   "data",
+   "mathematics",
+   "statistics",
+   "networks-security",
+   "management",
+   "entrepreneurship"
+  ],
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "networks-security",
+   "design",
+   "management",
+   "entrepreneurship",
+   "communication",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-se",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://pic.hu.edu.jo/Upload/67000000/67020000/Advisory%20Plan.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-ds-ai",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://pic.hu.edu.jo/Upload/67000000/67050000/Faculty%20of%20Prince%20Al.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://pic.hu.edu.jo/Upload/67000000/67050000/Faculty%20of%20Prince%20Al.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-ds-ai",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://pic.hu.edu.jo/Upload/67000000/67050000/Faculty%20of%20Prince%20Al.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "hu-ds-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://pic.hu.edu.jo/Upload/67000000/67050000/Faculty%20of%20Prince%20Al.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-cs",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/CS/PublishingImages/Pages/programstudyplan/CS.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/CS/PublishingImages/Pages/programstudyplan/CS.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-ds-ai",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/DSAI/PublishingImages/Pages/proStuPlan/Study%20Plan%20%E2%80%93%20Data%20Science%20and%20Artificial%20Intelligence.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/DSAI/PublishingImages/Pages/proStuPlan/Study%20Plan%20%E2%80%93%20Data%20Science%20and%20Artificial%20Intelligence.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-ds-ai",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/DSAI/PublishingImages/Pages/proStuPlan/Study%20Plan%20%E2%80%93%20Data%20Science%20and%20Artificial%20Intelligence.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "aabu-ds-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://aabu.edu.jo/EN/collegesandinstitutes/IT/Departments/DSAI/PublishingImages/Pages/proStuPlan/Study%20Plan%20%E2%80%93%20Data%20Science%20and%20Artificial%20Intelligence.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "entrepreneurship",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "yu-cs",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-CS-Study_Plan_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "yu-ds-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://it.yu.edu.jo/images/2026website/Bac_plan2025/ITCS-DA-Study_Plan_2025.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cs",
+  "field": "curriculum_topics",
+  "old": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "mathematics",
+   "statistics",
+   "physics"
+  ],
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "physics",
+   "design",
+   "management",
+   "communication",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cs",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/computer-science-1.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-se",
+  "field": "study_plan_url",
+  "old": "https://www.psut.edu.jo/uploads/2022/04/se-english.pdf",
+  "new": "https://www.psut.edu.jo/uploads/2026/06/se-english.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/06/se-english.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-se",
+  "field": "curriculum_topics",
+  "old": [
+   "programming",
+   "web-mobile",
+   "data",
+   "networks-security",
+   "design",
+   "management"
+  ],
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "communication",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/06/se-english.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-se",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/06/se-english.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-ds-ai",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.psut.edu.jo/uploads/2026/04/data-science-artificial-intelligence.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/data-science-artificial-intelligence.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-ds-ai",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "management",
+   "communication",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/data-science-artificial-intelligence.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-ds-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/data-science-artificial-intelligence.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cyber",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.psut.edu.jo/uploads/2026/04/cybersecurity.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/cybersecurity.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cyber",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "management",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/cybersecurity.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "psut-cyber",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.psut.edu.jo/uploads/2026/04/cybersecurity.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-cs",
+  "field": "curriculum_topics",
+  "old": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "mathematics"
+  ],
+  "new": [
+   "programming",
+   "web-mobile",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "communication",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-cs",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681321369599117.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-se",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.zuj.edu.jo/ZUJ-CMS/Uploaded_Files/Dept_Program_2_639051235837506880.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.zuj.edu.jo/ZUJ-CMS/Uploaded_Files/Dept_Program_2_639051235837506880.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-se",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "entrepreneurship",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.zuj.edu.jo/ZUJ-CMS/Uploaded_Files/Dept_Program_2_639051235837506880.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-se",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.zuj.edu.jo/ZUJ-CMS/Uploaded_Files/Dept_Program_2_639051235837506880.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-ds-ai",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681178947719364.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681178947719364.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-ds-ai",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "mathematics",
+   "statistics",
+   "data",
+   "ai",
+   "networks-security",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681178947719364.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "zuj-ds-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://service.zuj.edu.jo/cms/Uploaded_Files/Dept_Program_2_638681178947719364.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-cs",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.philadelphia.edu.jo/it/cs/study-plan-2021-2022-ar.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.philadelphia.edu.jo/it/cs/study-plan-2021-2022-ar.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://philadelphia.edu.jo/it/se/study-plan-2021-2022-en.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://philadelphia.edu.jo/it/se/study-plan-2021-2022-en.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "data",
+   "ai",
+   "networks-security",
+   "design",
+   "management",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://philadelphia.edu.jo/it/se/study-plan-2021-2022-en.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "pu-se",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://philadelphia.edu.jo/it/se/study-plan-2021-2022-en.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-cs",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8%202020-2021.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8%202020-2021.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-cs",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "data",
+   "networks-security",
+   "design",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8%202020-2021.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-cs",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8%202020-2021.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-se",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-se",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "web-mobile",
+   "data",
+   "design",
+   "management",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-se",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-ds-ai",
+  "field": "study_plan_url",
+  "old": null,
+  "new": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf",
+  "reason": "Official study plan opened and read.",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-ds-ai",
+  "field": "curriculum_topics",
+  "old": null,
+  "new": [
+   "programming",
+   "data",
+   "ai",
+   "research"
+  ],
+  "reason": "Topics mapped from course titles in the official study plan (each topic backed by a quoted course title in the research notes).",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf"
+ },
+ {
+  "date": "2026-10-10",
+  "dataset": "programs",
+  "id": "meu-ds-ai",
+  "field": "key_courses",
+  "old": null,
+  "new": "14 course titles",
+  "reason": "Course titles copied as printed in the official study plan.",
+  "source_url": "https://www.meu.edu.jo/wp-content/uploads/faculties/Study-plans/%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8-%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A2020-2021.pdf"
  }
 ]

@@ -274,6 +274,7 @@ export default function Results() {
                     </table>
                     <p className="mt-3 text-xs text-muted">{tr("Cost basis", "أساس الكلفة")}: {lang === "ar" ? m.cost.basis_ar : m.cost.basis}</p>
                     {m.program.study_plan_url && <p className="mt-1 text-xs"><a className="underline" href={m.program.study_plan_url} target="_blank" rel="noreferrer">{tr("Published study plan", "الخطة الدراسية المنشورة")} ↗</a></p>}
+                    {(m.program.key_courses ?? []).length > 0 && <p className="mt-1 text-xs text-muted"><span className="font-semibold text-ink">{tr("Key courses", "مواد أساسية")}:</span> {m.program.key_courses!.slice(0, 6).join(lang === "ar" ? "، " : ", ")}{m.program.key_courses!.length > 6 ? "…" : ""}</p>}
                     {m.missing_data.length > 0 && <p className="mt-2 text-xs text-warn">{tr("Not yet verified", "غير موثّق بعد")}: {m.missing_data.map((x) => missingLabel(x, lang)).join(lang === "ar" ? "، " : ", ")}</p>}
                   </div>
                   <div>

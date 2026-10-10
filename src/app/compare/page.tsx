@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { cityLabel, missingLabel } from "@/lib/i18n";
-import { FIELD_BY_ID } from "@/lib/data/taxonomy";
+import { FIELD_BY_ID, TOPIC_BY_ID } from "@/lib/data/taxonomy";
+import { studentTopics } from "@/lib/engines/programs";
 import { useEffect, useState } from "react";
 import { useBridge } from "@/components/ProfileProvider";
 import { Sources, VerificationBadge } from "@/components/Badges";
@@ -40,6 +41,56 @@ export default function Compare() {
     "missing-student-average": tr("Add your average", "أضف معدلك"),
   } as Record<string, string>)[s];
   const dash = <span className="text-warn">{tr("Not verified", "غير موثّق")}</span>;
+  // Curriculum: topics read from each published study plan. "Only here" = no other compared program's plan covers it.
+  const mine = studentTopics(profile);
+  const topicCount = new Map<string, number>();
+  for (const m of rows) for (const t of new Set(m.program.curriculum_topics ?? [])) topicCount.set(t, (topicCount.get(t) ?? 0) + 1);
+  const topicName = (t: string) => (lang === "ar" ? TOPIC_BY_ID[t]?.name_ar : TOPIC_BY_ID[t]?.name_en) ?? t;
+  const notRead = <span className="text-warn">{tr("Study plan not read yet", "لم تُقرأ الخطة الدراسية بعد")}</span>;
+  const curriculum = (m: ProgramMatch) => {
+    const ts = m.program.curriculum_topics ?? [];
+    if (!ts.length) return notRead;
+    return (
+      <ul className="flex flex-wrap gap-1.5">
+        {ts.map((t) => {
+          const only = rows.length > 1 && topicCount.get(t) === 1;
+          const liked = mine.has(t);
+          return (
+            <li key={t} className={`rounded-full border px-2 py-0.5 text-xs ${liked ? "border-sage bg-sage-100 font-semibold text-teal" : "border-line bg-ivory text-ink"}`}>
+              {liked && <span aria-hidden="true">✓ </span>}{topicName(t)}{only && <span className="ms-1 text-[0.65rem] font-bold uppercase tracking-wide text-sand-700">{tr("only here", "هنا فقط")}</span>}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+  const courses = (m: ProgramMatch) => {
+    const cs = m.program.key_courses ?? [];
+    if (!cs.length) return m.program.study_plan_url ? <span className="text-muted">{tr("Plan linked but not read automatically; open it below.", "الخطة مرفقة لكن لم تُقرأ آلياً؛ افتحها أدناه.")}</span> : notRead;
+    return (
+      <>
+        <ul className="list-disc space-y-0.5 ps-4 text-xs">{cs.slice(0, 8).map((c) => <li key={c}>{c}</li>)}</ul>
+        {cs.length > 8 && (
+          <details className="mt-1 text-xs"><summary className="cursor-pointer text-teal">{tr(`${cs.length - 8} more`, `${cs.length - 8} أخرى`)}</summary>
+            <ul className="mt-1 list-disc space-y-0.5 ps-4">{cs.slice(8).map((c) => <li key={c}>{c}</li>)}</ul></details>
+        )}
+        <span className="mt-1 block text-[0.7rem] text-muted">{tr("As printed in the study plan", "كما وردت في الخطة الدراسية")}{m.program.plan_year ? ` (${m.program.plan_year})` : ""}</span>
+      </>
+    );
+  };
+  const rankings = (m: ProgramMatch) => {
+    const rs = m.university.rankings ?? [];
+    if (!rs.length) return <span className="text-muted">{tr("Not listed in the QS or THE editions we checked", "غير مدرجة في إصدارات QS أو THE التي راجعناها")}</span>;
+    const year = (r: { ranking: string }) => Number(r.ranking.match(/\d{4}/)?.[0] ?? 0);
+    const sorted = [...rs].sort((a, b) => year(b) - year(a) || Number(!!b.subject) - Number(!!a.subject));
+    return (
+      <ul className="space-y-1 text-xs">
+        {sorted.slice(0, 4).map((r, i) => (
+          <li key={i}><strong className="text-ink">{r.rank}</strong> <a className="text-muted underline decoration-line underline-offset-2 hover:text-teal" href={r.source_url} target="_blank" rel="noreferrer">{r.ranking}{r.subject ? ` · ${r.subject}` : ""}</a>{r.source_kind !== "ranking publisher" && <span className="text-muted"> ({r.source_kind === "news" ? tr("news report", "خبر صحفي") : tr("university's own announcement", "إعلان الجامعة")})</span>}</li>
+        ))}
+      </ul>
+    );
+  };
   const lines: [string, (m: ProgramMatch) => React.ReactNode][] = [
     [tr("University", "الجامعة"), (m) => `${lang === "ar" && m.university.name_ar ? m.university.name_ar : m.university.name_en}`],
     [tr("City · type", "المدينة · النوع"), (m) => `${cityLabel(m.university.city, lang)} · ${m.university.type === "public" ? tr("Public", "حكومية") : m.university.type === "private" ? tr("Private", "خاصة") : tr("Special law", "بقانون خاص")}`],
@@ -53,7 +104,10 @@ export default function Compare() {
     [tr("Strengths", "نقاط القوة"), (m) => <ul className="space-y-1">{m.strengths.slice(0, 4).map((r, i) => <li key={i}>+ {lang === "ar" ? r.ar : r.en}</li>)}</ul>],
     [tr("Trade-offs", "المقايضات"), (m) => <ul className="space-y-1">{m.trade_offs.slice(0, 4).map((r, i) => <li key={i}>− {lang === "ar" ? r.ar : r.en}</li>)}{m.trade_offs.length === 0 && <li className="text-muted">{tr("None found", "لا يوجد")}</li>}</ul>],
     [tr("Practical training", "التدريب العملي"), (m) => m.program.internship_note ?? dash],
+    [tr("What you'd study", "ماذا ستدرس"), curriculum],
+    [tr("Key courses", "مواد أساسية"), courses],
     [tr("Study plan", "الخطة الدراسية"), (m) => (m.program.study_plan_url ? <a className="underline" href={m.program.study_plan_url} target="_blank" rel="noreferrer">{tr("Open", "افتح")} ↗</a> : dash)],
+    [tr("Published rankings", "التصنيفات المنشورة"), rankings],
     [tr("Past competitive cut-off", "معدل القبول التنافسي السابق"), (m) => (m.eligibility.last_cutoff ? `${m.eligibility.last_cutoff.value} (${m.eligibility.last_cutoff.year})` : dash)],
     [tr("Missing data", "بيانات ناقصة"), (m) => (m.missing_data.length ? m.missing_data.map((x) => missingLabel(x, lang)).join(lang === "ar" ? "، " : ", ") : tr("None", "لا شيء"))],
     [tr("Data status", "حالة البيانات"), (m) => <VerificationBadge v={m.program.verification} />],
@@ -97,6 +151,7 @@ export default function Compare() {
               ))}
             </tbody>
           </table>
+          <p className="border-t border-line p-3 text-xs text-muted">{tr("What you'd study: topics read from each published study plan. ✓ marks a subject you said you enjoy; \"only here\" means no other program in this table covers it. Rankings are shown as published, with their source; a university missing from a ranking is not rated lower by Bridgecom.", "ماذا ستدرس: مواضيع مقروءة من الخطة الدراسية المنشورة لكل برنامج. ✓ تعني مادة قلت إنك تحبها؛ \"هنا فقط\" تعني أن لا برنامج آخر في الجدول يغطيها. التصنيفات معروضة كما نُشرت مع مصدرها، وغياب جامعة عن تصنيف لا يخفض تقييمها في بريدجكوم.")}</p>
         </div>
       )}
       {rows.length >= 2 && (

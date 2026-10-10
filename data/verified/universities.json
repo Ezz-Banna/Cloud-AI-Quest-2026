@@ -21,7 +21,41 @@
    }
   ],
   "verification": "verified",
-  "notes": "MoHE page names UJ (est. 1962) as the first public university. UJ fee pages (registration.ju.edu.jo MajorsAndFees) blocked automated fetching, so no UJ program fees in programs.json. Official check 2026-10-09: Type confirmed by the MoHE official-universities list. City is not verified: every ju.edu.jo page (and its subdomains) returned 'The requested URL was rejected'. The app's city value is still unverified. City (Amman) not re-confirmed: ju.edu.jo refused automated requests on 2026-10-09."
+  "notes": "MoHE page names UJ (est. 1962) as the first public university. UJ fee pages (registration.ju.edu.jo MajorsAndFees) blocked automated fetching, so no UJ program fees in programs.json. Official check 2026-10-09: Type confirmed by the MoHE official-universities list. City is not verified: every ju.edu.jo page (and its subdomains) returned 'The requested URL was rejected'. The app's city value is still unverified. City (Amman) not re-confirmed: ju.edu.jo refused automated requests on 2026-10-09.",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "326",
+    "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "10",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings 2026",
+    "subject": null,
+    "rank": "601-800",
+    "source_url": "https://www.timeshighereducation.com/world-university-rankings/university-jordan",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings by Subject 2026",
+    "subject": "Computer Science",
+    "rank": "301-400",
+    "source_url": "https://www.timeshighereducation.com/world-university-rankings/university-jordan",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "just",
@@ -45,7 +79,49 @@
    }
   ],
   "verification": "verified",
-  "notes": " Official check 2026-10-09: Official site uses 'Jordan University of Science and Technology'. City is taken from its P.O. address."
+  "notes": " Official check 2026-10-09: Official site uses 'Jordan University of Science and Technology'. City is taken from its P.O. address.",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "449",
+    "source_url": "https://www.topuniversities.com/universities/jordan-university-science-technology",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS World University Rankings 2026",
+    "subject": null,
+    "rank": "461",
+    "source_url": "https://www.topuniversities.com/universities/jordan-university-science-technology",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "16",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings 2026",
+    "subject": null,
+    "rank": "801-1000",
+    "source_url": "https://www.timeshighereducation.com/world-university-rankings/jordan-university-science-and-technology",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings by Subject 2026",
+    "subject": "Computer Science",
+    "rank": "601-800",
+    "source_url": "https://www.timeshighereducation.com/world-university-rankings/jordan-university-science-and-technology",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "yu",
@@ -69,7 +145,25 @@
    }
   ],
   "verification": "verified",
-  "notes": " Official check 2026-10-09: City from official site."
+  "notes": " Official check 2026-10-09: City from official site.",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "901-950",
+    "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "40",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "hu",
@@ -93,7 +187,17 @@
    }
   ],
   "verification": "verified",
-  "notes": " Official check 2026-10-09: The university also states \"The Hashemite University (HU) is a governmental university that was established by a Royal Decree in 1991.\" Its Location page says \"located in the vicinity of Zarqa\", so the campus is near Zarqa, not inside the city."
+  "notes": " Official check 2026-10-09: The university also states \"The Hashemite University (HU) is a governmental university that was established by a Royal Decree in 1991.\" Its Location page says \"located in the vicinity of Zarqa\", so the campus is near Zarqa, not inside the city.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "51-60",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "mutah",
@@ -112,7 +216,17 @@
    }
   ],
   "verification": "verified",
-  "notes": "Public civilian and military university. No fee schedule found/fetched, so no Mutah programs in programs.json. Official check 2026-10-09: Univ PDF also says \"a unique public institution in the Hashemite Kingdom of Jordan\". The homepage could not be fetched (robots disallowed); the city comes from the university's English profile PDF."
+  "notes": "Public civilian and military university. No fee schedule found/fetched, so no Mutah programs in programs.json. Official check 2026-10-09: Univ PDF also says \"a unique public institution in the Hashemite Kingdom of Jordan\". The homepage could not be fetched (robots disallowed); the city comes from the university's English profile PDF.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "51-60",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "aabu",
@@ -136,7 +250,17 @@
    }
   ],
   "verification": "verified",
-  "notes": " name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Official check 2026-10-09: MoHE spells it 'Al albayt University'."
+  "notes": " name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Official check 2026-10-09: MoHE spells it 'Al albayt University'.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "141-150",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "gju",
@@ -160,7 +284,25 @@
    }
   ],
   "verification": "partial",
-  "notes": "Public. Main campus at Mushaqar near Madaba (Wikipedia says 'near Madaba'; governorate not explicitly stated in source). GJU fee sheet found is in USD with scrambled layout and includes a compulsory German-year fee; per-program JD fees not reliably extractable, so no GJU programs included. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Official check 2026-10-09: The homepage footer gives a mailing address of 'Amman Madaba Street ... P.O. Box 35247, Amman 11180'. GJU's own page says the campus is near Madaba. If the app has 'Amman' as the city, that is the mailing address, not the campus."
+  "notes": "Public. Main campus at Mushaqar near Madaba (Wikipedia says 'near Madaba'; governorate not explicitly stated in source). GJU fee sheet found is in USD with scrambled layout and includes a compulsory German-year fee; per-program JD fees not reliably extractable, so no GJU programs included. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Official check 2026-10-09: The homepage footer gives a mailing address of 'Amman Madaba Street ... P.O. Box 35247, Amman 11180'. GJU's own page says the campus is near Madaba. If the app has 'Amman' as the city, that is the mailing address, not the campus.",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "781-790",
+    "source_url": "https://www.petra.gov.jo/en/news/german-jordanian-university-advances-in-qs-world-rankings-2027",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "39",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "psut",
@@ -184,7 +326,49 @@
    }
   ],
   "verification": "partial",
-  "notes": "Private non-profit university. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Public/private classification not confirmed on an official page fetched on 2026-10-09 (not on the readable page of the MoHE private list). Official check 2026-10-09: Not on MoHE private-list page 1 (pages 2-3 are ASP.NET postbacks, unfetchable). Listed on MoHE's Study-in-Jordan portal (studyinjordan.jo, linked from mohe.gov.jo) among universities in positions 11-28, the block of private universities, but that page does not label each entry's type. The PSUT pages fetched (/en, /en/about-psut) do not state whether it is private or public, and the Arabic site failed to load. The app's type of 'private' is still unconfirmed by an official page."
+  "notes": "Private non-profit university. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Public/private classification not confirmed on an official page fetched on 2026-10-09 (not on the readable page of the MoHE private list). Official check 2026-10-09: Not on MoHE private-list page 1 (pages 2-3 are ASP.NET postbacks, unfetchable). Listed on MoHE's Study-in-Jordan portal (studyinjordan.jo, linked from mohe.gov.jo) among universities in positions 11-28, the block of private universities, but that page does not label each entry's type. The PSUT pages fetched (/en, /en/about-psut) do not state whether it is private or public, and the Arabic site failed to load. The app's type of 'private' is still unconfirmed by an official page. Rankings checked 2026-10-10: THE profile shows no 2026 world or subject rank (timeshighereducation.com/world-university-rankings/princess-sumaya-university-technology).",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "951-1000",
+    "source_url": "https://topuniversities.com/universities/princess-sumaya-university-technology",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS World University Rankings 2026",
+    "subject": null,
+    "rank": "901-950",
+    "source_url": "https://topuniversities.com/universities/princess-sumaya-university-technology",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "51-60",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS World University Rankings by Subject 2023",
+    "subject": "Computer Science & Information Systems",
+    "rank": "351-400",
+    "source_url": "https://psut.edu.jo/en/university-ranking",
+    "source_kind": "university announcement",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS World University Rankings by Subject 2022",
+    "subject": "Computer Science & Information Systems",
+    "rank": "401-450",
+    "source_url": "https://psut.edu.jo/en/university-ranking",
+    "source_kind": "university announcement",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "htu",
@@ -210,10 +394,20 @@
     "url": "https://htu.edu.jo/admission/tuition-and-fees",
     "title": "HTU - Tuition and Fees",
     "checked_at": "2026-10-09"
+   },
+   {
+    "url": "https://sis.htu.edu.jo/New/images/Admission_policy.pdf",
+    "title": "HTU - Admission policy (Academic Criteria)",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "url": "https://htu.edu.jo/schools/sci",
+    "title": "HTU - School of Computing and Informatics",
+    "checked_at": "2026-10-10"
    }
   ],
   "verification": "partial",
-  "notes": "Address: King Hussein Business Park (KHBP), Building 17, Amman. Tuition page: 120 JD per credit hour for Jordanian students (Bachelor's and Technical degrees, regular program); 175 JD for international programme. Bachelor admission (engineering programmes): Tawjihi avg 80 + Math 80 + Physics 80 (htu.edu.jo/admission/requirements). Type 'private' not confirmed on a fetched page (HTU is commonly described as a non-profit university founded by the Crown Prince Foundation) - verify before display. Program list page is JS-rendered so no HTU program records. name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Official check 2026-10-09: MoHE does not list HTU as public or private; it puts HTU under 'Universities Operating under special Law'. The HTU site says it was \"established by the Crown Prince Foundation\" but gives no public/private status. The Arabic name comes from studyinjordan.jo entry #30.",
+  "notes": "Address: King Hussein Business Park (KHBP), Building 17, Amman. Tuition page: 120 JD per credit hour for Jordanian students (Bachelor's and Technical degrees, regular program); 175 JD for international programme. Bachelor admission (engineering programmes): Tawjihi avg 80 + Math 80 + Physics 80 (htu.edu.jo/admission/requirements). Type 'private' not confirmed on a fetched page (HTU is commonly described as a non-profit university founded by the Crown Prince Foundation) - verify before display. Program records added 2026-10-10 from individual program pages (htu.edu.jo/programs/...). name_ar added 2026-10-09 from the university's commonly used official Arabic name; not checked against a fetched source. Official check 2026-10-09: MoHE does not list HTU as public or private; it puts HTU under 'Universities Operating under special Law'. The HTU site says it was \"established by the Crown Prince Foundation\" but gives no public/private status. The Arabic name comes from studyinjordan.jo entry #30. Rankings checked 2026-10-10: not listed in QS (World, Arab Region, Subject) or THE (topuniversities.com/universities/al-hussein-technical-university). Founded 2016; absence from rankings says nothing about quality either way.",
   "additional_fees": [
    {
     "name": "Application fee",
@@ -263,7 +457,17 @@
    }
   ],
   "verification": "verified",
-  "notes": " Official check 2026-10-09:"
+  "notes": " Official check 2026-10-09:",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "111-120",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "pu",
@@ -319,6 +523,16 @@
     "per": "semester",
     "source_url": "https://philadelphia.edu.jo/PDF/Fee_Brochure_2025-2026.pdf"
    }
+  ],
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "121-130",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
   ]
  },
  {
@@ -362,7 +576,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Added 2026-10-09. Listed on the MoHE private universities list."
+  "notes": "Added 2026-10-09. Listed on the MoHE private universities list.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "91-100",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "bau",
@@ -382,7 +606,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. City not verified: bau.edu.jo returned server/client errors. A city must not be filled from memory."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. City not verified: bau.edu.jo returned server/client errors. A city must not be filled from memory.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "71-80",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "ahu",
@@ -402,7 +636,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. The university also says it \"is an official Jordanian higher education institution\" (https://ahu.edu.jo/EN-Article-3910). The homepage is robots-disallowed; the city comes from an article page."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. The university also says it \"is an official Jordanian higher education institution\" (https://ahu.edu.jo/EN-Article-3910). The homepage is robots-disallowed; the city comes from an article page.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "121-130",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "ttu",
@@ -422,7 +666,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "151-160",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "aau",
@@ -442,7 +696,33 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. The site says it is \"a non-profit private university\"."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. The site says it is \"a non-profit private university\".",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "643",
+    "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "91-100",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS World University Rankings by Subject 2026",
+    "subject": "Computer Science & Information Systems",
+    "rank": "within top 600 (exact band not stated)",
+    "source_url": "https://newsletter.aau.edu.jo/?p=19456",
+    "source_kind": "university announcement",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "jadara",
@@ -462,7 +742,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. City not verified: the homepage gives no address, and other jadara.edu.jo pages returned errors."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. City not verified: the homepage gives no address, and other jadara.edu.jo pages returned errors.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "161-170",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "ammanu",
@@ -482,7 +772,33 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. The site says it is \"the first private university in Jordan\". On studyinjordan.jo the Arabic name appears as 'جامعة عمان الأهلية'."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. The site says it is \"the first private university in Jordan\". On studyinjordan.jo the Arabic name appears as 'جامعة عمان الأهلية'.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "32",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings 2026",
+    "subject": null,
+    "rank": "401-500",
+    "source_url": "https://www.ammanu.edu.jo/news/al-ahliyya-amman-university-ranks-first-in-jordan-and-401-500-worldwide-in-the-times-higher-education-world-university-rankings-2026/",
+    "source_kind": "university announcement",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings by Subject 2026",
+    "subject": "Computer Science",
+    "rank": "301-400",
+    "source_url": "https://www.ammanu.edu.jo/news/al-ahliyya-amman-university-tops-jordanian-universities-in-five-disciplines-and-ranks-first-among-private-universities-in-business-and-medicine-in-the-2026-times-subject-rankings/",
+    "source_kind": "university announcement",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "asu",
@@ -502,7 +818,49 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. MoHE uses 'Applied Science University'; the official site uses 'Applied Science Private University'. Weak city evidence: only a news dateline names Amman."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. MoHE uses 'Applied Science University'; the official site uses 'Applied Science Private University'. Weak city evidence: only a news dateline names Amman.",
+  "rankings": [
+   {
+    "ranking": "QS World University Rankings 2027",
+    "subject": null,
+    "rank": "761-770",
+    "source_url": "https://jordantimes.com/news/local/jordanian-universities-achieve-advanced-positions-in-qs-world-university-rankings-2027",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS World University Rankings 2026",
+    "subject": null,
+    "rank": "791-800",
+    "source_url": "https://www.jordannews.jo/Section-113/All/Applied-Science-University-Ranks-First-Among-Jordanian-Private-Universities-in-QS-World-Rankings-Progress-for-2026-42724",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "37",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings 2027",
+    "subject": null,
+    "rank": "401-450",
+    "source_url": "https://www.timeshighereducation.com/world-university-rankings/applied-science-private-university",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   },
+   {
+    "ranking": "THE World University Rankings by Subject 2026",
+    "subject": "Computer Science",
+    "rank": "401-500",
+    "source_url": "https://www.timeshighereducation.com/world-university-rankings/applied-science-private-university",
+    "source_kind": "ranking publisher",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "isra",
@@ -522,7 +880,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "161-170",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "uop",
@@ -542,7 +910,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. MoHE uses 'Petra University'; the official site uses 'University of Petra'."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. MoHE uses 'Petra University'; the official site uses 'University of Petra'.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "121-130",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "zu",
@@ -562,7 +940,17 @@
    }
   ],
   "verification": "partial",
-  "notes": "Directory entry only: no programmes, fees or admission data collected yet. Not on MoHE private-list page 1 (pages 2-3 are ASP.NET postbacks, unfetchable). Listed on MoHE's Study-in-Jordan portal (studyinjordan.jo, linked from mohe.gov.jo) among universities in positions 11-28, the block of private universities, but that page does not label each entry's type. The university states it is \"أول جامعة خاصة في محافظة الزرقاء\" (the first private university in Zarqa Governorate). A MoHE news item also refers to 'جامعة الزرقاء الخاصة'. The English name is a translation, not verified on an English page."
+  "notes": "Directory entry only: no programmes, fees or admission data collected yet. Not on MoHE private-list page 1 (pages 2-3 are ASP.NET postbacks, unfetchable). Listed on MoHE's Study-in-Jordan portal (studyinjordan.jo, linked from mohe.gov.jo) among universities in positions 11-28, the block of private universities, but that page does not label each entry's type. The university states it is \"أول جامعة خاصة في محافظة الزرقاء\" (the first private university in Zarqa Governorate). A MoHE news item also refers to 'جامعة الزرقاء الخاصة'. The English name is a translation, not verified on an English page.",
+  "rankings": [
+   {
+    "ranking": "QS Arab Region University Rankings 2026",
+    "subject": null,
+    "rank": "141-150",
+    "source_url": "https://al-fanarmedia.org/2025/10/298-arab-universities-are-ranked-in-qs-regional-list-for-2026/",
+    "source_kind": "news",
+    "checked_at": "2026-10-10"
+   }
+  ]
  },
  {
   "id": "aut",

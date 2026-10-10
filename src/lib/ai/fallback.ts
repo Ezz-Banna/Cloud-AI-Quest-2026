@@ -14,6 +14,7 @@ export function quoteInText(quote: string, text: string) {
 
 const FIELD_WORDS: Record<string, string[]> = {
   "computer-science": ["computer", "programming", "coding", "software", "حاسوب", "برمجة", "كمبيوتر"],
+  "cybersecurity": ["cyber", "security", "hacking", "أمن سيبراني", "الأمن السيبراني", "اختراق"],
   "software-engineering": ["software engineer", "apps", "web", "هندسة البرمجيات", "تطبيقات"],
   "ai-data-science": ["artificial intelligence", " ai ", "data science", "machine learning", "ذكاء اصطناعي", "الذكاء الاصطناعي", "بيانات"],
   medicine: ["medicine", "doctor", "physician", "طب", "طبيب", "دكتور"],

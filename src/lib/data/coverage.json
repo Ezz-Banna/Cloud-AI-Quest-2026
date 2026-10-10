@@ -1,21 +1,21 @@
 {
- "measured_on": "2026-10-09",
+ "measured_on": "2026-10-10",
  "universities": {
   "total": 26,
   "verified": 7,
-  "with_programs": 8,
+  "with_programs": 9,
   "public": 10,
   "private": 14,
   "special_law": 2
  },
  "programs": {
-  "total": 49,
-  "verified": 21,
-  "with_fee_hours_and_minimum": 28,
-  "with_fee": 44,
-  "with_minimum": 37,
+  "total": 53,
+  "verified": 28,
+  "with_fee_hours_and_minimum": 35,
+  "with_fee": 48,
+  "with_minimum": 44,
   "with_competitive_cutoffs": 6,
-  "fees_undated_or_older_than_2025_26": 44
+  "fees_undated_or_older_than_2025_26": 48
  },
  "scholarships": {
   "total": 22,
@@ -30,34 +30,35 @@
  },
  "national_rules": 2,
  "sources": {
-  "records": 97,
-  "with_checked_source_link": 97,
+  "records": 101,
+  "with_checked_source_link": 101,
   "pct_with_checked_source_link": 100,
-  "with_official_source": 96,
+  "with_official_source": 100,
   "pct_with_official_source": 99
  },
  "revisions": {
-  "total": 194,
-  "field_changes": 163,
-  "records_added": 30,
+  "total": 305,
+  "field_changes": 270,
+  "records_added": 34,
   "records_removed": 1,
   "by_kind": {
    "label corrected": 65,
-   "value added": 18,
+   "value added": 21,
    "status set": 22,
    "removed": 1,
    "value withheld": 6,
-   "added": 30,
+   "added": 34,
    "fees added": 2,
    "cut-offs added": 6,
    "link updated": 10,
    "text re-read at source": 21,
    "source replaced": 12,
-   "value corrected": 1
+   "value corrected": 1,
+   "other": 104
   }
  },
  "validation": {
   "errors": 0,
-  "warnings": 52
+  "warnings": 63
  }
 }

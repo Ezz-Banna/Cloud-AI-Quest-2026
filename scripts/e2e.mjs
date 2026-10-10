@@ -42,7 +42,8 @@ async function run(viewport, tag) {
   await page.screenshot({ path: `${OUT}/${tag}-02-home.png`, fullPage: true });
 
   await page.goto(`${BASE}/discover`);
-  if (tag === "desktop") {
+  check(`${tag}: chat mode is hidden (form only)`, (await page.getByRole("tab", { name: /^chat$/i }).count()) === 0);
+  {
     // Step-by-step form
     const cont = () => page.getByRole("button", { name: /^(Continue|See my options)$/ }).click();
     await cont();
@@ -58,19 +59,6 @@ async function run(viewport, tag) {
     check(`${tag}: progress indicator reaches 100%`, (await page.getByRole("progressbar").getAttribute("aria-valuenow")) === "100");
     await page.screenshot({ path: `${OUT}/${tag}-03-form.png`, fullPage: true });
     await cont();
-  } else {
-    // AI conversational mode
-    await page.getByRole("tab", { name: /^chat$/i }).click();
-    const answers = ["Lina", "86.4 scientific stream", "I love coding and making websites, maybe AI too", "Build apps that help people in Jordan as a web developer", "About 2500 JOD, I need a scholarship", "Irbid, Amman is fine too", "No preference", "Nothing specific"];
-    for (const a of answers) {
-      await page.getByLabel("Your answer").fill(a);
-      await page.getByRole("button", { name: "Send" }).click();
-    }
-    await page.getByRole("heading", { name: /what I understood/i }).waitFor({ timeout: 40000 });
-    check(`${tag}: chat profile draft shown`, true);
-    check(`${tag}: average extracted`, (await page.getByLabel(/average/i).inputValue()) === "86.4");
-    await page.screenshot({ path: `${OUT}/${tag}-03-review.png`, fullPage: true });
-    await page.getByRole("button", { name: /save and see/i }).click();
   }
   await page.waitForURL("**/discover/results");
   await page.getByRole("button", { name: /why this recommendation/i }).first().waitFor({ timeout: 15000 });

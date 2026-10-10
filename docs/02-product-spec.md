@@ -77,7 +77,7 @@ Covers: product requirements, user journeys, features and priorities, informatio
 
 ```
 /                       Home: intro animation, value, three stages, trust principles
-/discover               Stage 1: step-by-step form (default) or chat with AI → profile review
+/discover               Stage 1: step-by-step form (chat mode hidden on 2026-10-10; component kept for later)
 /discover/results       Ranked programs: admission check · fit · cost · reasons · sources · missing data · save · explain
 /compare                Saved programs side by side
 /dashboard              Completeness · top matches · saved · skills · opportunities · journey progress

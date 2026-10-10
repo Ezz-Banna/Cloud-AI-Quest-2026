@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import * as z from "zod/v4";
 import { parseBody } from "@/lib/api";
 import { isAdmin } from "@/lib/admin";
-import { getCourses, getRoles, readStore, updateStore } from "@/lib/data/repo";
+import { getCandidates, getCourses, getRoles, readStore, updateStore } from "@/lib/data/repo";
 import { compareRole } from "@/lib/engines/gap";
 import { bearer, hashToken, newId, newToken, tokenMatches } from "@/lib/tokens";
 
@@ -37,6 +37,7 @@ async function canSeeRole(req: Request, roleId: string) {
   if (await isAdmin()) return true;
   return tokenMatches(bearer(req), readStore().role_tokens?.[roleId]);
 }
+const SYNTHETIC = "synthetic"; // token_hash of the seeded demo people in data/synthetic/candidates.json
 
 export async function GET(req: Request) {
   const u = new URL(req.url);
@@ -44,17 +45,20 @@ export async function GET(req: Request) {
   if (id) {
     // The person checking their own share.
     const c = (readStore().candidates ?? []).find((x) => x.id === id);
-    if (!c || !tokenMatches(bearer(req), c.token_hash)) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    if (!c || c.token_hash === SYNTHETIC || !tokenMatches(bearer(req), c.token_hash)) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json({ id: c.id, role_id: c.role_id, shared_at: c.shared_at, skills: c.skills.length });
   }
   const roleId = u.searchParams.get("role_id") ?? "";
   const role = getRoles().find((r) => r.id === roleId);
   if (!role) return NextResponse.json({ error: "Role not found" }, { status: 404 });
-  if (!(await canSeeRole(req, roleId))) return NextResponse.json({ error: "This role's shared profiles need its manage token" }, { status: 403 });
+  // Synthetic demo roles can be opened by anyone, but then only the synthetic demo people are shown:
+  // a real person who shared with a demo role stays visible only to an admin.
+  const full = await canSeeRole(req, roleId);
+  if (!full && role.verification !== "synthetic") return NextResponse.json({ error: "This role's shared profiles need its manage token" }, { status: 403 });
   const courses = getCourses();
-  const rows = (readStore().candidates ?? []).filter((c) => c.role_id === roleId).map((c) => {
+  const rows = getCandidates().filter((c) => c.role_id === roleId && (full || c.token_hash === SYNTHETIC)).map((c) => {
     const cmp = compareRole(role.requirements, { skills: c.skills.map((s) => ({ skill_id: s.skill_id, level: s.level as 0 | 1 | 2 | 3, status: s.status as never })), completed_courses: c.completed_courses }, courses);
-    return { id: c.id, display_name: c.display_name, shared_at: c.shared_at, status: cmp.status, counts: cmp.counts,
+    return { id: c.id, display_name: c.display_name, shared_at: c.shared_at, synthetic: c.token_hash === SYNTHETIC, status: cmp.status, counts: cmp.counts,
       checks: cmp.checks.map((k) => ({ skill_id: k.skill_id, importance: k.importance, state: k.state, level_ok: k.level_ok, level_needed: k.level_needed, level_recorded: k.level_recorded })),
       achievements: c.achievements ?? [], contact: c.contact ?? null };
   }).sort((a, b) => a.shared_at.localeCompare(b.shared_at)); // order of sharing, not a ranking

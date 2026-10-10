@@ -56,6 +56,11 @@ export const getCourses = () => load<Course>("courses").rows;
 export function getEmployers(): Employer[] {
   return [...(readJson("data/synthetic/employers.json") as Employer[]), ...(readStore().employers ?? [])];
 }
+/** Synthetic people who "shared" with the synthetic demo roles, plus real shares saved at runtime. */
+export function getCandidates(): CandidateSnapshot[] {
+  return [...(readJson("data/synthetic/candidates.json") as CandidateSnapshot[]), ...(readStore().candidates ?? [])];
+}
+
 export function getRoles(): EmployerRole[] {
   return [...(readJson("data/synthetic/roles.json") as EmployerRole[]), ...(readStore().roles ?? [])];
 }

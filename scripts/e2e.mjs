@@ -154,7 +154,16 @@ async function run(viewport, tag) {
 
   // Employer sees consenting candidate
   await page.goto(`${BASE}/employer`);
-  check(`${tag}: shares for a role need its manage token`, await page.getByText(/visible only on the device that published it/).waitFor({ timeout: 10000 }).then(() => true, () => false));
+  // The first role is a synthetic demo role: anyone may open it, but the real share made above must stay hidden.
+  await page.getByText(/No candidates have shared|Synthetic demo person/).first().waitFor({ timeout: 10000 });
+  check(`${tag}: a real person's share with a demo role is not shown without the role's token`, (await page.locator("section[aria-labelledby=cand-h]").getByText("Lina", { exact: true }).count()) === 0);
+  if (tag === "desktop") {
+    await page.goto(`${BASE}/employer/candidates?role=role-web-trainee`);
+    await page.getByRole("heading", { name: "Skills you need" }).first().waitFor({ timeout: 10000 });
+    check(`${tag}: demo employer screen shows the synthetic candidates with contact buttons`, (await page.getByText("Synthetic demo person").count()) === 3 && (await page.locator('a[href^="https://wa.me/"]').count()) >= 1);
+    await page.screenshot({ path: `${OUT}/${tag}-09a-demo-candidates.png`, fullPage: true });
+    await page.goto(`${BASE}/employer`);
+  }
   if (tag === "desktop") {
     await page.getByLabel("Organisation", { exact: true }).fill("Demo Studio");
     await page.getByLabel("Role title").fill("Junior React Developer");

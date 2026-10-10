@@ -139,7 +139,7 @@ export default function Employer() {
             {roles.map((r) => <option key={r.id} value={r.id}>{r.title}{r.verification === "synthetic" ? ` (${tr("synthetic", "مصطنع")})` : r.verification === "unverified" ? ` (${tr("demo, unverified", "تجريبي، غير موثّق")})` : ""}</option>)}
           </select>
           {roles.find((r) => r.id === roleId) && <div className="mt-2"><VerificationBadge v={roles.find((r) => r.id === roleId)!.verification} /></div>}
-          <CandidateBoard roleId={roleId} roleTitle={roles.find((r) => r.id === roleId)?.title} />
+          <CandidateBoard roleId={roleId} roleTitle={roles.find((r) => r.id === roleId)?.title} synthetic={roles.find((r) => r.id === roleId)?.verification === "synthetic"} />
           <Link href={`/employer/candidates${roleId ? `?role=${encodeURIComponent(roleId)}` : ""}`} className="btn-ghost mt-3 !px-0">{tr("Open the full candidate screen", "افتح شاشة المرشحين كاملة")} →</Link>
           <dl className="mt-4 grid gap-2 text-xs sm:grid-cols-2">
             <div className="rounded-xl bg-ok-100/60 p-3"><dt className="font-semibold text-ok">✓ {tr("Shown", "المعروض")}</dt><dd className="mt-0.5 text-ink">{tr("First name, skills, levels, evidence states, and only if the person ticks them: accomplishments and contact details", "الاسم الأول، المهارات، المستويات، حالات الأدلة، وفقط إن اختارها الشخص: الإنجازات وبيانات التواصل")}</dd></div>

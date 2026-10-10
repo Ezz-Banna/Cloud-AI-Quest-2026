@@ -19,7 +19,8 @@ function Board() {
       setRoles(rs);
       // Start with the role asked for, else one this device published, else the first.
       const mine = rs.find((r) => progress.role_tokens?.[r.id]);
-      setRoleId((x) => x || (q && rs.some((r) => r.id === q) ? q : mine?.id ?? rs[0]?.id ?? ""));
+      const demo = rs.find((r) => r.id === "role-web-trainee");
+      setRoleId((x) => x || (q && rs.some((r) => r.id === q) ? q : mine?.id ?? demo?.id ?? rs[0]?.id ?? ""));
     }).catch(() => setRoles([]));
   }, [q, progress.role_tokens, hydrated]);
   const role = roles?.find((r) => r.id === roleId);
@@ -38,7 +39,7 @@ function Board() {
           {role && <VerificationBadge v={role.verification} />}
           <Link href="/employer" className="btn-ghost">{tr("Publish another role", "انشر دوراً آخر")}</Link>
         </div>
-        {roleId ? <CandidateBoard roleId={roleId} roleTitle={role?.title} /> : roles && <p className="empty-state mt-4 text-sm">{tr("No roles yet. Publish one first.", "لا توجد أدوار بعد. انشر دوراً أولاً.")}</p>}
+        {roleId ? <CandidateBoard roleId={roleId} roleTitle={role?.title} synthetic={role?.verification === "synthetic"} /> : roles && <p className="empty-state mt-4 text-sm">{tr("No roles yet. Publish one first.", "لا توجد أدوار بعد. انشر دوراً أولاً.")}</p>}
       </section>
     </div>
   );

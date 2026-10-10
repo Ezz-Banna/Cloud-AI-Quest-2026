@@ -33,5 +33,63 @@
       { "skill_id": "html", "level": 1, "mandatory": false },
       { "skill_id": "css", "level": 1, "mandatory": false }
     ]
+  },
+  {
+    "id": "role-web-trainee",
+    "employer_id": "emp-wasel",
+    "title": "Junior Web Developer (trainee, 6 months)",
+    "kind": "job",
+    "city": "Amman",
+    "verification": "synthetic",
+    "description": "Six-month paid trainee role building and updating websites for small Jordanian businesses, with a mentor. Required: solid HTML and CSS, working JavaScript, and Git for sharing code. React is a plus. You will explain your work to clients, so clear communication and professional English are preferred.",
+    "requirements": [
+      {
+        "skill_id": "html",
+        "level": 2,
+        "mandatory": true,
+        "importance": "required"
+      },
+      {
+        "skill_id": "css",
+        "level": 2,
+        "mandatory": true,
+        "importance": "required"
+      },
+      {
+        "skill_id": "javascript",
+        "level": 2,
+        "mandatory": true,
+        "importance": "required"
+      },
+      {
+        "skill_id": "git",
+        "level": 1,
+        "mandatory": true,
+        "importance": "required"
+      },
+      {
+        "skill_id": "react",
+        "level": 1,
+        "mandatory": false,
+        "importance": "preferred"
+      },
+      {
+        "skill_id": "communication",
+        "level": 2,
+        "mandatory": false,
+        "importance": "preferred"
+      },
+      {
+        "skill_id": "english",
+        "level": 2,
+        "mandatory": false,
+        "importance": "preferred"
+      }
+    ],
+    "recommended_course_ids": [
+      "mdn-javascript",
+      "javascript-info",
+      "react-dev-learn"
+    ]
   }
 ]

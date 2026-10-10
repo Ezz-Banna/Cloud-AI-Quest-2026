@@ -56,7 +56,11 @@ describe("sharing with a role", () => {
     const roleId = created.role.id;
     await candidates.POST(json("/api/candidates", "POST", { role_id: roleId, skills: [{ skill_id: "sql", level: 1, status: "self-reported" }], consent: true, display_name: "Omar Ali" }));
     expect((await candidates.GET(json(`/api/candidates?role_id=${roleId}`, "GET"))).status).toBe(403);
-    expect((await candidates.GET(json(`/api/candidates?role_id=role-frontend-jr`, "GET", undefined, created.manage_token))).status).toBe(403);
+    // A synthetic demo role opens for anyone, but a real person's share with it stays hidden without its token.
+    await candidates.POST(json("/api/candidates", "POST", { role_id: "role-frontend-jr", skills: [{ skill_id: "html", level: 1, status: "self-reported" }], consent: true, display_name: "Real Person", contact: { email: "real@example.org" } }));
+    const demo = await (await candidates.GET(json(`/api/candidates?role_id=role-frontend-jr`, "GET", undefined, created.manage_token))).json();
+    expect(demo.candidates.every((c: { synthetic: boolean }) => c.synthetic)).toBe(true);
+    expect(JSON.stringify(demo)).not.toMatch(/real@example\.org|Real/);
     const list = await (await candidates.GET(json(`/api/candidates?role_id=${roleId}`, "GET", undefined, created.manage_token))).json();
     expect(list.candidates).toHaveLength(1);
     expect(list.candidates[0].display_name).toBe("Omar");

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "share-demo-lina", "token_hash": "synthetic", "role_id": "role-web-trainee", "display_name": "Lina", "shared_at": "2026-10-09T18:30:00.000Z",
+    "skills": [
+      { "skill_id": "html", "level": 2, "status": "evidence-attached", "evidence_count": 3 },
+      { "skill_id": "css", "level": 2, "status": "evidence-attached", "evidence_count": 1 },
+      { "skill_id": "javascript", "level": 1, "status": "evidence-attached", "evidence_count": 1 },
+      { "skill_id": "git", "level": 1, "status": "evidence-attached", "evidence_count": 2 },
+      { "skill_id": "python", "level": 1, "status": "evidence-attached", "evidence_count": 2 },
+      { "skill_id": "communication", "level": 2, "status": "self-reported", "evidence_count": 2 },
+      { "skill_id": "english", "level": 2, "status": "self-reported", "evidence_count": 0 }
+    ],
+    "completed_courses": ["mdn-html", "mdn-css-basics", "mdn-version-control"],
+    "achievements": [
+      { "title": "Personal portfolio website", "kind": "project", "description": "I built my personal website with HTML and CSS, and made it responsive for phones. I added a small quiz game using JavaScript.", "links": ["https://example.org/synthetic-portfolio"], "skills": ["html", "css", "javascript"] },
+      { "title": "Published my code on GitHub", "kind": "project", "description": "Put my portfolio and quiz game code in a public Git repository with a README so others can see how it works.", "links": ["https://example.org/synthetic-github"], "skills": ["git"], "date": "2026-03" },
+      { "title": "Volunteer coding tutor, community centre in Irbid", "kind": "activity", "description": "Taught basic HTML to younger students on Saturdays for three months and explained my code to them step by step.", "links": [], "skills": ["html", "communication"], "date": "2026-02" },
+      { "title": "School robotics club: line-following robot", "kind": "project", "description": "Led a team of four that built a line-following robot for the school science fair. I planned the tasks and presented the robot to the judges.", "links": [], "skills": ["communication"], "date": "2025-04" }
+    ],
+    "contact": { "email": "lina.synthetic@example.org", "phone": "+962 7 0000 0001", "preferred": "whatsapp" }
+  },
+  {
+    "id": "share-demo-omar", "token_hash": "synthetic", "role_id": "role-web-trainee", "display_name": "Omar", "shared_at": "2026-10-09T20:05:00.000Z",
+    "skills": [
+      { "skill_id": "html", "level": 3, "status": "reviewed", "evidence_count": 2 },
+      { "skill_id": "css", "level": 2, "status": "evidence-attached", "evidence_count": 1 },
+      { "skill_id": "javascript", "level": 2, "status": "evidence-attached", "evidence_count": 2 },
+      { "skill_id": "react", "level": 1, "status": "self-reported", "evidence_count": 0 },
+      { "skill_id": "git", "level": 2, "status": "evidence-attached", "evidence_count": 1 }
+    ],
+    "completed_courses": ["odin-foundations"],
+    "achievements": [
+      { "title": "Booking page for a family bakery", "kind": "work", "description": "Built a one-page site with an order form for my uncle's bakery in Zarqa; it takes about 20 orders a week.", "links": ["https://example.org/synthetic-bakery"], "skills": ["html", "css", "javascript"], "date": "2026-06" }
+    ],
+    "contact": { "email": "omar.synthetic@example.org", "phone": null, "preferred": "email" }
+  },
+  {
+    "id": "share-demo-sara", "token_hash": "synthetic", "role_id": "role-web-trainee", "display_name": "Sara", "shared_at": "2026-10-10T07:40:00.000Z",
+    "skills": [
+      { "skill_id": "ui-design", "level": 2, "status": "evidence-attached", "evidence_count": 1 },
+      { "skill_id": "english", "level": 3, "status": "self-reported", "evidence_count": 0 },
+      { "skill_id": "communication", "level": 2, "status": "self-reported", "evidence_count": 0 }
+    ],
+    "completed_courses": ["google-ux-cert"],
+    "achievements": [
+      { "title": "App redesign case study", "kind": "project", "description": "Redesigned a university timetable app in Figma after interviewing five classmates.", "links": ["https://example.org/synthetic-case-study"], "skills": ["ui-design"] }
+    ],
+    "contact": null
+  }
+]

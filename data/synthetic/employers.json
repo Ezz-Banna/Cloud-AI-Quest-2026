@@ -1,5 +1,6 @@
 [
   { "id": "emp-nashmi", "name": "Nashmi Digital (synthetic)", "sector": "Software & web services", "city": "Amman", "about": "A fictional Amman software studio used to demonstrate the employer workflow. Not a real company.", "verification": "synthetic" },
   { "id": "emp-wadi", "name": "Wadi Analytics (synthetic)", "sector": "Data & analytics", "city": "Irbid", "about": "A fictional analytics firm used for demonstration. Not a real company.", "verification": "synthetic" },
-  { "id": "emp-petra", "name": "Petra Health Tech (synthetic)", "sector": "Health technology", "city": "Amman", "about": "A fictional health-tech company used for demonstration. Not a real company.", "verification": "synthetic" }
+  { "id": "emp-petra", "name": "Petra Health Tech (synthetic)", "sector": "Health technology", "city": "Amman", "about": "A fictional health-tech company used for demonstration. Not a real company.", "verification": "synthetic" },
+  {"id": "emp-wasel", "name": "Wasel Web Studio (synthetic)", "sector": "Web development for small businesses", "city": "Amman", "about": "A fictional Amman web studio used to demonstrate the employer workflow. Not a real company.", "verification": "synthetic"}
 ]

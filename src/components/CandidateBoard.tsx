@@ -9,7 +9,7 @@ import { SKILL_BY_ID } from "@/lib/data/taxonomy";
 export interface CandCheck { skill_id: string; importance: string; state: string; level_ok: boolean | null; level_needed?: number; level_recorded?: number }
 export interface CandAchievement { title: string; kind: string; description: string; links: string[]; skills: string[]; date?: string | null }
 export interface Cand {
-  id: string; display_name: string; shared_at: string; status: string;
+  id: string; display_name: string; shared_at: string; status: string; synthetic?: boolean;
   counts: { required: number; required_recorded: number; required_with_evidence: number; required_reviewed: number; preferred: number; preferred_recorded: number };
   checks: CandCheck[];
   achievements?: CandAchievement[];
@@ -18,7 +18,7 @@ export interface Cand {
 
 const LEVEL = { en: ["None", "Basic", "Working", "Strong"], ar: ["لا شيء", "أساسي", "عملي", "متقدم"] };
 
-export function CandidateBoard({ roleId, roleTitle }: { roleId: string; roleTitle?: string }) {
+export function CandidateBoard({ roleId, roleTitle, synthetic = false }: { roleId: string; roleTitle?: string; synthetic?: boolean }) {
   const { tr, lang, progress } = useBridge();
   const [cands, setCands] = useState<Cand[] | null>(null);
   const [err, setErr] = useState<"denied" | "network" | null>(null);
@@ -30,12 +30,13 @@ export function CandidateBoard({ roleId, roleTitle }: { roleId: string; roleTitl
     if (!roleId) return;
     let live = true;
     setCands(null); setErr(null);
-    if (!token) { setErr("denied"); setCands([]); return; }
+    // Demo (synthetic) roles show their synthetic people to anyone; other roles need this device's manage token.
+    if (!token && !synthetic) { setErr("denied"); setCands([]); return; }
     fetch(`/api/candidates?role_id=${encodeURIComponent(roleId)}`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
       .then(async (r) => { const d = await r.json(); if (!live) return; if (r.status === 403) { setErr("denied"); setCands([]); return; } if (!r.ok) throw new Error(d.error); setCands(d.candidates ?? []); })
       .catch(() => { if (live) { setErr("network"); setCands([]); } });
     return () => { live = false; };
-  }, [roleId, token]);
+  }, [roleId, token, synthetic]);
 
   const has = (c: CandCheck) => c.state !== "none-recorded";
   const matching = (c: Cand) => c.checks.some((k) => k.importance === "required" && has(k));
@@ -70,7 +71,7 @@ export function CandidateBoard({ roleId, roleTitle }: { roleId: string; roleTitl
           return (
             <li key={c.id} className="rounded-2xl border border-line p-4 sm:p-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <p className="text-lg font-bold text-teal">{c.display_name}</p>
+                <p className="text-lg font-bold text-teal">{c.display_name}{c.synthetic && <span className="ms-2 rounded-full bg-sand-100 px-2 py-0.5 align-middle text-xs font-semibold text-sand-700">◇ {tr("Synthetic demo person", "شخص تجريبي")}</span>}</p>
                 <p className="text-xs text-muted">{tr("Shared", "شارك")} {new Date(c.shared_at).toLocaleDateString(lang === "ar" ? "ar" : undefined)}</p>
               </div>
               <p className="mt-1 text-sm"><strong>{tr(`Has ${req.filter(has).length} of ${req.length} required skills`, `لديه ${req.filter(has).length} من ${req.length} مهارات أساسية`)}</strong><span className="text-muted">{tr(` · ${req.filter((k) => has(k) && k.level_ok !== false).length} at the level you asked for`, ` · ${req.filter((k) => has(k) && k.level_ok !== false).length} بالمستوى المطلوب`)}</span><strong></strong><span className="text-muted">{tr(` · ${c.counts.required_with_evidence} with work attached · ${c.counts.required_reviewed} reviewed`, ` · ${c.counts.required_with_evidence} مع عمل مرفق · ${c.counts.required_reviewed} روجعت`)}</span></p>
